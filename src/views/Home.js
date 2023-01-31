@@ -10,7 +10,7 @@ const Home = () => {
             Centro de Cooperación Academica Industria
           </p>
           <p className="cart-title">
-            CCAI
+            CCAI - TESE
           </p>
           <p className='subtitle width-text'>
             Tecnológico de Estudios Superiores de Ecatepec
