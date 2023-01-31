@@ -63,6 +63,13 @@ const Home = () => {
             </div>
             <div className='column is-6' style={{ margin: 'auto' }}>
               <ButtonDecorative
+                title="Usuarios registrados"
+                backgroundColor="#60dd96"
+                icon="power-standby "
+              />
+            </div>
+            <div className='column is-6' style={{ margin: 'auto' }}>
+              <ButtonDecorative
                 title="Cerrar sesión"
                 backgroundColor="#c12529"
                 icon="power-standby "
