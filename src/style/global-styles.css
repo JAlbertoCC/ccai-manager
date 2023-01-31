@@ -3,7 +3,7 @@
 @import './../../node_modules/@mdi/font/css/materialdesignicons.min.css';
 
 @import url('./Inputs/input-label.css');
-@import url('./Cars//cards.css');
+@import url('./Cars/cards.css');
 @import url('./Header/header.css');
 @import url('./Buttons/all-buttons.css');
 
@@ -11,6 +11,7 @@
 @import url('./Table/table.css');
 @import url('./Search/search.css');
 @import url('./Tabs/tabs-component.css');
+@import url('./Accordeon/accordeon-styles.css');
 
 @font-face {
   font-family: 'Poppins';

@@ -5,7 +5,7 @@ const Home = () => {
   return (
     <div className='section'>
       <div className='columns' style={{ height: '70vh', width: '100%', marginTop: '2%' }}>
-        <div className="column is-6" style= {{ margin: 'auto' }}>
+        <div className="column is-6" style= {{ margin: 'auto', textAlign: 'center' }}>
           <p className="cart-title">
             Centro de Cooperación Academica Industria
           </p>
@@ -59,6 +59,13 @@ const Home = () => {
                 title="Información"
                 backgroundColor="#646463"
                 icon="magnify "
+              />
+            </div>
+            <div className='column is-6' style={{ margin: 'auto' }}>
+              <ButtonDecorative
+                title="Usuarios registrados"
+                backgroundColor="#60dd96"
+                icon="power-standby "
               />
             </div>
             <div className='column is-6' style={{ margin: 'auto' }}>

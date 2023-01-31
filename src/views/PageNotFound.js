@@ -5,7 +5,7 @@ const PageNotFound = () => {
   return (
     <div>
       <figure class="image img-not-found">
-        <img src={5("./../assets/404-error.jpg" )}/>
+        <img src={require("./../assets/404-error.jpg" )}/>
       </figure>
     </div>
   )
