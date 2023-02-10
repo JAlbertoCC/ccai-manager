@@ -1,15 +1,10 @@
 import React from 'react';
 export const HeaderComponent = (props) => {
   return (
-    <div class="header">    
-      <header class="card-header"> 
-        <a style={{ fontSize: '1rem' }} href="icons">
-          <i className="mdi mdi-chevron-left"></i>  
+      <div className="header-componet">     
+        <a href="/">
+          <i className="mdi mdi-chevron-left"></i> {props.title}   
         </a> 
-        <p class="card-header-title" >
-          {props.title}
-        </p>
-      </header>  
-    </div>  
+      </div>    
   )
 }

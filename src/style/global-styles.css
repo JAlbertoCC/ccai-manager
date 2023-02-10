@@ -3,10 +3,15 @@
 @import './../../node_modules/@mdi/font/css/materialdesignicons.min.css';
 
 @import url('./Inputs/input-label.css');
-@import url('./Cars//cards.css');
+@import url('./Cars/cards.css');
 @import url('./Header/header.css');
-@import url('./Dialog/dialog.css');
 @import url('./Buttons/all-buttons.css');
+
+@import url('./Tabs/tabs-component.css');
+@import url('./Table/table.css');
+@import url('./Search/search.css');
+@import url('./Tabs/tabs-component.css');
+@import url('./Accordeon/accordeon-styles.css');
 
 @font-face {
   font-family: 'Poppins';
@@ -36,9 +41,12 @@
 }
 
 body {
-  text-align: center;
-  background-color: #EBECF0;
+  text-align: end;
   font-family: 'Poppins';
+}
+
+html {
+  background-color: #EBECF0;
 }
 
 html {
@@ -48,22 +56,6 @@ html {
 .App-logo {
   height: 40vmin;
   pointer-events: none;
-}
-  
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-  
-.App-header {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
   
 .App-link {
@@ -76,9 +68,8 @@ html {
 }
 
 .login-content {
-  width: 35%;
+  width: 30%;
   margin: auto;
-  margin-top: 2%;
 }
 
 .center-img {
@@ -115,31 +106,60 @@ html {
   padding-top: 5%;
 }
 
-.margin-top{
-  margin-top: 2%;
+.margin-top {
+  margin-top: 0 2%;
 }
 
 .container-personal {
-  width: 100%;
-  margin:2%;
+  width: 97% !important;
+  margin: 2%;
+  padding-bottom: 3%;
 }
 
 .columns {
   display: flex;
   flex-wrap: wrap;
+  width: 80%;
 }
 
 .title-register {
   text-align: left;
-  color: #ffffff;
+  color: #000000;
   font-weight: 700;
   font-size: 1.3rem;
 }
 
-@media (min-width: 1350px) {
-  .login-content {
-    width: 30%;
-    margin: auto;
-    margin-top: 8%;
-  }
+.title-sucessfull {
+  text-align: center;
+  color:#c12529;
+  font-weight: 900;
+  font-size: 2.0rem;
+  margin-top: 2.5%;
+  text-shadow: black -0.5px -0.5px 0.2em;
+}
+
+.body-sucessfull {
+  font-size: 1.5rem;
+  color: #000000;
+}
+
+.button {
+  font-family: 'Poppins';
+}
+
+.width-text {
+  margin: auto;
+  padding: 15px 0;
+  width: 65%;
+}
+
+.subtitle {
+  font-weight: 900;
+  font-size: 1.3rem;
+}
+
+@media (min-width: 1500px) {
+  .subtitle {
+    font-size: 2rem;
+  } 
 }

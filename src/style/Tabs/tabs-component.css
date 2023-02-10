@@ -1,32 +1,21 @@
 .tabs {
-  width: 100%;
-  border-bottom: none;
+  border-bottom: 3px solid #000000;
+  margin: 0;
+  padding: 0;
 }
-
-.tabs ul {
-    border-bottom-style: none;
-}
-
-.tabs ul li {
-  border-bottom: 3px solid #ffffff;
-}
-
 .tabs ul .is-active {
-  border-bottom: 3px solid rgba(0, 0, 0, .3);
+  border-bottom: 4px solid #ffffff;
 }
 
 .tabs ul li a {
-  font-size: 1rem;
+  font-size: 1.2rem;
   font-weight: 900;
   text-align: left;
-  color: #ffffff !important;
+  color: #000000 !important;
   text-decoration: none;
+  border-bottom: none;
 }
 
-.tabs ul:focus {
-    font-size: 1rem;
-    font-weight: 900;
-    text-align: left;
-    color: #ffffff !important;
-    text-decoration: none;
-  }
+.tabs ul li a:hover {
+  border-bottom: 4px solid #ffffff;
+}

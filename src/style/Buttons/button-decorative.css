@@ -1,3 +1,74 @@
-.button-decorative {
+.content-decorative {
+    display: flex;
+    margin: 10px;
+    margin-left: 50px;
+  }
   
-}
+  .icon-content {
+    margin-top: 10px;
+    margin-left: -1.7% !important;
+    position: absolute;
+    height: 50px;
+    max-height: 50px;
+    width: 50px;
+  }
+  
+  .icon-content .mdi-decorative {
+    text-align: center;
+    font-size: 1.4rem;
+    color: #ffffff;
+    font-weight: 900;
+  }
+  
+  .button-text {
+    background-color: #f3f0dc;
+    height: 70px;
+    min-height: 70px;
+    max-height: 60px;
+    width: 180px;
+    min-width: 180px;
+    cursor: pointer;
+  }
+  
+  .button-text .text-decorative {
+    padding-top: 13px;
+    margin-left: 8px;
+    text-align: left;
+    font-size: 0.9rem;
+    font-weight: 900;
+    padding-left: 15px;
+  }
+  
+  .button-decorative {
+    border: 1.5px solid #000000;
+    padding: 10px;
+    font-size: 0.6rem;
+    text-align: center;
+    border-radius: 5px;
+    font-weight: 900;
+  }
+  
+  @media (min-width: 1500px) {
+    .button-text {
+      min-height: 100px;
+      max-height: 100px;
+      width: 250px;
+      min-width: 250px;
+    }
+    .icon-content {
+      margin-top: 15px;
+      height: 75px;
+      max-height: 75px;
+      width: 70px;
+    }
+    .button-text .text-decorative {
+      padding-top: 21px;
+      margin-left: 10px;
+      padding-left: 27px;
+      font-size: 1.3rem;
+    }
+    .icon-content .mdi-decorative {
+      text-align: center;
+      font-size: 2.4rem;
+    }
+  }

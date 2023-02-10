@@ -1,29 +1,20 @@
 /* styles.css */
-.header{
-    
-    border-radius: 1.50em;
-    border: 0.01em solid #050505;
-    background-color: white; 
-    text-align: center; 
+.header-componet {
+    text-align: left; 
     margin: auto;
-    
-     }
-
-.button{
-    border-radius: 2.50em;
-    border: 0.01em solid #ffffff;
-    background-color: white; 
-    margin: auto;
-        
-
+    font-weight: 900;
+    font-size: 2rem;
+    display: flex;
+    outline: none;
 }
-     
 
+.header-componet a {
+    color: #000000;
+}
+.header-componet a:hover {
+  color: #000000;
+}
 
-  
-    
-  
-  
-  
-  
-  
+.button-tese:focus {
+    color: #000000 !important;
+}
