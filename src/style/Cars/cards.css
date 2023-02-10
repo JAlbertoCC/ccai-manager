@@ -60,6 +60,18 @@
   height: 50%;
   padding: 15px;
 }
+
+.card-check{
+  border-radius: 2rem;
+  border: 0.063em solid #ffffff;
+  width: 50%;
+  min-height: 2.5rem;
+  padding: 2rem;
+  margin: 4rem, 1rem, 1rem, 1re,;
+  /* text-align: justify; */
+  display: grid;
+  justify-content: center;
+}
 @media (min-width: 1500px) {
   .cart-title {
     border-radius: 65px;
