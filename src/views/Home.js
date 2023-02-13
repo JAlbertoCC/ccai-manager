@@ -1,11 +1,19 @@
 import React from 'react';
+
+import { useNavigate  } from 'react-router-dom'
 import ButtonDecorative from './../components/ui/Buttons/ButtonDecorative'
 
 const Home = () => {
+
+  const navigate = useNavigate()
+  const goToLink = (uri) => {
+    navigate(uri)
+  } 
+
   return (
     <div className='section'>
       <div className='columns' style={{ height: '70vh', width: '100%', marginTop: '2%' }}>
-        <div className="column is-6" style= {{ margin: 'auto' }}>
+        <div className="column is-6" style= {{ margin: 'auto', textAlign: 'center' }}>
           <p className="cart-title">
             Centro de Cooperación Academica Industria
           </p>
@@ -24,6 +32,7 @@ const Home = () => {
                 title="Proyecto"
                 backgroundColor="#db6949"
                 icon="lightbulb-variant-outline "
+                navOnclick={() => goToLink('/Proyects')}
               />
             </div>
             <div className='column is-6'>
@@ -59,6 +68,13 @@ const Home = () => {
                 title="Información"
                 backgroundColor="#646463"
                 icon="magnify "
+              />
+            </div>
+            <div className='column is-6' style={{ margin: 'auto' }}>
+              <ButtonDecorative
+                title="Usuarios registrados"
+                backgroundColor="#60dd96"
+                icon="power-standby "
               />
             </div>
             <div className='column is-6' style={{ margin: 'auto' }}>

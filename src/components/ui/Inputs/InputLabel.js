@@ -1,7 +1,7 @@
 import React from 'react';
 
 export const InputLabel = (props) => {
-  const { title, iconName, typeInput, isPassword } = props
+  const { title, iconName, typeInput, isPassword, hdlOnClick } = props
   
   return (
     <div className="field">
@@ -14,12 +14,15 @@ export const InputLabel = (props) => {
           {
             title ?
               <span className='float-span'>{ title }</span> :
-              <span className="icon is-right">
-                <i className={`mdi ${iconName} icon-blue`}></i>
+              <span
+                className="icon is-right"
+                style={{ cursor: 'pointer' }}
+              >
+                <i
+                  className={`mdi ${iconName} icon-blue`}
+                  onClick={() => hdlOnClick}
+                />
               </span>
-          }
-          {
-            isPassword
           }
         </label>
       </p>

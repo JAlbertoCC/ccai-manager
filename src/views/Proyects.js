@@ -1,27 +1,34 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import { HeaderComponent } from './../components/ui/Header/HeaderComponent'
 import { ButtonIcon } from './../components/ui/Buttons/ButtonIcon'
 import { CardComponent } from './../components/ui/Cards/CardComponent'
 
-const Proyects = () => {
+import { usePrincipal } from './../hooks/usePrincipal'
 
-    return (
-        <div className='section'>
-            <HeaderComponent title="Proyectos"/> 
-                <div className="column is-12">
-                    <ButtonIcon 
-                        title="Generar reportes"
-                        icon="file-download-outline"
-                        extraClass="aling-right"
-                    />
-                    <ButtonIcon
-                        title="Agregar"
-                        icon="plus-circle"
-                        extraClass="aling-right margin-right"
-                    />
-                </div>
-                <div className="column is-12">
+const Proyects = () => {
+  const { getAllList, allInformation } = usePrincipal()
+
+  useEffect(() => {
+    getAllList(1, 50);
+  }, [])
+
+  return (
+    <div className='section'>
+      <HeaderComponent title="Proyectos"/> 
+      <div className="column is-12">
+        <ButtonIcon 
+          title="Generar reportes"
+          icon="file-download-outline"
+          extraClass="aling-right"
+        />
+        <ButtonIcon
+          title="Agregar"
+          icon="plus-circle"
+          extraClass="aling-right margin-right"
+        />
+      </div>
+        <div className="column is-12">
                 <CardComponent classExtra="opacity-card card-proyects">             
                         <div>
                             <table className="table table-proyect is-fullwidth is-striped">
@@ -37,50 +44,9 @@ const Proyects = () => {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td title="ID">ID.</td>
-                                        <td>Nombre del proyecto.</td>
-                                        <td title="Objetivo">Objetivo.</td>
-                                        <td title="Beneficios">Beneficios.</td>
-                                        <td title="Asesores">Asesores.</td>
-                                        <td title="Cronograma de actividades">Cronograma de actividades.</td>
-                                        <td><i className='mdi mdi-eye icon-blue'></i><i className='mdi mdi-trash-can-outline icon-blue'></i></td>
-                                    </tr>
-                                </tbody>
-                                <tbody>
-                                    <tr>
-                                        <td title="ID">ID.</td>
-                                        <td>Nombre del proyecto.</td>
-                                        <td title="Objetivo">Objetivo.</td>
-                                        <td title="Beneficios">Beneficios.</td>
-                                        <td title="Asesores">Asesores.</td>
-                                        <td title="Cronograma de actividades">Cronograma de actividades.</td>
-                                        <td><i className='mdi mdi-eye icon-blue'></i><i className='mdi mdi-trash-can-outline icon-blue'></i></td>
-                                    </tr>
-                                </tbody>
-                                <tbody>
-                                    <tr>
-                                        <td title="ID">ID.</td>
-                                        <td>Nombre del proyecto.</td>
-                                        <td title="Objetivo">Objetivo.</td>
-                                        <td title="Beneficios">Beneficios.</td>
-                                        <td title="Asesores">Asesores.</td>
-                                        <td title="Cronograma de actividades">Cronograma de actividades.</td>
-                                        <td><i className='mdi mdi-eye icon-blue'></i><i className='mdi mdi-trash-can-outline icon-blue'></i></td>
-                                    </tr>
-                                </tbody>
-                                <tbody>
-                                    <tr>
-                                        <td title="ID">ID.</td>
-                                        <td>Nombre del proyecto.</td>
-                                        <td title="Objetivo">Objetivo.</td>
-                                        <td title="Beneficios">Beneficios.</td>
-                                        <td title="Asesores">Asesores.</td>
-                                        <td title="Cronograma de actividades">Cronograma de actividades.</td>
-                                        <td><i className='mdi mdi-eye icon-blue'></i><i className='mdi mdi-trash-can-outline icon-blue'></i></td>
-                                    </tr>
-                                </tbody>
-                                <tbody>
+                                    {!allInformation ? <>Loading...</> :
+                                      <>{allInformation}</>
+                                    }
                                     <tr>
                                         <td title="ID">ID.</td>
                                         <td>Nombre del proyecto.</td>
@@ -94,9 +60,8 @@ const Proyects = () => {
                             </table>
                             </div>
                 </CardComponent>
-            </div>
-        </div>
-
-    )
+      </div>
+    </div>
+  )
 }
 export default Proyects
