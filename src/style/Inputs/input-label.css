@@ -43,6 +43,10 @@
   border: 2px solid black;
 }
 
+.input-check{
+  border-radius: 2rem;
+}
+
 .float-label:focus-within > .float-span,
 .input-radious:not(:placeholder-shown) + .float-span {
   transform:translateY(0px);

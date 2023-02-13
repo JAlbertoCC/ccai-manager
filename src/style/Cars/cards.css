@@ -63,14 +63,13 @@
 
 .card-check{
   border-radius: 2rem;
-  border: 0.063em solid #ffffff;
-  width: 50%;
-  min-height: 2.5rem;
-  padding: 2rem;
-  margin: 4rem, 1rem, 1rem, 1re,;
-  /* text-align: justify; */
-  display: grid;
-  justify-content: center;
+    border: 0.063em solid #ffffff;
+    width: 50%;
+    min-height: 2.5rem;
+    padding: 2rem;
+    display: grid;
+    justify-content: center;
+    margin-left: 25%;
 }
 @media (min-width: 1500px) {
   .cart-title {
