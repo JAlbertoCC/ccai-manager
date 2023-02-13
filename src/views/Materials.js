@@ -5,7 +5,6 @@ import { SerchComponet } from './../components/ui/Inputs/SerchComponent'
 import { CardComponent } from './../components/ui/Cards/CardComponent'
 import { ButtonIcon } from './../components/ui/Buttons/ButtonIcon'
 
-
 const Materials = () => {
     return(
 
@@ -66,7 +65,11 @@ const Materials = () => {
                     </tbody>
                 </table>
             </CardComponent>
-            <p className='teaxt-aling'>Material Solicitato</p>
+            
+            <div>
+                <p className="title-materials">Material solicitado</p>
+            </div>
+
             <CardComponent classExtra="opacity-card card-materials">
             <table className="table table-materials is-fullwidth is-striped">
                     <thead>
@@ -89,20 +92,7 @@ const Materials = () => {
                             <td title="Responsable de material">Responsable.</td>
                             <td>
                                 <i className='mdi mdi-plus-circle icon-blue'></i>
-                                <i className='mdi mdi-subtraction-circle icon-blue'></i>
-                            </td>
-                        </tr>
-                    </tbody>
-                    <tbody>
-                        <tr>
-                            <td title="ID">ID.</td>
-                            <td title="Nombre">Nombre.</td>
-                            <td title="Fecha entrega">Entrega.</td>
-                            <td title="Fecha delovolución">Devolución.</td>
-                            <td title="Responsable de material">Responsable.</td>
-                            <td>
-                                <i className='mdi mdi-plus-circle icon-blue'></i>
-                                <i className='mdi mdi-subtraction-circle icon-blue'></i>
+                                <i className='mdi mdi-remove-circle icon-blue'></i>
                             </td>
                         </tr>
                     </tbody>

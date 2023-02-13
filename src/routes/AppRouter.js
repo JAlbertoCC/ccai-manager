@@ -9,6 +9,7 @@ import PageNotFound from '../views/PageNotFound'
 import ProyectDetail from './../views/ProyectDetail'
 import SuccesfullRegister from '../views/SuccesfullRegisterView'
 import Calendar from "../views/Calendar"
+import Users from "../views/Users"
 
 
 export const AppRouter = () => {
@@ -59,6 +60,10 @@ export const AppRouter = () => {
         <Route
           path="/calendar"
           element={<Calendar />}
+        />
+        <Route
+          path="/users"
+          element={<Users />}
         />
       </Routes>
     </BrowserRouter>
