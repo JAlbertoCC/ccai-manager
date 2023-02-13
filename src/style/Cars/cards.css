@@ -33,7 +33,7 @@
   padding: 10px 30px;
 }
 
-.card-register-succesfull{
+.card-register-succesfull {
   margin-top: 15%;
   margin-bottom: 20%;
   margin-left: 27%;
@@ -42,7 +42,7 @@
   padding: auto;
 }
 
-.card-proyects{
+.card-proyects {
   margin-top: 5%;
   margin-bottom: 0%;
   margin-left: 0%;
@@ -51,15 +51,26 @@
   padding: 15px;
 }
  
-.card-materials{
+.card-materials {
   margin-top: 2.5%;
-  margin-bottom: 0%;
+  margin-bottom: 2.5%;
   margin-left: 0%;
   margin-right: 25%;
   width: 100%;
   height: 50%;
   padding: 15px;
 }
+
+.card-users {
+  margin-top: 2.5%;
+  margin-bottom: 2.5%;
+  margin-left: 0%;
+  margin-right: 25%;
+  width: 100%;
+  height: 50%;
+  padding: 15px;
+}
+
 @media (min-width: 1500px) {
   .cart-title {
     border-radius: 65px;
