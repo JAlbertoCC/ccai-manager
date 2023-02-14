@@ -1,9 +1,7 @@
 import React from 'react';
 
 export const InputLabel = (props) => {
-  const { title, iconName, typeInput, 
-        isPassword, hdlOnClick, classExtra, 
-        hdlOnkeyDown} = props
+  const { title, iconName, typeInput, hdlOnClick, classExtra, hdlOnkeyDown} = props
   
   return (
     <div className="field">
