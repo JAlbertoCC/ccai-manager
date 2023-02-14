@@ -1,0 +1,11 @@
+.modal-users{
+    display: flow-root;
+    text-align: left;
+    font-size: larger;
+    font-family: 'Poppins';
+    position: sticky;
+    border-radius: 1.5rem;
+    background-color: rgb(42 143 163 / 57%);
+    color: black;
+  }
+  

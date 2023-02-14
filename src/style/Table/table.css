@@ -24,3 +24,18 @@
     border-width: 0 0 0.3em;
     border-color: #000;
 }
+/*Users*/
+/*Materials*/
+.table-users.is-fullwidth {
+    background-color: transparent;
+}
+
+.table-users th:not([align]) {
+    background-color: transparent;
+    font-weight: 900;
+    text-align: inherit;
+}
+.table-users thead th {
+    border-width: 0 0 0.3em;
+    border-color: #000;
+}

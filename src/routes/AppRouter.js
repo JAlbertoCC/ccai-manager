@@ -10,6 +10,8 @@ import ProyectDetail from './../views/ProyectDetail'
 import SuccesfullRegister from '../views/SuccesfullRegisterView'
 import Calendar from "../views/Calendar"
 import Checkin from '../views/Checkin'
+import VisitView from "../views/VisitView"
+import Users from "../views/Users"
 
 
 export const AppRouter = () => {
@@ -65,6 +67,14 @@ export const AppRouter = () => {
         <Route
           path="/checkin"
           element={<Checkin />}
+        />
+         <Route
+          path="/visit-view"
+          element={<VisitView />}
+        />
+        <Route
+          path="/users"
+          element={<Users />}
         />
       </Routes>
     </BrowserRouter>

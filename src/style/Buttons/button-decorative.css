@@ -47,6 +47,24 @@
     border-radius: 5px;
     font-weight: 900;
   }
+  /*Buttons view users (modal)*/
+  .btnModalRechazar{
+    color: #ffffff;
+    text-align: center;
+    margin: 0rem 5rem 0rem;
+    background-color: #C12529;
+  }
+
+  .btnModalAceptar{
+    color: #ffffff;
+    text-align: center;
+    margin: 0rem 5rem 0rem;
+    background-color: #2B8192;
+  }
+
+  .btnModalClose{
+    margin: -3rem 0rem 0rem 36rem;
+  }
   
   @media (min-width: 1500px) {
     .button-text {
