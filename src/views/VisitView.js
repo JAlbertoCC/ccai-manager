@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { DateTime } from "luxon";
 
 import { CardComponent } from '../components/ui/Cards/CardComponent';
 import { InputLabel } from './../components/ui/Inputs/InputLabel';
@@ -6,6 +7,11 @@ import { ButtonComponent } from './../components/ui/Buttons/PrimaryButton'
 
 const VisitView = () => {
     const [showRegisterView, setShowRegisterView] = useState(true);
+
+    useEffect(() => {
+      console.log(DateTime.now().toLocaleString(DateTime.DATETIME_MED_WITH_SECONDS))
+    }, [  ]);
+
     return (
         <div className='section login-content'>
           {showRegisterView ?
