@@ -22,6 +22,13 @@
     color: #000000;
     font-weight: 400;
   } 
+
+  .dialog-view-check{
+    color: black;
+    text-align: center;
+    font-family: 'Poppins';
+    font-size: 28px;
+  }
   
   
   
