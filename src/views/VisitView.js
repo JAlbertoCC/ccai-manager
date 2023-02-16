@@ -1,14 +1,24 @@
-import React, { useState } from 'react';
+import React, { useEffect,useState } from 'react';
 
 import { CardComponent } from '../components/ui/Cards/CardComponent';
 import { InputLabel } from './../components/ui/Inputs/InputLabel';
-import { ButtonComponent } from './../components/ui/Buttons/PrimaryButton'
+import { ButtonComponent } from './../components/ui/Buttons/PrimaryButton';
+
 
 const VisitView = () => {
     const [showRegisterView, setShowRegisterView] = useState(true);
+
+    const render = () => {
+      setShowRegisterView(!showRegisterView)
+      setTimeout(() => {
+        window.location.reload();
+        console.log(showRegisterView);
+      }, 5000);
+    }
+    
     return (
         <div className='section login-content'>
-          {showRegisterView ?
+          {showRegisterView ? (
           <CardComponent classExtra='opacity-card cardSam'>
 
             <div className="container-dates">
@@ -40,14 +50,15 @@ const VisitView = () => {
             <ButtonComponent
               buttonText='Registrar'
               classExtra='button-style'
-              hdlOnClickEvent={() => setShowRegisterView(!showRegisterView)}
+              hdlOnClickEvent={() => render()}
+            
             />
             <br />
 
             <p className='text-alert'>
               No olvides registrar tu entrada y salida del CCAI.
             </p>
-          </CardComponent> :
+          </CardComponent> ) : (
 
           <CardComponent classExtra='opacity-card cardSam'>
             <div className="container-dates">
@@ -69,7 +80,7 @@ const VisitView = () => {
             <p className='text-alert'>
               No olvides registrar tu entrada y salida del CCAI.
             </p>
-          </CardComponent>}
+          </CardComponent>)}
         </div>
     )
     
