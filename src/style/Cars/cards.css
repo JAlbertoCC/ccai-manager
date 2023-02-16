@@ -61,6 +61,16 @@
   padding: 15px;
 }
 
+.card-check{
+  border-radius: 2rem;
+    border: 0.063em solid #ffffff;
+    width: 50%;
+    min-height: 2.5rem;
+    padding: 2rem;
+    display: grid;
+    justify-content: center;
+    margin-left: 25%;
+}
 .card-users {
   margin-top: 2.5%;
   margin-bottom: 2.5%;
