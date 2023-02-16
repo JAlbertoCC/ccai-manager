@@ -3,6 +3,8 @@ import { InputLabel } from "../components/ui/Inputs/InputLabel";
 import { ButtonComponent } from "../components/ui/Buttons/PrimaryButton";
 import { useNavigate  } from 'react-router-dom'
 import React, { useEffect, useState } from "react";
+import { DateTime } from "luxon";
+
 
 const Checkin = () => {
   const [showComponets, setShowComponets] = useState(true);
@@ -10,7 +12,7 @@ const Checkin = () => {
   const goToLink = (uri) => {
     navigate(uri)
   } 
-  useEffect(() => {
+  useEffect(() => {console.log(DateTime.now().toLocaleString(DateTime.DATE_MED))
   }, [showComponets])
   const render = () => {
     setShowComponets(!showComponets)
@@ -19,6 +21,10 @@ const Checkin = () => {
       console.log(showComponets);
     }, 5000);
   }
+  const getDate = (isHour = false) => {
+
+    return isHour ?  DateTime.now().toLocaleString(DateTime.TIME_24_SIMPLE) : DateTime.now().toLocaleString(DateTime.DATE_MED); 
+  };
   return (
     <div className="section">
       {
@@ -36,8 +42,8 @@ const Checkin = () => {
           </CardComponent>
         ) : (
           <CardComponent classExtra="opacity-card card-check">
-            <p className="title-sucessfull"> 10/02/2023 </p>
-            <p className="title-sucessfull"> 12:00 </p>
+            <p className="title-sucessfull">{ getDate() }</p>
+            <p className="title-sucessfull">{ getDate(true) }</p>
             <p className="dialog-view-check"> Bienvenido User1! </p>
             <p className="dialog-view-check"> Se ha registrado correctamente tu entrada a las 12:00. </p>
             <p className="title-sucessfull">  No olvides registrar en el lector tus entradas y salidas del CCAI </p>

@@ -1,4 +1,5 @@
-import React, { useEffect,useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { DateTime } from "luxon";
 
 import { CardComponent } from '../components/ui/Cards/CardComponent';
 import { InputLabel } from './../components/ui/Inputs/InputLabel';
@@ -7,6 +8,15 @@ import { ButtonComponent } from './../components/ui/Buttons/PrimaryButton';
 
 const VisitView = () => {
     const [showRegisterView, setShowRegisterView] = useState(true);
+
+    useEffect(() => {
+    console.log(DateTime.now().toLocaleString(DateTime.DATE_MED))
+    }, [  ]);
+
+    const getDate = (isHour = false) => {
+
+      return isHour ?  DateTime.now().toLocaleString(DateTime.TIME_24_SIMPLE) : DateTime.now().toLocaleString(DateTime.DATE_MED); 
+    };
 
     const render = () => {
       setShowRegisterView(!showRegisterView)
@@ -22,10 +32,10 @@ const VisitView = () => {
           <CardComponent classExtra='opacity-card cardSam'>
 
             <div className="container-dates">
-              <p className='text-date'>May 24 23</p>
+              <p className='text-date'>{ getDate() }</p>
 
               <div className='container-hours'>
-                <div className='text-hour'>12:00</div>
+                <div className='text-hour'>{ getDate(true) }</div>
               </div>
             </div>
 
@@ -62,10 +72,10 @@ const VisitView = () => {
 
           <CardComponent classExtra='opacity-card cardSam'>
             <div className="container-dates">
-              <p className='text-date'>May 24 23</p>
+              <p className='text-date'>{ getDate() }</p>
 
               <div className='container-hours'>
-                <div className='text-hour'>12:00</div>
+                <div className='text-hour'>{ getDate(true) }</div>
               </div>
             </div>
 
