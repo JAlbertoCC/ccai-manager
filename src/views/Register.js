@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate  } from 'react-router-dom'
 
 import { CardComponent } from './../components/ui/Cards/CardComponent'
 import { InputLabel } from './../components/ui/Inputs/InputLabel'
 import { HeaderComponent } from './../components/ui/Header/HeaderComponent'
+import { ModalComponentRegister } from './../components/ui/Modal/ModalComponentRegister'
 
 
 const Register = () => {
@@ -12,10 +13,20 @@ const Register = () => {
   const goToLink = (uri) => {
     navigate(uri)
   } 
-
+    const [showModal, setShowModal] = useState(false);
    return (
+    
     <div className='container register-content'>
       <HeaderComponent title="Registro"/>
+      { showModal ? 
+                <ModalComponentRegister
+                    classExtra = "modal-register" 
+                    title = "¡REGISTRO EXITOSO!" 
+                    isActive = "false" 
+                    hdlOnclick= { ()=>setShowModal (!showModal)} >
+                </ModalComponentRegister> : <></>
+      }           
+
       <CardComponent classExtra="opacity-card">
         <div className="columns container-personal">
           <div className="column is-11">
@@ -63,7 +74,8 @@ const Register = () => {
             <p className="control has-icon-right">
               <button
                 className="button button-register"
-                onClick={() => goToLink('/SuccesfullRegister')}
+                onClick={()=>setShowModal(!showModal)}
+                //onClick={() => goToLink('/SuccesfullRegister')}
               >
                 <span className="icon is-right">
                   <i className="mdi mdi-plus-circle-outline"></i>
@@ -74,6 +86,8 @@ const Register = () => {
         </div>
       </CardComponent>
     </div>
+
+    
    )
 }
 
