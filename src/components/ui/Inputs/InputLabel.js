@@ -1,7 +1,7 @@
 import React from 'react';
 
 export const InputLabel = (props) => {
-  const { title, iconName, typeInput, hdlOnClick, classExtra, hdlOnkeyDown} = props
+  const { title, iconName, typeInput, hdlOnClick, classExtra, hdlOnkeyDown, hdlOnChange} = props
   
   return (
     <div className="field">
@@ -9,6 +9,7 @@ export const InputLabel = (props) => {
         <label className="float-label">
           <input
             onKeyDown={hdlOnkeyDown}
+            onChange={hdlOnChange}
             className={`input input-radious ${classExtra}`}
             type={ typeInput }
           />
