@@ -84,7 +84,7 @@ const VisitView = () => {
             </p>
             <br />
             <p className='text-information'>
-              Tu hora de salida se registró correctamente a las 11:48. 
+              Tu hora de salida se registró correctamente a las {getDate(true)}. 
             </p>
             <br />
             <p className='text-alert'>
