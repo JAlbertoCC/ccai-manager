@@ -119,6 +119,16 @@ const Register = () => {
           </div>
         </div>
       </CardComponent>
+
+      {showModal ? <></> : (
+      
+      <div class="notification-register notification is-danger">
+        <button class="delete"></button>
+        Correo o contraseña incorrectos. </div>
+        
+
+      )}
+
     </div>
 
     
