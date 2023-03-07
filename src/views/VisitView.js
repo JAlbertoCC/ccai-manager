@@ -1,21 +1,41 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { DateTime } from "luxon";
 
 import { CardComponent } from '../components/ui/Cards/CardComponent';
 import { InputLabel } from './../components/ui/Inputs/InputLabel';
-import { ButtonComponent } from './../components/ui/Buttons/PrimaryButton'
+import { ButtonComponent } from './../components/ui/Buttons/PrimaryButton';
+
 
 const VisitView = () => {
     const [showRegisterView, setShowRegisterView] = useState(true);
+
+    useEffect(() => {
+    console.log(DateTime.now().toLocaleString(DateTime.DATE_MED))
+    }, [  ]);
+
+    const getDate = (isHour = false) => {
+
+      return isHour ?  DateTime.now().toLocaleString(DateTime.TIME_24_SIMPLE) : DateTime.now().toLocaleString(DateTime.DATE_MED); 
+    };
+
+    const render = () => {
+      setShowRegisterView(!showRegisterView)
+      setTimeout(() => {
+        window.location.reload();
+        console.log(showRegisterView);
+      }, 5000);
+    }
+    
     return (
         <div className='section login-content'>
-          {showRegisterView ?
+          {showRegisterView ? (
           <CardComponent classExtra='opacity-card cardSam'>
 
             <div className="container-dates">
-              <p className='text-date'>May 24 23</p>
+              <p className='text-date'>{ getDate() }</p>
 
               <div className='container-hours'>
-                <div className='text-hour'>12:00</div>
+                <div className='text-hour'>{ getDate(true) }</div>
               </div>
             </div>
 
@@ -40,21 +60,22 @@ const VisitView = () => {
             <ButtonComponent
               buttonText='Registrar'
               classExtra='button-style'
-              hdlOnClickEvent={() => setShowRegisterView(!showRegisterView)}
+              hdlOnClickEvent={() => render()}
+            
             />
             <br />
 
             <p className='text-alert'>
               No olvides registrar tu entrada y salida del CCAI.
             </p>
-          </CardComponent> :
+          </CardComponent> ) : (
 
           <CardComponent classExtra='opacity-card cardSam'>
             <div className="container-dates">
-              <p className='text-date'>May 24 23</p>
+              <p className='text-date'>{ getDate() }</p>
 
               <div className='container-hours'>
-                <div className='text-hour'>12:00</div>
+                <div className='text-hour'>{ getDate(true) }</div>
               </div>
             </div>
 
@@ -63,13 +84,13 @@ const VisitView = () => {
             </p>
             <br />
             <p className='text-information'>
-              Tu hora de salida se registró correctamente a las 11:48. 
+              Tu hora de salida se registró correctamente a las {getDate(true)}. 
             </p>
             <br />
             <p className='text-alert'>
               No olvides registrar tu entrada y salida del CCAI.
             </p>
-          </CardComponent>}
+          </CardComponent>)}
         </div>
     )
     
