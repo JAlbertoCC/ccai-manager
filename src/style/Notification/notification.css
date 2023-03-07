@@ -1,0 +1,10 @@
+.notification-register {
+    background-color: #f14668;
+    color: #fff;
+    border-radius: 10rem;
+    width: 30%;
+    display: block;
+    margin-left: auto;
+    margin-top: 2rem;
+    text-align: center;
+}
