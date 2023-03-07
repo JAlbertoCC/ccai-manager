@@ -30,7 +30,7 @@ const Checkin = () => {
       {
         showComponets ? (
           <CardComponent classExtra="opacity-card card-check">
-            <p className="title-sucessfull">Bienvanido al CCAI </p>
+            <p className="title-sucessfull">Bienvenido al CCAI </p>
             <figure className="image is-96x96 center-img">
               <img src={require("./../assets/logo.png")} alt="" />
             </figure>
@@ -42,11 +42,16 @@ const Checkin = () => {
           </CardComponent>
         ) : (
           <CardComponent classExtra="opacity-card card-check">
-            <p className="title-sucessfull">{ getDate() }</p>
-            <p className="title-sucessfull">{ getDate(true) }</p>
+            <div className="container-dates">
+              <p className='text-date'>{ getDate() }</p>
+
+              <div className='container-hours'>
+                <div className='text-hour'>{ getDate(true) }</div>
+              </div>
+            </div>
             <p className="dialog-view-check"> Bienvenido User1! </p>
-            <p className="dialog-view-check"> Se ha registrado correctamente tu entrada a las 12:00. </p>
-            <p className="title-sucessfull">  No olvides registrar en el lector tus entradas y salidas del CCAI </p>
+            <p className="dialog-view-check"> Se ha registrado correctamente tu entrada a las {getDate(true)}. </p>
+            <p className="text-alert">  No olvides registrar en el lector tus entradas y salidas del CCAI </p>
           </CardComponent>
         )
       }
