@@ -4,13 +4,9 @@ import { HeaderComponent } from './../components/ui/Header/HeaderComponent'
 import { ButtonIcon } from './../components/ui/Buttons/ButtonIcon'
 import { CardComponent } from './../components/ui/Cards/CardComponent'
 
-import { usePrincipal } from './../hooks/usePrincipal'
-
 const Proyects = () => {
-  const { getAllList, allInformation } = usePrincipal()
 
   useEffect(() => {
-    getAllList(1, 50);
   }, [])
 
   return (
@@ -44,9 +40,6 @@ const Proyects = () => {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {!allInformation ? <>Loading...</> :
-                                      <>{allInformation}</>
-                                    }
                                     <tr>
                                         <td title="ID">ID.</td>
                                         <td>Nombre del proyecto.</td>

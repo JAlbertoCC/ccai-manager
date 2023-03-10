@@ -4,26 +4,42 @@ import { ButtonComponent } from "../components/ui/Buttons/PrimaryButton";
 import { useNavigate  } from 'react-router-dom'
 import React, { useEffect, useState } from "react";
 import { DateTime } from "luxon";
-
+import { useUsers } from "./../hooks/useUsers";
 
 const Checkin = () => {
+  const { checkingInternalUser } = useUsers();
   const [showComponets, setShowComponets] = useState(true);
+  const [userInformation, setUserInformation] = useState({});
   const navigate = useNavigate()
+
   const goToLink = (uri) => {
     navigate(uri)
-  } 
-  useEffect(() => {console.log(DateTime.now().toLocaleString(DateTime.DATE_MED))
-  }, [showComponets])
-  const render = () => {
-    setShowComponets(!showComponets)
-    setTimeout(() => {
-      window.location.reload();
-      console.log(showComponets);
-    }, 5000);
   }
-  const getDate = (isHour = false) => {
 
-    return isHour ?  DateTime.now().toLocaleString(DateTime.TIME_24_SIMPLE) : DateTime.now().toLocaleString(DateTime.DATE_MED); 
+  useEffect(() => {console.log(DateTime.now().toLocaleString(DateTime.DATE_MED))
+  }, [showComponets, userInformation])
+  
+  const render = (value) => {
+    if (value.target.value.length >= 9) {
+      console.log(value.target.value)
+      checkingInternalUser(value.target.value)
+        .then(item => {
+          console.log('item => ', item);
+          if (item.result.matricula_student) {
+            console.log('item.matricula_student => ', item.result.matricula_student)
+          } else {
+            setUserInformation(item.result);
+            setShowComponets(!showComponets)
+            setTimeout(() => {
+              window.location.reload();
+            }, 5000);
+          }
+        })
+    }
+  }
+  
+  const getDate = (type) => {
+    return DateTime.now().toLocaleString(DateTime[type])
   };
   return (
     <div className="section">
@@ -36,7 +52,11 @@ const Checkin = () => {
             </figure>
             <p className="dialog-view-check"> Agradecemos su visita, </p>
             <p className="dialog-view-check"> Por favor, registre sus accesos y salidas en el lector. </p>
-            <InputLabel typeInput="text" classExtra="input-check" hdlOnkeyDown={() => render()} />
+            <InputLabel
+              typeInput="text"
+              classExtra="input-check"
+              hdlOnkeyDown={(e) => render(e)}
+            />
             <p className="dialog-view-check"> Si eres visitante, pulsa el siguiente botón. </p>
             <ButtonComponent buttonText="Visitante" hdlOnClickEvent={() => goToLink('/visit-view')} />
           </CardComponent>
@@ -46,11 +66,11 @@ const Checkin = () => {
               <p className='text-date'>{ getDate() }</p>
 
               <div className='container-hours'>
-                <div className='text-hour'>{ getDate(true) }</div>
+                <div className='text-hour'>{ getDate('TIME_24_SIMPLE') }</div>
               </div>
             </div>
-            <p className="dialog-view-check"> Bienvenido User1! </p>
-            <p className="dialog-view-check"> Se ha registrado correctamente tu entrada a las {getDate(true)}. </p>
+            <p className="dialog-view-check"> Bienvenido {`${userInformation.name} ${userInformation.first_name} ${userInformation.second_name}`} </p>
+            <p className="dialog-view-check"> Se ha registrado correctamente tu entrada a las {getDate('DATE_MED')}. </p>
             <p className="text-alert">  No olvides registrar en el lector tus entradas y salidas del CCAI </p>
           </CardComponent>
         )
