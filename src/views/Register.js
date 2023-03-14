@@ -124,7 +124,8 @@ const Register = () => {
       
       <div class="notification-register notification is-danger">
         <button class="delete"></button>
-        Correo o contraseña incorrectos. </div>
+        Correo o contraseña incorrectos.
+      </div>
         
 
       )}
