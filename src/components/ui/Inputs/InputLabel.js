@@ -1,7 +1,7 @@
 import React from 'react';
 
 export const InputLabel = (props) => {
-  const { autoFocus, disabled, extraProps, title, iconName, typeInput, hdlOnClick, classExtra, hdlOnkeyDown, hdlOnChange} = props
+  const { autoFocus, disabled, title, iconName, typeInput, hdlOnClick, classExtra, hdlOnkeyDown, hdlOnChange, textplace = '' } = props
   
   return (
     <div className="field">
@@ -13,6 +13,7 @@ export const InputLabel = (props) => {
             onChange={hdlOnChange}
             className={`input input-radious ${classExtra}`}
             type={ typeInput }
+            placeholder={ textplace }
           />
           {
             title ?
