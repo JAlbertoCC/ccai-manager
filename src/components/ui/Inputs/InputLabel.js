@@ -1,13 +1,14 @@
 import React from 'react';
 
 export const InputLabel = (props) => {
-  const { title, iconName, typeInput, hdlOnClick, classExtra, hdlOnkeyDown, hdlOnChange} = props
+  const { autoFocus, disabled, extraProps, title, iconName, typeInput, hdlOnClick, classExtra, hdlOnkeyDown, hdlOnChange} = props
   
   return (
     <div className="field">
       <p className="control has-icons-right">
         <label className="float-label">
           <input
+            autoFocus={autoFocus}
             onKeyDown={hdlOnkeyDown}
             onChange={hdlOnChange}
             className={`input input-radious ${classExtra}`}
