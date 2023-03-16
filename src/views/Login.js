@@ -40,12 +40,14 @@ const Login = () => {
           <InputLabel
             iconName="mdi-account"
             typeInput="text"
+            textplace="example@gmail.com"
           />
           <InputLabel
             iconName={iconPassword}
             typeInput={typeInputPassword}
             isPassword={true}
             hdlOnClick={changeType}
+            textplace = "Password"
           />
 
           <div className='text-actions'>
