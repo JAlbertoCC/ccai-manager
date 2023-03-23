@@ -6,12 +6,11 @@ import { InputLabel } from './../components/ui/Inputs/InputLabel'
 import { DropDown } from './../components/ui/DropDown/DropDown'
 import { HeaderComponent } from './../components/ui/Header/HeaderComponent'
 import { ModalComponentRegister } from './../components/ui/Modal/ModalComponentRegister'
-//import { useRegister } from '../hooks/useRegister';
+import { useRegister } from '../hooks/useRegister';
 
 
 const Register = () => {
-  const navigate = useNavigate()
-  //const { checkingInternalRegister } = useRegister();
+  const { checkingInternalRegister } = useRegister();
   const [typeInputName, setTypeInputName] = useState('name')
   const [typeInputLastNameF, setTypeInputLastNameF] = useState('last-name-f')
   const [typeInputLastNameM, setTypeInputLastNameM] = useState('last-name-m')
@@ -42,13 +41,29 @@ const Register = () => {
       mail: typeInputMail,
       password: typeInputPassword
     }
+    // console.log(render.mail)
     setShowModal(!showModal)
    console.log("OBJETO CREADO")
+   render(body)
   }
 
   //const goToLink = (uri) => {
     //navigate(uri)
   //S} 
+
+  const render = (body) => {
+    
+      checkingInternalRegister(body)
+      .then(item => {
+          console.log(item.body)
+      })
+      .catch(error => {
+        
+        console.log('error', error.message)
+       
+      });
+    }
+  
   
    return (
     
