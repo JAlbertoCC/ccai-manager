@@ -11,8 +11,15 @@ export const useUsers = () => {
     return data;
   }
 
+  const consultingStudents = async () => {
+    const data = await api.consultingStudents()
+    return data;
+    
+  }
+
   return {
     pagination,
-    checkingInternalUser
+    checkingInternalUser,
+    consultingStudents
   }
 }
