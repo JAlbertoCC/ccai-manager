@@ -62,7 +62,6 @@ export const AppRouter = () => {
         <Route
           path="/calendar"
           element={<Calendar />}
-          
         />
         <Route
           path="/checkin"

@@ -1,0 +1,18 @@
+.select {
+    width: 100%;
+    
+}
+
+.select-width {
+    width: 100%;
+    
+}
+
+.select-style{
+    padding-right: 10rem;
+    border-radius: 10px;
+    border: 2px solid black;
+    font-size: 0.8em;
+    padding: 1.3rem 1rem;
+    outline: none;
+}

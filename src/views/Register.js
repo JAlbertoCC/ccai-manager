@@ -3,6 +3,7 @@ import { useNavigate  } from 'react-router-dom'
 
 import { CardComponent } from './../components/ui/Cards/CardComponent'
 import { InputLabel } from './../components/ui/Inputs/InputLabel'
+import { DropDown } from './../components/ui/DropDown/DropDown'
 import { HeaderComponent } from './../components/ui/Header/HeaderComponent'
 import { ModalComponentRegister } from './../components/ui/Modal/ModalComponentRegister'
 
@@ -42,9 +43,9 @@ const Register = () => {
    console.log("OBJETO CREADO")
   }
 
-  const goToLink = (uri) => {
-    navigate(uri)
-  } 
+  //const goToLink = (uri) => {
+    //navigate(uri)
+  //S} 
   
    return (
     
@@ -94,8 +95,22 @@ const Register = () => {
             <InputLabel title="Carrera" hdlOnChange={(e) => setTypeInputCareer(e.target.value)} />
           </div>
           <div className="column is-4">
-            <InputLabel title="Servicio a prestar" hdlOnChange={(e) => setTypeInputService(e.target.value)} />
+            <DropDown  items={[
+              {
+                id: 1,
+                name: "Masculino"
+              }, 
+              {
+                id: 2,
+                name: "Masculino"
+              }
+            ]}
+            title="Servicio a prestar"
+            />
           </div>
+          
+          
+
           <div className="column is-4">
             <InputLabel title="Correo institucional" hdlOnChange={(e) => setTypeInputMail(e.target.value)} />
           </div>
@@ -124,10 +139,12 @@ const Register = () => {
       
       <div class="notification-register notification is-danger">
         <button class="delete"></button>
-        Correo o contraseña incorrectos. </div>
+        Correo o contraseña incorrectos.
+      </div>
         
 
       )}
+
 
     </div>
 
