@@ -1,11 +1,30 @@
-import React, { useState } from 'react';
+import React, { useState , useEffect} from 'react';
 
 import { HeaderComponent } from './../components/ui/Header/HeaderComponent'
 import { CardComponent } from './../components/ui/Cards/CardComponent'
 import { ModalComponent } from './../components/ui/Modal/ModalComponent';
 
+import { useUsers } from './../hooks/useUsers';
+
+
 const Users = () => {
-    const [showModal, setShowModal] = useState(false);
+ 
+    const [users, setUsers] = useState([]);
+    const { consultingStudents} = useUsers();
+
+    useEffect ( () =>{
+      showData();
+    }, [])
+
+    const showData = async() =>{
+        consultingStudents().then(result => {
+             setUsers(result)      
+        }).catch(error => {
+              console.error(error); 
+       }); 
+ }
+       
+     const [showModal, setShowModal] = useState(false);
     return (
         <div className='section'>
     
@@ -23,6 +42,7 @@ const Users = () => {
            
                 <table className="table table-users is-fullwidth is-striped">
                 <thead>
+                 
                     <tr >
                         <th title="Matricula">Matricula.</th>
                         <th title="Nombre">Nombre.</th>
@@ -35,61 +55,31 @@ const Users = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td title="Matricula">Matricula.</td>
-                        <td title="Nombre">Nombre.</td>
-                        <td title="App">Apellido Paterno.</td>
-                        <td title="Apm">Apellido Materno.</td>
-                        <td title="Carrera">Carrera.</td>
-                        <td title="Servicio a prestar">Servicio a prestar.</td>
-                        <td title="Periodo">Periodo.</td>
-                        <td><i className='mdi mdi-eye icon-blue' onClick={()=>setShowModal(!showModal)}></i></td>
-                        <td></td>
-                    </tr>
-                </tbody>
-                <tbody>
-                    <tr>
-                            <td title="Matricula">Matricula.</td>
-                            <td title="Nombre">Nombre.</td>
-                            <td title="App">Apellido Paterno.</td>
-                            <td title="Apm">Apellido Materno.</td>
-                            <td title="Carrera">Carrera.</td>
-                            <td title="Servicio a prestar">Servicio a prestar.</td>
-                            <td title="Periodo">Periodo.</td>
-                            <td><i className='mdi mdi-eye icon-blue' onClick={()=>setShowModal(!showModal)}></i></td>
-                            <td></td>
-                    </tr>
-                </tbody>
-                    <tbody>
-                        <tr>
-                            <td title="Matricula">Matricula.</td>
-                            <td title="Nombre">Nombre.</td>
-                            <td title="App">Apellido Paterno.</td>
-                            <td title="Apm">Apellido Materno.</td>
-                            <td title="Carrera">Carrera.</td>
-                            <td title="Servicio a prestar">Servicio a prestar.</td>
-                            <td title="Periodo">Periodo.</td>
-                            <td><i className='mdi mdi-eye icon-blue' onClick={()=>setShowModal(!showModal)}></i></td>
-                            <td></td>
+                { users ? users.map((item, index)=>{             
+                    return (
+                        <tr key={index}>
+                            <td>{item.matricula } </td>
+                            <td>{item.name}</td>
+                            <td>{item.first_name}</td>
+                            <td>{item.second_name}</td>
+                            <td>{item.name_career}</td>
+                            <td>{item.service_provide}</td>
+                            <td>{item.start_date}</td>
+                          
                         </tr>
-                    </tbody>
-
-                    <tbody>
-                        <tr>
-                            <td title="Matricula">Matricula.</td>
-                            <td title="Nombre">Nombre.</td>
-                            <td title="App">Apellido Paterno.</td>
-                            <td title="Apm">Apellido Materno.</td>
-                            <td title="Carrera">Carrera.</td>
-                            <td title="Servicio a prestar">Servicio a prestar.</td>
-                            <td title="Periodo">Periodo.</td>
-                            <td><i className='mdi mdi-eye icon-blue' onClick={()=>setShowModal(!showModal)}></i></td>
-                            <td></td>
-                        </tr>
-                    </tbody>
+                       
+                    )
+                } ): <></>}
+        
+                
+                </tbody>
+              
                 </table>
             </CardComponent>
         </div>
     )
 }
+
 export default Users
+
+
