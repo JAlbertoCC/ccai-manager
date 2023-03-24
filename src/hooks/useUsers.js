@@ -10,7 +10,7 @@ export const useUsers = () => {
     const data = await api.checkingInternalUser(matricula)
     return data;
   }
-
+// se creo el metodo asincrono consultingStudents
   const consultingStudents = async () => {
     const data = await api.consultingStudents()
     return data;

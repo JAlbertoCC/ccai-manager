@@ -6,38 +6,23 @@ import { ModalComponent } from './../components/ui/Modal/ModalComponent';
 
 import { useUsers } from './../hooks/useUsers';
 
-/* aquí estoy haciendo mejoras para realizar el servicio a la verga compa */
 
 const Users = () => {
- const { checkingInternalUser} = useUsers();
-
-    
-
-    /*
+ 
     const [users, setUsers] = useState([]);
-    const URL = "http://localhost:3001/api/consulting-students"
-    const showData = async () =>{
-      const response = await fetch(URL)
-      const data = await response.json()
-      
-     setUsers(data)
-     
-    }
-    */
-   
+    const { consultingStudents} = useUsers();
 
     useEffect ( () =>{
       showData();
     }, [])
 
     const showData = async() =>{
-        console.log(checkingInternalUser());
-        
-        
-        
-        
-       
-    }
+        consultingStudents().then(result => {
+             setUsers(result)      
+        }).catch(error => {
+              console.error(error); 
+       }); 
+ }
        
      const [showModal, setShowModal] = useState(false);
     return (
@@ -57,6 +42,7 @@ const Users = () => {
            
                 <table className="table table-users is-fullwidth is-striped">
                 <thead>
+                 
                     <tr >
                         <th title="Matricula">Matricula.</th>
                         <th title="Nombre">Nombre.</th>
@@ -69,22 +55,7 @@ const Users = () => {
                     </tr>
                 </thead>
                 <tbody>
-         
-                
-                </tbody>
-              
-                </table>
-            </CardComponent>
-        </div>
-    )
-}
-
-export default Users
-
-/* 
-
-           
-                { consultingStudents ? consultingStudents.map((item, index)=>{             
+                { users ? users.map((item, index)=>{             
                     return (
                         <tr key={index}>
                             <td>{item.matricula } </td>
@@ -99,5 +70,16 @@ export default Users
                        
                     )
                 } ): <></>}
+        
+                
+                </tbody>
+              
+                </table>
+            </CardComponent>
+        </div>
+    )
+}
 
-*/
+export default Users
+
+
