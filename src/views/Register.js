@@ -70,12 +70,12 @@ const Register = () => {
     <div className='container register-content'>
       <HeaderComponent title="Registro"/>
       { showModal ? 
-                <ModalComponentRegister
-                    classExtra = "modal-register" 
-                    title = "¡REGISTRO EXITOSO!" 
-                    isActive = "false" 
-                    hdlOnclick= { ()=>setShowModal (!showModal)} >
-                </ModalComponentRegister> : <></>
+        <ModalComponentRegister
+          classExtra = "modal-register" 
+          title = "¡REGISTRO EXITOSO!" 
+          isActive = "false" 
+          hdlOnclick= { ()=>setShowModal (!showModal)} >
+        </ModalComponentRegister> : <></>
       }          
 
       <CardComponent classExtra="opacity-card">
@@ -162,22 +162,8 @@ const Register = () => {
           </div>
         </div>
       </CardComponent>
-
-      {showModal ? <></> : (
-      
-      <div class="notification-register notification is-danger">
-        <button class="delete"></button>
-        Correo o contraseña incorrectos.
-      </div>
-        
-
-      )}
-
-
     </div>
-
-    
-   )
+   );
 }
 
 export default Register

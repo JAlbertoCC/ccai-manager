@@ -5,7 +5,7 @@ export const DropDown = (props) => {
 
     return (
       <label className="float-label">
-        <div className="select is-rounded">
+        <div className="select select-radiusis-medium">
         
           <select
             onChange={hdlOnChange}
