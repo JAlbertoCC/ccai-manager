@@ -6,10 +6,11 @@ import { InputLabel } from './../components/ui/Inputs/InputLabel'
 import { DropDown } from './../components/ui/DropDown/DropDown'
 import { HeaderComponent } from './../components/ui/Header/HeaderComponent'
 import { ModalComponentRegister } from './../components/ui/Modal/ModalComponentRegister'
+import { useRegister } from '../hooks/useRegister';
 
 
 const Register = () => {
-  const navigate = useNavigate()
+  const { checkingInternalRegister } = useRegister();
   const [typeInputName, setTypeInputName] = useState('name')
   const [typeInputLastNameF, setTypeInputLastNameF] = useState('last-name-f')
   const [typeInputLastNameM, setTypeInputLastNameM] = useState('last-name-m')
@@ -23,6 +24,7 @@ const Register = () => {
   const [typeInputPassword, setTypeInputPassword] = useState('password')
   const [showModal, setShowModal] = useState(false);
 
+  
 
   const registerUser = () => {
     
@@ -39,13 +41,29 @@ const Register = () => {
       mail: typeInputMail,
       password: typeInputPassword
     }
+    // console.log(render.mail)
     setShowModal(!showModal)
    console.log("OBJETO CREADO")
+   render(body)
   }
 
   //const goToLink = (uri) => {
     //navigate(uri)
   //S} 
+
+  const render = (body) => {
+    
+      checkingInternalRegister(body)
+      .then(item => {
+          console.log(item.body)
+      })
+      .catch(error => {
+        
+        console.log('error', error.message)
+       
+      });
+    }
+  
   
    return (
     
@@ -81,7 +99,18 @@ const Register = () => {
             <InputLabel title="Telefono" hdlOnChange={(e) => setTypeInputPhone(e.target.value)} />
           </div>
           <div className="column is-4">
-            <InputLabel title="Sexo" hdlOnChange={(e) => setTypeInputGender(e.target.value)} />
+            <DropDown  items={[
+              {
+                id: 1,
+                name: "Masculino"
+              }, 
+              {
+                id: 2,
+                name: "Femenino"
+              }
+            ]}
+            title="Sexo"
+             />
           </div>
 
           <div className="column is-11">
@@ -95,18 +124,17 @@ const Register = () => {
             <InputLabel title="Carrera" hdlOnChange={(e) => setTypeInputCareer(e.target.value)} />
           </div>
           <div className="column is-4">
-            <DropDown  items={[
+            <DropDown items={[
               {
                 id: 1,
-                name: "Masculino"
+                name: "Servicio Social"
               }, 
               {
                 id: 2,
-                name: "Masculino"
+                name: "Residencias Profesionales"
               }
             ]}
-            title="Servicio a prestar"
-            />
+            title="Servicio a prestar"/> 
           </div>
           
           

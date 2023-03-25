@@ -32,8 +32,7 @@ const Checkin = () => {
           if (item?.result?.matricula_student) {
             setErrorMessage(item?.result?.matricula_student);
             setShowError(!showError);
-          } else if (item) {
-            console.log('item =', item)
+          } else if (item) { 
             setShowError(false);
             setUserInformation(item?.result);
             setShowComponets(!showComponets);
