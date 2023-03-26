@@ -23,7 +23,7 @@ export const AppRouter = () => {
           element={<Login />}
         />
         <Route
-          path="Home"
+          path="home"
           element={<Home />}
         />
         <Route
@@ -48,7 +48,7 @@ export const AppRouter = () => {
           element={<PageNotFound />}
         />
         <Route
-          path="/SuccesfullRegister"
+          path="/succesfull-register"
           element={<SuccesfullRegister />}
         />
         <Route

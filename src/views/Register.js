@@ -11,19 +11,35 @@ import { useRegister } from '../hooks/useRegister';
 
 const Register = () => {
   const { checkingInternalRegister } = useRegister();
-  const [typeInputName, setTypeInputName] = useState('name')
-  const [typeInputLastNameF, setTypeInputLastNameF] = useState('last-name-f')
-  const [typeInputLastNameM, setTypeInputLastNameM] = useState('last-name-m')
-  const [typeInputAdress, setTypeInputAdress] = useState('adress')
-  const [typeInputPhone, setTypeInputPhone] = useState('phone')
-  const [typeInputGender, setTypeInputGender] = useState('gender')
-  const [typeInputIdentification, setTypeInputIdentification] = useState('identification')
-  const [typeInputCareer, setTypeInputCareer] = useState('career')
-  const [typeInputService, setTypeInputService] = useState('service')
-  const [typeInputMail, setTypeInputMail] = useState('mail')
-  const [typeInputPassword, setTypeInputPassword] = useState('password')
+  const [typeInputName, setTypeInputName] = useState('')
+  const [typeInputLastNameF, setTypeInputLastNameF] = useState('')
+  const [typeInputLastNameM, setTypeInputLastNameM] = useState('')
+  const [typeInputAdress, setTypeInputAdress] = useState('')
+  const [typeInputPhone, setTypeInputPhone] = useState('')
+  const [typeInputGender, setTypeInputGender] = useState('')
+  const [typeInputIdentification, setTypeInputIdentification] = useState('')
+  const [typeInputCareer, setTypeInputCareer] = useState('')
+  const [typeInputService, setTypeInputService] = useState('')
+  const [typeInputMail, setTypeInputMail] = useState('')
+  const [typeInputPassword, setTypeInputPassword] = useState('')
   const [showModal, setShowModal] = useState(false);
-
+  const [genderList, setGenderList] = useState([{
+    id: 'M',
+    name: "Masculino"
+  }, 
+  {
+    id: 'F',
+    name: "Femenino"
+  }]);
+  const [serviceList, setServiceList] = useState([{
+      id: 1,
+      name: "Servicio Social"
+    }, 
+    {
+      id: 2,
+      name: "Residencias Profesionales"
+    }
+  ]);
   
 
   const registerUser = () => {
@@ -35,24 +51,22 @@ const Register = () => {
       adress: typeInputAdress,
       phone: typeInputPhone,
       gender: typeInputGender,
-      identification: typeInputIdentification,
+      matricula: typeInputIdentification,
       career: typeInputCareer,
       service: typeInputService,
       mail: typeInputMail,
       password: typeInputPassword
     }
-    // console.log(render.mail)
     setShowModal(!showModal)
-   console.log("OBJETO CREADO")
-   render(body)
+    console.log("OBJETO CREADO", body)
+    registerNewUser(body)
   }
 
   //const goToLink = (uri) => {
     //navigate(uri)
-  //S} 
+  //} 
 
-  const render = (body) => {
-    
+  const registerNewUser = (body) => {
       checkingInternalRegister(body)
       .then(item => {
           console.log(item.body)
@@ -71,11 +85,11 @@ const Register = () => {
       <HeaderComponent title="Registro"/>
       { showModal ? 
         <ModalComponentRegister
-          classExtra = "modal-register" 
-          title = "¡REGISTRO EXITOSO!" 
-          isActive = "false" 
-          hdlOnclick= { ()=>setShowModal (!showModal)} >
-        </ModalComponentRegister> : <></>
+          classExtra="modal-register" 
+          title="¡REGISTRO EXITOSO!" 
+          isActive={showModal} 
+          hdlOnclick={()=>setShowModal(!showModal)}
+        /> : <></>
       }          
 
       <CardComponent classExtra="opacity-card">
@@ -99,18 +113,10 @@ const Register = () => {
             <InputLabel title="Telefono" hdlOnChange={(e) => setTypeInputPhone(e.target.value)} />
           </div>
           <div className="column is-4">
-            <DropDown  items={[
-              {
-                id: 1,
-                name: "Masculino"
-              }, 
-              {
-                id: 2,
-                name: "Femenino"
-              }
-            ]}
-            title="Sexo"
-             />
+            <DropDown
+              items={genderList}
+              title="Sexo"
+            />
           </div>
 
           <div className="column is-11">
@@ -124,21 +130,10 @@ const Register = () => {
             <InputLabel title="Carrera" hdlOnChange={(e) => setTypeInputCareer(e.target.value)} />
           </div>
           <div className="column is-4">
-            <DropDown items={[
-              {
-                id: 1,
-                name: "Servicio Social"
-              }, 
-              {
-                id: 2,
-                name: "Residencias Profesionales"
-              }
-            ]}
+            <DropDown items={serviceList}
             title="Servicio a prestar"/> 
           </div>
           
-          
-
           <div className="column is-4">
             <InputLabel title="Correo institucional" hdlOnChange={(e) => setTypeInputMail(e.target.value)} />
           </div>
@@ -150,9 +145,6 @@ const Register = () => {
               <button
                 className="button button-register"
                 onClick={() => registerUser() }
-                
-                //onClick={()=>setShowModal(!showModal)}
-                //onClick={() => goToLink('/SuccesfullRegister')}
               >
                 <span className="icon is-right">
                   <i className="mdi mdi-plus-circle-outline"></i>

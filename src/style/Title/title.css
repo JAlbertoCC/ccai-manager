@@ -1,13 +1,12 @@
-.title-materials{
-    text-align: left;
-    font-size: 1.5rem;
+.title-materials {
+  text-align: left;
+  font-size: 1.5rem;
 }
 
-.title-modal{
-    text-align: center;
-    color: #c12529;
-    font-weight: 900;
-    font-size: 2.0rem;
-    margin-top: 2.5%;
-    text-shadow: black -0.5px -0.5px 0.2em;
+.title-modal {
+  text-align: center;
+  color: #2B8192;
+  font-weight: 900;
+  font-size: 2.0rem;
+  margin-top: 2.5%;
 }
