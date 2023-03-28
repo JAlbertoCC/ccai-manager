@@ -79,6 +79,7 @@ const Register = () => {
           <div className="column is-4">
             <InputLabel title="Telefono" hdlOnChange={(e) => setTypeInputPhone(e.target.value)} />
           </div>
+          
           <div className="column is-4">
             <InputLabel title="Sexo" hdlOnChange={(e) => setTypeInputGender(e.target.value)} />
           </div>
