@@ -9,7 +9,7 @@ export const DropDown = (props) => {
         
           <select
             onChange={hdlOnChange}
-            className={`select-width input-radious select-style ${classExtra}`}
+            className={`select-width input-radious select-style drop-down-radious ${classExtra}`}
           >
             {items ?
               items.map(item => {

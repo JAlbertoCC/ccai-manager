@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate  } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 import { CardComponent } from './../components/ui/Cards/CardComponent'
 import { InputLabel } from './../components/ui/Inputs/InputLabel'
@@ -26,24 +26,24 @@ const Register = () => {
   const [genderList, setGenderList] = useState([{
     id: 'M',
     name: "Masculino"
-  }, 
+  },
   {
     id: 'F',
     name: "Femenino"
   }]);
   const [serviceList, setServiceList] = useState([{
-      id: 1,
-      name: "Servicio Social"
-    }, 
-    {
-      id: 2,
-      name: "Residencias Profesionales"
-    }
+    id: 1,
+    name: "Servicio Social"
+  },
+  {
+    id: 2,
+    name: "Residencias Profesionales"
+  }
   ]);
-  
+
 
   const registerUser = () => {
-    
+
     const body = {
       name: typeInputName,
       lastnamef: typeInputLastNameF,
@@ -63,34 +63,34 @@ const Register = () => {
   }
 
   //const goToLink = (uri) => {
-    //navigate(uri)
+  //navigate(uri)
   //} 
 
   const registerNewUser = (body) => {
-      checkingInternalRegister(body)
+    checkingInternalRegister(body)
       .then(item => {
-          console.log(item.body)
+        console.log(item.body)
       })
       .catch(error => {
-        
+
         console.log('error', error.message)
-       
+
       });
-    }
-  
-  
-   return (
-    
+  }
+
+
+  return (
+
     <div className='container register-content'>
-      <HeaderComponent title="Registro"/>
-      { showModal ? 
+      <HeaderComponent title="Registro" />
+      {showModal ?
         <ModalComponentRegister
-          classExtra="modal-register" 
-          title="¡REGISTRO EXITOSO!" 
-          isActive={showModal} 
-          hdlOnclick={()=>setShowModal(!showModal)}
+          classExtra="modal-register"
+          title="¡REGISTRO EXITOSO!"
+          isActive={showModal}
+          hdlOnclick={() => setShowModal(!showModal)}
         /> : <></>
-      }          
+      }
 
       <CardComponent classExtra="opacity-card">
         <div className="columns container-personal">
@@ -129,11 +129,11 @@ const Register = () => {
           <div className="column is-4">
             <InputLabel title="Carrera" hdlOnChange={(e) => setTypeInputCareer(e.target.value)} />
           </div>
-          <div className="column is-4">
+          <div className="column is-4 ">
             <DropDown items={serviceList}
-            title="Servicio a prestar"/> 
+              title="Servicio a prestar" />
           </div>
-          
+
           <div className="column is-4">
             <InputLabel title="Correo institucional" hdlOnChange={(e) => setTypeInputMail(e.target.value)} />
           </div>
@@ -144,18 +144,18 @@ const Register = () => {
             <p className="control has-icon-right">
               <button
                 className="button button-register"
-                onClick={() => registerUser() }
+                onClick={() => registerUser()}
               >
                 <span className="icon is-right">
                   <i className="mdi mdi-plus-circle-outline"></i>
-                </span>  
+                </span>
               </button>
-            </p>  
+            </p>
           </div>
         </div>
       </CardComponent>
     </div>
-   );
+  );
 }
 
 export default Register
