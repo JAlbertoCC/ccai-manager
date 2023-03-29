@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { useForm } from "react-hook-form";
+
 import { useNavigate } from 'react-router-dom'
 
 import { CardComponent } from './../components/ui/Cards/CardComponent'
@@ -10,6 +12,10 @@ import { useRegister } from '../hooks/useRegister';
 
 
 const Register = () => {
+  const { register, handleSubmit, watch, formState: { errors } } = useForm();
+  const onSubmit= evento => {
+    console.log(evento);
+  }
   const { checkingInternalRegister } = useRegister();
   const [typeInputName, setTypeInputName] = useState('')
   const [typeInputLastNameF, setTypeInputLastNameF] = useState('')
@@ -92,13 +98,23 @@ const Register = () => {
         /> : <></>
       }
 
-      <CardComponent classExtra="opacity-card">
+      <CardComponent onSubmit={handleSubmit(onSubmit)} classExtra="opacity-card">
         <div className="columns container-personal">
           <div className="column is-11">
             <p className='title-register'>DATOS PERSONALES</p>
           </div>
           <div className="column is-4">
-            <InputLabel title="Nombre" hdlOnChange={(e) => setTypeInputName(e.target.value)} />
+            <InputLabel title="Nombre" hdlOnChange={(e) => setTypeInputName(e.target.value)} 
+            {...register("Nombre",{
+              required:{
+                value:true,
+                message:"El campo es requerido"
+              },
+              pattern:{
+                value: /^[A-Z]/i,
+                message: "El formato es incorrecto"
+              }
+            })}/>
           </div>
           <div className="column is-4">
             <InputLabel title="Apellido paterno" hdlOnChange={(e) => setTypeInputLastNameF(e.target.value)} />
@@ -135,10 +151,32 @@ const Register = () => {
           </div>
 
           <div className="column is-4">
-            <InputLabel title="Correo institucional" hdlOnChange={(e) => setTypeInputMail(e.target.value)} />
+            <InputLabel title="Correo institucional" hdlOnChange={(e) => setTypeInputMail(e.target.value)} 
+            {...register("email",{
+              required:{
+                value:true,
+                message:"El campo es requerido"
+              },
+              pattern:{
+                value: /^[A-Z0-9]+@[TESE]+\.[EDU]+\.[MX]$/i,
+                message: "El formato es incorrecto"
+              }
+            })}/>
+            {errors.email && <span>{errors.email.message}</span>}
           </div>
           <div className="column is-4">
-            <InputLabel title="Contraseña" hdlOnChange={(e) => setTypeInputPassword(e.target.value)} />
+            <InputLabel title="Contraseña" hdlOnChange={(e) => setTypeInputPassword(e.target.value)} 
+            {...register("password",{
+              required:{
+                value:true,
+                message:"El campo es requerido"
+              },
+              minLength:{
+                  value: 8,
+                  message: "La contraseña debe tener al menos 8 caracteres"
+              }
+            })}/>
+            {errors.password && <span>{errors.password.message}</span>}
           </div>
           <div className="column is-4">
             <p className="control has-icon-right">
