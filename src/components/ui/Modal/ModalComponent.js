@@ -1,8 +1,11 @@
 import React from 'react';
+import Loader, { IconLoader } from '../Loader';
 
-export const ModalComponent = (props) => {    
+export const ModalComponent = (props) => {   
+
     const { children, classExtra, title, isActive, hdlOnclick} = props
     return(
+     
         <div className={`modal ${isActive ? 'is-active':''}`} >
             {children}
             <div className="modal-background" ></div>
@@ -16,6 +19,7 @@ export const ModalComponent = (props) => {
                         <p>Calificación:</p>
                         <p>Carrera:</p>
                         <p>Periodo:</p>
+                       <IconLoader></IconLoader> 
                     </div>
                     
                     <button className="button is-rounded is-medium btnModalAceptar">Aceptar</button>
@@ -24,6 +28,7 @@ export const ModalComponent = (props) => {
                 
             </div>
         </div>
+    
     )
 }
 

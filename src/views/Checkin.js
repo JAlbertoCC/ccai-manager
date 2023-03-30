@@ -9,6 +9,8 @@ import { useNavigate  } from 'react-router-dom'
 
 import { DateTime } from "luxon";
 import { useUsers } from "./../hooks/useUsers";
+import { useLottie } from "lottie-react";
+import IconLoaderAnimation from "../assets/Animations/iconLoader.json";
 
 const Checkin = () => {
   const { checkingInternalUser } = useUsers();
@@ -17,6 +19,8 @@ const Checkin = () => {
   const [showError, setShowError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate()
+  const [Loader, setLoader] = useState(false);
+
 
   const goToLink = (uri) => {
     navigate(uri)
