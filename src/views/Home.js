@@ -2,7 +2,6 @@ import React from 'react';
 
 import { useNavigate  } from 'react-router-dom'
 import ButtonDecorative from './../components/ui/Buttons/ButtonDecorative'
-import IconLoader from '../components/ui/Loader';
 import { ModalComponent } from '../components/ui/Modal/ModalComponent';
 
 import  { useState } from 'react';
@@ -16,19 +15,8 @@ const Home = () => {
   return (
     <div className='section'>
       
-                <ModalComponent 
-                
-                   // classExtra = "modal-users" 
-                    
-                    isActive = "true" 
-                    
-                    //hdlOnclick= { ()=>setShowModal (!showModal,IconLoader)} 
-                    
-
-                    >
-                         
-                </ModalComponent> :    <></>
-                                       
+      <ModalComponent />
+                                                                
       <div className='columns' style={{ height: '70vh', width: '100%', marginTop: '2%' }}>
         <div className="column is-6" style= {{ margin: 'auto', textAlign: 'center' }}>
           <p className="cart-title">
