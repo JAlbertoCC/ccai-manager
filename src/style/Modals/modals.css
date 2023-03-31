@@ -1,24 +1,23 @@
 .modal-users{
-    display: flow-root;
-    text-align: left;
-    font-size: larger;
-    font-family: 'Poppins';
-    position: sticky;
-    border-radius: 1.5rem;
-    background-color: rgb(42 143 163 / 57%);
-    color: black;
-  }
+  display: flow-root;
+  text-align: left;
+  font-size: larger;
+  font-family: 'Poppins';
+  position: sticky;
+  border-radius: 1.5rem;
+  color: black;
+  opacity: 1;
+}
 
-  .modal-register{
-    display: flow-root;
-    text-align: center;
-    font-size: larger;
-    font-family: 'Poppins';
-    position: sticky;
-    border-radius: 1.5rem;
-    background-color: rgba(64, 147, 185, 0.63);
-    color: black;
-  }
+.modal-register{
+  display: flow-root;
+  text-align: center;
+  font-size: larger;
+  font-family: 'Poppins';
+  position: sticky;
+  border-radius: 1.5rem;
+  color: black;
+}
 
 
   

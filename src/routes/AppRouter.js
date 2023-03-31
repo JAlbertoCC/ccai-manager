@@ -23,7 +23,7 @@ export const AppRouter = () => {
           element={<Login />}
         />
         <Route
-          path="Home"
+          path="home"
           element={<Home />}
         />
         <Route
@@ -48,21 +48,12 @@ export const AppRouter = () => {
           element={<PageNotFound />}
         />
         <Route
-          path="/SuccesfullRegister"
-          element={<SuccesfullRegister />}
-        />
-        <Route
-          path="/proyects"
-          element={<Proyects />}
-        />
-        <Route
           path="/materials"
           element={<Materials />}
         />
         <Route
           path="/calendar"
           element={<Calendar />}
-          
         />
         <Route
           path="/checkin"

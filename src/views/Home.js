@@ -80,6 +80,7 @@ const Home = () => {
                 title="Usuarios registrados"
                 backgroundColor="#60dd96"
                 icon="power-standby "
+                navOnclick={() => goToLink('/users')}
               />
             </div>
             <div className='column is-6' style={{ margin: 'auto' }}>

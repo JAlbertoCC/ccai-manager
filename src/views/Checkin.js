@@ -30,15 +30,14 @@ const Checkin = () => {
   }, [showComponets])
   
   const render = (value) => {
-    if (value.target.value.length >= 9) {
-      setIsLoader(true)
+    if (value.target.value.length === 9) {
       checkingInternalUser(value.target.value)
         .then(item => {
           setIsLoader(false)
           if (item?.result?.matricula_student) {
             setErrorMessage(item?.result?.matricula_student);
             setShowError(!showError);
-          } else if (item) {
+          } else if (item) { 
             setShowError(false);
             setUserInformation(item?.result);
             setShowComponets(!showComponets);

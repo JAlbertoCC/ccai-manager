@@ -1,28 +1,49 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from 'react';
+import { useNavigate  } from 'react-router-dom'
 
-import { CardComponent } from "./../components/ui/Cards/CardComponent";
-import { InputLabel } from "./../components/ui/Inputs/InputLabel";
-import { HeaderComponent } from "./../components/ui/Header/HeaderComponent";
-import { ModalComponentRegister } from "./../components/ui/Modal/ModalComponentRegister";
-import { ModalComponent } from "./../components/ui/Modal/ModalComponent";
+import { CardComponent } from './../components/ui/Cards/CardComponent'
+import { InputLabel } from './../components/ui/Inputs/InputLabel'
+import { DropDown } from './../components/ui/DropDown/DropDown'
+import { HeaderComponent } from './../components/ui/Header/HeaderComponent'
+import { ModalComponentRegister } from './../components/ui/Modal/ModalComponentRegister'
+import { useRegister } from '../hooks/useRegister';
+import { ErrorMessage } from './../components/ui/Warnings/ErrorMessage';
 
 const Register = () => {
-  const navigate = useNavigate();
-  const [typeInputName, setTypeInputName] = useState("name");
-  const [typeInputLastNameF, setTypeInputLastNameF] = useState("last-name-f");
-  const [typeInputLastNameM, setTypeInputLastNameM] = useState("last-name-m");
-  const [typeInputAdress, setTypeInputAdress] = useState("adress");
-  const [typeInputPhone, setTypeInputPhone] = useState("phone");
-  const [typeInputGender, setTypeInputGender] = useState("gender");
-  const [typeInputIdentification, setTypeInputIdentification] =
-    useState("identification");
-  const [typeInputCareer, setTypeInputCareer] = useState("career");
-  const [typeInputService, setTypeInputService] = useState("service");
-  const [typeInputMail, setTypeInputMail] = useState("mail");
-  const [typeInputPassword, setTypeInputPassword] = useState("password");
+  const { checkingInternalRegister } = useRegister();
+  const [typeInputName, setTypeInputName] = useState('')
+  const [typeInputLastNameF, setTypeInputLastNameF] = useState('')
+  const [typeInputLastNameM, setTypeInputLastNameM] = useState('')
+  const [typeInputAdress, setTypeInputAdress] = useState('')
+  const [typeInputPhone, setTypeInputPhone] = useState('')
+  const [typeInputGender, setTypeInputGender] = useState('M')
+  const [typeInputIdentification, setTypeInputIdentification] = useState('')
+  const [typeInputCareer, setTypeInputCareer] = useState('')
+  const [typeInputService, setTypeInputService] = useState('Servicio Social')
+  const [typeInputMail, setTypeInputMail] = useState('')
+  const [typeInputPassword, setTypeInputPassword] = useState('')
   const [showModal, setShowModal] = useState(false);
-  const [isLoader, setIsLoader] = useState(false);
+  const [showError, setShowError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [modalMessage, setModalMessage] = useState("");
+  const [genderList] = useState([{
+    id: 'M',
+    name: "Masculino"
+  }, 
+  {
+    id: 'F',
+    name: "Femenino"
+  }]);
+  const [serviceList, setServiceList] = useState([{
+      id: 1,
+      name: "Servicio Social"
+    }, 
+    {
+      id: 2,
+      name: "Residencias Profesionales"
+    }
+  ]);
+  
 
   const registerUser = () => {
     const body = {
@@ -32,34 +53,57 @@ const Register = () => {
       adress: typeInputAdress,
       phone: typeInputPhone,
       gender: typeInputGender,
-      identification: typeInputIdentification,
+      matricula: typeInputIdentification,
       career: typeInputCareer,
       service: typeInputService,
       mail: typeInputMail,
-      password: typeInputPassword,
-    };
-    setShowModal(!showModal);
-    console.log("OBJETO CREADO");
-  };
+      password: typeInputPassword
+    }
 
-  const goToLink = (uri) => {
-    navigate(uri);
-  };
+    registerNewUser(body);
+  }
 
-  return (
-    <div className="container register-content">
-      {isLoader && <ModalComponent />}
-      <HeaderComponent title="Registro" />
-      {showModal ? (
+  const registerNewUser = (body) => {
+    setModalMessage('');
+    setErrorMessage();
+    setShowError(false);
+    
+    checkingInternalRegister(body)
+      .then(item => {
+        console.log(item)
+        setShowModal(!showModal);
+        setModalMessage(item[0].message);
+        setTypeInputName('');
+        setTypeInputLastNameF('')
+        setTypeInputLastNameM('')
+        setTypeInputAdress('')
+        setTypeInputPhone('')
+        setTypeInputGender('M')
+        setTypeInputIdentification('')
+        setTypeInputCareer('')
+        setTypeInputService('Servicio Social')
+        setTypeInputMail('')
+        setTypeInputPassword('')
+      })
+      .catch(error => {
+        setErrorMessage(error.message);
+        setShowError(true);
+      });
+  }
+  
+   return (
+    
+    <div className='container register-content'>
+      <HeaderComponent title="Registro"/>
+      { showModal ? 
         <ModalComponentRegister
-          classExtra="modal-register"
+          classExtra="modal-register" 
           title="¡REGISTRO EXITOSO!"
-          isActive="false"
-          hdlOnclick={() => setShowModal(!showModal)}
-        ></ModalComponentRegister>
-      ) : (
-        <></>
-      )}
+          textModal={modalMessage}
+          isActive={showModal} 
+          hdlOnclick={()=>setShowModal(!showModal)}
+        /> : <></>
+      }          
 
       <CardComponent classExtra="opacity-card">
         <div className="columns container-personal">
@@ -98,7 +142,8 @@ const Register = () => {
           </div>
 
           <div className="column is-4">
-            <InputLabel
+            <DropDown
+              items={genderList}
               title="Sexo"
               hdlOnChange={(e) => setTypeInputGender(e.target.value)}
             />
@@ -121,11 +166,13 @@ const Register = () => {
             />
           </div>
           <div className="column is-4">
-            <InputLabel
+            <DropDown
+              items={serviceList}
               title="Servicio a prestar"
               hdlOnChange={(e) => setTypeInputService(e.target.value)}
             />
           </div>
+          
           <div className="column is-4">
             <InputLabel
               title="Correo institucional"
@@ -133,19 +180,13 @@ const Register = () => {
             />
           </div>
           <div className="column is-4">
-            <InputLabel
-              title="Contraseña"
-              hdlOnChange={(e) => setTypeInputPassword(e.target.value)}
-            />
+            <InputLabel type="password" title="Contraseña" hdlOnChange={(e) => setTypeInputPassword(e.target.value)} />
           </div>
           <div className="column is-4">
             <p className="control has-icon-right">
               <button
                 className="button button-register"
-                onClick={() => registerUser()}
-
-                //onClick={()=>setShowModal(!showModal)}
-                //onClick={() => goToLink('/SuccesfullRegister')}
+                onClick={() => registerUser() }
               >
                 <span className="icon is-right">
                   <i className="mdi mdi-plus-circle-outline"></i>
@@ -156,16 +197,15 @@ const Register = () => {
         </div>
       </CardComponent>
 
-      {showModal ? (
-        <></>
-      ) : (
-        <div class="notification-register notification is-danger">
-          <button class="delete"></button>
-          Correo o contraseña incorrectos.
-        </div>
-      )}
+      {
+      showError &&
+        <ErrorMessage
+          message={errorMessage}
+          hdlOnClick={() => setShowError(!showError)}
+        />
+      }
     </div>
-  );
-};
+   );
+}
 
-export default Register;
+export default Register

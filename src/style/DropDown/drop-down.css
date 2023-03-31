@@ -1,0 +1,11 @@
+.drop-down{
+    width: 30%;
+}
+
+.drop-down-radious{
+    border: 2px solid black;
+    font-size: 0.8em;
+    padding: 1.3rem 1rem;
+    border-radius: 10px;
+    outline: none;
+}

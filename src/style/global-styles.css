@@ -20,6 +20,10 @@
 
 @import url('./Notification/notification.css');
 
+@import url('./DropDown/drop-down.css');
+
+@import url('./Select/select.css');
+
 
 @font-face {
   font-family: 'Poppins';
