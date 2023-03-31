@@ -26,7 +26,7 @@ const Checkin = () => {
   }, [showComponets])
   
   const render = (value) => {
-    if (value.target.value.length >= 9) {
+    if (value.target.value.length === 9) {
       checkingInternalUser(value.target.value)
         .then(item => {
           if (item?.result?.matricula_student) {

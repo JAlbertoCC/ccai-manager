@@ -7,7 +7,7 @@ import { DropDown } from './../components/ui/DropDown/DropDown'
 import { HeaderComponent } from './../components/ui/Header/HeaderComponent'
 import { ModalComponentRegister } from './../components/ui/Modal/ModalComponentRegister'
 import { useRegister } from '../hooks/useRegister';
-
+import { ErrorMessage } from './../components/ui/Warnings/ErrorMessage';
 
 const Register = () => {
   const { checkingInternalRegister } = useRegister();
@@ -16,14 +16,17 @@ const Register = () => {
   const [typeInputLastNameM, setTypeInputLastNameM] = useState('')
   const [typeInputAdress, setTypeInputAdress] = useState('')
   const [typeInputPhone, setTypeInputPhone] = useState('')
-  const [typeInputGender, setTypeInputGender] = useState('')
+  const [typeInputGender, setTypeInputGender] = useState('M')
   const [typeInputIdentification, setTypeInputIdentification] = useState('')
   const [typeInputCareer, setTypeInputCareer] = useState('')
-  const [typeInputService, setTypeInputService] = useState('')
+  const [typeInputService, setTypeInputService] = useState('Servicio Social')
   const [typeInputMail, setTypeInputMail] = useState('')
   const [typeInputPassword, setTypeInputPassword] = useState('')
   const [showModal, setShowModal] = useState(false);
-  const [genderList, setGenderList] = useState([{
+  const [showError, setShowError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [modalMessage, setModalMessage] = useState("");
+  const [genderList] = useState([{
     id: 'M',
     name: "Masculino"
   }, 
@@ -43,7 +46,6 @@ const Register = () => {
   
 
   const registerUser = () => {
-    
     const body = {
       name: typeInputName,
       lastnamef: typeInputLastNameF,
@@ -57,27 +59,37 @@ const Register = () => {
       mail: typeInputMail,
       password: typeInputPassword
     }
-    setShowModal(!showModal)
-    console.log("OBJETO CREADO", body)
-    registerNewUser(body)
+
+    registerNewUser(body);
   }
 
-  //const goToLink = (uri) => {
-    //navigate(uri)
-  //} 
-
   const registerNewUser = (body) => {
-      checkingInternalRegister(body)
+    setModalMessage('');
+    setErrorMessage();
+    setShowError(false);
+    
+    checkingInternalRegister(body)
       .then(item => {
-          console.log(item.body)
+        console.log(item)
+        setShowModal(!showModal);
+        setModalMessage(item[0].message);
+        setTypeInputName('');
+        setTypeInputLastNameF('')
+        setTypeInputLastNameM('')
+        setTypeInputAdress('')
+        setTypeInputPhone('')
+        setTypeInputGender('M')
+        setTypeInputIdentification('')
+        setTypeInputCareer('')
+        setTypeInputService('Servicio Social')
+        setTypeInputMail('')
+        setTypeInputPassword('')
       })
       .catch(error => {
-        
-        console.log('error', error.message)
-       
+        setErrorMessage(error.message);
+        setShowError(true);
       });
-    }
-  
+  }
   
    return (
     
@@ -86,7 +98,8 @@ const Register = () => {
       { showModal ? 
         <ModalComponentRegister
           classExtra="modal-register" 
-          title="¡REGISTRO EXITOSO!" 
+          title="¡REGISTRO EXITOSO!"
+          textModal={modalMessage}
           isActive={showModal} 
           hdlOnclick={()=>setShowModal(!showModal)}
         /> : <></>
@@ -98,10 +111,16 @@ const Register = () => {
             <p className='title-register'>DATOS PERSONALES</p>
           </div>
           <div className="column is-4">
-            <InputLabel title="Nombre" hdlOnChange={(e) => setTypeInputName(e.target.value)} />
+            <InputLabel
+              title="Nombre"
+              hdlOnChange={(e) => setTypeInputName(e.target.value)}
+            />
           </div>
           <div className="column is-4">
-            <InputLabel title="Apellido paterno" hdlOnChange={(e) => setTypeInputLastNameF(e.target.value)} />
+            <InputLabel
+              title="Apellido paterno"
+              hdlOnChange={(e) => setTypeInputLastNameF(e.target.value)}
+            />
           </div>
           <div className="column is-4">
             <InputLabel title="Apellido materno" hdlOnChange={(e) => setTypeInputLastNameM(e.target.value)} />
@@ -116,6 +135,7 @@ const Register = () => {
             <DropDown
               items={genderList}
               title="Sexo"
+              hdlOnChange={(e) => setTypeInputGender(e.target.value)}
             />
           </div>
 
@@ -130,15 +150,18 @@ const Register = () => {
             <InputLabel title="Carrera" hdlOnChange={(e) => setTypeInputCareer(e.target.value)} />
           </div>
           <div className="column is-4">
-            <DropDown items={serviceList}
-            title="Servicio a prestar"/> 
+            <DropDown
+              items={serviceList}
+              title="Servicio a prestar"
+              hdlOnChange={(e) => setTypeInputService(e.target.value)}
+            />
           </div>
           
           <div className="column is-4">
             <InputLabel title="Correo institucional" hdlOnChange={(e) => setTypeInputMail(e.target.value)} />
           </div>
           <div className="column is-4">
-            <InputLabel title="Contraseña" hdlOnChange={(e) => setTypeInputPassword(e.target.value)} />
+            <InputLabel type="password" title="Contraseña" hdlOnChange={(e) => setTypeInputPassword(e.target.value)} />
           </div>
           <div className="column is-4">
             <p className="control has-icon-right">
@@ -154,6 +177,14 @@ const Register = () => {
           </div>
         </div>
       </CardComponent>
+
+      {
+      showError &&
+        <ErrorMessage
+          message={errorMessage}
+          hdlOnClick={() => setShowError(!showError)}
+        />
+      }
     </div>
    );
 }
