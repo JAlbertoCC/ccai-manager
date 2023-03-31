@@ -17,5 +17,5 @@
 }
 
 .tabs ul li a:hover {
-  border-bottom: 4px solid #ffffff;
+  border-bottom: none;
 }
