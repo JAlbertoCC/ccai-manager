@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
-import { useNavigate  } from 'react-router-dom'
+import React, { useState, useEffect } from 'react';
+import { useForm } from "react-hook-form";
+
+import { useNavigate } from 'react-router-dom'
 
 import { CardComponent } from './../components/ui/Cards/CardComponent'
 import { InputLabel } from './../components/ui/Inputs/InputLabel'
@@ -7,10 +9,16 @@ import { DropDown } from './../components/ui/DropDown/DropDown'
 import { HeaderComponent } from './../components/ui/Header/HeaderComponent'
 import { ModalComponentRegister } from './../components/ui/Modal/ModalComponentRegister'
 import { useRegister } from '../hooks/useRegister';
+import { useCareer } from "./../hooks/useCareer";
+
 import { ErrorMessage } from './../components/ui/Warnings/ErrorMessage';
 import { ModalComponent } from "./../components/ui/Modal/ModalComponent";
 
 const Register = () => {
+  const { register, handleSubmit, watch, formState: { errors } } = useForm();
+  const onSubmit = evento => {
+    console.log(evento);
+  }
   const { checkingInternalRegister } = useRegister();
   const [isLoader, setIsLoader] = useState(false);
   const [messageType, setMessageType] = useState('is-danger');
@@ -32,23 +40,44 @@ const Register = () => {
   const [genderList] = useState([{
     id: 'M',
     name: "Masculino"
-  }, 
+  },
   {
     id: 'F',
     name: "Femenino"
   }]);
   const [serviceList, setServiceList] = useState([{
-      id: 1,
-      name: "Servicio Social"
-    }, 
-    {
-      id: 2,
-      name: "Residencias Profesionales"
-    }
+    id: 1,
+    name: "Servicio Social"
+  },
+  {
+    id: 2,
+    name: "Residencias Profesionales"
+  }
   ]);
-  
+  const [career, setCareer] = useState([]);
+  const { consultCareer } = useCareer();
+
+  useEffect(() => {
+    showData();
+  }, [])
+
+  const showData = async () => {
+    consultCareer().then(result => {
+      const newArray = result.map((item, index) => {
+        return {
+          id: item.id_career,
+          name: item.name_career
+        }
+      })
+      setCareer(newArray)
+      console.log(result)
+    }).catch(error => {
+      console.error(error);
+    });
+  }
 
   const registerUser = () => {
+
     const body = {
       name: typeInputName,
       lastnamef: typeInputLastNameF,
@@ -66,64 +95,37 @@ const Register = () => {
     registerNewUser(body);
   }
 
-  const registerNewUser = (body) => {
-    setIsLoader(true);
-    setModalMessage('');
-    setErrorMessage();
-    setShowError(false);
-    setShowModal(false);
+  //const goToLink = (uri) => {
+  //navigate(uri)
+  //} 
 
+  const registerNewUser = (body) => {
     checkingInternalRegister(body)
       .then(item => {
-        console.log('item =>', item.message)
-        setIsLoader(false);
-
-        if (item.status === 400) {
-          setErrorMessage(item.message);
-          setMessageType('is-warning');
-          setShowError(true);
-        } else {
-          setShowModal(!showModal);
-          setModalMessage(item[0].message);
-          setTypeInputName('');
-          setTypeInputLastNameF('')
-          setTypeInputLastNameM('')
-          setTypeInputAdress('')
-          setTypeInputPhone('')
-          setTypeInputGender('M')
-          setTypeInputIdentification('')
-          setTypeInputCareer('')
-          setTypeInputService('Servicio Social')
-          setTypeInputMail('')
-          setTypeInputPassword('')
-        }
-        
+        console.log(item.body)
       })
       .catch(error => {
-        setMessageType('is-danger');
-        setIsLoader(false);
-        setShowModal(false);
-        setErrorMessage(error.message);
-        setShowError(true);
+
+        console.log('error', error.message)
+
       });
   }
-  
-   return (
+
+
+  return (
     <>
     <div className='container register-content'>
-      {isLoader && <ModalComponent />}
-      <HeaderComponent title="Registro"/>
-      { showModal ? 
+      <HeaderComponent title="Registro" />
+      {showModal ?
         <ModalComponentRegister
-          classExtra="modal-register" 
+          classExtra="modal-register"
           title="¡REGISTRO EXITOSO!"
-          textModal={modalMessage}
-          isActive={showModal} 
-          hdlOnclick={()=>setShowModal(!showModal)}
+          isActive={showModal}
+          hdlOnclick={() => setShowModal(!showModal)}
         /> : <></>
-      }          
+      }
 
-      <CardComponent classExtra="opacity-card">
+      <CardComponent onSubmit={handleSubmit(onSubmit)} classExtra="opacity-card">
         <div className="columns container-personal">
           <div className="column is-11">
             <p className="title-register">DATOS PERSONALES</p>
@@ -178,19 +180,14 @@ const Register = () => {
             />
           </div>
           <div className="column is-4">
-            <InputLabel
-              title="Carrera"
-              hdlOnChange={(e) => setTypeInputCareer(e.target.value)}
-            />
+            <DropDown items={career} title="Carrera" />
           </div>
-          <div className="column is-4">
-            <DropDown
-              items={serviceList}
-              title="Servicio a prestar"
-              hdlOnChange={(e) => setTypeInputService(e.target.value)}
-            />
+
+          <div className="column is-4 ">
+            <DropDown items={serviceList}
+              title="Servicio a prestar" />
           </div>
-          
+
           <div className="column is-4">
             <InputLabel
               title="Correo institucional"
@@ -208,7 +205,7 @@ const Register = () => {
             <p className="control has-icon-right">
               <button
                 className="button button-register"
-                onClick={() => registerUser() }
+                onClick={() => registerUser()}
               >
                 <span className="icon is-right">
                   <i className="mdi mdi-plus-circle-outline"></i>
