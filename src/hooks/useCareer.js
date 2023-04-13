@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import * as api from '../utils/index'
 
-export const useCreer = () => {
+export const useCareer = () => {
   const [allInformation, setAllInformation] = useState([])
   const [pagination, setPagination] = useState({})
 

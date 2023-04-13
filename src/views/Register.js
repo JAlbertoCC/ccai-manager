@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useForm } from "react-hook-form";
 
 import { useNavigate } from 'react-router-dom'
@@ -9,11 +9,12 @@ import { DropDown } from './../components/ui/DropDown/DropDown'
 import { HeaderComponent } from './../components/ui/Header/HeaderComponent'
 import { ModalComponentRegister } from './../components/ui/Modal/ModalComponentRegister'
 import { useRegister } from '../hooks/useRegister';
+import { useCareer } from "./../hooks/useCareer";
 
 
 const Register = () => {
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
-  const onSubmit= evento => {
+  const onSubmit = evento => {
     console.log(evento);
   }
   const { checkingInternalRegister } = useRegister();
@@ -46,17 +47,27 @@ const Register = () => {
     name: "Residencias Profesionales"
   }
   ]);
-  const [careerList, setCareerList] = useState([{
-    id: 1,
-    name: " "
-  },
-  {
-    id: 2,
-    name: " "
-  }
-  ]);
-  
+  const [career, setCareer] = useState([]);
+  const { consultCareer } = useCareer();
 
+  useEffect(() => {
+    showData();
+  }, [])
+
+  const showData = async () => {
+    consultCareer().then(result => {
+      const newArray = result.map((item, index) => {
+        return {
+          id: item.id_career,
+          name: item.name_career
+        }
+      })
+      setCareer(newArray)
+      console.log(result)
+    }).catch(error => {
+      console.error(error);
+    });
+  }
 
   const registerUser = () => {
 
@@ -77,7 +88,7 @@ const Register = () => {
     console.log("OBJETO CREADO", body)
     registerNewUser(body)
   }
-  
+
   //const goToLink = (uri) => {
   //navigate(uri)
   //} 
@@ -114,17 +125,17 @@ const Register = () => {
             <p className='title-register'>DATOS PERSONALES</p>
           </div>
           <div className="column is-4">
-            <InputLabel title="Nombre" hdlOnChange={(e) => setTypeInputName(e.target.value)} 
-            {...register("Nombre",{
-              required:{
-                value:true,
-                message:"El campo es requerido"
-              },
-              pattern:{
-                value: /^[A-Z]/i,
-                message: "El formato es incorrecto"
-              }
-            })}/>
+            <InputLabel title="Nombre" hdlOnChange={(e) => setTypeInputName(e.target.value)}
+              {...register("Nombre", {
+                required: {
+                  value: true,
+                  message: "El campo es requerido"
+                },
+                pattern: {
+                  value: /^[A-Z]/i,
+                  message: "El formato es incorrecto"
+                }
+              })} />
           </div>
           <div className="column is-4">
             <InputLabel title="Apellido paterno" hdlOnChange={(e) => setTypeInputLastNameF(e.target.value)} />
@@ -153,39 +164,40 @@ const Register = () => {
             <InputLabel title="Matricula" hdlOnChange={(e) => setTypeInputIdentification(e.target.value)} />
           </div>
           <div className="column is-4">
-            <InputLabel title="Carrera" hdlOnChange={(e) => setTypeInputCareer(e.target.value)} />
+            <DropDown items={career} title="Carrera" />
           </div>
+
           <div className="column is-4 ">
             <DropDown items={serviceList}
               title="Servicio a prestar" />
           </div>
 
           <div className="column is-4">
-            <InputLabel title="Correo institucional" hdlOnChange={(e) => setTypeInputMail(e.target.value)} 
-            {...register("email",{
-              required:{
-                value:true,
-                message:"El campo es requerido"
-              },
-              pattern:{
-                value: /^[A-Z0-9]+@[TESE]+\.[EDU]+\.[MX]$/i,
-                message: "El formato es incorrecto"
-              }
-            })}/>
+            <InputLabel title="Correo institucional" hdlOnChange={(e) => setTypeInputMail(e.target.value)}
+              {...register("email", {
+                required: {
+                  value: true,
+                  message: "El campo es requerido"
+                },
+                pattern: {
+                  value: /^[A-Z0-9]+@[TESE]+\.[EDU]+\.[MX]$/i,
+                  message: "El formato es incorrecto"
+                }
+              })} />
             {errors.email && <span>{errors.email.message}</span>}
           </div>
           <div className="column is-4">
-            <InputLabel title="Contraseña" hdlOnChange={(e) => setTypeInputPassword(e.target.value)} 
-            {...register("password",{
-              required:{
-                value:true,
-                message:"El campo es requerido"
-              },
-              minLength:{
+            <InputLabel title="Contraseña" hdlOnChange={(e) => setTypeInputPassword(e.target.value)}
+              {...register("password", {
+                required: {
+                  value: true,
+                  message: "El campo es requerido"
+                },
+                minLength: {
                   value: 8,
                   message: "La contraseña debe tener al menos 8 caracteres"
-              }
-            })}/>
+                }
+              })} />
             {errors.password && <span>{errors.password.message}</span>}
           </div>
           <div className="column is-4">
