@@ -1,10 +1,15 @@
 .notification-register {
-    background-color: #f14668;
-    color: #fff;
-    border-radius: 10rem;
-    width: 30%;
-    display: block;
-    margin-left: auto;
-    margin-top: 2rem;
-    text-align: center;
+  background-color: #f14668;
+  color: #fff;
+  border-radius: 10rem;
+  width: 30%;
+  text-align: center;
+  position: absolute;
+  bottom: 0;
+  right: 10%;
+  margin: 10px;
+}
+
+.delete {
+  margin: 10px;
 }

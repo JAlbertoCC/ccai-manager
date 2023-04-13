@@ -8,9 +8,12 @@ import { HeaderComponent } from './../components/ui/Header/HeaderComponent'
 import { ModalComponentRegister } from './../components/ui/Modal/ModalComponentRegister'
 import { useRegister } from '../hooks/useRegister';
 import { ErrorMessage } from './../components/ui/Warnings/ErrorMessage';
+import { ModalComponent } from "./../components/ui/Modal/ModalComponent";
 
 const Register = () => {
   const { checkingInternalRegister } = useRegister();
+  const [isLoader, setIsLoader] = useState(false);
+  const [messageType, setMessageType] = useState('is-danger');
   const [typeInputName, setTypeInputName] = useState('')
   const [typeInputLastNameF, setTypeInputLastNameF] = useState('')
   const [typeInputLastNameM, setTypeInputLastNameM] = useState('')
@@ -64,36 +67,51 @@ const Register = () => {
   }
 
   const registerNewUser = (body) => {
+    setIsLoader(true);
     setModalMessage('');
     setErrorMessage();
     setShowError(false);
-    
+    setShowModal(false);
+
     checkingInternalRegister(body)
       .then(item => {
-        console.log(item)
-        setShowModal(!showModal);
-        setModalMessage(item[0].message);
-        setTypeInputName('');
-        setTypeInputLastNameF('')
-        setTypeInputLastNameM('')
-        setTypeInputAdress('')
-        setTypeInputPhone('')
-        setTypeInputGender('M')
-        setTypeInputIdentification('')
-        setTypeInputCareer('')
-        setTypeInputService('Servicio Social')
-        setTypeInputMail('')
-        setTypeInputPassword('')
+        console.log('item =>', item.message)
+        setIsLoader(false);
+
+        if (item.status === 400) {
+          setErrorMessage(item.message);
+          setMessageType('is-warning');
+          setShowError(true);
+        } else {
+          setShowModal(!showModal);
+          setModalMessage(item[0].message);
+          setTypeInputName('');
+          setTypeInputLastNameF('')
+          setTypeInputLastNameM('')
+          setTypeInputAdress('')
+          setTypeInputPhone('')
+          setTypeInputGender('M')
+          setTypeInputIdentification('')
+          setTypeInputCareer('')
+          setTypeInputService('Servicio Social')
+          setTypeInputMail('')
+          setTypeInputPassword('')
+        }
+        
       })
       .catch(error => {
+        setMessageType('is-danger');
+        setIsLoader(false);
+        setShowModal(false);
         setErrorMessage(error.message);
         setShowError(true);
       });
   }
   
    return (
-    
+    <>
     <div className='container register-content'>
+      {isLoader && <ModalComponent />}
       <HeaderComponent title="Registro"/>
       { showModal ? 
         <ModalComponentRegister
@@ -180,7 +198,11 @@ const Register = () => {
             />
           </div>
           <div className="column is-4">
-            <InputLabel type="password" title="Contraseña" hdlOnChange={(e) => setTypeInputPassword(e.target.value)} />
+            <InputLabel
+              typeInput="password"
+              title="Contraseña"
+              hdlOnChange={(e) => setTypeInputPassword(e.target.value)}
+            />
           </div>
           <div className="column is-4">
             <p className="control has-icon-right">
@@ -197,14 +219,17 @@ const Register = () => {
         </div>
       </CardComponent>
 
-      {
+    </div>
+
+    {
       showError &&
         <ErrorMessage
           message={errorMessage}
           hdlOnClick={() => setShowError(!showError)}
+          messageType={messageType}
         />
       }
-    </div>
+    </>
    );
 }
 
