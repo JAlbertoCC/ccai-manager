@@ -46,6 +46,16 @@ const Register = () => {
     name: "Residencias Profesionales"
   }
   ]);
+  const [careerList, setCareerList] = useState([{
+    id: 1,
+    name: " "
+  },
+  {
+    id: 2,
+    name: " "
+  }
+  ]);
+  
 
 
   const registerUser = () => {
@@ -67,7 +77,7 @@ const Register = () => {
     console.log("OBJETO CREADO", body)
     registerNewUser(body)
   }
-
+  
   //const goToLink = (uri) => {
   //navigate(uri)
   //} 
