@@ -25,3 +25,12 @@ export async function checkingInternalRegister (body) {
   const data = response.ok ? await response.json() : undefined
   return data
 }
+
+export async function consultingSex(){
+  const request= buildGetRequest('/list-sex','GET')
+  const response = await fetch(request)
+
+  const data = response.ok ? await response.json():undefined
+  return data
+
+}

@@ -61,7 +61,8 @@ const Register = () => {
     console.log("OBJETO CREADO", body)
     registerNewUser(body)
   }
-
+   
+   
   //const goToLink = (uri) => {
     //navigate(uri)
   //} 
@@ -77,7 +78,9 @@ const Register = () => {
        
       });
     }
+
   
+    
   
    return (
     
@@ -116,8 +119,9 @@ const Register = () => {
           <div className="column is-4">
             <DropDown
               items={genderList}
-              title="Sexo"
-            />
+              title="Sexo" //hdlOnChange={(//e) => //setTypeInputGender(e.target.value)} />
+              
+            />  
           </div>
 
           <div className="column is-11">
@@ -133,6 +137,8 @@ const Register = () => {
           <div className="column is-4">
             <DropDown items={serviceList}
             title="Servicio a prestar"/> 
+            
+            
           </div>
           
           <div className="column is-4">
