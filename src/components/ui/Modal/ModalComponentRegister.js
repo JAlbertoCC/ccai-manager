@@ -1,7 +1,7 @@
 import React from "react";
 
 export const ModalComponentRegister = (props) => {
-  const { children, classExtra, title, isActive, hdlOnclick } = props;
+  const { textModal, classExtra, title, isActive, hdlOnclick } = props;
 
   return (
     <div className={`modal ${isActive ? "is-active" : ""}`}>
@@ -16,8 +16,7 @@ export const ModalComponentRegister = (props) => {
           ></button>
           <div>
             <p className="body-sucessfull">
-              Los docentes se comunicaran con usted para informarles si su
-              registro fue aceptado en el CCAI.
+              {textModal}
             </p>
           </div>
         </section>

@@ -11,6 +11,8 @@ import { ModalComponentRegister } from './../components/ui/Modal/ModalComponentR
 import { useRegister } from '../hooks/useRegister';
 import { useCareer } from "./../hooks/useCareer";
 
+import { ErrorMessage } from './../components/ui/Warnings/ErrorMessage';
+import { ModalComponent } from "./../components/ui/Modal/ModalComponent";
 
 const Register = () => {
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
@@ -18,19 +20,24 @@ const Register = () => {
     console.log(evento);
   }
   const { checkingInternalRegister } = useRegister();
+  const [isLoader, setIsLoader] = useState(false);
+  const [messageType, setMessageType] = useState('is-danger');
   const [typeInputName, setTypeInputName] = useState('')
   const [typeInputLastNameF, setTypeInputLastNameF] = useState('')
   const [typeInputLastNameM, setTypeInputLastNameM] = useState('')
   const [typeInputAdress, setTypeInputAdress] = useState('')
   const [typeInputPhone, setTypeInputPhone] = useState('')
-  const [typeInputGender, setTypeInputGender] = useState('')
+  const [typeInputGender, setTypeInputGender] = useState('M')
   const [typeInputIdentification, setTypeInputIdentification] = useState('')
   const [typeInputCareer, setTypeInputCareer] = useState('')
-  const [typeInputService, setTypeInputService] = useState('')
+  const [typeInputService, setTypeInputService] = useState('Servicio Social')
   const [typeInputMail, setTypeInputMail] = useState('')
   const [typeInputPassword, setTypeInputPassword] = useState('')
   const [showModal, setShowModal] = useState(false);
-  const [genderList, setGenderList] = useState([{
+  const [showError, setShowError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [modalMessage, setModalMessage] = useState("");
+  const [genderList] = useState([{
     id: 'M',
     name: "Masculino"
   },
@@ -84,9 +91,8 @@ const Register = () => {
       mail: typeInputMail,
       password: typeInputPassword
     }
-    setShowModal(!showModal)
-    console.log("OBJETO CREADO", body)
-    registerNewUser(body)
+
+    registerNewUser(body);
   }
 
   //const goToLink = (uri) => {
@@ -107,7 +113,7 @@ const Register = () => {
 
 
   return (
-
+    <>
     <div className='container register-content'>
       <HeaderComponent title="Registro" />
       {showModal ?
@@ -122,46 +128,56 @@ const Register = () => {
       <CardComponent onSubmit={handleSubmit(onSubmit)} classExtra="opacity-card">
         <div className="columns container-personal">
           <div className="column is-11">
-            <p className='title-register'>DATOS PERSONALES</p>
+            <p className="title-register">DATOS PERSONALES</p>
           </div>
           <div className="column is-4">
-            <InputLabel title="Nombre" hdlOnChange={(e) => setTypeInputName(e.target.value)}
-              {...register("Nombre", {
-                required: {
-                  value: true,
-                  message: "El campo es requerido"
-                },
-                pattern: {
-                  value: /^[A-Z]/i,
-                  message: "El formato es incorrecto"
-                }
-              })} />
+            <InputLabel
+              title="Nombre"
+              hdlOnChange={(e) => setTypeInputName(e.target.value)}
+            />
           </div>
           <div className="column is-4">
-            <InputLabel title="Apellido paterno" hdlOnChange={(e) => setTypeInputLastNameF(e.target.value)} />
+            <InputLabel
+              title="Apellido paterno"
+              hdlOnChange={(e) => setTypeInputLastNameF(e.target.value)}
+            />
           </div>
           <div className="column is-4">
-            <InputLabel title="Apellido materno" hdlOnChange={(e) => setTypeInputLastNameM(e.target.value)} />
+            <InputLabel
+              title="Apellido materno"
+              hdlOnChange={(e) => setTypeInputLastNameM(e.target.value)}
+            />
           </div>
           <div className="column is-4">
-            <InputLabel title="Dirección" hdlOnChange={(e) => setTypeInputAdress(e.target.value)} />
+            <InputLabel
+              title="Dirección"
+              hdlOnChange={(e) => setTypeInputAdress(e.target.value)}
+            />
           </div>
           <div className="column is-4">
-            <InputLabel title="Telefono" hdlOnChange={(e) => setTypeInputPhone(e.target.value)} />
+            <InputLabel
+              title="Telefono"
+              hdlOnChange={(e) => setTypeInputPhone(e.target.value)}
+            />
           </div>
+
           <div className="column is-4">
             <DropDown
               items={genderList}
               title="Sexo"
+              hdlOnChange={(e) => setTypeInputGender(e.target.value)}
             />
           </div>
 
           <div className="column is-11">
-            <p className='title-register'>DATOS INSTITUCIONALES</p>
+            <p className="title-register">DATOS INSTITUCIONALES</p>
           </div>
 
           <div className="column is-4">
-            <InputLabel title="Matricula" hdlOnChange={(e) => setTypeInputIdentification(e.target.value)} />
+            <InputLabel
+              title="Matricula"
+              hdlOnChange={(e) => setTypeInputIdentification(e.target.value)}
+            />
           </div>
           <div className="column is-4">
             <DropDown items={career} title="Carrera" />
@@ -173,32 +189,17 @@ const Register = () => {
           </div>
 
           <div className="column is-4">
-            <InputLabel title="Correo institucional" hdlOnChange={(e) => setTypeInputMail(e.target.value)}
-              {...register("email", {
-                required: {
-                  value: true,
-                  message: "El campo es requerido"
-                },
-                pattern: {
-                  value: /^[A-Z0-9]+@[TESE]+\.[EDU]+\.[MX]$/i,
-                  message: "El formato es incorrecto"
-                }
-              })} />
-            {errors.email && <span>{errors.email.message}</span>}
+            <InputLabel
+              title="Correo institucional"
+              hdlOnChange={(e) => setTypeInputMail(e.target.value)}
+            />
           </div>
           <div className="column is-4">
-            <InputLabel title="Contraseña" hdlOnChange={(e) => setTypeInputPassword(e.target.value)}
-              {...register("password", {
-                required: {
-                  value: true,
-                  message: "El campo es requerido"
-                },
-                minLength: {
-                  value: 8,
-                  message: "La contraseña debe tener al menos 8 caracteres"
-                }
-              })} />
-            {errors.password && <span>{errors.password.message}</span>}
+            <InputLabel
+              typeInput="password"
+              title="Contraseña"
+              hdlOnChange={(e) => setTypeInputPassword(e.target.value)}
+            />
           </div>
           <div className="column is-4">
             <p className="control has-icon-right">
@@ -214,8 +215,19 @@ const Register = () => {
           </div>
         </div>
       </CardComponent>
+
     </div>
-  );
+
+    {
+      showError &&
+        <ErrorMessage
+          message={errorMessage}
+          hdlOnClick={() => setShowError(!showError)}
+          messageType={messageType}
+        />
+      }
+    </>
+   );
 }
 
 export default Register

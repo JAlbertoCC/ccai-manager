@@ -2,7 +2,7 @@ import React from 'react';
 
 export const TableComponent = () => {
   return (
-    <table class="table table-proyect is-fullwidth is-striped">
+    <table className="table table-proyect is-fullwidth is-striped">
       <thead>
         <tr>
           <th><abbr title="Position">Pos</abbr></th>
