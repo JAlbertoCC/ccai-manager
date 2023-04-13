@@ -6,23 +6,21 @@ export async function checkingInternalUser (matricula) {
   
   const data = response.ok ? await response.json() : undefined
   return data
-
-
 }
+
 export async function consultingStudents () {
   const request = buildGetRequest('/consulting-students','GET')
   const response = await fetch(request)
 
   const data = response.ok ? await response.json():undefined
   return data
-  
 }
 
 export async function checkingInternalRegister (body) {
   const request = buildRequest('/register-users', 'POST', body)
   const response = await fetch(request)
-  
-  const data = response.ok ? await response.json() : undefined
+
+  const data = await response.json()
   return data
 }
 

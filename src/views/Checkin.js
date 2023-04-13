@@ -9,6 +9,7 @@ import { useNavigate  } from 'react-router-dom'
 
 import { DateTime } from "luxon";
 import { useUsers } from "./../hooks/useUsers";
+import { ModalComponent } from "./../components/ui/Modal/ModalComponent";
 
 const Checkin = () => {
   const { checkingInternalUser } = useUsers();
@@ -17,18 +18,22 @@ const Checkin = () => {
   const [showError, setShowError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate()
+  const [isLoader, setIsLoader] = useState(false);
+
 
   const goToLink = (uri) => {
     navigate(uri)
   }
 
-  useEffect(() => {console.log(DateTime.now().toLocaleString(DateTime.DATE_MED))
+  useEffect(() => {
+    console.log(DateTime.now().toLocaleString(DateTime.DATE_MED))
   }, [showComponets])
   
   const render = (value) => {
-    if (value.target.value.length >= 9) {
+    if (value.target.value.length === 9) {
       checkingInternalUser(value.target.value)
         .then(item => {
+          setIsLoader(false)
           if (item?.result?.matricula_student) {
             setErrorMessage(item?.result?.matricula_student);
             setShowError(!showError);
@@ -42,6 +47,7 @@ const Checkin = () => {
           }
         })
         .catch(error => {
+          setIsLoader(false)
           setShowComponets(false)
           console.log('error', error.message)
           setErrorMessage(error.message);
@@ -55,6 +61,7 @@ const Checkin = () => {
   };
   return (
     <div className="section">
+      {isLoader && <ModalComponent />}
       {
         showComponets ? (
           <CardComponent classExtra="opacity-card card-check">
