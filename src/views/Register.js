@@ -45,6 +45,7 @@ const Register = () => {
     id: 'F',
     name: "Femenino"
   }]);
+  const { consultingService } = useService();
   const [serviceList, setServiceList] = useState([{
     id: 1,
     name: "Servicio Social"
@@ -62,8 +63,9 @@ const Register = () => {
   }, [])
 
   const showData = async () => {
-    consultCareer().then(result => {
-      const newArray = result.map((item, index) => {
+    consultCareer()
+    .then(result => {
+      const newArray = result || [].map((item, index) => {
         return {
           id: item.id_career,
           name: item.name_career
