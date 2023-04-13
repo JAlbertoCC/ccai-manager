@@ -32,3 +32,10 @@ export async function consultingSex(){
   return data
 
 }
+export async function consultCareer () {
+  const request = buildGetRequest('/list-carrer', 'GET')
+  const response = await fetch(request)
+  
+  const data = response.ok ? await response.json() : undefined
+  return data
+}
