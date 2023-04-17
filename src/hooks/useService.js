@@ -1,20 +1,20 @@
 import { useState } from 'react';
 import * as api from '../utils/index'
 
-export const useService = () => {
-  const [allInformation, setAllInformation] = useState([])
-  const [pagination, setPagination] = useState({})
+export const useService = () => { 
+    const [allInformation, setAllInformation] = useState([])
+    const [pagination, setPagination] = useState({})
 
-// se creo el metodo asincrono consultingService
-  const consultingService = async () => {
-    const data = await api.consultingService()
-    return data;
-  
-  }
+    //se creo el metodo asincronk consultService
+    const consultService = async () => {
+        const data = await api.consultService()
+        return data;
+
+    }
 
 
-  return {
-    pagination,
-    consultingService
-  }
+    return{
+        pagination,
+        consultService
+    }
 }

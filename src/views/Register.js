@@ -45,7 +45,7 @@ const Register = () => {
     id: 'F',
     name: "Femenino"
   }]);
-  const { consultingService } = useService();
+
   const [serviceList, setServiceList] = useState([{
     id: 1,
     name: "Servicio Social"
@@ -55,6 +55,7 @@ const Register = () => {
     name: "Residencias Profesionales"
   }
   ]);
+  
   const [career, setCareer] = useState([]);
   const { consultCareer } = useCareer();
 
