@@ -5,6 +5,29 @@ import { CardComponent } from "../components/ui/Cards/CardComponent";
 import { InputLabel } from "./../components/ui/Inputs/InputLabel";
 import { ButtonComponent } from "./../components/ui/Buttons/PrimaryButton";
 
+import { useForm } from "react-hook-form"; 
+
+function ValidationForm(){
+  const{register,handleSubmit, formState: {errors}} = useForm();
+  const onSubmit = () => data => console.log(data);
+
+  return(
+    <form columns content-forms>
+      <input name="Nombre" ref={register}></input>
+      {errors.Nombre && <span>El campo es obligatorio</span>}
+      <input name="ApellidoPaterno" ref={register}></input>
+      {errors.ApellidoPaterno && <span>El campo es obligatorio</span>}
+      <input name="ApellidoMaterno" ref={register}></input>
+      {errors.ApellidoMaterno && <span>El campo es obligatorio</span>}
+      <input name="CorreoElectrónico" ref={register}></input>
+      {errors.CorreoElectrónico && <span>El campo es obligatorio</span>}
+    </form>
+
+    
+  )
+}
+
+
 const VisitView = () => {
   const [showRegisterView, setShowRegisterView] = useState(true);
   const [selectedTab, setSelectedTab] = useState(true);
