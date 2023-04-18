@@ -10,6 +10,7 @@ import { HeaderComponent } from './../components/ui/Header/HeaderComponent'
 import { ModalComponentRegister } from './../components/ui/Modal/ModalComponentRegister'
 import { useRegister } from '../hooks/useRegister';
 import { useCareer } from "./../hooks/useCareer";
+import { useService } from './../hooks/useService';
 
 import { ErrorMessage } from './../components/ui/Warnings/ErrorMessage';
 import { ModalComponent } from "./../components/ui/Modal/ModalComponent";
@@ -55,6 +56,27 @@ const Register = () => {
     name: "Residencias Profesionales"
   }
   ]);
+
+  useEffect(() => {
+    showService();
+  }, [])
+   
+  const { consultService } = useService();
+  const showService = async () => {
+    consultService()
+    .then(result => {
+      const newArray = result || [].map((item, index) => {
+        return {
+          id: item.id_service,
+          name: item.service_name
+        }
+      })
+      setServiceList(newArray)
+      console.log("result",result[0])
+    }).catch(error => {
+      console.error(error);
+    });
+  }
   
   const [career, setCareer] = useState([]);
   const { consultCareer } = useCareer();

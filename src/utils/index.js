@@ -24,7 +24,7 @@ export async function checkingInternalRegister (body) {
   return data
 }
 
-export async function consultinService(){
+export async function consultService(){
   const request= buildGetRequest('/list-service','GET')
   const response = await fetch(request)
 
