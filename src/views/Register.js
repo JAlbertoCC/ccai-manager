@@ -15,10 +15,12 @@ import { ErrorMessage } from './../components/ui/Warnings/ErrorMessage';
 import { ModalComponent } from "./../components/ui/Modal/ModalComponent";
 
 const Register = () => {
-  const { register, handleSubmit, watch, formState: { errors } } = useForm();
+  const { register, handleSubmit, formState: { errors } } = useForm();
   const onSubmit = evento => {
     console.log(evento);
   }
+  console.log(errors);
+
   const { checkingInternalRegister } = useRegister();
   const [isLoader, setIsLoader] = useState(false);
   const [messageType, setMessageType] = useState('is-danger');
@@ -76,6 +78,8 @@ const Register = () => {
     });
   }
 
+  
+
   const registerUser = () => {
 
     const body = {
@@ -111,7 +115,7 @@ const Register = () => {
       });
   }
 
-
+  
   return (
     <>
     <div className='container register-content'>
@@ -125,16 +129,21 @@ const Register = () => {
         /> : <></>
       }
 
-      <CardComponent onSubmit={handleSubmit(onSubmit)} classExtra="opacity-card">
+      <CardComponent  classExtra="opacity-card">
         <div className="columns container-personal">
           <div className="column is-11">
             <p className="title-register">DATOS PERSONALES</p>
           </div>
           <div className="column is-4">
             <InputLabel
-              title="Nombre"
+              title="Nombre" name="name"
               hdlOnChange={(e) => setTypeInputName(e.target.value)}
+              {...register("name", {
+                required: "es requerido"
+              })}
             />
+            <p>{errors.name?.message}</p>
+        
           </div>
           <div className="column is-4">
             <InputLabel
@@ -189,9 +198,9 @@ const Register = () => {
           </div>
 
           <div className="column is-4">
-            <InputLabel
-              title="Correo institucional"
+            <InputLabel title="Correo Institucional" 
               hdlOnChange={(e) => setTypeInputMail(e.target.value)}
+              
             />
           </div>
           <div className="column is-4">
@@ -203,7 +212,7 @@ const Register = () => {
           </div>
           <div className="column is-4">
             <p className="control has-icon-right">
-              <button
+              <button onSubmit={handleSubmit(onSubmit)}
                 className="button button-register"
                 onClick={() => registerUser()}
               >
