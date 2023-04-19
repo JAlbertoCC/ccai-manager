@@ -128,7 +128,7 @@ const Register = () => {
           hdlOnclick={() => setShowModal(!showModal)}
         /> : <></>
       }
-
+      <form onSubmit={handleSubmit(onSubmit)}>
       <CardComponent  classExtra="opacity-card">
         <div className="columns container-personal">
           <div className="column is-11">
@@ -139,7 +139,7 @@ const Register = () => {
               title="Nombre" name="name"
               hdlOnChange={(e) => setTypeInputName(e.target.value)}
               {...register("name", {
-                required: "es requerido"
+                required: "El campo es requerido"
               })}
             />
             <p>{errors.name?.message}</p>
@@ -198,21 +198,42 @@ const Register = () => {
           </div>
 
           <div className="column is-4">
-            <InputLabel title="Correo Institucional" 
+            <InputLabel title="Correo Institucional" name="email"
               hdlOnChange={(e) => setTypeInputMail(e.target.value)}
-              
-            />
+                  {...register("email", {
+                    required: {
+                      value: true,
+                      message: "Necesitas este campo"
+                    },
+                    pattern: {
+                      value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+                      message: "El formato no es correcto"
+                    }
+                  })}
+                />
+                {errors.email && <span>{errors.email.message}</span>}
           </div>
           <div className="column is-4">
             <InputLabel
               typeInput="password"
-              title="Contraseña"
-              hdlOnChange={(e) => setTypeInputPassword(e.target.value)}
+              title="Contraseña" name="password"
+              {...register("password", {
+                required: {
+                  value: true,
+                  message: "El campo es requerido"
+                },
+                minLength: {
+                  value: 6,
+                  message: "La contraseña debe tener al menos 6 caracteres"
+                }
+              })}
+
             />
+            {errors.password && <span>{errors.password.message}</span>}
           </div>
           <div className="column is-4">
             <p className="control has-icon-right">
-              <button onSubmit={handleSubmit(onSubmit)}
+              <button 
                 className="button button-register"
                 onClick={() => registerUser()}
               >
@@ -224,7 +245,7 @@ const Register = () => {
           </div>
         </div>
       </CardComponent>
-
+      </form>
     </div>
 
     {
