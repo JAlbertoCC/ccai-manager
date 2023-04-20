@@ -26,7 +26,6 @@ const VisitView = () => {
   
 
   useEffect(() => {
-    console.log(DateTime.now().toLocaleString(DateTime.DATE_MED));
   }, []);
 
   const getDate = (isHour = false) => {
@@ -36,11 +35,10 @@ const VisitView = () => {
   };
 
   const render = () => {
-    setShowRegisterView(!showRegisterView);
+    /*setShowRegisterView(!showRegisterView);
     setTimeout(() => {
       window.location.reload();
-      console.log(showRegisterView);
-    }, 5000);
+    }, 5000); */
   };
 
   const handleTabClick = (tab) => {
@@ -92,26 +90,33 @@ const VisitView = () => {
                   {...register("LastNameP",{
                     required: "El campo es obligatorio" 
                   })} />
+                  <p>{errors.name?.message}</p> 
+
                 </div>
 
                 <div className="column is-12">
-                  <InputLabel title="Apellido Materno"
-                  hdlOnChange={(e) => setTypeInputLastNameM(e.target.value)}/>
+                  <InputLabel title="Apellido Materno" name = "LastNameM"
+                  hdlOnChange={(e) => setTypeInputLastNameM(e.target.value)}
+                  {...register("LastNameM",{
+                    required: "El campo es obligatorio" 
+                  })} />
+                  <p>{errors.name?.message}</p> 
+
                 </div>
 
                 <div className="column is-12">
-                  <InputLabel title="Correo Electrónico" name="email"
+                  <InputLabel title="Correo Institucional" 
                   hdlOnChange={(e) => setTypeInputMail(e.target.value)}
-                  {...register("email", {
-                    required: {
-                      value: true,
-                      message: "Necesitas este campo"
-                    },
-                    pattern: {
-                      value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-                      message: "El formato no es correcto"
-                    }
-                  })}/>
+                  name="email"
+                  errors={errors}
+              register={register}
+              validationSchema={{ 
+                required: "Verifica que el formato sea válido: example201920518@tese.edu.mx o 201920518@tese.edu.mx",
+                pattern: {
+                  value: /^[A-Z0-9._%+-]+[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+                  message: "Solo caracteres"
+                }
+              }}/>
                   {errors.email && <span>{errors.email.message}</span>}
                 </div>
               </div>
@@ -143,13 +148,25 @@ const VisitView = () => {
                     },
                     pattern: {
                       value: /^[A-Z0-9._%+-]+[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-                    message: "Formato incorrecto, asegurese de utilizar caracteres permitidos"
+                    message: "Formato incorrecto"
                   }
                   })} />
                   {errors.name && <span>{errors.name.message}</span>}
                 </div>
                 <div className="column is-12">
-                  <InputLabel title="Correo Electrónico" />
+                  <InputLabel title="Correo Institucional"
+                  hdlOnChange={(e) => setTypeInputMail(e.target.value)}
+                  name="email"
+                  errors={errors}
+              register={register}
+              validationSchema={{ 
+                required: "Formato incorrecto, verifica el campo",
+                pattern: {
+                  value: /^[A-Z0-9._%+-]+[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+                  message: "Verifica que el formato sea válido: example201920518@tese.edu.mx o 201920518@tese.edu.mx"
+                }
+              }} />
+
                 </div>
               </div>
               <ButtonComponent
@@ -157,6 +174,8 @@ const VisitView = () => {
                 classExtra="button-style"
                 hdlOnClickEvent={() => render()}
               />
+              
+
               <p className="text-information">
                 Tu hora de salida se registró correctamente a las{" "}
                 {getDate(true)}.
@@ -188,3 +207,4 @@ const VisitView = () => {
 };
 
 export default VisitView;
+
