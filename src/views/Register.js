@@ -16,9 +16,8 @@ import { ModalComponent } from "./../components/ui/Modal/ModalComponent";
 
 const Register = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
-  const onSubmit = evento => {
-    console.log(evento);
-  }
+  const onSubmit = data => console.log(data);
+  
   console.log(errors);
 
   const { checkingInternalRegister } = useRegister();
@@ -198,20 +197,22 @@ const Register = () => {
           </div>
 
           <div className="column is-4">
-            <InputLabel title="Correo Institucional" name="email"
+            <InputLabel
+              title="Correo Institucional"
               hdlOnChange={(e) => setTypeInputMail(e.target.value)}
-                  {...register("email", {
-                    required: {
-                      value: true,
-                      message: "Necesitas este campo"
-                    },
-                    pattern: {
-                      value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-                      message: "El formato no es correcto"
-                    }
-                  })}
-                />
-                {errors.email && <span>{errors.email.message}</span>}
+              name="email"
+              errors={errors}
+              register={register}
+              validationSchema={{ 
+                required: "Todo text is required",
+                pattern: {
+                  value: /^[A-Za-z]+$/i,
+                  message: "Solo caracteres"
+                }
+              }}
+            />
+            
+            {errors?.email && <p role="alert">{errors.email?.message}</p>}
           </div>
           <div className="column is-4">
             <InputLabel
