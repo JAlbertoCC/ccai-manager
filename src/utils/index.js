@@ -25,7 +25,7 @@ export async function checkingInternalRegister (body) {
 }
 
 export async function consultService(){
-  const request= buildGetRequest('/list-service','GET')
+  const request= buildGetRequest('/list-sex','GET')
   const response = await fetch(request)
 
   const data = response.ok ? await response.json():undefined
