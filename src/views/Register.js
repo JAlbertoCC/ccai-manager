@@ -15,10 +15,11 @@ import { ErrorMessage } from './../components/ui/Warnings/ErrorMessage';
 import { ModalComponent } from "./../components/ui/Modal/ModalComponent";
 
 const Register = () => {
-  const { register, handleSubmit, watch, formState: { errors } } = useForm();
-  const onSubmit = evento => {
-    console.log(evento);
-  }
+  const { register, handleSubmit, formState: { errors } } = useForm();
+  const onSubmit = data => console.log(data);
+  
+  console.log(errors);
+
   const { checkingInternalRegister } = useRegister();
   const [isLoader, setIsLoader] = useState(false);
   const [messageType, setMessageType] = useState('is-danger');
@@ -76,6 +77,8 @@ const Register = () => {
     });
   }
 
+  
+
   const registerUser = () => {
 
     const body = {
@@ -111,7 +114,7 @@ const Register = () => {
       });
   }
 
-
+  
   return (
     <>
     <div className='container register-content'>
@@ -124,17 +127,22 @@ const Register = () => {
           hdlOnclick={() => setShowModal(!showModal)}
         /> : <></>
       }
-
-      <CardComponent onSubmit={handleSubmit(onSubmit)} classExtra="opacity-card">
+      <form onSubmit={handleSubmit(onSubmit)}>
+      <CardComponent  classExtra="opacity-card">
         <div className="columns container-personal">
           <div className="column is-11">
             <p className="title-register">DATOS PERSONALES</p>
           </div>
           <div className="column is-4">
             <InputLabel
-              title="Nombre"
+              title="Nombre" name="name"
               hdlOnChange={(e) => setTypeInputName(e.target.value)}
+              {...register("name", {
+                required: "El campo es requerido"
+              })}
             />
+            <p>{errors.name?.message}</p>
+        
           </div>
           <div className="column is-4">
             <InputLabel
@@ -190,20 +198,43 @@ const Register = () => {
 
           <div className="column is-4">
             <InputLabel
-              title="Correo institucional"
+              title="Correo Institucional"
               hdlOnChange={(e) => setTypeInputMail(e.target.value)}
+              name="email"
+              errors={errors}
+              register={register}
+              validationSchema={{ 
+                required: "Todo text is required",
+                pattern: {
+                  value: /^[A-Za-z]+$/i,
+                  message: "Solo caracteres"
+                }
+              }}
             />
+            
+            {errors?.email && <p role="alert">{errors.email?.message}</p>}
           </div>
           <div className="column is-4">
             <InputLabel
               typeInput="password"
-              title="Contraseña"
-              hdlOnChange={(e) => setTypeInputPassword(e.target.value)}
+              title="Contraseña" name="password"
+              {...register("password", {
+                required: {
+                  value: true,
+                  message: "El campo es requerido"
+                },
+                minLength: {
+                  value: 6,
+                  message: "La contraseña debe tener al menos 6 caracteres"
+                }
+              })}
+
             />
+            {errors.password && <span>{errors.password.message}</span>}
           </div>
           <div className="column is-4">
             <p className="control has-icon-right">
-              <button
+              <button 
                 className="button button-register"
                 onClick={() => registerUser()}
               >
@@ -215,7 +246,7 @@ const Register = () => {
           </div>
         </div>
       </CardComponent>
-
+      </form>
     </div>
 
     {
