@@ -135,38 +135,76 @@ const Register = () => {
           </div>
           <div className="column is-4">
             <InputLabel
-              title="Nombre" name="name"
+              title="Nombre" 
               hdlOnChange={(e) => setTypeInputName(e.target.value)}
-              {...register("name", {
-                required: "El campo es requerido"
-              })}
+              name="name"
+              errors={errors}
+              register={register}
+              validationSchema={{ 
+                required: "Este campo es obligratorio"
+              }}
             />
-            <p>{errors.name?.message}</p>
-        
+            {errors?.name && <p role="alert">{errors.name?.message}</p>}
           </div>
           <div className="column is-4">
             <InputLabel
               title="Apellido paterno"
               hdlOnChange={(e) => setTypeInputLastNameF(e.target.value)}
+              name="lastNameF"
+              errors={errors}
+              register={register}
+              validationSchema={{ 
+                required: "Este campo es obligratorio"
+              }}
             />
+            {errors?.lastNameF && <p role="alert">{errors.lastNameF?.message}</p>}
           </div>
           <div className="column is-4">
             <InputLabel
               title="Apellido materno"
               hdlOnChange={(e) => setTypeInputLastNameM(e.target.value)}
+              name="lastNameM"
+              errors={errors}
+              register={register}
+              validationSchema={{ 
+                required: "Este campo es obligratorio"
+              }}
             />
+            {errors?.lastNameM && <p role="alert">{errors.lastNameM?.message}</p>}
           </div>
           <div className="column is-4">
             <InputLabel
               title="Dirección"
               hdlOnChange={(e) => setTypeInputAdress(e.target.value)}
+              name="addres"
+              errors={errors}
+              register={register}
+              validationSchema={{ 
+                required: "Este campo es obligratorio"
+              }}
             />
+            {errors?.addres && <p role="alert">{errors.addres?.message}</p>}
           </div>
           <div className="column is-4">
             <InputLabel
               title="Telefono"
               hdlOnChange={(e) => setTypeInputPhone(e.target.value)}
+              name="phone"
+              errors={errors}
+              register={register}
+              validationSchema={{ 
+                required: "Este campo es obligratorio",
+                pattern: {
+                  value: /^[\(]?[\+]?(\d{2}|\d{3})[\)]?[\s]?((\d{6}|\d{8})|(\d{3}[\*\.\-\s]){2}\d{3}|(\d{2}[\*\.\-\s]){3}\d{2}|(\d{4}[\*\.\-\s]){1}\d{4})|\d{8}|\d{10}|\d{12}$/i,
+                  message: "Formato incorrecto. "
+                },
+                maxLength: {
+                  value: 10,
+                  message:"Maximo 10 caracteres."
+                }
+              }}
             />
+            {errors?.phone && <p role="alert">{errors.phone?.message}</p>}
           </div>
 
           <div className="column is-4">
@@ -174,7 +212,14 @@ const Register = () => {
               items={genderList}
               title="Sexo"
               hdlOnChange={(e) => setTypeInputGender(e.target.value)}
+              name="gender"
+              errors={errors}
+              register={register}
+              validationSchema={{ 
+                required: "Este campo es obligratorio"
+              }}
             />
+            {errors?.gender && <p role="alert">{errors.gender?.message}</p>}
           </div>
 
           <div className="column is-11">
@@ -185,15 +230,45 @@ const Register = () => {
             <InputLabel
               title="Matricula"
               hdlOnChange={(e) => setTypeInputIdentification(e.target.value)}
+              name="card"
+              errors={errors}
+              register={register}
+              validationSchema={{ 
+                required: "Este campo es obligratorio",
+                pattern: {
+                  value: /^[\(]?[\+]?(\d{2}|\d{3})[\)]?[\s]?((\d{6}|\d{8})|(\d{3}[\*\.\-\s]){2}\d{3}|(\d{2}[\*\.\-\s]){3}\d{2}|(\d{4}[\*\.\-\s]){1}\d{4})|\d{8}|\d{10}|\d{12}$/i,
+                  message: "Formato incorrecto. "
+                },
+                maxLength: {
+                  value: 10,
+                  message:"Maximo 10 caracteres."
+                }
+              }}
             />
+            {errors?.card && <p role="alert">{errors.card?.message}</p>}
           </div>
           <div className="column is-4">
-            <DropDown items={career} title="Carrera" />
+            <DropDown items={career} title="Carrera" name="career"
+              errors={errors}
+              register={register}
+              validationSchema={{ 
+                required: "Este campo es obligratorio"
+              }}
+            />
+            {errors?.career && <p role="alert">{errors.career?.message}</p>}
           </div>
 
           <div className="column is-4 ">
             <DropDown items={serviceList}
-              title="Servicio a prestar" />
+              title="Servicio a prestar"
+              name="service"
+              errors={errors}
+              register={register}
+              validationSchema={{ 
+                required: "Este campo es obligratorio"
+              }}
+            />
+            {errors?.service && <p role="alert">{errors.service?.message}</p>}
           </div>
 
           <div className="column is-4">
@@ -204,33 +279,27 @@ const Register = () => {
               errors={errors}
               register={register}
               validationSchema={{ 
-                required: "Todo text is required",
+                required: "Este campo es obligratorio",
                 pattern: {
-                  value: /^[A-Za-z]+$/i,
-                  message: "Solo caracteres"
+                  value: /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/i,
+                  message: "Formato incorrecto. "
                 }
               }}
             />
-            
             {errors?.email && <p role="alert">{errors.email?.message}</p>}
           </div>
           <div className="column is-4">
             <InputLabel
               typeInput="password"
-              title="Contraseña" name="password"
-              {...register("password", {
-                required: {
-                  value: true,
-                  message: "El campo es requerido"
-                },
-                minLength: {
-                  value: 6,
-                  message: "La contraseña debe tener al menos 6 caracteres"
-                }
-              })}
-
+              title="Contraseña" 
+              name="pass"
+              errors={errors}
+              register={register}
+              validationSchema={{ 
+                required: "Este campo es obligratorio"
+              }}
             />
-            {errors.password && <span>{errors.password.message}</span>}
+            {errors?.pass && <p role="alert">{errors.pass?.message}</p>}
           </div>
           <div className="column is-4">
             <p className="control has-icon-right">
