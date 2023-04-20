@@ -5,9 +5,19 @@ import { CardComponent } from "../components/ui/Cards/CardComponent";
 import { InputLabel } from "./../components/ui/Inputs/InputLabel";
 import { ButtonComponent } from "./../components/ui/Buttons/PrimaryButton";
 
+import { useForm } from "react-hook-form"; 
+
 const VisitView = () => {
   const [showRegisterView, setShowRegisterView] = useState(true);
   const [selectedTab, setSelectedTab] = useState(true);
+  const { register, handleSubmit, formState: { errors } } = useForm();
+  const [setTypeInputName] = useState('')
+  const [setTypeInputLastNameF] = useState('')
+  const [setTypeInputLastNameM] = useState('')
+  const [setTypeInputMail] = useState('')
+  const onSubmit = evento => {
+    console.log(evento);
+  }
 
   useEffect(() => {
     console.log(DateTime.now().toLocaleString(DateTime.DATE_MED));
@@ -18,6 +28,8 @@ const VisitView = () => {
       ? DateTime.now().toLocaleString(DateTime.TIME_24_SIMPLE)
       : DateTime.now().toLocaleString(DateTime.DATE_MED);
   };
+  
+  
 
   const render = () => {
     setShowRegisterView(!showRegisterView);
@@ -30,10 +42,14 @@ const VisitView = () => {
   const handleTabClick = (tab) => {
     setSelectedTab(tab);
   };
+  
+  
 
   return (
+    <form onSubmit = {handleSubmit(onSubmit)}>
     <div className="section login-content">
       {showRegisterView ? (
+        
         <CardComponent classExtra="opacity-card cardSam">
           {/* TABS */}
           <div className="tabs is-large">
@@ -58,16 +74,36 @@ const VisitView = () => {
             <div>
               <div className="columns content-forms">
                 <div className="column is-12">
-                  <InputLabel title="Nombre" />
+                  <InputLabel  title="Nombre" name="name"
+                  hdlOnChange={(e)=>setTypeInputName(e.target.value)}
+                  {...register("name",{
+                    required: "El campo es obligatorio" 
+                  })} />
+                  <p>{errors.name?.message}</p>
+                  
                 </div>
                 <div className="column is-12">
-                  <InputLabel title="Apellido Paterno" />
+                  <InputLabel title="Apellido Paterno" 
+                  hdlOnChange={(e) => setTypeInputLastNameF(e.target.value)}/>
                 </div>
                 <div className="column is-12">
-                  <InputLabel title="Apellido Materno" />
+                  <InputLabel title="Apellido Materno" 
+                  hdlOnChange={(e) => setTypeInputLastNameM(e.target.value)}/>
                 </div>
                 <div className="column is-12">
-                  <InputLabel title="Correo Electrónico" />
+                  <InputLabel title="Correo Electrónico" name="email"
+                  hdlOnChange={(e) => setTypeInputMail(e.target.value)}
+                  {...register("email", {
+                    required: {
+                      value: true,
+                      message: "Necesitas este campo"
+                    },
+                    pattern: {
+                      value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+                      message: "El formato no es correcto"
+                    }
+                  })}/>
+                  {errors.email && <span>{errors.email.message}</span>}
                 </div>
               </div>
               <ButtonComponent
@@ -89,7 +125,19 @@ const VisitView = () => {
             <div>
               <div className="columns content-forms">
                 <div className="column is-12">
-                  <InputLabel title="Nombre" />
+                  <InputLabel title="Nombre"
+                 hdlOnChange={(e)=>setTypeInputName(e.target.value)}
+                  {...register("name",{
+                    required: {
+                      value: true,
+                      message: "Campo obligatorio"
+                    },
+                    pattern: {
+                      value: /^[A-Z0-9._%+-]+[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+                    message: "Formato incorrecto, asegurese de utilizar caracteres permitidos"
+                  }
+                  })} />
+                  {errors.name && <span>{errors.name.message}</span>}
                 </div>
                 <div className="column is-12">
                   <InputLabel title="Correo Electrónico" />
@@ -123,6 +171,7 @@ const VisitView = () => {
         </CardComponent>
       )}
     </div>
+    </form>
   );
 };
 
