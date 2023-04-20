@@ -33,6 +33,8 @@ const VisitView = () => {
       ? DateTime.now().toLocaleString(DateTime.TIME_24_SIMPLE)
       : DateTime.now().toLocaleString(DateTime.DATE_MED);
   };
+  
+  
 
   const render = () => {
     /*setShowRegisterView(!showRegisterView);
@@ -44,6 +46,8 @@ const VisitView = () => {
   const handleTabClick = (tab) => {
     setSelectedTab(tab);
   };
+  
+  
 
   return (
    
