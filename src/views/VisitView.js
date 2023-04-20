@@ -5,32 +5,25 @@ import { CardComponent } from "../components/ui/Cards/CardComponent";
 import { InputLabel } from "./../components/ui/Inputs/InputLabel";
 import { ButtonComponent } from "./../components/ui/Buttons/PrimaryButton";
 
+
 import { useForm } from "react-hook-form"; 
-
-function ValidationForm(){
-  const{register,handleSubmit, formState: {errors}} = useForm();
-  const onSubmit = () => data => console.log(data);
-
-  return(
-    <form columns content-forms>
-      <input name="Nombre" ref={register}></input>
-      {errors.Nombre && <span>El campo es obligatorio</span>}
-      <input name="ApellidoPaterno" ref={register}></input>
-      {errors.ApellidoPaterno && <span>El campo es obligatorio</span>}
-      <input name="ApellidoMaterno" ref={register}></input>
-      {errors.ApellidoMaterno && <span>El campo es obligatorio</span>}
-      <input name="CorreoElectrónico" ref={register}></input>
-      {errors.CorreoElectrónico && <span>El campo es obligatorio</span>}
-    </form>
-
-    
-  )
-}
 
 
 const VisitView = () => {
+
+  const { register, handleSubmit, formState: { errors } } = useForm();
+  const onSubmit = evento => {
+    console.log(evento);
+  }
+  console.log(errors);
+
   const [showRegisterView, setShowRegisterView] = useState(true);
   const [selectedTab, setSelectedTab] = useState(true);
+  const [setTypeInputName] = useState('')
+  const [setTypeInputLastNameF] = useState('')
+  const [setTypeInputLastNameM] = useState('')
+  const [setTypeInputMail] = useState('')
+  
 
   useEffect(() => {
     console.log(DateTime.now().toLocaleString(DateTime.DATE_MED));
@@ -55,8 +48,10 @@ const VisitView = () => {
   };
 
   return (
+   
     <div className="section login-content">
       {showRegisterView ? (
+        <form onSubmit={handleSubmit(onSubmit)}>
         <CardComponent classExtra="opacity-card cardSam">
           {/* TABS */}
           <div className="tabs is-large">
@@ -81,16 +76,43 @@ const VisitView = () => {
             <div>
               <div className="columns content-forms">
                 <div className="column is-12">
-                  <InputLabel title="Nombre" />
+                  
+                  <InputLabel title="Nombre" name="name"
+                  hdlOnChange={(e)=>setTypeInputName(e.target.value)}
+                  {...register("name",{
+                    required: "El campo es obligatorio" 
+                  })} />
+                  <p>{errors.name?.message}</p> 
+
                 </div>
+
                 <div className="column is-12">
-                  <InputLabel title="Apellido Paterno" />
+                  <InputLabel title="Apellido Paterno"  name="LastNameP"
+                  hdlOnChange={(e) => setTypeInputLastNameF(e.target.value)}
+                  {...register("LastNameP",{
+                    required: "El campo es obligatorio" 
+                  })} />
                 </div>
+
                 <div className="column is-12">
-                  <InputLabel title="Apellido Materno" />
+                  <InputLabel title="Apellido Materno"
+                  hdlOnChange={(e) => setTypeInputLastNameM(e.target.value)}/>
                 </div>
+
                 <div className="column is-12">
-                  <InputLabel title="Correo Electrónico" />
+                  <InputLabel title="Correo Electrónico" name="email"
+                  hdlOnChange={(e) => setTypeInputMail(e.target.value)}
+                  {...register("email", {
+                    required: {
+                      value: true,
+                      message: "Necesitas este campo"
+                    },
+                    pattern: {
+                      value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+                      message: "El formato no es correcto"
+                    }
+                  })}/>
+                  {errors.email && <span>{errors.email.message}</span>}
                 </div>
               </div>
               <ButtonComponent
@@ -112,7 +134,19 @@ const VisitView = () => {
             <div>
               <div className="columns content-forms">
                 <div className="column is-12">
-                  <InputLabel title="Nombre" />
+                  <InputLabel title="Nombre" 
+                  hdlOnChange={(e)=>setTypeInputName(e.target.value)}
+                  {...register("name",{
+                    required: {
+                      value: true,
+                      message: "Campo obligatorio"
+                    },
+                    pattern: {
+                      value: /^[A-Z0-9._%+-]+[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+                    message: "Formato incorrecto, asegurese de utilizar caracteres permitidos"
+                  }
+                  })} />
+                  {errors.name && <span>{errors.name.message}</span>}
                 </div>
                 <div className="column is-12">
                   <InputLabel title="Correo Electrónico" />
@@ -134,7 +168,9 @@ const VisitView = () => {
             </div>
           )}
         </CardComponent>
+        </form>
       ) : (
+        <form>
         <CardComponent classExtra="opacity-card cardSam">
           <div className="container-dates">
             <p className="text-date">{getDate()}</p>
@@ -144,8 +180,10 @@ const VisitView = () => {
           </div>
           <br />
         </CardComponent>
+        </form>
       )}
     </div>
+    
   );
 };
 
