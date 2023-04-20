@@ -75,46 +75,56 @@ const VisitView = () => {
               <div className="columns content-forms">
                 <div className="column is-12">
                   
-                  <InputLabel title="Nombre" name="name"
-                  hdlOnChange={(e)=>setTypeInputName(e.target.value)}
-                  {...register("name",{
-                    required: "El campo es obligatorio" 
-                  })} />
-                  <p>{errors.name?.message}</p> 
-
-                </div>
-
-                <div className="column is-12">
-                  <InputLabel title="Apellido Paterno"  name="LastNameP"
-                  hdlOnChange={(e) => setTypeInputLastNameF(e.target.value)}
-                  {...register("LastNameP",{
-                    required: "El campo es obligatorio" 
-                  })} />
-                  <p>{errors.name?.message}</p> 
-
-                </div>
-
-                <div className="column is-12">
-                  <InputLabel title="Apellido Materno" name = "LastNameM"
-                  hdlOnChange={(e) => setTypeInputLastNameM(e.target.value)}
-                  {...register("LastNameM",{
-                    required: "El campo es obligatorio" 
-                  })} />
-                  <p>{errors.name?.message}</p> 
-
-                </div>
-
-                <div className="column is-12">
-                  <InputLabel title="Correo Institucional" 
-                  hdlOnChange={(e) => setTypeInputMail(e.target.value)}
-                  name="email"
+                  <InputLabel title="Nombre" 
+                  hdlOnChange={(e) => setTypeInputName(e.target.value)}
+                  name="name"
                   errors={errors}
+                  register={register}
+                  validationSchema={{ 
+                    required: "El campo es requerido"
+                  }}
+                />
+                {errors?.name && <p role="alert">{errors.name?.message}</p>}
+                </div>
+
+                <div className="column is-12">
+                  <InputLabel title="Apellido paterno"
+              hdlOnChange={(e) => setTypeInputLastNameF(e.target.value)}
+              name="lastNameF"
+              errors={errors}
               register={register}
               validationSchema={{ 
-                required: "Verifica que el formato sea válido: example201920518@tese.edu.mx o 201920518@tese.edu.mx",
+                required: "El campo es requerido"
+              }}
+            />
+            {errors?.lastNameF && <p role="alert">{errors.lastNameF?.message}</p>}   
+
+                </div>
+
+                <div className="column is-12">
+                  <InputLabel title="Apellido materno"
+              hdlOnChange={(e) => setTypeInputLastNameM(e.target.value)}
+              name="lastNameM"
+              errors={errors}
+              register={register}
+              validationSchema={{ 
+                required: "El campo es requerido"
+              }}
+            />
+            {errors?.lastNameM && <p role="alert">{errors.lastNameM?.message}</p>}
+                </div>
+
+                <div className="column is-12">
+                  <InputLabel title="Correo Institucional"
+              hdlOnChange={(e) => setTypeInputMail(e.target.value)}
+              name="email"
+              errors={errors}
+              register={register}
+              validationSchema={{ 
+                required: "El campo es requerido",
                 pattern: {
-                  value: /^[A-Z0-9._%+-]+[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-                  message: "Solo caracteres"
+                  value: /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/i,
+                  message: "Formato incorrecto. "
                 }
               }}/>
                   {errors.email && <span>{errors.email.message}</span>}
@@ -140,33 +150,29 @@ const VisitView = () => {
               <div className="columns content-forms">
                 <div className="column is-12">
                   <InputLabel title="Nombre" 
-                  hdlOnChange={(e)=>setTypeInputName(e.target.value)}
-                  {...register("name",{
-                    required: {
-                      value: true,
-                      message: "Campo obligatorio"
-                    },
-                    pattern: {
-                      value: /^[A-Z0-9._%+-]+[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-                    message: "Formato incorrecto"
-                  }
-                  })} />
+              hdlOnChange={(e) => setTypeInputName(e.target.value)}
+              name="name"
+              errors={errors}
+              register={register}
+              validationSchema={{ 
+                required: "El campo es requerido"
+              }} />
                   {errors.name && <span>{errors.name.message}</span>}
                 </div>
                 <div className="column is-12">
                   <InputLabel title="Correo Institucional"
-                  hdlOnChange={(e) => setTypeInputMail(e.target.value)}
-                  name="email"
-                  errors={errors}
+              hdlOnChange={(e) => setTypeInputMail(e.target.value)}
+              name="email"
+              errors={errors}
               register={register}
               validationSchema={{ 
-                required: "Formato incorrecto, verifica el campo",
+                required: "El campo es requerido",
                 pattern: {
-                  value: /^[A-Z0-9._%+-]+[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-                  message: "Verifica que el formato sea válido: example201920518@tese.edu.mx o 201920518@tese.edu.mx"
+                  value: /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/i,
+                  message: "Formato incorrecto. "
                 }
               }} />
-
+              {errors?.email && <p role="alert">{errors.email?.message}</p>}
                 </div>
               </div>
               <ButtonComponent
