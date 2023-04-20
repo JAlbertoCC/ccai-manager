@@ -88,14 +88,19 @@ const Register = () => {
   const showData = async () => {
     consultCareer()
     .then(result => {
-      const newArray = result || [].map((item, index) => {
-        return {
-          id: item.id_career,
-          name: item.name_career
-        }
-      })
-      setCareer(newArray)
-      console.log(result)
+      if (result?.length > 0) {
+        const newArray = result.map((item) => {
+          return {
+            id: item.id_career,
+            name: item.name_career
+          }
+        })
+  
+        setCareer(newArray)
+      } else {
+        setCareer([])
+      }
+      
     }).catch(error => {
       console.error(error);
     });
@@ -119,10 +124,6 @@ const Register = () => {
 
     registerNewUser(body);
   }
-
-  //const goToLink = (uri) => {
-  //navigate(uri)
-  //} 
 
   const registerNewUser = (body) => {
     checkingInternalRegister(body)
