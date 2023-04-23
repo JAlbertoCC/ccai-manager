@@ -11,12 +11,11 @@ const VisitView = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isDirty, isValid },
   } = useForm();
   const onSubmit = (evento) => {
     console.log(evento);
   };
-  console.log(errors);
 
   const [showRegisterView, setShowRegisterView] = useState(true);
   const [selectedTab, setSelectedTab] = useState(true);
@@ -165,6 +164,7 @@ const VisitView = () => {
                 <ButtonComponent
                   buttonText="Registrar"
                   classExtra="button-style"
+                  disabled={!isDirty || !isValid}
                   hdlOnClickEvent={() => render()}
                 />
                 <p className="text-information">
@@ -217,6 +217,7 @@ const VisitView = () => {
                 <ButtonComponent
                   buttonText="Registrar"
                   classExtra="button-style"
+                  disabled={!isDirty || !isValid}
                   hdlOnClickEvent={() => render()}
                 />
 
