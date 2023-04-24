@@ -16,6 +16,7 @@ export const InputLabel = (props) => {
     hdlOnkeyDown,
     hdlOnChange,
     textplace = "",
+    isError=false
   } = props;
 
   return (
@@ -30,7 +31,7 @@ export const InputLabel = (props) => {
               }
             }}
             onChange={hdlOnChange}
-            className={`input input-radious ${classExtra}`}
+            className={`input input-radious ${isError ? "input is-danger" : ""} ${classExtra}`}          
             type={typeInput}
             placeholder={textplace}
             name={name}

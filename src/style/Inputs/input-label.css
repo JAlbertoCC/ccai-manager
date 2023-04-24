@@ -56,3 +56,9 @@
   color: #2B8192;
   font-size: 1.5rem;
 }
+
+.inputAlert{
+  outline: none;
+  background-color: #ffffff;
+  border: 2px solid red;
+}
