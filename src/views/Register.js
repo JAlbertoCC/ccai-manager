@@ -1,17 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from "react-router-dom";
 
-import { CardComponent } from './../components/ui/Cards/CardComponent'
-import { InputLabel } from './../components/ui/Inputs/InputLabel'
-import { DropDown } from './../components/ui/DropDown/DropDown'
-import { HeaderComponent } from './../components/ui/Header/HeaderComponent'
-import { ModalComponentRegister } from './../components/ui/Modal/ModalComponentRegister'
-import { useRegister } from '../hooks/useRegister';
+import { CardComponent } from "./../components/ui/Cards/CardComponent";
+import { InputLabel } from "./../components/ui/Inputs/InputLabel";
+import { DropDown } from "./../components/ui/DropDown/DropDown";
+import { HeaderComponent } from "./../components/ui/Header/HeaderComponent";
+import { ModalComponentRegister } from "./../components/ui/Modal/ModalComponentRegister";
+import { useRegister } from "../hooks/useRegister";
 import { useCareer } from "./../hooks/useCareer";
+import { useService } from "./../hooks/useService";
 
-import { ErrorMessage } from './../components/ui/Warnings/ErrorMessage';
+import { ErrorMessage } from "./../components/ui/Warnings/ErrorMessage";
 import { ModalComponent } from "./../components/ui/Modal/ModalComponent";
 
 const Register = () => {
@@ -20,65 +21,95 @@ const Register = () => {
   
   const { checkingInternalRegister } = useRegister();
   const [isLoader, setIsLoader] = useState(false);
-  const [messageType, setMessageType] = useState('is-danger');
-  const [typeInputName, setTypeInputName] = useState('')
-  const [typeInputLastNameF, setTypeInputLastNameF] = useState('')
-  const [typeInputLastNameM, setTypeInputLastNameM] = useState('')
-  const [typeInputAdress, setTypeInputAdress] = useState('')
-  const [typeInputPhone, setTypeInputPhone] = useState('')
-  const [typeInputGender, setTypeInputGender] = useState('M')
-  const [typeInputIdentification, setTypeInputIdentification] = useState('')
-  const [typeInputCareer, setTypeInputCareer] = useState('')
-  const [typeInputService, setTypeInputService] = useState('Servicio Social')
-  const [typeInputMail, setTypeInputMail] = useState('')
-  const [typeInputPassword, setTypeInputPassword] = useState('')
+  const [messageType, setMessageType] = useState("is-danger");
+  const [typeInputName, setTypeInputName] = useState("");
+  const [typeInputLastNameF, setTypeInputLastNameF] = useState("");
+  const [typeInputLastNameM, setTypeInputLastNameM] = useState("");
+  const [typeInputAdress, setTypeInputAdress] = useState("");
+  const [typeInputPhone, setTypeInputPhone] = useState("");
+  const [typeInputGender, setTypeInputGender] = useState("M");
+  const [typeInputIdentification, setTypeInputIdentification] = useState("");
+  const [typeInputCareer, setTypeInputCareer] = useState("");
+  const [typeInputService, setTypeInputService] = useState("Servicio Social");
+  const [typeInputMail, setTypeInputMail] = useState("");
+  const [typeInputPassword, setTypeInputPassword] = useState("");
   const [showModal, setShowModal] = useState(false);
   const [showError, setShowError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [modalMessage, setModalMessage] = useState("");
-  const [genderList] = useState([{
-    id: 'M',
-    name: "Masculino"
-  },
-  {
-    id: 'F',
-    name: "Femenino"
-  }]);
-  const [serviceList, setServiceList] = useState([{
-    id: 1,
-    name: "Servicio Social"
-  },
-  {
-    id: 2,
-    name: "Residencias Profesionales"
-  }
+  const [genderList] = useState([
+    {
+      id: "M",
+      name: "Masculino",
+    },
+    {
+      id: "F",
+      name: "Femenino",
+    },
   ]);
+
+  const [serviceList, setServiceList] = useState([
+    {
+      id: 1,
+      name: "Servicio Social",
+    },
+    {
+      id: 2,
+      name: "Residencias Profesionales",
+    },
+  ]);
+
+  const { consultService } = useService();
+  const showService = async () => {
+    consultService()
+      .then((result) => {
+        const newArray =
+          result.map((item, index) => {
+            return {
+              id: item.id_service,
+              name: item.service_name,
+            };
+          });
+        setServiceList(newArray);
+        console.log("result", result[0]);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
   const [career, setCareer] = useState([]);
   const { consultCareer } = useCareer();
 
   useEffect(() => {
     showData();
-  }, [])
+    showService();
+  }, []);
 
   const showData = async () => {
-    consultCareer().then(result => {
-      const newArray = result.map((item, index) => {
-        return {
-          id: item.id_career,
-          name: item.name_career
+    consultCareer()
+      .then((result) => {
+        if (result?.length > 0) {
+          const newArray = result.map((item) => {
+            return {
+              id: item.id_career,
+              name: item.name_career,
+            };
+          });
+
+          setCareer(newArray);
+        } else {
+          setCareer([]);
         }
       })
-      setCareer(newArray)
-      console.log(result)
-    }).catch(error => {
-      console.error(error);
-    });
-  }
+      .catch((error) => {
+        console.error(error);
+      });
+  };
 
   
 
   const registerUser = () => {
-
     const body = {
       name: typeInputName,
       lastnamef: typeInputLastNameF,
@@ -90,8 +121,8 @@ const Register = () => {
       career: typeInputCareer,
       service: typeInputService,
       mail: typeInputMail,
-      password: typeInputPassword
-    }
+      password: typeInputPassword,
+    };
 
     if (isDirty && isValid) registerNewUser(body);
   }
@@ -102,13 +133,11 @@ const Register = () => {
 
   const registerNewUser = (body) => {
     checkingInternalRegister(body)
-      .then(item => {
-        console.log(item.body)
+      .then((item) => {
+        console.log(item.body);
       })
-      .catch(error => {
-
-        console.log('error', error.message)
-
+      .catch((error) => {
+        console.log("error", error.message);
       });
   }
 
@@ -226,9 +255,9 @@ const Register = () => {
             {errors?.gender && <p role="alert" class="help is-danger">{errors.gender?.message}</p>}
           </div>
 
-          <div className="column is-11">
-            <p className="title-register">DATOS INSTITUCIONALES</p>
-          </div>
+            <div className="column is-11">
+              <p className="title-register">DATOS INSTITUCIONALES</p>
+            </div>
 
           <div className="column is-4">
             <InputLabel
@@ -328,8 +357,8 @@ const Register = () => {
       </form>
     </div>
 
-    {
-      showError &&
+      {
+        showError &&
         <ErrorMessage
           message={errorMessage}
           hdlOnClick={() => setShowError(!showError)}
@@ -337,7 +366,7 @@ const Register = () => {
         />
       }
     </>
-   );
-}
+  );
+};
 
-export default Register
+export default Register;
