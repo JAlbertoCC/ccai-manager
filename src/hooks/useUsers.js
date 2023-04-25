@@ -14,7 +14,7 @@ export const useUsers = () => {
   const consultingStudents = async () => {
     const data = await api.consultingStudents()
     return data;
-    
+  
   }
 
 

@@ -48,14 +48,6 @@ export const AppRouter = () => {
           element={<PageNotFound />}
         />
         <Route
-          path="/succesfull-register"
-          element={<SuccesfullRegister />}
-        />
-        <Route
-          path="/proyects"
-          element={<Proyects />}
-        />
-        <Route
           path="/materials"
           element={<Materials />}
         />

@@ -64,6 +64,7 @@
 
   .btnModalClose{
     margin: -3rem 0rem 0rem 36rem;
+    float: right;
   }
   
   @media (min-width: 1500px) {

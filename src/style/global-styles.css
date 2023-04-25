@@ -191,7 +191,7 @@ html {
 .container-hours {
   display: block;
   margin: auto;
-  width: 30%;
+  width: fit-content;
   padding: 8px;
   border: 3px solid #2b8192;
   border-radius: 10px;
@@ -204,6 +204,7 @@ html {
   color: #2b8192;
   font-weight: bold;
   font-size: 1.8rem;
+  padding: 5px;
 }
 
 .button-style {
