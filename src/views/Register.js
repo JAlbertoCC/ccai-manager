@@ -123,18 +123,14 @@ const Register = () => {
       mail: typeInputMail,
       password: typeInputPassword,
     };
-
+    
     if (isDirty && isValid) registerNewUser(body);
   }
-
-  //const goToLink = (uri) => {
-  //navigate(uri)
-  //} 
-
   const registerNewUser = (body) => {
+    console.log('body', body)
     checkingInternalRegister(body)
       .then((item) => {
-        console.log(item.body);
+        console.log(item);
       })
       .catch((error) => {
         console.log("error", error.message);

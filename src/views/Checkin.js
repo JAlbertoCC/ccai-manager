@@ -77,6 +77,7 @@ const Checkin = () => {
             <InputLabel
               typeInput="text"
               classExtra="input-check"
+              isEnter={true}
               hdlOnkeyDown={(e) => render(e)}
             />
             <br />
