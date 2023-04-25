@@ -42,11 +42,12 @@ const Home = () => {
                 icon="file-document "
               />
             </div>
-            <div className='column is-6'>
+            <div className='column is-6' style={{ margin: 'auto'}}>
               <ButtonDecorative
                 title="Recursos"
                 backgroundColor="#646463"
                 icon="calendar-text "
+                navOnclick={() => goToLink('/Resources') }
               />
             </div>
             <div className='column is-6'>
