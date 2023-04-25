@@ -4,7 +4,8 @@ export const ButtonComponent = (props) => {
   const {
     buttonText,
     classExtra,
-    hdlOnClickEvent
+    hdlOnClickEvent,
+    disabled
   } = props
 
   return (
@@ -12,6 +13,7 @@ export const ButtonComponent = (props) => {
       <button
         className={`button is-rounded button-tese ${classExtra}`}
         onClick={() => hdlOnClickEvent()}
+        disabled={disabled}
       >
         { buttonText }
       </button>

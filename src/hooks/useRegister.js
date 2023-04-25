@@ -9,8 +9,11 @@ export const useRegister = () => {
     return data;
   }
 
+  
+  
   return {
     pagination,
-    checkingInternalRegister
+    checkingInternalRegister,
+
   }
 }

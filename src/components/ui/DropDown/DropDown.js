@@ -13,7 +13,7 @@ export const DropDown = (props) => {
           >
             {items ?
               items.map(item => {
-                return <option key={item.id} value={item.id}>{item.name}</option>
+                return <option key={`${item.id}-${title}`} value={item.id}>{item.name}</option>
               }) : <></>
             }
           </select>
