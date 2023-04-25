@@ -47,14 +47,7 @@ const VisitView = () => {
   const render = () => {
     //true si no hay vacios
 
-    let value = validarInputs(
-      setTypeInputName,
-      setTypeInputLastNameF,
-      setTypeInputLastNameM,
-      setTypeInputMail
-    );
-
-    if (value == true) {
+    if (isDirty && isValid) {
       setShowRegisterView(!showRegisterView);
 
       setTimeout(() => {
@@ -101,13 +94,14 @@ const VisitView = () => {
                       title="Nombre"
                       hdlOnChange={(e) => setTypeInputName(e.target.value)}
                       name="name"
+                      isError={errors.name}
                       errors={errors}
                       register={register}
                       validationSchema={{
                         required: "El campo es requerido",
                       }}
                     />
-                    {errors?.name && <p role="alert">{errors.name?.message}</p>}
+                    {errors?.name && <p role="alert" class="help is-danger" >{errors.name?.message}</p>}
                   </div>
 
                   <div className="column is-12">
@@ -116,14 +110,13 @@ const VisitView = () => {
                       hdlOnChange={(e) => setTypeInputLastNameF(e.target.value)}
                       name="lastNameF"
                       errors={errors}
+                      isError={errors.lastNameF}
                       register={register}
                       validationSchema={{
                         required: "El campo es requerido",
                       }}
                     />
-                    {errors?.lastNameF && (
-                      <p role="alert">{errors.lastNameF?.message}</p>
-                    )}
+                    {errors?.lastNameF && <p role="alert" class="help is-danger" >{errors.lastNameF?.message}</p>}
                   </div>
 
                   <div className="column is-12">
@@ -132,14 +125,13 @@ const VisitView = () => {
                       hdlOnChange={(e) => setTypeInputLastNameM(e.target.value)}
                       name="lastNameM"
                       errors={errors}
+                      isError={errors.lastNameM}
                       register={register}
                       validationSchema={{
                         required: "El campo es requerido",
                       }}
                     />
-                    {errors?.lastNameM && (
-                      <p role="alert">{errors.lastNameM?.message}</p>
-                    )}
+                    {errors?.lastNameM && <p role="alert" class="help is-danger" >{errors.lastNameM?.message}</p>}
                   </div>
 
                   <div className="column is-12">
@@ -148,6 +140,7 @@ const VisitView = () => {
                       hdlOnChange={(e) => setTypeInputMail(e.target.value)}
                       name="email"
                       errors={errors}
+                      isError={errors.email}
                       register={register}
                       validationSchema={{
                         required: "El campo es requerido",
@@ -158,13 +151,12 @@ const VisitView = () => {
                         },
                       }}
                     />
-                    {errors.email && <span>{errors.email.message}</span>}
+                    {errors.email && <p role="alert" class="help is-danger" >{errors.email.message}</p>}
                   </div>
                 </div>
                 <ButtonComponent
                   buttonText="Registrar"
                   classExtra="button-style"
-                  disabled={!isDirty || !isValid}
                   hdlOnClickEvent={() => render()}
                 />
                 <p className="text-information">
@@ -186,18 +178,20 @@ const VisitView = () => {
                       hdlOnChange={(e) => setTypeInputName(e.target.value)}
                       name="name"
                       errors={errors}
+                      isError={errors.name}
                       register={register}
                       validationSchema={{
                         required: "El campo es requerido",
                       }}
                     />
-                    {errors.name && <span>{errors.name.message}</span>}
+                    {errors.name && <p role="alert" class="help is-danger" >{errors.name.message}</p>}
                   </div>
                   <div className="column is-12">
                     <InputLabel
                       title="Correo Institucional"
                       hdlOnChange={(e) => setTypeInputMail(e.target.value)}
                       name="email"
+                      isError={errors.email}
                       errors={errors}
                       register={register}
                       validationSchema={{
@@ -209,15 +203,12 @@ const VisitView = () => {
                         },
                       }}
                     />
-                    {errors?.email && (
-                      <p role="alert">{errors.email?.message}</p>
-                    )}
+                    {errors?.email && <p role="alert" class="help is-danger" >{errors.email?.message}</p>}
                   </div>
                 </div>
                 <ButtonComponent
                   buttonText="Registrar"
                   classExtra="button-style"
-                  disabled={!isDirty || !isValid}
                   hdlOnClickEvent={() => render()}
                 />
 

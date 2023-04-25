@@ -15,11 +15,9 @@ import { ErrorMessage } from './../components/ui/Warnings/ErrorMessage';
 import { ModalComponent } from "./../components/ui/Modal/ModalComponent";
 
 const Register = () => {
-  const { register, handleSubmit, formState: { errors } } = useForm();
+  const { register, handleSubmit, formState: { errors, isDirty, isValid } } = useForm();
   const onSubmit = data => console.log(data);
   
-  console.log(errors);
-
   const { checkingInternalRegister } = useRegister();
   const [isLoader, setIsLoader] = useState(false);
   const [messageType, setMessageType] = useState('is-danger');
@@ -95,7 +93,7 @@ const Register = () => {
       password: typeInputPassword
     }
 
-    registerNewUser(body);
+    if (isDirty && isValid) registerNewUser(body);
   }
 
   //const goToLink = (uri) => {
