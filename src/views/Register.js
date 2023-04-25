@@ -107,8 +107,6 @@ const Register = () => {
       });
   };
 
-  
-
   const registerUser = () => {
     const body = {
       name: typeInputName,
@@ -130,9 +128,12 @@ const Register = () => {
     console.log('body', body)
     checkingInternalRegister(body)
       .then((item) => {
-        console.log(item);
+        setShowModal(true);
+        setModalMessage(item[0].message || '');
       })
       .catch((error) => {
+        setShowModal(true);
+        setModalMessage(error.message || '');
         console.log("error", error.message);
       });
   }
@@ -145,7 +146,7 @@ const Register = () => {
       {showModal ?
         <ModalComponentRegister
           classExtra="modal-register"
-          title="¡REGISTRO EXITOSO!"
+          textModal={modalMessage}
           isActive={showModal}
           hdlOnclick={() => setShowModal(!showModal)}
         /> : <></>
