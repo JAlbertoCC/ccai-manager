@@ -26,8 +26,9 @@ export const InputLabel = (props) => {
           <input
             autoFocus={autoFocus}
             onKeyDown={(event) => {
+              
               if (event.key === "Enter") {
-                if (hdlOnkeyDown) hdlOnkeyDown();
+                if (hdlOnkeyDown) hdlOnkeyDown(event);
               }
             }}
             onChange={hdlOnChange}

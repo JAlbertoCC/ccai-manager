@@ -30,7 +30,6 @@ const Checkin = () => {
   }, [showComponets])
   
   const render = (value) => {
-    if (value.target.value.length === 9) {
       checkingInternalUser(value.target.value)
         .then(item => {
           setIsLoader(false)
@@ -53,7 +52,6 @@ const Checkin = () => {
           setErrorMessage(error.message);
           setShowError(true);
         });
-    }
   }
   
   const getDate = (type) => {
