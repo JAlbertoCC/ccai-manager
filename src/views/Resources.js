@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { HeaderComponent } from './../components/ui/Header/HeaderComponent'
 import { TabsComponent } from './../components/commond/Tabs'
 import { TableComponent } from './../components/commond/Table'
@@ -6,10 +6,14 @@ import { ButtonIcon } from './../components/ui/Buttons/ButtonIcon'
 import { CardComponent } from './../components/ui/Cards/CardComponent'
 
 const Resources = () => {
+
+  useEffect(() => {
+  }, [])
+  
   return (
     <div className='section'>
       <div className="columns" style={{ width: '100%' }}>
-        <div className="column is-12">
+        <div className="column is-12" >
           <HeaderComponent title="Recursos" />
         </div>
         <div className="column is-12">

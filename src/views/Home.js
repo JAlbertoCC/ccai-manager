@@ -52,6 +52,7 @@ const Home = () => {
                 title="Recursos"
                 backgroundColor="#646463"
                 icon="calendar-text "
+                navOnclick={() => goToLink('/Resources') }
               />
             </div>
             <div className="column is-6">
