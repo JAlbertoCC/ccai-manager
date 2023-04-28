@@ -55,6 +55,7 @@
 .icon-blue {
   color: #2B8192;
   font-size: 1.5rem;
+  cursor: pointer;
 }
 
 .inputAlert{
