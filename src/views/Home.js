@@ -78,7 +78,7 @@ const Home = () => {
               <ButtonDecorative
                 title="Usuarios registrados"
                 backgroundColor="#60dd96"
-                imgResource="Menu/files.png"
+                imgResource="Menu/user.png"
                 navOnclick={() => goToLink("/users")}
               />
             </div>
