@@ -1,17 +1,13 @@
 import React from 'react';
-import { useNavigate } from "react-router-dom";
+import { useNavigate  } from 'react-router-dom'
 
 export const HeaderComponent = (props) => {
-  const navigate = useNavigate();
-  
-  const goToLink = () => {
-    navigate(-1);
-  };
-  
+  const navigate = useNavigate()
+
   return (
-      <div className="header-componet">        
-        <a onClick={() => goToLink()}>
-        <i className="mdi mdi-chevron-left" /> {props.title}
+      <div className="header-componet">     
+        <a onClick={() => navigate(-1)}>
+          <i className="mdi mdi-chevron-left"></i> {props.title}   
         </a> 
       </div>    
   )

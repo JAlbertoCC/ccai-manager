@@ -23,3 +23,19 @@ export async function checkingInternalRegister (body) {
   const data = await response.json()
   return data
 }
+
+export async function consultService(){
+  const request= buildGetRequest('/list-sex','GET')
+  const response = await fetch(request)
+
+  const data = response.ok ? await response.json():undefined
+  return data
+
+}
+export async function consultCareer () {
+  const request = buildGetRequest('/list-carrer', 'GET')
+  const response = await fetch(request)
+  
+  const data = response.ok ? await response.json() : undefined
+  return data
+}
