@@ -29,7 +29,7 @@ const Register = () => {
   const [typeInputPhone, setTypeInputPhone] = useState("");
   const [typeInputGender, setTypeInputGender] = useState("M");
   const [typeInputIdentification, setTypeInputIdentification] = useState("");
-  const [typeInputCareer, setTypeInputCareer] = useState("");
+  const [typeInputCareer, setTypeInputCareer] = useState("INGENIERÍA INFORMATICA");
   const [typeInputService, setTypeInputService] = useState("Servicio Social");
   const [typeInputMail, setTypeInputMail] = useState("");
   const [typeInputPassword, setTypeInputPassword] = useState("");
@@ -37,6 +37,8 @@ const Register = () => {
   const [showError, setShowError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [modalMessage, setModalMessage] = useState("");
+  const [career, setCareer] = useState([]);
+  const { consultCareer } = useCareer();
   const [genderList] = useState([
     {
       id: "M",
@@ -60,6 +62,12 @@ const Register = () => {
   ]);
 
   const { consultService } = useService();
+
+  useEffect(() => {
+    showData();
+    showService();
+  }, []);
+
   const showService = async () => {
     consultService()
       .then((result) => {
@@ -78,13 +86,6 @@ const Register = () => {
       });
   };
 
-  const [career, setCareer] = useState([]);
-  const { consultCareer } = useCareer();
-
-  useEffect(() => {
-    showData();
-    showService();
-  }, []);
 
   const showData = async () => {
     consultCareer()
@@ -129,7 +130,7 @@ const Register = () => {
     checkingInternalRegister(body)
       .then((item) => {
         setShowModal(true);
-        setModalMessage(item[0].message || '');
+        setModalMessage(item.message || '');
       })
       .catch((error) => {
         setShowModal(true);
@@ -244,6 +245,7 @@ const Register = () => {
               hdlOnChange={(e) => setTypeInputGender(e.target.value)}
               name="gender"
               errors={errors}
+              valueSelect='id'
               register={register}
               validationSchema={{ 
                 required: "Este campo es obligratorio"
@@ -279,11 +281,13 @@ const Register = () => {
             {errors?.card && <p role="alert" class="help is-danger">{errors.card?.message}</p>}
           </div>
           <div className="column is-4">
-            <DropDown items={career} title="Carrera" 
+            <DropDown items={career}
+              title="Carrera" 
               name="career"
               isError={errors.career}
               errors={errors}
               register={register}
+              hdlOnChange={(e) => setTypeInputCareer(e.target.value)}
               validationSchema={{ 
                 required: "Este campo es obligratorio"
               }}
@@ -298,6 +302,7 @@ const Register = () => {
               name="service"
               errors={errors}
               register={register}
+              hdlOnChange={(e) => setTypeInputService(e.target.value)}
               validationSchema={{ 
                 required: "Este campo es obligratorio"
               }}
@@ -329,6 +334,7 @@ const Register = () => {
               typeInput="password"
               title="Contraseña" 
               name="pass"
+              hdlOnChange={(e) => setTypeInputPassword(e.target.value)}
               errors={errors}
               register={register}
               validationSchema={{ 
