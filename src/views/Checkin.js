@@ -25,7 +25,7 @@ const Checkin = () => {
   };
 
   useEffect(() => {
-    console.log(DateTime.now().toLocaleString(DateTime.DATE_MED));
+
   }, [showComponets]);
 
   const render = (value) => {

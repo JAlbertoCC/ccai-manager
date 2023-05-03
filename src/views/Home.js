@@ -7,6 +7,7 @@ import { ModalComponent } from "../components/ui/Modal/ModalComponent";
 const Home = () => {
   const [showModal, setShowModal] = useState(true);
   const navigate = useNavigate();
+  
   const goToLink = (uri) => {
     navigate(uri);
   };
@@ -87,6 +88,7 @@ const Home = () => {
                 title="Cerrar sesión"
                 backgroundColor="#c12529"
                 imgResource="Menu/close.svg"
+                navOnclick={() => goToLink("/")}
               />
             </div>
           </div>

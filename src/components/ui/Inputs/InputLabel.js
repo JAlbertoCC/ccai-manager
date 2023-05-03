@@ -13,8 +13,8 @@ export const InputLabel = (props) => {
     typeInput,
     hdlOnClick,
     classExtra,
-    hdlOnkeyDown,
-    hdlOnChange,
+    hdlOnkeyDown = () => {},
+    hdlOnChange = () => {},
     textplace = "",
     isError = false,
     isEnter = false

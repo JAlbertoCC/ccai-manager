@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useForm } from "react-hook-form";
-
-import { useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form"
 
 import { CardComponent } from "./../components/ui/Cards/CardComponent";
 import { InputLabel } from "./../components/ui/Inputs/InputLabel";
@@ -13,7 +11,6 @@ import { useCareer } from "./../hooks/useCareer";
 import { useService } from "./../hooks/useService";
 
 import { ErrorMessage } from "./../components/ui/Warnings/ErrorMessage";
-import { ModalComponent } from "./../components/ui/Modal/ModalComponent";
 
 const Register = () => {
   const { register, handleSubmit, formState: { errors, isDirty, isValid } } = useForm();
@@ -125,8 +122,8 @@ const Register = () => {
     
     if (isDirty && isValid) registerNewUser(body);
   }
+
   const registerNewUser = (body) => {
-    console.log('body', body)
     checkingInternalRegister(body)
       .then((item) => {
         setShowModal(true);
