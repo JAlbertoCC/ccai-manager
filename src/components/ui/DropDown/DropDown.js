@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 export const DropDown = (props) => {
-    const {seleccion=[], items = [],  title, iconName,typeSelect, typeInput, hdlOnClick, classExtra, hdlOnkeyDown, hdlOnChange, item1,item2,item3,item4} = props
+    const { items = [],  title, classExtra, hdlOnChange, valueSelect = 'name' } = props
 
     return (
       <label className="float-label">
@@ -13,7 +13,7 @@ export const DropDown = (props) => {
           >
             {items ?
               items.map(item => {
-                return <option key={`${item.id}-${title}`} value={item.id}>{item.name}</option>
+                return <option key={`${item.id}-${title}`} value={item[valueSelect]}>{item.name}</option>
               }) : <></>
             }
           </select>

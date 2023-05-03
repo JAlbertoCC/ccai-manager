@@ -1,12 +1,12 @@
 import React from 'react';
 
 const ButtonDecorative = (props) => {
-  const { title, icon, backgroundColor, navOnclick} = props
+  const { title, backgroundColor, navOnclick, imgResource = 'logo.png' } = props
   return (
     <div className='content-decorative'>
       
       <div className='button-decorative icon-content' style={{ backgroundColor: backgroundColor }}>
-        <i className={`mdi mdi-${icon} mdi-decorative`} />
+        <img src={require(`./../../../assets/${imgResource}`)} /> 
       </div>
       
       <div className='button-decorative button-text' onClick={() => navOnclick()}>
