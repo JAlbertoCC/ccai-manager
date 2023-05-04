@@ -67,6 +67,10 @@ export const AppRouter = () => {
           path="/users"
           element={<Users />}
         />
+        <Route
+          path="/resources"
+          element = {<Resources />}
+        />
       </Routes>
     </BrowserRouter>
   )

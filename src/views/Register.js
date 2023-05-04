@@ -1,7 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { useForm } from "react-hook-form";
-
-import { useNavigate } from 'react-router-dom'
+import React, { useState, useEffect } from "react";
+import { useForm } from "react-hook-form"
 
 import { CardComponent } from './../components/ui/Cards/CardComponent'
 import { InputLabel } from './../components/ui/Inputs/InputLabel'
@@ -10,57 +8,83 @@ import { HeaderComponent } from './../components/ui/Header/HeaderComponent'
 import { ModalComponentRegister } from './../components/ui/Modal/ModalComponentRegister'
 import { useRegister } from '../hooks/useRegister';
 import { useCareer } from "./../hooks/useCareer";
+import { useService } from "./../hooks/useService";
 
-import { ErrorMessage } from './../components/ui/Warnings/ErrorMessage';
-import { ModalComponent } from "./../components/ui/Modal/ModalComponent";
+import { ErrorMessage } from "./../components/ui/Warnings/ErrorMessage";
 
 const Register = () => {
-  const { register, handleSubmit, formState: { errors } } = useForm();
+  const { register, handleSubmit, formState: { errors, isDirty, isValid } } = useForm();
   const onSubmit = data => console.log(data);
   
   console.log(errors);
 
   const { checkingInternalRegister } = useRegister();
   const [isLoader, setIsLoader] = useState(false);
-  const [messageType, setMessageType] = useState('is-danger');
-  const [typeInputName, setTypeInputName] = useState('')
-  const [typeInputLastNameF, setTypeInputLastNameF] = useState('')
-  const [typeInputLastNameM, setTypeInputLastNameM] = useState('')
-  const [typeInputAdress, setTypeInputAdress] = useState('')
-  const [typeInputPhone, setTypeInputPhone] = useState('')
-  const [typeInputGender, setTypeInputGender] = useState('M')
-  const [typeInputIdentification, setTypeInputIdentification] = useState('')
-  const [typeInputCareer, setTypeInputCareer] = useState('')
-  const [typeInputService, setTypeInputService] = useState('Servicio Social')
-  const [typeInputMail, setTypeInputMail] = useState('')
-  const [typeInputPassword, setTypeInputPassword] = useState('')
+  const [messageType, setMessageType] = useState("is-danger");
+  const [typeInputName, setTypeInputName] = useState("");
+  const [typeInputLastNameF, setTypeInputLastNameF] = useState("");
+  const [typeInputLastNameM, setTypeInputLastNameM] = useState("");
+  const [typeInputAdress, setTypeInputAdress] = useState("");
+  const [typeInputPhone, setTypeInputPhone] = useState("");
+  const [typeInputGender, setTypeInputGender] = useState("M");
+  const [typeInputIdentification, setTypeInputIdentification] = useState("");
+  const [typeInputCareer, setTypeInputCareer] = useState("INGENIERÍA INFORMATICA");
+  const [typeInputService, setTypeInputService] = useState("Servicio Social");
+  const [typeInputMail, setTypeInputMail] = useState("");
+  const [typeInputPassword, setTypeInputPassword] = useState("");
   const [showModal, setShowModal] = useState(false);
   const [showError, setShowError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [modalMessage, setModalMessage] = useState("");
-  const [genderList] = useState([{
-    id: 'M',
-    name: "Masculino"
-  },
-  {
-    id: 'F',
-    name: "Femenino"
-  }]);
-  const [serviceList, setServiceList] = useState([{
-    id: 1,
-    name: "Servicio Social"
-  },
-  {
-    id: 2,
-    name: "Residencias Profesionales"
-  }
-  ]);
   const [career, setCareer] = useState([]);
   const { consultCareer } = useCareer();
+  const [genderList] = useState([
+    {
+      id: "M",
+      name: "Masculino",
+    },
+    {
+      id: "F",
+      name: "Femenino",
+    },
+  ]);
+
+  const [serviceList, setServiceList] = useState([
+    {
+      id: 1,
+      name: "Servicio Social",
+    },
+    {
+      id: 2,
+      name: "Residencias Profesionales",
+    },
+  ]);
+
+  const { consultService } = useService();
 
   useEffect(() => {
     showData();
-  }, [])
+    showService();
+  }, []);
+
+  const showService = async () => {
+    consultService()
+      .then((result) => {
+        const newArray =
+          result.map((item, index) => {
+            return {
+              id: item.id_service,
+              name: item.service_name,
+            };
+          });
+        setServiceList(newArray);
+        console.log("result", result[0]);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
 
   const showData = async () => {
     consultCareer().then(result => {
@@ -77,8 +101,6 @@ const Register = () => {
     });
   }
 
-  
-
   const registerUser = () => {
 
     const body = {
@@ -92,25 +114,22 @@ const Register = () => {
       career: typeInputCareer,
       service: typeInputService,
       mail: typeInputMail,
-      password: typeInputPassword
-    }
-
-    registerNewUser(body);
+      password: typeInputPassword,
+    };
+    
+    if (isDirty && isValid) registerNewUser(body);
   }
-
-  //const goToLink = (uri) => {
-  //navigate(uri)
-  //} 
 
   const registerNewUser = (body) => {
     checkingInternalRegister(body)
-      .then(item => {
-        console.log(item.body)
+      .then((item) => {
+        setShowModal(true);
+        setModalMessage(item.message || '');
       })
-      .catch(error => {
-
-        console.log('error', error.message)
-
+      .catch((error) => {
+        setShowModal(true);
+        setModalMessage(error.message || '');
+        console.log("error", error.message);
       });
   }
 
@@ -122,7 +141,7 @@ const Register = () => {
       {showModal ?
         <ModalComponentRegister
           classExtra="modal-register"
-          title="¡REGISTRO EXITOSO!"
+          textModal={modalMessage}
           isActive={showModal}
           hdlOnclick={() => setShowModal(!showModal)}
         /> : <></>
@@ -214,6 +233,7 @@ const Register = () => {
               hdlOnChange={(e) => setTypeInputGender(e.target.value)}
               name="gender"
               errors={errors}
+              valueSelect='id'
               register={register}
               validationSchema={{ 
                 required: "Este campo es obligratorio"
@@ -248,9 +268,13 @@ const Register = () => {
             {errors?.card && <p role="alert">{errors.card?.message}</p>}
           </div>
           <div className="column is-4">
-            <DropDown items={career} title="Carrera" name="career"
+            <DropDown items={career}
+              title="Carrera" 
+              name="career"
+              isError={errors.career}
               errors={errors}
               register={register}
+              hdlOnChange={(e) => setTypeInputCareer(e.target.value)}
               validationSchema={{ 
                 required: "Este campo es obligratorio"
               }}
@@ -264,6 +288,7 @@ const Register = () => {
               name="service"
               errors={errors}
               register={register}
+              hdlOnChange={(e) => setTypeInputService(e.target.value)}
               validationSchema={{ 
                 required: "Este campo es obligratorio"
               }}
@@ -293,6 +318,7 @@ const Register = () => {
               typeInput="password"
               title="Contraseña" 
               name="pass"
+              hdlOnChange={(e) => setTypeInputPassword(e.target.value)}
               errors={errors}
               register={register}
               validationSchema={{ 

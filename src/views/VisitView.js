@@ -159,14 +159,7 @@ const VisitView = () => {
                   classExtra="button-style"
                   hdlOnClickEvent={() => render()}
                 />
-                <p className="text-information">
-                  Tu hora de entrada se registró correctamente a las{" "}
-                  {getDate(true)}.
-                </p>
                 <br />
-                <p className="text-alert">
-                  No olvides registrar tu entrada y salida del CCAI.
-                </p>
               </div>
             )}
             {!selectedTab && (
@@ -211,15 +204,7 @@ const VisitView = () => {
                   classExtra="button-style"
                   hdlOnClickEvent={() => render()}
                 />
-
-                <p className="text-information">
-                  Tu hora de salida se registró correctamente a las{" "}
-                  {getDate(true)}.
-                </p>
                 <br />
-                <p className="text-information">
-                  Gracias por tu visita, vuelve pronto!
-                </p>
               </div>
             )}
           </CardComponent>
@@ -232,6 +217,15 @@ const VisitView = () => {
               <div className="container-hours">
                 <div className="text-hour">{getDate(true)}</div>
               </div>
+
+              <p className="text-information">
+                Tu hora de salida se registró correctamente a las{" "}
+                {getDate(true)}.
+              </p>
+              <br />
+              <p className="text-information">
+                Gracias por tu visita, vuelve pronto!
+              </p>
             </div>
             <br />
           </CardComponent>

@@ -1,4 +1,5 @@
-import React, {useState} from 'react';
+import React, { useState, useEffect } from 'react';
+
 import { HeaderComponent } from './../components/ui/Header/HeaderComponent'
 import { TabsComponent } from './../components/commond/Tabs'
 import { TableComponent } from './../components/commond/Table'
@@ -21,10 +22,14 @@ const Resources = () => {
     tabName: "Materiales"
   }]);
   const [selectedTab, setSelectedTab] = useState(1);
+
+  useEffect(() => {
+  }, [])
+  
   return (
     <div className='section'>
       <div className="columns" style={{ width: '100%' }}>
-        <div className="column is-12">
+        <div className="column is-12" >
           <HeaderComponent title="Recursos" />
         </div>
         <div className="column is-12">
