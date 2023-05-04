@@ -1,11 +1,27 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
+
 import { HeaderComponent } from './../components/ui/Header/HeaderComponent'
 import { TabsComponent } from './../components/commond/Tabs'
 import { TableComponent } from './../components/commond/Table'
 import { ButtonIcon } from './../components/ui/Buttons/ButtonIcon'
 import { CardComponent } from './../components/ui/Cards/CardComponent'
 
+
+
 const Resources = () => {
+  const [tabs,setTabs] = useState([{
+    id: 1,
+    tabName: "Docentes"
+  },
+  {
+    id: 2,
+    tabName: "Alumnos"
+  },
+  {
+    id: 3,
+    tabName: "Materiales"
+  }]);
+  const [selectedTab, setSelectedTab] = useState(1);
 
   useEffect(() => {
   }, [])
@@ -18,7 +34,7 @@ const Resources = () => {
         </div>
         {/*diseño tabs   */}
         <div className="column is-12">
-          <TabsComponent />
+          <TabsComponent tabs={tabs} onChangeTab={setSelectedTab} selectedTab={selectedTab}/>
         </div>
 
         {/*diseño botones  */}
