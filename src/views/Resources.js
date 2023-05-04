@@ -32,9 +32,12 @@ const Resources = () => {
         <div className="column is-12" >
           <HeaderComponent title="Recursos" />
         </div>
+        {/*diseño tabs   */}
         <div className="column is-12">
           <TabsComponent tabs={tabs} onChangeTab={setSelectedTab} selectedTab={selectedTab}/>
         </div>
+
+        {/*diseño botones  */}
         <div className="column is-12">
           <div>
             <ButtonIcon
@@ -49,9 +52,69 @@ const Resources = () => {
             />
           </div>
         </div>
+
+        {/*diseño tabla alumnos  */}
         <div className="column is-12">
           <CardComponent classExtra="opacity-card card-proyects">
-            <TableComponent />
+            <div>
+              <table className='table table-proyect is-fullwidth is-striped'>
+                <thead>
+                  <tr>
+                    <th title='ID'>ID.</th>
+                    <th title='Nombre'>Nombre.</th>
+                    <th title='Apellido Paterno'>Apellido Paterno.</th>
+                    <th title='Apellido Materno'>Apellido Materno.</th>
+                    <th title='Matricula'>Matricula.</th>
+                    <th title='Sexo'>Sexo.</th>
+                    <th title='Carrera'>Carrera.</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td title='ID'>ID.</td>
+                    <td title='Nombre'>Nombre.</td>
+                    <td title='Apellido Paterno'>Apellido Paterno.</td>
+                    <td title='Apellido Materno'>Apellido Materno.</td>
+                    <td title='Matricula'>Matricula.</td>
+                    <td title='Sexo'>Sexo.</td>
+                    <td title='Carrera'>Carrera.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>   
+          </CardComponent>
+        </div>
+
+        
+        {/*diseño tabla maestros  */}
+        <div className="column is-12">
+          <CardComponent classExtra="opacity-card card-proyects">
+            <div>
+              <table className='table table-proyect is-fullwidth is-striped'>
+                <thead>
+                  <tr>
+                    <th title='ID'>ID.</th>
+                    <th title='Nombre'>Nombre.</th>
+                    <th title='Apellido Paterno'>Apellido Paterno.</th>
+                    <th title='Apellido Materno'>Apellido Materno.</th>
+                    <th title='Matricula'>Matricula.</th>
+                    <th title='Sexo'>Sexo.</th>
+                    <th title='Carrera'>Carrera.</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td title='ID'>ID.</td>
+                    <td title='Nombre'>Nombre.</td>
+                    <td title='Apellido Paterno'>Apellido Paterno.</td>
+                    <td title='Apellido Materno'>Apellido Materno.</td>
+                    <td title='Matricula'>Matricula.</td>
+                    <td title='Sexo'>Sexo.</td>
+                    <td title='Carrera'>Carrera.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>   
           </CardComponent>
         </div>
       </div>

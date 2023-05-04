@@ -3,8 +3,13 @@ import React, { useEffect } from 'react';
 import { HeaderComponent } from './../components/ui/Header/HeaderComponent'
 import { ButtonIcon } from './../components/ui/Buttons/ButtonIcon'
 import { CardComponent } from './../components/ui/Cards/CardComponent'
+import { useNavigate  } from 'react-router-dom'
 
 const Proyects = () => {
+  const navigate = useNavigate()
+  const goToLink = (uri) => {
+    navigate(uri)
+  } 
 
   useEffect(() => {
   }, [])
@@ -47,7 +52,7 @@ const Proyects = () => {
                                         <td title="Beneficios">Beneficios.</td>
                                         <td title="Asesores">Asesores.</td>
                                         <td title="Cronograma de actividades">Cronograma de actividades.</td>
-                                        <td><i className='mdi mdi-eye icon-blue'></i><i className='mdi mdi-trash-can-outline icon-blue'></i></td>
+                                        <td><i className='mdi mdi-eye icon-blue' onClick ={ () => goToLink('/proyect-detail')} ></i><i className='mdi mdi-trash-can-outline icon-blue'></i></td>
                                     </tr>
                                 </tbody>
                             </table>
