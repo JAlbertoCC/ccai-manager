@@ -1,16 +1,27 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
-export const TabsComponent = () => {
+export const TabsComponent = (props) => {
+  const { tabs = [], selectedTab = 1, children, onChangeTab = () => { } } = props;
+ 
   return (
-    <div>
-      <div className="tabs">
+    <>
+      <div className="tabs" style={{ width: '100%' }}>
         <ul>
-          <li className="is-active"><a>Pictures</a></li>
-          <li><a>Music</a></li>
-          <li><a>Videos</a></li>
-          <li><a>Documents</a></li>
+          {
+            tabs.map((item,index) => {
+              return (
+                <li
+                  key={item.id}
+									className={`${selectedTab === item.id ? 'is-active' : ''}`}
+									onClick={() => onChangeTab(item.id)}
+                >
+                <a>{item.tabName}</a></li>
+              )
+            })
+          }
         </ul>
       </div>
-    </div>
+      {children}
+    </>
   )
 }
