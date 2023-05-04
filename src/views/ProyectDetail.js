@@ -4,11 +4,10 @@ import { CardComponent } from './../components/ui/Cards/CardComponent'
 import { AccordeonComponent } from './../components/commond/AccordeonComponent'
 
 const ProyectDetail = () => {
-  const { showInformation, setShowInformation } = useState(false)
-
-  const showAccordeon = () => {
-    console.log('hola')
-  }
+  const [showProyectInformation, setShowProyectInformation] = useState(false);
+  const [showMembersInformation, setShowMembersInformation] = useState(false);
+  const [showMaterialsInformation, setShowMaterialsInformation] = useState(false);
+  const [showAdviserInformation, setShowAdviserInformation] = useState(false);
 
   return (
     <div className='section'>
@@ -23,20 +22,38 @@ const ProyectDetail = () => {
             {/* Collapsive */}
             <AccordeonComponent
               title='Información del proyecto.'
-              hdlOnShowContent={showAccordeon()}
-              isActive={showInformation}
+              hdlOnShowContent={() => setShowProyectInformation(!showProyectInformation)}
+              isActive={showProyectInformation}
               iconTitle='mdi-text-box-search-outline'
             >
-              Hola
+              Información de proyecto
             </AccordeonComponent>
 
             <AccordeonComponent
-              hdlOnShowContent={showAccordeon()}
-              isActive={showInformation}
+              title='Integrantes.'
+              hdlOnShowContent={() => setShowMembersInformation(!showMembersInformation)}
+              isActive={showMembersInformation}
+              iconTitle='mdi-account-group'
             >
-              Hola
+              Integrantes de proyecto
+            </AccordeonComponent>
 
-              Hola mundo este es mi acrodeon
+            <AccordeonComponent
+              title='Materiales.'
+              hdlOnShowContent={() => setShowMaterialsInformation(!showMaterialsInformation)}
+              isActive={showMaterialsInformation}
+              iconTitle='mdi-palette-swatch'
+            >
+              Materiales
+            </AccordeonComponent>
+
+            <AccordeonComponent
+              title='Asesores.'
+              hdlOnShowContent={() => setShowAdviserInformation(!showAdviserInformation)}
+              isActive={showAdviserInformation}
+              iconTitle='mdi-account-group-outline'
+            >
+              Asesores
             </AccordeonComponent>
 
           </CardComponent>
