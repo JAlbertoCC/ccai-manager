@@ -76,7 +76,7 @@ const Register = () => {
             };
           });
         setServiceList(newArray);
-        console.log("result", result[0]);
+        console.log("result", result);
       })
       .catch((error) => {
         console.error(error);
@@ -87,6 +87,7 @@ const Register = () => {
   const showData = async () => {
     consultCareer()
       .then((result) => {
+        console.log('result: ', result)
         if (result?.length > 0) {
           const newArray = result.map((item) => {
             return {
