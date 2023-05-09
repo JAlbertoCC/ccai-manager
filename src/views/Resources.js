@@ -128,7 +128,31 @@ const Resources = () => {
         )}
         {selectedTab === 3 && (
           <>
-            <p className="title-materials">aqui va la 3er tabla</p>
+            {/*diseño tabla Materiales  */}
+            <div className="column is-12">
+              <CardComponent classExtra="opacity-card card-proyects">
+                <div>
+                  <table className="table table-proyect is-fullwidth is-striped">
+                    <thead>
+                      <tr>
+                        <th title="ID">ID.</th>
+                        <th title="Nombre">Nombre.</th>
+                        <th title="Descripcion">Descripcion.</th>
+                        <th title="Cantidad">Cantidad.</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td title="ID">ID.</td>
+                        <td title="Nombre">Nombre.</td>
+                        <td title="Descripcion">Descripcion.</td>
+                        <td title="Cantidad">Cantidad.</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </CardComponent>
+            </div>
           </>
         )}
       </div>
