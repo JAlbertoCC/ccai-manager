@@ -9,6 +9,28 @@
   padding: 0 !important;
 }
 
+.button-green {
+  background-color:#33a933 !important;
+  border: 1px solid #33a933 !important;
+  color:#ffffff;
+  font-weight: 900;
+  font-size: 0.8rem;
+  outline:none;
+  width: 100%;
+  padding: 0 !important;
+}
+
+.button-red {
+  background-color:#dd2121 !important;
+  border: 1px solid #dd2121 !important;
+  color:#ffffff;
+  font-weight: 900;
+  font-size: 0.8rem;
+  outline:none;
+  width: 100%;
+  padding: 0 !important;
+}
+
 .button-tese:hover {
   color: #ffffff !important;
 }

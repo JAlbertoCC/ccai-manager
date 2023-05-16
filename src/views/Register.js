@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form"
 
+import { ModalComponentGlobal } from './../components/ui/Modal/ModalComponentGlobal'
 import { CardComponent } from './../components/ui/Cards/CardComponent'
 import { InputLabel } from './../components/ui/Inputs/InputLabel'
 import { DropDown } from './../components/ui/DropDown/DropDown'
@@ -139,12 +140,12 @@ const Register = () => {
     <div className='container register-content'>
       <HeaderComponent title="Registro" />
       {showModal ?
-        <ModalComponentRegister
-          classExtra="modal-register"
-          textModal={modalMessage}
-          isActive={showModal}
-          hdlOnclick={() => setShowModal(!showModal)}
-        /> : <></>
+        <ModalComponentGlobal
+        classExtra = "modal-register" 
+        title = "¡REGISTRO EXITOSO!" 
+        isActive = "false" 
+        hdlOnclick= { ()=>setShowModal (!showModal)} >
+        </ModalComponentGlobal> : <></>
       }
       <form onSubmit={handleSubmit(onSubmit)}>
       <CardComponent  classExtra="opacity-card">
@@ -331,7 +332,8 @@ const Register = () => {
             <p className="control has-icon-right">
               <button 
                 className="button button-register"
-                onClick={() => registerUser()}
+                onClick={()=>setShowModal(!showModal)}
+                //onClick={() => registerUser()}
               >
                 <span className="icon is-right">
                   <i className="mdi mdi-plus-circle-outline"></i>
