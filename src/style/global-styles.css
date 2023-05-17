@@ -234,3 +234,15 @@ html {
     font-size: 2rem;
   } 
 }
+
+.cursor {
+  cursor: pointer;
+}
+
+table td:not([align]), table th:not([align]) {
+  text-align: center;
+}
+
+.table-materials th:not([align]) {
+  text-align: center;
+}

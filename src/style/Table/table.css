@@ -39,3 +39,12 @@
     border-width: 0 0 0.3em;
     border-color: #000;
 }
+
+.icon-table {
+  margin: 5px;
+}
+
+.text-circles {
+  padding: 0;
+  padding-bottom: 20px;
+}

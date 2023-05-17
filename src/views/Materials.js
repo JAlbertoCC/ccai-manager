@@ -1,109 +1,110 @@
-import React from 'react';
+import React, { useState } from "react";
 
-import { HeaderComponent } from './../components/ui/Header/HeaderComponent'
-import { SerchComponet } from './../components/ui/Inputs/SerchComponent'
-import { CardComponent } from './../components/ui/Cards/CardComponent'
-import { ButtonIcon } from './../components/ui/Buttons/ButtonIcon'
+import { HeaderComponent } from "./../components/ui/Header/HeaderComponent";
+import { SerchComponet } from "./../components/ui/Inputs/SerchComponent";
+import { CardComponent } from "./../components/ui/Cards/CardComponent";
+import { ButtonIcon } from "./../components/ui/Buttons/ButtonIcon";
+import { MaterialList } from "./../components/Materials/tables/MaterialList";
+import { BorrowedMaterialsList } from "./../components/Materials/tables/BorrowedMaterialsList";
 
 const Materials = () => {
-    return(
+  const [materials, setMaterials] = useState([
+    {
+      id: 1,
+      name: "Computadora",
+      description: "Computadora gamer, con 1 tera de RAM, teclado con luz, etc",
+      count: 12,
+    },
+    {
+      id: 2,
+      name: "Arduino",
+      description: "arduiono 1",
+      count: 10,
+    },
+    {
+      id: 3,
+      name: "Impresora 3D",
+      description: "Impresora 3d",
+      count: 22,
+    },
+    {
+      id: 4,
+      name: "Teclado",
+      description: "teclado logitech",
+      count: 12,
+    },
+    {
+      id: 5,
+      name: "Ejemplo 12",
+      description: "Ejemplo 12",
+      count: 12,
+    },
+  ]);
+  const [borrowedMaterials, setBorrowedMaterials] = useState([]);
 
-       <div className='section'>
-            <HeaderComponent title="Materiales"/> 
-            <SerchComponet extraClass='SerchComponet-materials'>Buscar</SerchComponet>
-            <CardComponent classExtra="opacity-card card-materials">
-                <table className="table table-materials is-fullwidth is-striped">
-                    <thead>
-                        <tr >
-                            <th title="ID">ID.</th>
-                            <th title="Nombre">Nombre.</th>
-                            <th title="Descripción">Descripción.</th>
-                            <th title="Cantidad">Cantidad.</th>
-                            <th title="Agregar">Agregar.</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td title="ID">ID.</td>
-                            <td title="Nombre">Nombre.</td>
-                            <td title="Descripción">Descripción.</td>
-                            <td title="Cantidad">Cantidad.</td>
-                            <td><i className='mdi mdi-plus-circle icon-blue'></i></td>
-                            <td></td>
-                        </tr>
-                    </tbody>
-                    <tbody>
-                        <tr>
-                            <td title="ID">ID.</td>
-                            <td>Nombre.</td>
-                            <td title="Descripción">Descripción.</td>
-                            <td title="Cantidad">Cantidad.</td>
-                            <td><i className='mdi mdi-plus-circle icon-blue'></i></td>
-                            <td></td>
-                        </tr>
-                    </tbody>
-                    <tbody>
-                        <tr>
-                            <td title="ID">ID.</td>
-                            <td>Nombre.</td>
-                            <td title="Descripción">Descripción.</td>
-                            <td title="Cantidad">Cantidad.</td>
-                            <td><i className='mdi mdi-plus-circle icon-blue'></i></td>
-                            <td></td>
-                        </tr>
-                    </tbody>
-                    <tbody>
-                        <tr>
-                            <td title="ID">ID.</td>
-                            <td>Nombre.</td>
-                            <td title="Descripción">Descripción.</td>
-                            <td title="Cantidad">Cantidad.</td>
-                            <td><i className='mdi mdi-plus-circle icon-blue'></i></td>
-                            <td></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </CardComponent>
-            
-            <div>
-                <p className="title-materials">Material solicitado</p>
-            </div>
+  const setNewMaterials = (id) => {
+    console.log()
+    const findOldValue = materials.find(e => e.id === id);
+    
+    if (findOldValue) {
+      console.log('findOldValue: ', findOldValue)
+      console.log('findOldValue: ', findOldValue.count)
 
-            <CardComponent classExtra="opacity-card card-materials">
-            <table className="table table-materials is-fullwidth is-striped">
-                    <thead>
-                        <tr >
-                            <th title="ID">ID.</th>
-                            <th title="Nombre">Nombre.</th>
-                            <th title="Fecha entrega">Fecha entrega.</th>
-                            <th title="Fecha devolución">Fecha devolución.</th>
-                            <th title="Responsable de material">Responsable de material.</th>
-                            <th title="Cantidad">Cantidad.</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td title="ID">ID.</td>
-                            <td title="Nombre">Nombre.</td>
-                            <td title="Fecha entrega">Entrega.</td>
-                            <td title="Fecha delovolución">Devolución.</td>
-                            <td title="Responsable de material">Responsable.</td>
-                            <td>
-                                <i className='mdi mdi-plus-circle icon-blue'></i>
-                                <i className='mdi mdi-remove-circle icon-blue'></i>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </CardComponent>
-            <ButtonIcon 
-                title="Solicitar material"
-                icon="file-download-outline"
-                extraClass="aling-right margin-right button-tables"
-            />
-       </div> 
-    )
-}
-export default Materials
+      if (findOldValue.count > 0) {
+        const newArray = materials.map(item => {
+          if (item.id === id) {
+            return {
+              id: item.id,
+              name: item.name,
+              description: item.description,
+              count: item.count - 1
+            }
+          } else 
+            return item
+        })
+
+        const borrowedArray = 
+
+        setMaterials(newArray)
+      }
+
+      
+      setBorrowedMaterials(prev => [{...prev, ...findOldValue }])
+    } else {
+      const value = materials.find(e => e.id === id);
+      // setBorrowedMaterials(prev =>[{ ...prev, ...value}])
+    }
+  }
+
+  return (
+    <div className="section">
+      <HeaderComponent title="Materiales" />
+      <SerchComponet extraClass="SerchComponet-materials">Buscar</SerchComponet>
+
+      <CardComponent classExtra="opacity-card card-materials">
+        <MaterialList
+          list={materials}
+          hdlOnClick={setNewMaterials}
+        />
+      </CardComponent>
+
+      {borrowedMaterials.length > 0 ?
+       <>
+          <p className="title-materials">Material solicitado</p>
+          <CardComponent classExtra="opacity-card card-materials">
+           <BorrowedMaterialsList
+             list={borrowedMaterials}
+           />
+          </CardComponent>
+          <ButtonIcon
+           title="Solicitar material"
+           icon="file-download-outline"
+           extraClass="aling-right margin-right button-tables"
+          />
+        </> : <></>
+      }
+      
+    </div>
+  );
+};
+export default Materials;
