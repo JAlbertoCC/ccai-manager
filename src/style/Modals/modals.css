@@ -19,5 +19,21 @@
   color: black;
 }
 
+.modal-body{
+  -webkit-overflow-scrolling: touch;
+  background-color: #b9e2e2;
+  flex-grow: 1;
+  flex-shrink: 1;
+  overflow: auto;
+  padding: 20px;
+  border-radius: 2rem;
+}
 
-  
+.button-style-modal{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 25px;
+    align-items: baseline;
+}
+
