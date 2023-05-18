@@ -141,11 +141,11 @@ const Register = () => {
       <HeaderComponent title="Registro" />
       {showModal ?
         <ModalComponentGlobal
-        class = "opacity-card" 
+        classExtra = "modal-register" 
         title = "¡REGISTRO EXITOSO!" 
         isActive = "false" 
         hdlOnclick= { ()=>setShowModal (!showModal)} >
-          sjhdjsdjshdjshdjshd
+          
         </ModalComponentGlobal> : <></>
       }
       <form onSubmit={handleSubmit(onSubmit)}>
