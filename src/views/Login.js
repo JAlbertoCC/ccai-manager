@@ -76,6 +76,7 @@ const Login = () => {
             iconName="mdi-account"
             typeInput="text"
             textplace="example@gmail.com"
+            isError={errors.email}
             name="email"
             errors={errors}
               register={register}
@@ -87,11 +88,12 @@ const Login = () => {
                 }
               }}
           />
-          {errors?.email && <p role="alert">{errors.email?.message}</p>}
+          {errors?.email && <p class="help is-danger" role="alert">{errors.email?.message}</p>}
           <InputLabel
             iconName={iconPassword}
             typeInput={typeInputPassword}
             isPassword={true}
+            isError={errors.pass}
             name="pass"
             hdlOnClick={changeType}
             textplace="Password"
@@ -101,7 +103,7 @@ const Login = () => {
                 required: "Este campo es obligratorio"
               }}
             />
-            {errors?.pass && <p role="alert">{errors.pass?.message}</p>}
+            {errors?.pass && <p class="help is-danger" role="alert">{errors.pass?.message}</p>}
           <div className="text-actions">
             <div>
               <a href="/">¿Haz olvidado tu contraseña?</a>
