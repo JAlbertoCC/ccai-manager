@@ -7,17 +7,23 @@ export const ModalComponentGlobal = (props) => {
 
   return (
     <>
-    <div className={`modal ${isActive ? "is-active" : ""}`}>
+    <div className={`modal ${isActive ? "is-active" : ""} `}>
       <div className="modal-background"></div>
       <div className={`modal-card ${classExtra}`}>
-        <section className="modal-card-body">
+        <section className="modal-body">
           <button
             className="delete btnModalClose"
             aria-label="close"
             onClick={hdlOnclick}
           ></button>
           <p className="modal-card-title title-modal">{title}</p>
-            <GreenButton
+
+          <div>
+          {children}
+          </div>
+
+          <div class="button-style-modal">
+          <GreenButton
               className=" "
               aria-label="close"
               onClick={hdlOnClickGreen}
@@ -29,6 +35,7 @@ export const ModalComponentGlobal = (props) => {
             onClick={hdlOnClickRed}
             title={titleRed}
           />
+          </div>
           <div>
             <p className="body-sucessfull">
               {textModal}
@@ -37,7 +44,7 @@ export const ModalComponentGlobal = (props) => {
         </section>
       </div>
     </div>
-    {children}
+    
     </>
   );
 };

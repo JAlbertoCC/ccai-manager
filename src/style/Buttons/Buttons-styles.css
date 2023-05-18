@@ -16,8 +16,9 @@
   font-weight: 900;
   font-size: 0.8rem;
   outline:none;
-  width: 100%;
+  min-width: 45px;
   padding: 0 !important;
+  margin:15px;
 }
 
 .button-red {
@@ -27,8 +28,9 @@
   font-weight: 900;
   font-size: 0.8rem;
   outline:none;
-  width: 100%;
+  min-width: 40px;
   padding: 0 !important;
+  margin: 15px;
 }
 
 .button-tese:hover {
