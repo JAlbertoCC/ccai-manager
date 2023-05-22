@@ -79,7 +79,7 @@ const Register = () => {
             };
           });
         setServiceList(newArray);
-        console.log("result", result[0]);
+        console.log("result", result);
       })
       .catch((error) => {
         console.error(error);
