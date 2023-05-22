@@ -79,7 +79,7 @@ const Register = () => {
             };
           });
         setServiceList(newArray);
-        console.log("result", result[0]);
+        console.log("result", result);
       })
       .catch((error) => {
         console.error(error);
@@ -139,14 +139,6 @@ const Register = () => {
     <>
     <div className='container register-content'>
       <HeaderComponent title="Registro" />
-      {showModal ?
-        <ModalComponentGlobal
-        class = "opacity-card" 
-        title = "¡REGISTRO EXITOSO!" 
-        isActive = "false" 
-        hdlOnclick= { ()=>setShowModal (!showModal)} >
-        </ModalComponentGlobal> : <></>
-      }
       <form onSubmit={handleSubmit(onSubmit)}>
       <CardComponent  classExtra="opacity-card">
         <div className="columns container-personal">
