@@ -57,7 +57,7 @@ const Materials = () => {
               id: item.id,
               name: item.name,
               description: item.description,
-              count: item.count - 1
+              count: 1
             }
           } else 
             return item
