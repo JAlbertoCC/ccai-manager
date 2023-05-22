@@ -145,7 +145,6 @@ const Register = () => {
         title = "¡REGISTRO EXITOSO!" 
         isActive = "false" 
         hdlOnclick= { ()=>setShowModal (!showModal)} >
-          sjhdjsdjshdjshdjshd
         </ModalComponentGlobal> : <></>
       }
       <form onSubmit={handleSubmit(onSubmit)}>
