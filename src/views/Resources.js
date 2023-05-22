@@ -129,6 +129,7 @@ const Resources = () => {
               title="Agregar"
               icon="plus-circle"
               extraClass="aling-right margin-right"
+              onClick={() => setShowModal(!showModal)}
             />
           </div>
         </div>   
@@ -158,7 +159,8 @@ const Resources = () => {
                 </div>
 
                 <ModalComponentGlobal
-                  title = "¡REGISTRO EXITOSO!" 
+                  classExtra = "modal-resources"
+                  textModal= "Nuevo material"
                   isActive = "false" 
                   hdlOnclick= { ()=>setShowModal (!showModal)} >
                  </ModalComponentGlobal> : <></>
