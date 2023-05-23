@@ -52,6 +52,7 @@ const Home = () => {
                 title="Recursos"
                 backgroundColor="#646463"
                 imgResource="Menu/notebook.svg"
+                navOnclick={() => goToLink("/resources")}
               />
             </div>
             <div className="column is-6">

@@ -9,6 +9,7 @@
 .table-proyect thead th {
     border-width: 0 0 0.3em;
     border-color: #000;
+    vertical-align: bottom;
 }
 /*Materials*/
 .table-materials.is-fullwidth {
@@ -38,4 +39,13 @@
 .table-users thead th {
     border-width: 0 0 0.3em;
     border-color: #000;
+}
+
+.icon-table {
+  margin: 5px;
+}
+
+.text-circles {
+  padding: 0;
+  padding-bottom: 20px;
 }
