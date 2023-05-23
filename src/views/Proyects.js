@@ -38,20 +38,15 @@ const Proyects = () => {
           </div>
           <InputLabel title="Nombre del proyecto" label="" type="text" />
           <div class="columns" style={{ marginTop: "30px", width: "600px" }}>
-            <div class="column" style={{ width: "250px" }}>
-              <InputLabel
-                title="Justificación del proyecto"
-                label=""
-                type="text"
-              />
+            <div class="column" style={{ width: "250px"}}>
+
+              <TextArea  title="Justificación del proyecto" label="" type="text"></TextArea>
+
+              
             </div>
 
             <div class="column" style={{ width: "100px" }}>
-              <InputLabel
-                title="Beneficios del proyecto"
-                label=""
-                type="text"
-              />
+            <TextArea  title="Beneficios del proyecto" label="" type="text"></TextArea>
             </div>
           </div>
           <div class="column">
@@ -70,7 +65,7 @@ const Proyects = () => {
               <InputLabel label="" type="text" />
             </div>
             <div class="column is-one-fifth" style={{ marginTop: "10px" }}>
-              <button>
+              <button style={{background: "transparent", border: "none", cursor: "pointer"}}>
                 <span className="icon-plus">
                   <Icon path={mdiPlus}
                   title="IconPlus"
@@ -88,7 +83,7 @@ const Proyects = () => {
               <InputLabel label="" type="text" />
             </div>
             <div class="column is-one-fifth" style={{ marginRight: "20px" }}>
-              <button>
+              <button style={{background: "transparent", border: "none", cursor: "pointer"}}>
                 <span className="icon-minus">
                   <Icon path={mdiMinus} size={1} 
                   color="red"
