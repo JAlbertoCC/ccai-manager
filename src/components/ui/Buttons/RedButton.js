@@ -1,24 +1,22 @@
 import React from 'react';
 
-export const ButtonComponent = (props) => {
+export const RedButton = (props) => {
   const {
     buttonText,
     classExtra,
-    hdlOnClickEvent,
+    hdlOnClickRed,
     disabled
   } = props
 
   return (
-    <>
     <div className="buttons">
       <button
-        className={`button is-rounded button-tese ${classExtra}`}
-        onClick={() => hdlOnClickEvent()}
+        className={`button is-rounded button-red ${classExtra}`}
+        onClick={() => hdlOnClickRed()}
         disabled={disabled}
       >
         { buttonText }
       </button>
     </div>
-    </>
   )
 }
