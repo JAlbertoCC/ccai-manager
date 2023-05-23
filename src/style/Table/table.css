@@ -9,6 +9,7 @@
 .table-proyect thead th {
     border-width: 0 0 0.3em;
     border-color: #000;
+    vertical-align: bottom;
 }
 /*Materials*/
 .table-materials.is-fullwidth {
