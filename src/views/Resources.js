@@ -3,9 +3,11 @@ import { HeaderComponent } from "./../components/ui/Header/HeaderComponent";
 import { TabsComponent } from "./../components/commond/Tabs";
 import { ButtonIcon } from "./../components/ui/Buttons/ButtonIcon";
 import { CardComponent } from "./../components/ui/Cards/CardComponent";
+import { ModalComponentGlobal } from './../components/ui/Modal/ModalComponentGlobal';
+import { InputLabel } from './../components/ui/Inputs/InputLabel';
+import { DropDown } from './../components/ui/DropDown/DropDown';
 
 const Resources = () => {
-  const [showModal, setShowModal] = useState(false);
   const [tabs, setTabs] = useState([
     {
       id: 1,
