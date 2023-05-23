@@ -10,6 +10,7 @@ import { useCareer } from "./../hooks/useCareer";
 import { useService } from "./../hooks/useService";
 
 import { ErrorMessage } from "./../components/ui/Warnings/ErrorMessage";
+import { ModalComponentRegister } from "../components/ui/Modal/ModalComponentRegister";
 
 const Register = () => {
   const { register, handleSubmit, formState: { errors, isDirty, isValid } } = useForm();
@@ -122,6 +123,7 @@ const Register = () => {
   const registerNewUser = (body) => {
     checkingInternalRegister(body)
       .then((item) => {
+        console.log(item)
         setShowModal(true);
         setModalMessage(item.message || '');
       })
@@ -137,6 +139,16 @@ const Register = () => {
     <>
     <div className='container register-content'>
       <HeaderComponent title="Registro" />
+
+      <ModalComponentRegister
+        isActive={showModal}
+        textModal={modalMessage}
+        hdlOnclick={() => {
+          setShowModal(!showModal);
+          setModalMessage('');
+        }}
+      />
+
       <form onSubmit={handleSubmit(onSubmit)}>
       <CardComponent  classExtra="opacity-card">
         <div className="columns container-personal">
@@ -331,8 +343,7 @@ const Register = () => {
             <p className="control has-icon-right">
               <button 
                 className="button button-register"
-                onClick={()=>setShowModal(!showModal)}
-                //onClick={() => registerUser()}
+                onClick={() => registerUser()}
               >
                 <span className="icon is-right">
                   <i className="mdi mdi-plus-circle-outline"></i>
