@@ -3,11 +3,9 @@ import { HeaderComponent } from "./../components/ui/Header/HeaderComponent";
 import { TabsComponent } from "./../components/commond/Tabs";
 import { ButtonIcon } from "./../components/ui/Buttons/ButtonIcon";
 import { CardComponent } from "./../components/ui/Cards/CardComponent";
-import { ModalComponentGlobal } from "./../components/ui/Modal/ModalComponentGlobal";
-import { InputLabel } from "./../components/ui/Inputs/InputLabel";
-import { DropDown } from "./../components/ui/DropDown/DropDown";
 
 const Resources = () => {
+  const [showModal, setShowModal] = useState(false);
   const [tabs, setTabs] = useState([
     {
       id: 1,
@@ -133,6 +131,7 @@ const Resources = () => {
             selectedTab={selectedTab}
           />
         </div>
+
         {/*diseño botones  */}
         <div className="column is-12">
           <div>
@@ -145,10 +144,10 @@ const Resources = () => {
               title="Agregar"
               icon="plus-circle"
               extraClass="aling-right margin-right"
-              hdlOnClickEvent={handleModalOpen}
             />
           </div>
         </div>
+
         {selectedTab === 1 && (
           <>
             {/*diseño tabla maestros  */}
@@ -365,6 +364,23 @@ const Resources = () => {
         )}
         {selectedTab === 3 && (
           <>
+          <div className="column is-12">
+             {/*diseño botones  */}
+        <div className="column is-12">
+          <div>
+            <ButtonIcon
+              title="Generar reportes"
+              icon="file-download-outline"
+              extraClass="aling-right"
+            />
+            <ButtonIcon
+              title="Agregar"
+              icon="plus-circle"
+              extraClass="aling-right margin-right"
+            />
+          </div>
+        </div>   
+          </div>
             {/*diseño tabla Materiales  */}
             <div className="column is-12">
               <CardComponent classExtra="opacity-card card-proyects">
@@ -388,6 +404,13 @@ const Resources = () => {
                     </tbody>
                   </table>
                 </div>
+
+                <ModalComponentGlobal
+                  title = "¡REGISTRO EXITOSO!" 
+                  isActive = "false" 
+                  hdlOnclick= { ()=>setShowModal (!showModal)} >
+                 </ModalComponentGlobal> : <></>
+
               </CardComponent>
             </div>
           </>
