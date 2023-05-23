@@ -1,17 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form"
 
-import { ModalComponentGlobal } from './../components/ui/Modal/ModalComponentGlobal'
 import { CardComponent } from './../components/ui/Cards/CardComponent'
 import { InputLabel } from './../components/ui/Inputs/InputLabel'
 import { DropDown } from './../components/ui/DropDown/DropDown'
 import { HeaderComponent } from './../components/ui/Header/HeaderComponent'
-import { ModalComponentRegister } from './../components/ui/Modal/ModalComponentRegister'
 import { useRegister } from '../hooks/useRegister';
 import { useCareer } from "./../hooks/useCareer";
 import { useService } from "./../hooks/useService";
 
 import { ErrorMessage } from "./../components/ui/Warnings/ErrorMessage";
+import { ModalComponentRegister } from "../components/ui/Modal/ModalComponentRegister";
 
 const Register = () => {
   const { register, handleSubmit, formState: { errors, isDirty, isValid } } = useForm();
@@ -124,6 +123,7 @@ const Register = () => {
   const registerNewUser = (body) => {
     checkingInternalRegister(body)
       .then((item) => {
+        console.log(item)
         setShowModal(true);
         setModalMessage(item.message || '');
       })
@@ -139,6 +139,16 @@ const Register = () => {
     <>
     <div className='container register-content'>
       <HeaderComponent title="Registro" />
+
+      <ModalComponentRegister
+        isActive={showModal}
+        textModal={modalMessage}
+        hdlOnclick={() => {
+          setShowModal(!showModal);
+          setModalMessage('');
+        }}
+      />
+
       <form onSubmit={handleSubmit(onSubmit)}>
       <CardComponent  classExtra="opacity-card">
         <div className="columns container-personal">
@@ -148,6 +158,7 @@ const Register = () => {
           <div className="column is-4">
             <InputLabel
               title="Nombre" 
+              isError={errors.name}
               hdlOnChange={(e) => setTypeInputName(e.target.value)}
               name="name"
               errors={errors}
@@ -156,11 +167,12 @@ const Register = () => {
                 required: "Este campo es obligratorio"
               }}
             />
-            {errors?.name && <p role="alert">{errors.name?.message}</p>}
+            {errors?.name && <p class="help is-danger" role="alert">{errors.name?.message}</p>}
           </div>
           <div className="column is-4">
             <InputLabel
               title="Apellido paterno"
+              isError={errors.lastNameF}
               hdlOnChange={(e) => setTypeInputLastNameF(e.target.value)}
               name="lastNameF"
               errors={errors}
@@ -169,11 +181,12 @@ const Register = () => {
                 required: "Este campo es obligratorio"
               }}
             />
-            {errors?.lastNameF && <p role="alert">{errors.lastNameF?.message}</p>}
+            {errors?.lastNameF && <p class="help is-danger" role="alert">{errors.lastNameF?.message}</p>}
           </div>
           <div className="column is-4">
             <InputLabel
               title="Apellido materno"
+              isError={errors.lastNameM}
               hdlOnChange={(e) => setTypeInputLastNameM(e.target.value)}
               name="lastNameM"
               errors={errors}
@@ -182,11 +195,12 @@ const Register = () => {
                 required: "Este campo es obligratorio"
               }}
             />
-            {errors?.lastNameM && <p role="alert">{errors.lastNameM?.message}</p>}
+            {errors?.lastNameM && <p class="help is-danger" role="alert">{errors.lastNameM?.message}</p>}
           </div>
           <div className="column is-4">
             <InputLabel
               title="Dirección"
+              isError={errors.addres}
               hdlOnChange={(e) => setTypeInputAdress(e.target.value)}
               name="addres"
               errors={errors}
@@ -195,11 +209,12 @@ const Register = () => {
                 required: "Este campo es obligratorio"
               }}
             />
-            {errors?.addres && <p role="alert">{errors.addres?.message}</p>}
+            {errors?.addres && <p class="help is-danger" role="alert">{errors.addres?.message}</p>}
           </div>
           <div className="column is-4">
             <InputLabel
               title="Telefono"
+              isError={errors.phone}
               hdlOnChange={(e) => setTypeInputPhone(e.target.value)}
               name="phone"
               errors={errors}
@@ -216,13 +231,14 @@ const Register = () => {
                 }
               }}
             />
-            {errors?.phone && <p role="alert">{errors.phone?.message}</p>}
+            {errors?.phone && <p class="help is-danger" role="alert">{errors.phone?.message}</p>}
           </div>
 
           <div className="column is-4">
             <DropDown
               items={genderList}
               title="Sexo"
+              isError={errors.gender}
               hdlOnChange={(e) => setTypeInputGender(e.target.value)}
               name="gender"
               errors={errors}
@@ -232,7 +248,7 @@ const Register = () => {
                 required: "Este campo es obligratorio"
               }}
             />
-            {errors?.gender && <p role="alert">{errors.gender?.message}</p>}
+            {errors?.gender && <p class="help is-danger" role="alert">{errors.gender?.message}</p>}
           </div>
 
           <div className="column is-11">
@@ -242,6 +258,7 @@ const Register = () => {
           <div className="column is-4">
             <InputLabel
               title="Matricula"
+              isError={errors.card}
               hdlOnChange={(e) => setTypeInputIdentification(e.target.value)}
               name="card"
               errors={errors}
@@ -258,13 +275,12 @@ const Register = () => {
                 }
               }}
             />
-            {errors?.card && <p role="alert">{errors.card?.message}</p>}
+            {errors?.card && <p class="help is-danger" role="alert">{errors.card?.message}</p>}
           </div>
           <div className="column is-4">
-            <DropDown items={career}
-              title="Carrera" 
-              name="career"
+            <DropDown items={career} title="Carrera" 
               isError={errors.career}
+              name="career"
               errors={errors}
               register={register}
               hdlOnChange={(e) => setTypeInputCareer(e.target.value)}
@@ -272,12 +288,13 @@ const Register = () => {
                 required: "Este campo es obligratorio"
               }}
             />
-            {errors?.career && <p role="alert">{errors.career?.message}</p>}
+            {errors?.career && <p class="help is-danger" role="alert">{errors.career?.message}</p>}
           </div>
 
           <div className="column is-4 ">
             <DropDown items={serviceList}
               title="Servicio a prestar"
+              isError={errors.service}
               name="service"
               errors={errors}
               register={register}
@@ -286,12 +303,13 @@ const Register = () => {
                 required: "Este campo es obligratorio"
               }}
             />
-            {errors?.service && <p role="alert">{errors.service?.message}</p>}
+            {errors?.service && <p class="help is-danger" role="alert">{errors.service?.message}</p>}
           </div>
 
           <div className="column is-4">
             <InputLabel
               title="Correo Institucional"
+              isError={errors.email}
               hdlOnChange={(e) => setTypeInputMail(e.target.value)}
               name="email"
               errors={errors}
@@ -304,12 +322,13 @@ const Register = () => {
                 }
               }}
             />
-            {errors?.email && <p role="alert">{errors.email?.message}</p>}
+            {errors?.email && <p class="help is-danger" role="alert">{errors.email?.message}</p>}
           </div>
           <div className="column is-4">
             <InputLabel
               typeInput="password"
               title="Contraseña" 
+              isError={errors.pass}
               name="pass"
               hdlOnChange={(e) => setTypeInputPassword(e.target.value)}
               errors={errors}
@@ -318,14 +337,13 @@ const Register = () => {
                 required: "Este campo es obligratorio"
               }}
             />
-            {errors?.pass && <p role="alert">{errors.pass?.message}</p>}
+            {errors?.pass && <p class="help is-danger" role="alert">{errors.pass?.message}</p>}
           </div>
           <div className="column is-4">
             <p className="control has-icon-right">
               <button 
                 className="button button-register"
-                onClick={()=>setShowModal(!showModal)}
-                //onClick={() => registerUser()}
+                onClick={() => registerUser()}
               >
                 <span className="icon is-right">
                   <i className="mdi mdi-plus-circle-outline"></i>

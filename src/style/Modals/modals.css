@@ -9,7 +9,7 @@
   opacity: 1;
 }
 
-.modal-register{
+.modal-register {
   display: flow-root;
   text-align: center;
   font-size: larger;
@@ -19,7 +19,7 @@
   color: black;
 }
 
-.modal-body{
+.modal-body {
   -webkit-overflow-scrolling: touch;
   background-color: #b9e2e2;
   flex-grow: 1;
@@ -29,7 +29,7 @@
   border-radius: 2rem;
 }
 
-.button-style-modal{
+.button-style-modal {
     width: 100%;
     display: flex;
     justify-content: center;
@@ -37,3 +37,21 @@
     align-items: baseline;
 }
 
+.modal-title{
+  color: #000000;
+  font-weight: 700;
+  font-size: 1.3rem
+}
+
+.hr-modal{
+  background-color: black;
+  margin: auto
+}
+
+.modal-margen-title{
+  display: flex;
+  justify-content: space-between;
+}
+.columns-margen{
+  margin-top: 30px;
+}
