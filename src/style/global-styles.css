@@ -130,7 +130,6 @@ html {
 .columns {
   display: flex;
   flex-wrap: wrap;
-  width: 80%;
 }
 
 .title-register {
