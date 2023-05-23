@@ -83,11 +83,7 @@ const Resources = () => {
   const [typeInputGender, setTypeInputGender] = useState();
 
   const handleModalOpen = () => {
-    setShowModal(true);
-  };
-
-  const handleModalClose = () => {
-    setShowModal(false);
+    setShowModal(!showModal);
   };
 
   const handleAddClick = () => {
@@ -187,70 +183,55 @@ const Resources = () => {
             <ModalComponentGlobal
               title={getTitle()}
               isActive={showModal}
-              hdlOnclick={handleModalClose}
+              hdlOnclick={handleModalOpen}
               titleGreen={getButtonText()}
               hdlOnClickGreen={handleAddClick}
               titleRed="Cancelar"
-              hdlOnClickRed={handleModalClose}
+              hdlOnClickRed={handleModalOpen}
             >
-              <div>
-                <div className="columns container proyect-detail">
+              <div className="columns-margen">
+                <div className="columns ">
                   <div className="column">
-                    <div className="column">
-                      <InputLabel title="Nombre" />
-                    </div>
+                    <InputLabel title="Nombre" label="" type="text" />
                   </div>
                 </div>
-                <div className="column">
-                  <div className="column"></div>
-                </div>
-                <div className="columns">
+                <div className="columns" >
                   <div className="column">
-                    <div className="column">
-                      <InputLabel title="Apellido Paterno" />
-                    </div>
+                    <InputLabel title="Apellido Paterno" />
                   </div>
                   <div className="column">
-                    <div className="column">
-                      <InputLabel title="Apellido Materno" />
-                    </div>
+                    <InputLabel title="Apellido Materno" />
                   </div>
                 </div>
-                <div className="columns">
+                <div className="columns" >
                   <div className="column">
-                    <div className="column">
-                      <InputLabel title="Matricula" />
-                    </div>
+                    <InputLabel title="Matricula" />
                   </div>
                   <div className="column">
-                    <div className="column">
-                      <DropDown
-                        items={genderList}
-                        title="Sexo"
-                        hdlOnChange={(e) => setTypeInputGender(e.target.value)}
-                        name="gender"
-                        valueSelect="id"
-                        validationSchema={{
-                          required: "Este campo es obligratorio",
-                        }}
-                      />
-                    </div>
+                    <DropDown
+                      items={genderList}
+                      title="Sexo"
+                      hdlOnChange={(e) => setTypeInputGender(e.target.value)}
+                      name="gender"
+                      valueSelect="id"
+                      validationSchema={{
+                        required: "Este campo es obligratorio",
+                      }}
+                    />
                   </div>
                 </div>
-                <div className="columns">
+                <div className="columns" >
                   <div className="column">
-                    <div className="column">
-                      <DropDown
-                        items={listCarrer}
-                        title="Carrera"
-                        hdlOnChange={(e) => setTypeInputGender(e.target.value)}
-                        name="gender"
-                        valueSelect="id"
-                        validationSchema={{
-                          required: "Este campo es obligratorio",
-                        }}
-                      />
-                    </div>
+                    <DropDown
+                      items={listCarrer}
+                      title="Carrera"
+                      hdlOnChange={(e) => setTypeInputGender(e.target.value)}
+                      name="gender"
+                      valueSelect="id"
+                      validationSchema={{
+                        required: "Este campo es obligratorio",
+                      }}
+                    />
                   </div>
                 </div>
               </div>
@@ -294,24 +275,24 @@ const Resources = () => {
             <ModalComponentGlobal
               title={getTitle()}
               isActive={showModal}
-              hdlOnclick={handleModalClose}
+              hdlOnclick={handleModalOpen}
               titleGreen={getButtonText()}
               hdlOnClickGreen={handleAddClick}
               titleRed="Cancelar"
-              hdlOnClickRed={handleModalClose}
+              hdlOnClickRed={handleModalOpen}
             >
               <div>
-                <div className="columns container proyect-detail">
+                <div
+                  className="columns container proyect-detail"
+                  style={{ marginTop: "30px", width: "600px" }}
+                >
                   <div className="column">
                     <div className="column">
                       <InputLabel title="Nombre" />
                     </div>
                   </div>
                 </div>
-                <div className="column">
-                  <div className="column"></div>
-                </div>
-                <div className="columns">
+                <div className="columns" style={{ width: "600px" }}>
                   <div className="column">
                     <div className="column">
                       <InputLabel title="Apellido Paterno" />
@@ -323,7 +304,7 @@ const Resources = () => {
                     </div>
                   </div>
                 </div>
-                <div className="columns">
+                <div className="columns" style={{ width: "600px" }}>
                   <div className="column">
                     <div className="column">
                       <InputLabel title="Matricula" />
@@ -344,7 +325,7 @@ const Resources = () => {
                     </div>
                   </div>
                 </div>
-                <div className="columns">
+                <div className="columns" style={{ width: "600px" }}>
                   <div className="column">
                     <div className="column">
                       <DropDown
