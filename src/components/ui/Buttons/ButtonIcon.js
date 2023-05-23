@@ -5,12 +5,15 @@ export const ButtonIcon = (props) => {
 
   return (
     <>
-      <button className={`button button-tables delete-events ${extraClass}`}
-      onClick={() => hdlOnClickEvent()}
+      <button 
+        className={`button button-tables delete-events ${extraClass}`}
+        onClick={() => hdlOnClickEvent()}
       >
         <span>{title}</span>
         <span className="icon">
-          <i className={`mdi mdi-${icon} icon-blue`}></i>
+          <i className={`mdi mdi-${icon} icon-blue`}
+          
+          ></i>
         </span>
       </button>
     </>
