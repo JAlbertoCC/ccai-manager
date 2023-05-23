@@ -17,8 +17,8 @@
   font-size: 0.8rem;
   outline:none;
   min-width: 45px;
-  padding: 0 !important;
   margin:15px;
+  padding: 10px;
 }
 
 .button-red {
@@ -29,8 +29,8 @@
   font-size: 0.8rem;
   outline:none;
   min-width: 40px;
-  padding: 0 !important;
   margin: 15px;
+  padding: 10px;
 }
 
 .button-tese:hover {
@@ -75,7 +75,7 @@
   margin: 10px;
   width: 150px;
   max-width: 150px;
-  justify-content: space-between;
+  justify-content: space-around;
   border-radius: 10px;
 }
 

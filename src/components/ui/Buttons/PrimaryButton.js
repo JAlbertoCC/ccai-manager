@@ -9,6 +9,7 @@ export const ButtonComponent = (props) => {
   } = props
 
   return (
+    <>
     <div className="buttons">
       <button
         className={`button is-rounded button-tese ${classExtra}`}
@@ -18,5 +19,6 @@ export const ButtonComponent = (props) => {
         { buttonText }
       </button>
     </div>
+    </>
   )
 }
