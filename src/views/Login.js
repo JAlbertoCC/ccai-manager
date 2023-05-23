@@ -23,7 +23,6 @@ const Login = () => {
 
   const changeType = () => {
     // mdi-eye-outline
-    console.log("Hola");
     setTypeInputPassword("text");
   };
 
@@ -37,14 +36,14 @@ const Login = () => {
         mail: typeInputMail,
         password: typeInputPassword,
       };
-      
+
       if (isDirty && isValid) enterNewUser(body);
     }
 
     const enterNewUser = (body) => {
     checkingInternalRegister(body)
       .then((item) => {
-        console.log("funciona");
+        goToLink('home')
       })
       .catch((error) => {
         console.log("error", error.message);
@@ -117,7 +116,7 @@ const Login = () => {
         <div className="buttons-content">
           <ButtonComponent
             buttonText="Iniciar sesión"
-            onClick={() => enterUser()}
+            hdlOnClickEvent={() => enterUser()}
           />
           <ButtonComponent
             buttonText="Registrarse"
