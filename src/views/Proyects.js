@@ -7,10 +7,10 @@ import { useNavigate } from "react-router-dom";
 import { ModalComponentGlobal } from "./../components/ui/Modal/ModalComponentGlobal";
 import { InputLabel } from "../components/ui/Inputs/InputLabel";
 import { TextArea } from "../components/ui/Inputs/TextArea";
-import Icon from '@mdi/react';
-import { mdiPlus } from '@mdi/js';
-import { mdiMinus } from '@mdi/js';
-import { mdiPlusBoxOutline } from '@mdi/js';
+import Icon from "@mdi/react";
+import { mdiPlus } from "@mdi/js";
+import { mdiMinus } from "@mdi/js";
+import { mdiPlusBoxOutline } from "@mdi/js";
 
 const Proyects = () => {
   const navigate = useNavigate();
@@ -27,35 +27,33 @@ const Proyects = () => {
       <HeaderComponent title="Proyectos" />
       {showModal ? (
         <ModalComponentGlobal
-          titleGreen="Agregar Proyecto" //added title to green botton
+          title="Agregar Proyecto" //added title to green botton
           titleRed="Cancelar" //added title to red botton
           class="opacity-card"
           isActive="false"
           hdlOnclick={() => setShowModal(!showModal)}
         >
-          <div className="column is-11">
-            <p className="title-register">NUEVO PROYECTO</p>
+          <div class="columns" style={{ marginTop: "30px" }}>
+            <div class="column">
+              <InputLabel title="Nombre del proyecto" label="" type="text" />
+            </div>
           </div>
-          <InputLabel title="Nombre del proyecto" label="" type="text" />
+
           <div class="columns" style={{ marginTop: "30px", width: "600px" }}>
-            <div class="column" style={{ width: "250px"}}>
-
-              <TextArea  title="Justificación del proyecto" label="" type="text"></TextArea>
-
-              
+            <div class="column">
+              <TextArea title="Justificación del proyecto" type="text" />
             </div>
 
-            <div class="column" style={{ width: "100px" }}>
-            <TextArea  title="Beneficios del proyecto" label="" type="text"></TextArea>
+            <div class="column">
+              <TextArea
+                title="Beneficios del proyecto"
+                label=""
+                type="text"
+              ></TextArea>
             </div>
           </div>
           <div class="column">
-            <InputLabel
-              title="Objetivo general"
-              label=""
-              type="text"
-              style={{ marginTop: "30px" }}
-            />
+            <InputLabel title="Objetivo general" label="" type="text" />
           </div>
           <div className="column is-4">
             <p className="title-objectives is-left">Objetivos Específicos</p>
@@ -65,14 +63,21 @@ const Proyects = () => {
               <InputLabel label="" type="text" />
             </div>
             <div class="column is-one-fifth" style={{ marginTop: "10px" }}>
-              <button style={{background: "transparent", border: "none", cursor: "pointer"}}>
+              <button
+                style={{
+                  background: "transparent",
+                  border: "none",
+                  cursor: "pointer",
+                }}
+              >
                 <span className="icon-plus">
-                  <Icon path={mdiPlus}
-                  title="IconPlus"
-                  size={1}
-                  horizontal
-                  vertical
-                  color="green"
+                  <Icon
+                    path={mdiPlus}
+                    title="IconPlus"
+                    size={1}
+                    horizontal
+                    vertical
+                    color="green"
                   />
                 </span>
               </button>
@@ -80,14 +85,18 @@ const Proyects = () => {
           </div>
           <div class="columns">
             <div class="column is-6">
-              <InputLabel label="" type="text" />
+              <InputLabel type="text" />
             </div>
             <div class="column is-one-fifth" style={{ marginRight: "20px" }}>
-              <button style={{background: "transparent", border: "none", cursor: "pointer"}}>
+              <button
+                style={{
+                  background: "transparent",
+                  border: "none",
+                  cursor: "pointer",
+                }}
+              >
                 <span className="icon-minus">
-                  <Icon path={mdiMinus} size={1} 
-                  color="red"
-                  />
+                  <Icon path={mdiMinus} size={1} color="red" />
                 </span>
               </button>
             </div>
@@ -103,14 +112,15 @@ const Proyects = () => {
           className="button button-new-project"
           extraClass="aling-right"
         />
-        <button  style={{width: '130px', marginTop: '10px'}} 
-        class="ButtonIcon"
+        <button
+          style={{ width: "130px", marginTop: "10px" }}
+          class="ButtonIcon"
           title="Agregar proyecto"
           className="button button-new-project"
           onClick={() => setShowModal(!showModal)}
         >
           <span className="icon is-right">
-            <Icon path={mdiPlusBoxOutline} size={1}/>
+            <Icon path={mdiPlusBoxOutline} size={1} />
           </span>
         </button>
       </div>

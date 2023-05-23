@@ -9,36 +9,21 @@ export const TextArea = (props) => {
     autoFocus,
     title,
     typeInput,
-    classExtra,
-    hdlOnkeyDown = () => {},
-    hdlOnChange = () => {},
     textplace = "",
-    isError = false,
-    isEnter = false,
   } = props;
   return (
-    <label className="float-label">
+    <div className="form-float scheme-de">
       <textarea
-        class="textarea"
+        class="textarea text-area"
         autoFocus={autoFocus}
-        onKeyDown={(event) => {
-          if (isEnter && event.key === "Enter") {
-            if (hdlOnkeyDown) hdlOnkeyDown(event);
-          } else if (!isEnter) {
-            hdlOnChange(event);
-          }
-        }}
-        className={`textarea text-area-radius ${
-          isError ? "input is-danger" : ""
-        } ${classExtra}`}
         type={typeInput}
         placeholder={textplace}
         name={name}
         {...(register && register(name, validationSchema))}
       />
 
-      <span className="float-span">{title}</span>
-    </label>
+      <label class="floating-label">{title}</label>
+    </div>
   );
 };
 

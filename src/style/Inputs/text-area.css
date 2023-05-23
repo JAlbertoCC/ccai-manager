@@ -1,49 +1,50 @@
-.text-area-container {
-    display: flex;
-    flex-direction: column;
-  }
   
-  .text-area-label {
-    margin-bottom: 0.5rem;
-    font-weight: 1px;
-  }
-  
-  .text-area {
-    padding: 0.5rem;
-    border: 2px solid #333;
-    border-radius: 0.25rem;
-    font-size: 1rem;
-    line-height: 1.5;
-    height: 250px;
-    resize: none;
-  }
-
-  .icon-blue {
-    color: #2B8192;
-    font-size: 1.5rem;
-    cursor: pointer;
-  }
-
-  .float-span {
-    position:absolute;
-    top: -0.8rem;
-    left: 0.8rem;
-    transform:translateY(50px);
-    font-size: 0.7em;
-    font-weight: 900;
-    color: #ffffff;
-    border-radius: 1.563rem;
-    border: 0.063rem solid #2b8192;
-    background-color: #2b8192;
-    padding: 0.05rem 1rem;
+.text-area {
+  padding: 0.5rem;
+  border: 2px solid black;
+  border-radius: 0.25rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  resize: none;
 }
-  
-.text-area-radius {
-    border: 2px solid black;
-    font-size: 0.8em;
-    padding: 1.3rem 1rem;
-    border-radius: 10px;
-    outline: none;
-  }
+
+.textarea {
+  resize: none !important;
+}
+
+textarea:focus~.floating-label,
+textarea:not(:placeholder-shown)~.floating-label,.floating-label {
+  top: -0.8rem;
+  left: 0.8rem;
+  opacity: 1;
+  font-weight: 900;
+  color: #ffffff;
+  border-radius: 1.563rem;
+  border: 0.063rem solid #2b8192;
+  background-color: #2b8192;
+  font-size: 0.7em;
+  padding: 5px;
+}
+
+.scheme-des textarea {
+  width: 90%;
+  height: 50vh;
+  resize: none;
+  padding: 10px 20px 0 20px;
+  font-size: 140%;
+  color: #000;
+}
+
+.floating-label {
+  position: absolute;
+  pointer-events: none;
+  top: -0.8rem;
+  left: 0.8rem;
+}
+
+.form-float {
+  position: relative;
+  margin-bottom: 30px;
+}
 
 
