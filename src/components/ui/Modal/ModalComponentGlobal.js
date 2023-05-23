@@ -22,12 +22,15 @@ export const ModalComponentGlobal = (props) => {
         <div className="modal-background"></div>
         <div className={`modal-card ${classExtra}`}>
           <section className="modal-body">
-            <button
-              className="delete btnModalClose"
-              aria-label="close"
-              onClick={hdlOnclick}
-            ></button>
-            <p className="modal-card-title title-modal">{title}</p>
+            <div className="modal-margen-title">
+              <p className="modal-title">{title}</p>
+              <button
+                className="delete btnModalClose"
+                aria-label="close"
+                onClick={hdlOnclick}
+              ></button>
+            </div>
+            <hr className="hr-modal" />
 
             <div>{children}</div>
 
