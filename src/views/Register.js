@@ -15,8 +15,6 @@ import { ModalComponentRegister } from "../components/ui/Modal/ModalComponentReg
 const Register = () => {
   const { register, handleSubmit, formState: { errors, isDirty, isValid } } = useForm();
   const onSubmit = data => console.log(data);
-  
-  console.log(errors);
 
   const { checkingInternalRegister } = useRegister();
   const [isLoader, setIsLoader] = useState(false);

@@ -20,7 +20,6 @@
     position:absolute;
     top: -0.8rem;
     left: 0.8rem;
-    transform:translateY(50px);
     font-size: 0.7em;
     font-weight: 900;
     color: #ffffff;
@@ -45,11 +44,6 @@
 
 .input-check{
   border-radius: 2rem;
-}
-
-.float-label:focus-within > .float-span,
-.input-radious:not(:placeholder-shown) + .float-span {
-  transform:translateY(0px);
 }
 
 .icon-blue {
