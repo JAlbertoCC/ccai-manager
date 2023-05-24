@@ -139,7 +139,13 @@ const Resources = () => {
               icon="file-download-outline"
               extraClass="aling-right"
             />
-
+          <ButtonIcon
+              title="Agregar"
+              icon="plus-circle"
+              extraClass="aling-right margin-right"
+              hdlOnClickEvent = {() => setShowModal(!showModal)}
+            />
+          </div>
           </div>
         </div>
 
@@ -344,14 +350,7 @@ const Resources = () => {
         )}
         {selectedTab === 3 && (
           <>
-          <div className="column is-12">
-          <ButtonIcon
-              title="Agregar"
-              icon="plus-circle"
-              extraClass="aling-right margin-right"
-              Onclick = {handleModalOpen}
-            />
-          </div>
+
             {/*diseño tabla Materiales  */}
             <div className="column is-12">
               <CardComponent classExtra="opacity-card card-proyects">
@@ -417,7 +416,7 @@ const Resources = () => {
           </>
         )}
       </div>
-    </div>
+      
   );
 };
 
