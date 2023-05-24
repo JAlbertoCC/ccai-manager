@@ -6,9 +6,8 @@ import { CardComponent } from "./../components/ui/Cards/CardComponent";
 import { InputLabel } from './../components/ui/Inputs/InputLabel';
 import { ModalComponentGlobal } from "../components/ui/Modal/ModalComponentGlobal";
 import { DropDown } from './../components/ui/DropDown/DropDown';
-import { ModalComponentGlobal } from './../components/ui/Modal/ModalComponentGlobal';
-import { InputLabel } from './../components/ui/Inputs/InputLabel';
-import { DropDown } from './../components/ui/DropDown/DropDown';
+
+import { TextArea } from "../components/ui/Inputs/TextArea";
 
 const Resources = () => {
 
@@ -142,12 +141,13 @@ const Resources = () => {
               icon="file-download-outline"
               extraClass="aling-right"
             />
-            <ButtonIcon
+          <ButtonIcon
               title="Agregar"
               icon="plus-circle"
               extraClass="aling-right margin-right"
-              hdlOnclick = {handleModalOpen}
+              hdlOnClickEvent = {() => setShowModal(!showModal)}
             />
+          </div>
           </div>
         </div>
 
@@ -280,7 +280,7 @@ const Resources = () => {
             <ModalComponentGlobal
               title={getTitle()}
               isActive={showModal}
-              hdlOnclick={handleModalOpen}
+              hdlOnclick= {handleModalOpen} 
               titleGreen={getButtonText()}
               hdlOnClickGreen={handleAddClick}
               titleRed="Cancelar"
@@ -353,7 +353,7 @@ const Resources = () => {
         {selectedTab === 3 && (
           <>
 
-          {/*diseño tabla Materiales  */}
+            {/*diseño tabla Materiales  */}
             <div className="column is-12">
               <CardComponent classExtra="opacity-card card-proyects">
                 <div>
@@ -381,45 +381,50 @@ const Resources = () => {
 
               </CardComponent>
             </div>
-            <ModalComponentGlobal
-                  title = {getTitle()}
-                  isActive = "false"
-                  hdlOnclick= { () => setShowModal (!showModal)}
-                  titleGreen = {getButtonText()}
-                  hdlOnClickGreen={handleAddClick}
-                  titleRed="Cancelar"
-                  hdlOnClickRed={handleModalClose}
-                  >
-                    <div>
-                      <div className = "columns container proyect-detail">
-                        <div className = "column">
-                          <div className = "column">
-                            <InputLabel title = "Nombre del material" />
+             <ModalComponentGlobal
+                title={getTitle()}
+                isActive = {showModal} 
+                hdlOnclick= {handleModalOpen} 
+                titleGreen={getButtonText()}
+                hdlOnClickGreen={handleAddClick}
+                titleRed="Cancelar"
+                hdlOnClickRed={handleModalOpen}
+                >
+                  <div>
+                     <div
+                        className="columns container proyect-detail"
+                        style={{ marginTop: "10px", width: "600px" }}
+                        >
+                          <div className="column">
+                            <div className="column">
+                              <InputLabel title="Nombre del material" />
+                            </div>
                           </div>
                         </div>
-                      </div>
-                      <div className="column">
-                        <div className="column">
-                           <div className="column">
-                          <InputLabel title="Descripcion" />
+                        <div className="column" style={{width: "600px"}}>
+                          <div className="column">
+                            <div className="column">
+                              <TextArea title="Descripción"/>
+                            </div>
                           </div>
                         </div>
-                      </div>
-                      <div className="column">
-                        <div className="column">
-                           <div className="column">
-                          <InputLabel title="Cantidad" />
+                        <div className="columns" style={{width: "300px"}}>
+                          <div className="column">
+                            <div className="column">
+                              <InputLabel title="Cantidad"/>
+                            </div>
                           </div>
                         </div>
-                      </div>
-                    </div> 
+                  </div>
                  </ModalComponentGlobal> : <></>
+
+
 
 
           </>
         )}
       </div>
-    </div>
+      
   );
 };
 

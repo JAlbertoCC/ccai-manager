@@ -8,7 +8,7 @@ import { HeaderComponent } from './../components/ui/Header/HeaderComponent'
 import { useRegister } from '../hooks/useRegister';
 import { useCareer } from "./../hooks/useCareer";
 import { useService } from "./../hooks/useService";
-
+import { ModalComponentGlobal } from './../components/ui/Modal/ModalComponentGlobal';
 import { ErrorMessage } from "./../components/ui/Warnings/ErrorMessage";
 import { ModalComponentRegister } from "../components/ui/Modal/ModalComponentRegister";
 
@@ -139,16 +139,16 @@ const Register = () => {
     <>
     <div className='container register-content'>
       <HeaderComponent title="Registro" />
-
-      <ModalComponentRegister
-        isActive={showModal}
-        textModal={modalMessage}
-        hdlOnclick={() => {
-          setShowModal(!showModal);
-          setModalMessage('');
-        }}
-      />
-
+      
+      {showModal ?
+        <ModalComponentGlobal
+        classExtra = "modal-register" 
+        title = "¡REGISTRO EXITOSO!" 
+        isActive = "false" 
+        hdlOnclick= { ()=>setShowModal (!showModal)} >
+          
+        </ModalComponentGlobal> : <></>
+      }
       <form onSubmit={handleSubmit(onSubmit)}>
       <CardComponent  classExtra="opacity-card">
         <div className="columns container-personal">
