@@ -6,6 +6,7 @@ import { CardComponent } from "./../components/ui/Cards/CardComponent";
 import { ModalComponentGlobal } from './../components/ui/Modal/ModalComponentGlobal';
 import { InputLabel } from './../components/ui/Inputs/InputLabel';
 import { DropDown } from './../components/ui/DropDown/DropDown';
+import { TextArea } from "../components/ui/Inputs/TextArea";
 
 const Resources = () => {
   const [tabs, setTabs] = useState([
@@ -138,11 +139,7 @@ const Resources = () => {
               icon="file-download-outline"
               extraClass="aling-right"
             />
-            <ButtonIcon
-              title="Agregar"
-              icon="plus-circle"
-              extraClass="aling-right margin-right"
-            />
+
           </div>
         </div>
 
@@ -274,8 +271,8 @@ const Resources = () => {
             {/* Componente del Modal  */}
             <ModalComponentGlobal
               title={getTitle()}
-              isActive="false"
-              hdlOnclick= { ()=>setShowModal (!showModal)} 
+              isActive={showModal}
+              hdlOnclick= {handleModalOpen} 
               titleGreen={getButtonText()}
               hdlOnClickGreen={handleAddClick}
               titleRed="Cancelar"
@@ -348,7 +345,12 @@ const Resources = () => {
         {selectedTab === 3 && (
           <>
           <div className="column is-12">
-
+          <ButtonIcon
+              title="Agregar"
+              icon="plus-circle"
+              extraClass="aling-right margin-right"
+              Onclick = {handleModalOpen}
+            />
           </div>
             {/*diseño tabla Materiales  */}
             <div className="column is-12">
@@ -377,8 +379,8 @@ const Resources = () => {
             </div>
              <ModalComponentGlobal
                 title={getTitle()}
-                isActive = "false" 
-                hdlOnclick= { ()=>setShowModal (!showModal)} 
+                isActive = {showModal} 
+                hdlOnclick= {handleModalOpen} 
                 titleGreen={getButtonText()}
                 hdlOnClickGreen={handleAddClick}
                 titleRed="Cancelar"
@@ -387,7 +389,7 @@ const Resources = () => {
                   <div>
                      <div
                         className="columns container proyect-detail"
-                        style={{ marginTop: "20px", width: "600px" }}
+                        style={{ marginTop: "10px", width: "600px" }}
                         >
                           <div className="column">
                             <div className="column">
@@ -395,7 +397,14 @@ const Resources = () => {
                             </div>
                           </div>
                         </div>
-                        <div className="columns" style={{width: "600px"}}>
+                        <div className="column" style={{width: "600px"}}>
+                          <div className="column">
+                            <div className="column">
+                              <TextArea title="Descripción"/>
+                            </div>
+                          </div>
+                        </div>
+                        <div className="columns" style={{width: "300px"}}>
                           <div className="column">
                             <div className="column">
                               <InputLabel title="Cantidad"/>
