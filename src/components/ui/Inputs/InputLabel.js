@@ -44,11 +44,8 @@ export const InputLabel = (props) => {
           {title ? (
             <span className="float-span">{title}</span>
           ) : (
-            <span className="icon is-right" style={{ cursor: "pointer" }}>
-              <i
-                className={`mdi ${iconName} icon-blue`}
-                onClick={() => hdlOnClick}
-              />
+            <span onClick={() => console.log('Hola')} className="icon is-right">
+              <i className={`mdi ${iconName} icon-blue cursor`}/>
             </span>
           )}
         </label>
