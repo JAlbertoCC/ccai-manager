@@ -15,8 +15,6 @@ import { ModalComponentRegister } from "../components/ui/Modal/ModalComponentReg
 const Register = () => {
   const { register, handleSubmit, formState: { errors, isDirty, isValid } } = useForm();
   const onSubmit = data => console.log(data);
-  
-  console.log(errors);
 
   const { checkingInternalRegister } = useRegister();
   const [isLoader, setIsLoader] = useState(false);
@@ -139,6 +137,17 @@ const Register = () => {
     <>
     <div className='container register-content'>
       <HeaderComponent title="Registro" />
+<<<<<<< HEAD
+      {showModal ?
+        <ModalComponentGlobal
+        classExtra = "modal-register" 
+        title = "¡REGISTRO EXITOSO!" 
+        isActive = "false" 
+        hdlOnclick= { ()=>setShowModal (!showModal)} >
+          
+        </ModalComponentGlobal> : <></>
+      }
+=======
 
       <ModalComponentRegister
         isActive={showModal}
@@ -149,6 +158,7 @@ const Register = () => {
         }}
       />
 
+>>>>>>> a5195e78e5b8ff1831999f41cec5cae530056bb3
       <form onSubmit={handleSubmit(onSubmit)}>
       <CardComponent  classExtra="opacity-card">
         <div className="columns container-personal">

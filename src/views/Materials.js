@@ -43,15 +43,17 @@ const Materials = () => {
   const [borrowedMaterials, setBorrowedMaterials] = useState([]);
 
   const setNewMaterials = (id) => {
-    console.log()
     const findOldValue = materials.find(e => e.id === id);
     
     if (findOldValue) {
       console.log('findOldValue: ', findOldValue)
-      console.log('findOldValue: ', findOldValue.count)
+      console.log('findOldValue: ', findOldValue)
 
       if (findOldValue.count > 0) {
         const newArray = materials.map(item => {
+          console.log('item.id === id: ', item.id === id)
+          console.log('id: ', id)
+          console.log('item.id: ', item.id)
           if (item.id === id) {
             return {
               id: item.id,
@@ -63,13 +65,13 @@ const Materials = () => {
             return item
         })
 
-        const borrowedArray = 
+
 
         setMaterials(newArray)
       }
 
       
-      setBorrowedMaterials(prev => [{...prev, ...findOldValue }])
+      // setBorrowedMaterials(prev => [{...prev, ...findOldValue }])
     } else {
       const value = materials.find(e => e.id === id);
       // setBorrowedMaterials(prev =>[{ ...prev, ...value}])
@@ -91,6 +93,7 @@ const Materials = () => {
       {borrowedMaterials.length > 0 ?
        <>
           <p className="title-materials">Material solicitado</p>
+
           <CardComponent classExtra="opacity-card card-materials">
            <BorrowedMaterialsList
              list={borrowedMaterials}

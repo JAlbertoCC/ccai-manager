@@ -7,24 +7,21 @@ import { ButtonComponent } from "../components/ui/Buttons/PrimaryButton";
 import { CardComponent } from "../components/ui/Cards/CardComponent";
 import { useRegister } from '../hooks/useRegister';
 
-import { useAuth0 } from "@auth0/auth0-react";
+import { useAuth } from "./../hooks/useAuth";
+import { ErrorMessage } from "../components/ui/Warnings/ErrorMessage";
 
 const Login = () => {
-  const { checkingInternalRegister } = useRegister();
+  const { userLogin } = useAuth();
   const [typeInputPassword, setTypeInputPassword] = useState("password");
-  const [iconPassword, setIconPassword] = useState("mdi-eye-off");
+  const [iconPassword] = useState("mdi-eye-off");
+  const [showError, setShowError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
 
   const { register, handleSubmit, formState: { errors, isDirty, isValid } } = useForm();
   const onSubmit = data => console.log(data);
 
   const [typeInputMail, setTypeInputMail] = useState("");
-  const [typeInputPasswordLog, setTypeInputPasswordLog] = useState("");
-
-  const changeType = () => {
-    // mdi-eye-outline
-    setTypeInputPassword("text");
-  };
 
   const goToLink = (uri) => {
     navigate(uri);
@@ -33,21 +30,30 @@ const Login = () => {
   const enterUser = () => {
 
       const body = {
-        mail: typeInputMail,
-        password: typeInputPassword,
+        userName: typeInputMail,
+        userPassword: typeInputPassword,
       };
 
       if (isDirty && isValid) enterNewUser(body);
     }
 
     const enterNewUser = (body) => {
-    checkingInternalRegister(body)
-      .then((item) => {
-        goToLink('home')
-      })
-      .catch((error) => {
-        console.log("error", error.message);
-      });
+      setShowError(false);
+  
+      userLogin(body)
+       .then((item) => { 
+          if (item.status === 400) {
+            setShowError(true);
+            setErrorMessage(item.message);
+          } else {
+            localStorage.accessToken = item.accessToken;
+            goToLink('home');
+          }
+        })
+        .catch((error) => {
+          setShowError(true);
+          setErrorMessage(error.message);
+        });
   }
 
   return (
@@ -77,6 +83,7 @@ const Login = () => {
             textplace="example@gmail.com"
             isError={errors.email}
             name="email"
+            hdlOnChange={(e) => setTypeInputMail(e.target.value)}
             errors={errors}
               register={register}
               validationSchema={{ 
@@ -87,22 +94,22 @@ const Login = () => {
                 }
               }}
           />
-          {errors?.email && <p class="help is-danger" role="alert">{errors.email?.message}</p>}
+          {errors?.email && <p className="help is-danger" role="alert">{errors.email?.message}</p>}
           <InputLabel
             iconName={iconPassword}
-            typeInput={typeInputPassword}
             isPassword={true}
             isError={errors.pass}
             name="pass"
-            hdlOnClick={changeType}
             textplace="Password"
+            typeInput="password"
+            hdlOnChange={(e) => setTypeInputPassword(e.target.value)}
             errors={errors}
               register={register}
               validationSchema={{ 
                 required: "Este campo es obligratorio"
               }}
             />
-            {errors?.pass && <p class="help is-danger" role="alert">{errors.pass?.message}</p>}
+            {errors?.pass && <p className="help is-danger" role="alert">{errors.pass?.message}</p>}
           <div className="text-actions">
             <div>
               <a href="/">¿Haz olvidado tu contraseña?</a>
@@ -125,6 +132,13 @@ const Login = () => {
         </div>
       </CardComponent>
       </form>
+
+      {showError ? 
+        <ErrorMessage
+          message={errorMessage}
+          hdlOnClick={() => setShowError(!showError)}
+        /> : <></>
+      }
     </div>
   );
 };
