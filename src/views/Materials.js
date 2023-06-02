@@ -67,7 +67,7 @@ const Materials = () => {
 
 
 
-        setMaterials(newArray)
+        // setMaterials(newArray)
       }
 
       
