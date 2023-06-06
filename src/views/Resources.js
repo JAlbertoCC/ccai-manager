@@ -22,6 +22,7 @@ const Resources = () => {
       }).catch(error => {
         console.error(error);
       });
+      
       }
   const [tabs, setTabs] = useState([
     {
