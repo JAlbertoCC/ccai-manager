@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 
 import { HeaderComponent } from "./../components/ui/Header/HeaderComponent";
 import { SerchComponet } from "./../components/ui/Inputs/SerchComponent";
@@ -6,10 +6,14 @@ import { CardComponent } from "./../components/ui/Cards/CardComponent";
 import { ButtonIcon } from "./../components/ui/Buttons/ButtonIcon";
 import { MaterialList } from "./../components/Materials/tables/MaterialList";
 import { BorrowedMaterialsList } from "./../components/Materials/tables/BorrowedMaterialsList";
+import { useMaterials } from "../hooks/useMaterials";
+
+
 
 const Materials = () => {
   const [materials, setMaterials] = useState([
-    {
+    
+    /*{
       id: 1,
       name: "Computadora",
       description: "Computadora gamer, con 1 tera de RAM, teclado con luz, etc",
@@ -38,8 +42,38 @@ const Materials = () => {
       name: "Ejemplo 12",
       description: "Ejemplo 12",
       count: 12,
-    },
+    },*/
+
   ]);
+  
+  const { consultMaterials } = useMaterials();
+
+  useEffect(() => {
+    
+    showMaterial();
+  }, []);
+
+  const showMaterial = async () => {
+    consultMaterials()
+      .then((result) => {
+        const newArray =
+          result.map((item, index) => {
+            return {
+              id: item.id_resurce,
+              name: item.resource_name,
+              description: item.observations,
+              count: item.amount
+            };
+          });
+          setMaterials(newArray);
+          console.log("result", result);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    };
+
+
   const [borrowedMaterials, setBorrowedMaterials] = useState([]);
 
   const setNewMaterials = (id) => {

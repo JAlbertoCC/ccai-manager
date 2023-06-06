@@ -11,6 +11,7 @@ import { useService } from "./../hooks/useService";
 
 import { ErrorMessage } from "./../components/ui/Warnings/ErrorMessage";
 import { ModalComponentRegister } from "../components/ui/Modal/ModalComponentRegister";
+import {ModalComponentGlobal } from "../components/ui/Modal/ModalComponentGlobal";
 
 const Register = () => {
   const { register, handleSubmit, formState: { errors, isDirty, isValid } } = useForm();
@@ -139,7 +140,6 @@ const Register = () => {
     <>
     <div className='container register-content'>
       <HeaderComponent title="Registro" />
-<<<<<<< HEAD
       {showModal ?
         <ModalComponentGlobal
         classExtra = "modal-register" 
@@ -149,18 +149,6 @@ const Register = () => {
           
         </ModalComponentGlobal> : <></>
       }
-=======
-
-      <ModalComponentRegister
-        isActive={showModal}
-        textModal={modalMessage}
-        hdlOnclick={() => {
-          setShowModal(!showModal);
-          setModalMessage('');
-        }}
-      />
-
->>>>>>> a5195e78e5b8ff1831999f41cec5cae530056bb3
       <form onSubmit={handleSubmit(onSubmit)}>
       <CardComponent  classExtra="opacity-card">
         <div className="columns container-personal">

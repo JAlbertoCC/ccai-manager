@@ -6,8 +6,26 @@ import { CardComponent } from "./../components/ui/Cards/CardComponent";
 import { ModalComponentGlobal } from './../components/ui/Modal/ModalComponentGlobal';
 import { InputLabel } from './../components/ui/Inputs/InputLabel';
 import { DropDown } from './../components/ui/DropDown/DropDown';
+import { useMaterials } from "../hooks/useMaterials";
 
 const Resources = () => {
+
+  const [ materials, setMaterials ] = useState([]);
+  const { consultMaterials} = useMaterials();
+
+  useEffect(() => {
+    showData();
+  }, [])
+
+  const showData = async() =>{
+    consultMaterials().then(result => {
+         setMaterials(result)      
+    }).catch(error => {
+          console.error(error); 
+   }); 
+}
+  
+
   const [tabs, setTabs] = useState([
     {
       id: 1,
@@ -378,12 +396,17 @@ const Resources = () => {
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td title="ID">ID.</td>
-                        <td title="Nombre">Nombre.</td>
-                        <td title="Descripcion">Descripcion.</td>
-                        <td title="Cantidad">Cantidad.</td>
+                      { materials ? materials.map((item, index) =>{
+                        console.log(item);
+                        return(
+                        <tr key={index}>
+                        <td>{item.id_resurce}</td>
+                        <td>{item.resource_name}</td>
+                        <td>{item.observations}</td>
+                        <td>{item.amount}</td>
                       </tr>
+                        )
+                      }) :<></>}
                     </tbody>
                   </table>
                 </div>
