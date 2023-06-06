@@ -6,10 +6,27 @@ import { CardComponent } from "./../components/ui/Cards/CardComponent";
 import { InputLabel } from './../components/ui/Inputs/InputLabel';
 import { ModalComponentGlobal } from "../components/ui/Modal/ModalComponentGlobal";
 import { DropDown } from './../components/ui/DropDown/DropDown';
+import { useStudents } from './../hooks/useStudents';
 
 import { TextArea } from "../components/ui/Inputs/TextArea";
 
 const Resources = () => {
+
+  const [users, setUsers] = useState([]);
+  const { consultingStudentsData} = useStudents();
+
+  useEffect ( () =>{
+    showData();
+  }, [])
+
+  const showData = async() =>{
+      consultingStudentsData().then(result => {
+           setUsers(result)      
+      }).catch(error => {
+            console.error(error); 
+     }); 
+}
+
 
   const [tabs, setTabs] = useState([
     {
@@ -262,15 +279,21 @@ const Resources = () => {
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td title="ID">ID.</td>
-                        <td title="Nombre">Nombre.</td>
-                        <td title="Apellido Paterno">Apellido Paterno.</td>
-                        <td title="Apellido Materno">Apellido Materno.</td>
-                        <td title="Matricula">Matricula.</td>
-                        <td title="Sexo">Sexo.</td>
-                        <td title="Carrera">Carrera.</td>
-                      </tr>
+                    { users ? users.map((item, index)=>{             
+                    return (
+                        <tr key={index}>
+                            <td>{item.id} </td>
+                            <td>{item.name}</td>
+                            <td>{item.first_name}</td>
+                            <td>{item.second_name}</td>
+                            <td>{item.matricula}</td>
+                            <td>{item.gender}</td>
+                            <td>{item.career}</td>
+                          
+                        </tr>
+                       
+                    )
+                } ): <></>}
                     </tbody>
                   </table>
                 </div>
