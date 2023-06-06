@@ -139,17 +139,6 @@ const Register = () => {
     <>
     <div className='container register-content'>
       <HeaderComponent title="Registro" />
-<<<<<<< HEAD
-      {showModal ?
-        <ModalComponentGlobal
-        classExtra = "modal-register" 
-        title = "¡REGISTRO EXITOSO!" 
-        isActive = "false" 
-        hdlOnclick= { ()=>setShowModal (!showModal)} >
-          
-        </ModalComponentGlobal> : <></>
-      }
-=======
 
       <ModalComponentRegister
         isActive={showModal}
@@ -160,7 +149,6 @@ const Register = () => {
         }}
       />
 
->>>>>>> a5195e78e5b8ff1831999f41cec5cae530056bb3
       <form onSubmit={handleSubmit(onSubmit)}>
       <CardComponent  classExtra="opacity-card">
         <div className="columns container-personal">

@@ -39,3 +39,14 @@ export async function consultCareer () {
   const data = response.ok ? await response.json() : undefined
   return data
 }
+
+
+export async function consultTeacher () {
+  const request = buildGetRequest('/list-teacher','GET')
+  const response = await fetch(request)
+
+  const data = response.ok ? await response.json():undefined
+  return data
+}
+
+
