@@ -282,13 +282,13 @@ const Resources = () => {
                     { users ? users.map((item, index)=>{             
                     return (
                         <tr key={index}>
-                            <td>{item.id} </td>
+                            <td>{item.id_student} </td>
                             <td>{item.name}</td>
                             <td>{item.first_name}</td>
                             <td>{item.second_name}</td>
                             <td>{item.matricula}</td>
                             <td>{item.gender}</td>
-                            <td>{item.career}</td>
+                            <td>{item.name_career}</td>
                           
                         </tr>
                        
