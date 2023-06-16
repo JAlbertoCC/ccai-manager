@@ -7,7 +7,7 @@ import { ModalComponent } from "../components/ui/Modal/ModalComponent";
 const Home = () => {
   const [showModal, setShowModal] = useState(true);
   const navigate = useNavigate();
-  
+
   const goToLink = (uri) => {
     navigate(uri);
   };
