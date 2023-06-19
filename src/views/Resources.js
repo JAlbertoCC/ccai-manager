@@ -12,7 +12,6 @@ import { TextArea } from "../components/ui/Inputs/TextArea";
 
 const Resources = () => {
 
-<<<<<<< HEAD
   const [ materials, setMaterials ] = useState([]);
   const { consultMaterials} = useMaterials();
 
@@ -29,8 +28,6 @@ const Resources = () => {
 }
   
 
-=======
->>>>>>> dev
   const [tabs, setTabs] = useState([
     {
       id: 1,

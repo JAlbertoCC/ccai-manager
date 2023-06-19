@@ -11,7 +11,6 @@ import { useService } from "./../hooks/useService";
 import { ModalComponentGlobal } from './../components/ui/Modal/ModalComponentGlobal';
 import { ErrorMessage } from "./../components/ui/Warnings/ErrorMessage";
 import { ModalComponentRegister } from "../components/ui/Modal/ModalComponentRegister";
-import {ModalComponentGlobal } from "../components/ui/Modal/ModalComponentGlobal";
 
 const Register = () => {
   const { register, handleSubmit, formState: { errors, isDirty, isValid } } = useForm();
@@ -138,10 +137,6 @@ const Register = () => {
     <>
     <div className='container register-content'>
       <HeaderComponent title="Registro" />
-<<<<<<< HEAD
-=======
-      
->>>>>>> dev
       {showModal ?
         <ModalComponentGlobal
         classExtra = "modal-register" 
