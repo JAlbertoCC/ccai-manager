@@ -137,6 +137,7 @@ const Register = () => {
     <>
     <div className='container register-content'>
       <HeaderComponent title="Registro" />
+      
       {showModal ?
         <ModalComponentGlobal
         classExtra = "modal-register" 

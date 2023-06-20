@@ -7,13 +7,15 @@ import { InputLabel } from './../components/ui/Inputs/InputLabel';
 import { ModalComponentGlobal } from "../components/ui/Modal/ModalComponentGlobal";
 import { DropDown } from './../components/ui/DropDown/DropDown';
 import { useStudents } from './../hooks/useStudents';
-
+import { useMaterials } from './../hooks/useMaterials';
 import { TextArea } from "../components/ui/Inputs/TextArea";
 
 const Resources = () => {
 
   const [users, setUsers] = useState([]);
   const { consultingStudentsData} = useStudents();
+  const [ materials, setMaterials ] = useState([]);
+  const { consultMaterials} = useMaterials();
 
   useEffect ( () =>{
     showData();
@@ -25,6 +27,16 @@ const Resources = () => {
       }).catch(error => {
             console.error(error); 
      }); 
+}
+useEffect ( () =>{
+  showDataMaterials();
+}, [])
+const showDataMaterials = async() =>{
+  consultMaterials().then(result => {
+       setMaterials(result)      
+  }).catch(error => {
+        console.error(error); 
+ }); 
 }
 
 
