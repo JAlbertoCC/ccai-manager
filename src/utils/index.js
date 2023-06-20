@@ -16,6 +16,14 @@ export async function consultingStudents () {
   return data
 }
 
+export async function consultingStudentsData () {
+  const request = buildGetRequest('/list-registerStudents','GET')
+  const response = await fetch(request)
+
+  const data = response.ok ? await response.json():undefined
+  return data
+}
+
 export async function checkingInternalRegister (body) {
   const request = buildRequest('/register-users', 'POST', body)
   const response = await fetch(request)
