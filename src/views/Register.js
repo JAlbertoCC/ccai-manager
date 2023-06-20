@@ -147,6 +147,16 @@ const Register = () => {
           
         </ModalComponentGlobal> : <></>
       }
+{/*ANALIZAR FUNCION DE MODAL COMPONENT REGISTER CON WENDY */}
+      <ModalComponentRegister
+        isActive={showModal}
+        textModal={modalMessage}
+        hdlOnclick={() => {
+          setShowModal(!showModal);
+          setModalMessage('');
+        }}
+      />
+
       <form onSubmit={handleSubmit(onSubmit)}>
       <CardComponent  classExtra="opacity-card">
         <div className="columns container-personal">
