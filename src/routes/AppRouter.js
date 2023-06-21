@@ -12,7 +12,9 @@ import Calendar from "../views/Calendar"
 import Checkin from '../views/Checkin'
 import VisitView from "../views/VisitView"
 import Users from "../views/Users"
-
+import Article from "../views/Article"
+import Proceedings from "../views/Proceedings"
+import InformationView from "../views/InformationView"
 
 export const AppRouter = () => {
   return (
@@ -42,6 +44,21 @@ export const AppRouter = () => {
           path="/proyect-detail"
           element={<ProyectDetail />}
         />
+        <Route
+          path="/calendar"
+          element={<Calendar />}
+        />
+        <Route
+          path="/article"
+          element={<Article />}
+        />
+        <Route
+          path="/proceedings"
+          element={<Proceedings />}
+        />
+        <Route
+          path="/informationView"
+          element={<InformationView/>}/>
         {/* 👇️ only match this when no other routes match */}
         <Route
           path="*"

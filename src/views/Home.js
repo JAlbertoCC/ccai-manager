@@ -45,6 +45,7 @@ const Home = () => {
                 title="Articulos"
                 backgroundColor="#f3d13e"
                 imgResource="Menu/article.svg"
+                navOnclick={() => goToLink("/Article")}
               />
             </div>
             <div className="column is-6">
@@ -60,6 +61,7 @@ const Home = () => {
                 title="Expediente"
                 backgroundColor="#d5b61b"
                 imgResource="Menu/notebook2.png"
+                navOnclick={() => goToLink("/Proceedings")}
               />
             </div>
             <div className="column is-6">
@@ -67,6 +69,7 @@ const Home = () => {
                 title="Calendario CCAI"
                 backgroundColor="#3ea56a"
                 imgResource="Menu/calendar.svg"
+                navOnclick={() => goToLink("/Calendar")}
               />
             </div>
             <div className="column is-6">
@@ -74,6 +77,7 @@ const Home = () => {
                 title="Información"
                 backgroundColor="#646463"
                 imgResource="Menu/search.svg"
+                navOnclick={() => goToLink("/InformationView")}
               />
             </div>
             <div className="column is-6" style={{ margin: "auto" }}>
