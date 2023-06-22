@@ -64,4 +64,10 @@ export async function consultTeacher () {
   return data
 }
 
+export async function consultProjects () {
+  const request = buildGetRequest('/list-proyects','GET')
+  const response = await fetch(request)
 
+  const data = response.ok ? await response.json():undefined
+  return data
+}

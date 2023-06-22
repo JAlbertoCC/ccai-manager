@@ -11,12 +11,44 @@ import Icon from "@mdi/react";
 import { mdiPlus } from "@mdi/js";
 import { mdiMinus } from "@mdi/js";
 import { mdiPlusBoxOutline } from "@mdi/js";
+import { useProjects } from "../hooks/useProjects";
+
 
 const Proyects = () => {
+//cambio 1
+const [projects, setProjects] = useState([
+
+  /*{
+    id_proyect: 1,
+    proyect_name: "Computadora",
+    objective: "Computadora gamer, con 1 tera de RAM, teclado con luz, etc",
+    benefit:"grtg",
+    name_adviser: "gus",
+    schedules: "cronograma"
+  }*/
+]);
+
+const { consultProjects } = useProjects();
+
+useEffect ( () =>{
+  showData();
+}, [])
+
+const showData = async() =>{
+  consultProjects().then(result => {
+       setProjects(result)      
+  }).catch(error => {
+        console.error(error); 
+ }); 
+}
+
+
   const navigate = useNavigate();
   const goToLink = (uri) => {
     navigate(uri);
   };
+  
+  
 
   const [showModal, setShowModal] = useState(false);
 
@@ -142,15 +174,16 @@ const Proyects = () => {
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td title="ID">ID.</td>
-                  <td>Nombre del proyecto.</td>
-                  <td title="Objetivo">Objetivo.</td>
-                  <td title="Beneficios">Beneficios.</td>
-                  <td title="Asesores">Asesores.</td>
-                  <td title="Cronograma de actividades">
-                    Cronograma de actividades.
-                  </td>
+              { projects ? projects.map((item, index) =>{
+                        console.log(item);
+                        return(
+                  <tr key={index}>
+                        <td>{item.id_proyect}</td>
+                        <td>{item.proyect_name}</td>
+                        <td>{item.objective}</td>
+                        <td>{item.benefit}</td>
+                        <td>{item.name_adviser}</td>
+                        <td>{item.schedules}</td>
                   <td>
                     <i
                       className="mdi mdi-eye icon-blue"
@@ -159,12 +192,16 @@ const Proyects = () => {
                     <i className="mdi mdi-trash-can-outline icon-blue"></i>
                   </td>
                 </tr>
+                )
+              }) :<></>}
               </tbody>
             </table>
           </div>
         </CardComponent>
+      
       </div>
     </div>
   );
 };
+
 export default Proyects;
