@@ -6,28 +6,55 @@ import { CardComponent } from "./../components/ui/Cards/CardComponent";
 import { InputLabel } from './../components/ui/Inputs/InputLabel';
 import { ModalComponentGlobal } from "../components/ui/Modal/ModalComponentGlobal";
 import { DropDown } from './../components/ui/DropDown/DropDown';
-import { useMaterials } from "../hooks/useMaterials";
-
+import { useStudents } from './../hooks/useStudents';
+import { useMaterials } from './../hooks/useMaterials';
 import { TextArea } from "../components/ui/Inputs/TextArea";
+import { useDocent } from "../hooks/useDocent";
 
 const Resources = () => {
 
+  const [users, setUsers] = useState([]);
+  const { consultingStudentsData} = useStudents();
   const [ materials, setMaterials ] = useState([]);
   const { consultMaterials} = useMaterials();
 
-  useEffect(() => {
+  useEffect ( () =>{
     showData();
   }, [])
 
   const showData = async() =>{
-    consultMaterials().then(result => {
-         setMaterials(result)      
-    }).catch(error => {
-          console.error(error); 
-   }); 
+      consultingStudentsData().then(result => {
+           setUsers(result)      
+      }).catch(error => {
+            console.error(error); 
+     }); 
 }
-  
+useEffect ( () =>{
+  showDataMaterials();
+}, [])
+const showDataMaterials = async() =>{
+  consultMaterials().then(result => {
+       setMaterials(result)      
+  }).catch(error => {
+        console.error(error); 
+ }); 
+}
 
+  const [docent, setDocent ] = useState([]);
+  const { consultTeacher } = useDocent();
+
+  useEffect ( () =>{
+    showDocent();
+  }, [])
+
+  const showDocent = async() =>{
+      consultTeacher().then(result => {
+        setDocent(result)
+      }).catch(error => {
+        console.error(error);
+      });
+      
+      }
   const [tabs, setTabs] = useState([
     {
       id: 1,
@@ -98,6 +125,8 @@ const Resources = () => {
       name: "Ingeniería Industrial",
     },
   ]);
+  
+
   const [selectedTab, setSelectedTab] = useState(1);
   const [showModal, setShowModal] = useState(false);
   const [typeInputGender, setTypeInputGender] = useState();
@@ -187,15 +216,23 @@ const Resources = () => {
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td title="ID">ID.</td>
-                        <td title="Nombre">Nombre.</td>
-                        <td title="Apellido Paterno">Apellido Paterno.</td>
-                        <td title="Apellido Materno">Apellido Materno.</td>
-                        <td title="Matricula">Matricula.</td>
-                        <td title="Sexo">Sexo.</td>
-                        <td title="Carrera">Carrera.</td>
+                      { docent ? docent.map((item, index)=>{
+                    return (
+                      <tr key={index}>
+                        <td>{item.id } </td>
+                        <td>{item.name }</td>
+                        <td>{item.first_name }</td>
+                        <td>{item.second_name }</td>
+                        <td>{item.matricula }</td>
+                        <td>{item.gender }</td>
+                        <td>{item.name_career }</td>
+
+
                       </tr>
+
+                    )
+
+                  } ): <></>}
                     </tbody>
                   </table>
                 </div>
@@ -279,15 +316,21 @@ const Resources = () => {
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td title="ID">ID.</td>
-                        <td title="Nombre">Nombre.</td>
-                        <td title="Apellido Paterno">Apellido Paterno.</td>
-                        <td title="Apellido Materno">Apellido Materno.</td>
-                        <td title="Matricula">Matricula.</td>
-                        <td title="Sexo">Sexo.</td>
-                        <td title="Carrera">Carrera.</td>
-                      </tr>
+                    { users ? users.map((item, index)=>{             
+                    return (
+                        <tr key={index}>
+                            <td>{item.id_student} </td>
+                            <td>{item.name}</td>
+                            <td>{item.first_name}</td>
+                            <td>{item.second_name}</td>
+                            <td>{item.matricula}</td>
+                            <td>{item.gender}</td>
+                            <td>{item.name_career}</td>
+                          
+                        </tr>
+                       
+                    )
+                } ): <></>}
                     </tbody>
                   </table>
                 </div>
