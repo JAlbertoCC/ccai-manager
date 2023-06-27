@@ -49,8 +49,16 @@ const showData = async() =>{
   };
   
   
-
+  
   const [showModal, setShowModal] = useState(false);
+
+  const handleModalOpen = () => {
+    setShowModal(!showModal);
+  };
+
+  const handleAddClick = () => {
+    setShowModal(false);
+  }
 
   useEffect(() => {}, []);
 
@@ -59,13 +67,15 @@ const showData = async() =>{
       <HeaderComponent title="Proyectos" />
       {showModal ? (
         <ModalComponentGlobal
-          title="Agregar Proyecto" //added title to green botton
+          titleGreen="Agregar Proyecto" //added title to green botton
           titleRed="Cancelar" //added title to red botton
           class="opacity-card"
           isActive="false"
-          hdlOnclick={() => setShowModal(!showModal)}
+          hdlOnclick={handleModalOpen}
+          hdlOnClickRed={handleModalOpen}
+          
         >
-          <div class="columns" style={{ marginTop: "30px" }}>
+          <div class="columns-project" style={{ marginTop: "30px" }}>
             <div class="column">
               <InputLabel title="Nombre del proyecto" label="" type="text" />
             </div>
@@ -144,17 +154,19 @@ const showData = async() =>{
           className="button button-new-project"
           extraClass="aling-right"
         />
-        <button
+        <ButtonIcon
           style={{ width: "130px", marginTop: "10px" }}
           class="ButtonIcon"
           title="Agregar proyecto"
+          icon="plus-circle"
           className="button button-new-project"
-          onClick={() => setShowModal(!showModal)}
+          extraClass="aling-right"
+          hdlOnClickEvent = {() => setShowModal(!showModal)}
         >
           <span className="icon is-right">
             <Icon path={mdiPlusBoxOutline} size={1} />
           </span>
-        </button>
+        </ButtonIcon>
       </div>
       <div className="column is-12">
         <CardComponent classExtra="opacity-card card-proyects">

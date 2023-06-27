@@ -164,7 +164,7 @@ const showDataMaterials = async() =>{
   };
 
   useEffect(() => {}, []);
-
+//
   return (
     <div className="section">
       <div className="columns" style={{ width: "100%" }}>
