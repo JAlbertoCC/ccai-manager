@@ -4,8 +4,12 @@ import { CardComponent } from "./../components/ui/Cards/CardComponent";
 import { AccordeonComponent } from "./../components/commond/AccordeonComponent";
 import { ButtonIcon } from "./../components/ui/Buttons/ButtonIcon";
 import { InputLabel } from "../components/ui/Inputs/InputLabel";
+import { ModalComponentGlobal } from "./../components/ui/Modal/ModalComponentGlobal";
 
 const ProyectDetail = () => {
+  const [showModal, setShowModal] = useState(false);
+  const [showModalMat, setShowModalMat] = useState(false);
+  const [showModalAs, setShowModalAs] = useState(false);
   const [showProyectInformation, setShowProyectInformation] = useState(false);
   const [showMembersInformation, setShowMembersInformation] = useState(false);
   const [showMaterialsInformation, setShowMaterialsInformation] =
@@ -36,6 +40,122 @@ const ProyectDetail = () => {
       <div className="columns" style={{ width: "100%" }}>
         <div className="column is-12">
           <HeaderComponent title="Proyecto 3: Gestor del ccai" />
+          {showModal ? (
+        <ModalComponentGlobal
+          title="Agregar Integrante" //added title to green botton
+          titleRed="Cancelar" 
+          titleGreen="Agregar integrante"//added title to red botton
+          class="opacity-card"
+          isActive="false"
+          hdlOnclick={() => setShowModal(!showModal)}
+        >
+          <div class="columns" style={{ marginTop: "30px" }}>
+            <div class="column">
+              <InputLabel title="ID" label="" type="text" />
+            </div>
+          </div>
+
+          <div class="columns" style={{ marginTop: "30px" }}>
+            <div class="column">
+              <InputLabel title="Matricula" label="" type="text" />
+            </div>
+          </div>
+
+          <div class="columns" style={{ marginTop: "30px" }}>
+            <div class="column">
+              <InputLabel title="Nombre" label="" type="text" />
+            </div>
+          </div>
+
+          <div class="columns" style={{ marginTop: "30px" }}>
+            <div class="column">
+              <InputLabel title="Servicio a prestar" label="" type="text" />
+            </div>
+          </div>
+
+          <div class="columns" style={{ marginTop: "30px" }}>
+            <div class="column">
+              <InputLabel title="Carrera" label="" type="text" />
+            </div>
+          </div>
+        </ModalComponentGlobal>
+      ) : (
+        <></>
+      )}
+      
+      {showModalMat ? (
+        <ModalComponentGlobal
+          title="Agregar Material" //added title to green botton
+          titleRed="Cancelar" 
+          titleGreen="Agregar Material"//added title to red botton
+          class="opacity-card"
+          isActive="false"
+          hdlOnclick={() => setShowModalMat(!showModalMat)}
+        >
+          <div class="columns" style={{ marginTop: "30px" }}>
+            <div class="column">
+              <InputLabel title="ID" label="" type="text" />
+            </div>
+          </div>
+
+          <div class="columns" style={{ marginTop: "30px" }}>
+            <div class="column">
+              <InputLabel title="Nombre" label="" type="text" />
+            </div>
+          </div>
+
+          <div class="columns" style={{ marginTop: "30px" }}>
+            <div class="column">
+              <InputLabel title="Descripcion" label="" type="text" />
+            </div>
+          </div>
+
+          <div class="columns" style={{ marginTop: "30px" }}>
+            <div class="column">
+              <InputLabel title="Cantidad" label="" type="text" />
+            </div>
+          </div>
+        </ModalComponentGlobal>
+      ) : (
+        <></>
+      )}
+
+{showModalAs ? (
+        <ModalComponentGlobal
+          title="Agregar Asesor" //added title to green botton
+          titleRed="Cancelar" 
+          titleGreen="Agregar Asesor"//added title to red botton
+          class="opacity-card"
+          isActive="false"
+          hdlOnclick={() => setShowModalAs(!showModalAs)}
+        >
+          <div class="columns" style={{ marginTop: "30px" }}>
+            <div class="column">
+              <InputLabel title="ID" label="" type="text" />
+            </div>
+          </div>
+
+          <div class="columns" style={{ marginTop: "30px" }}>
+            <div class="column">
+              <InputLabel title="Nombre" label="" type="text" />
+            </div>
+          </div>
+
+          <div class="columns" style={{ marginTop: "30px" }}>
+            <div class="column">
+              <InputLabel title="Division" label="" type="text" />
+            </div>
+          </div>
+
+          <div class="columns" style={{ marginTop: "30px" }}>
+            <div class="column">
+              <InputLabel title="Tipo de Asesor" label="" type="text" />
+            </div>
+          </div>
+        </ModalComponentGlobal>
+      ) : (
+        <></>
+      )}
         </div>
 
         <div className="column is-12">
@@ -195,6 +315,7 @@ const ProyectDetail = () => {
                           title="Agregar integrante"
                           icon="plus-circle"
                           extraClass="aling-right margin-right"
+                          hdlOnClickEvent={() => setShowModal(!showModal)}
                         />
                       </th>
                       <th></th>
@@ -234,6 +355,7 @@ const ProyectDetail = () => {
                           title="Agregar material"
                           icon="plus-circle"
                           extraClass="aling-right margin-right"
+                          hdlOnClickEvent={() => setShowModalMat(!showModalMat)}
                         />
                       </th>
                       <th></th>
@@ -272,6 +394,7 @@ const ProyectDetail = () => {
                           title="Agregar asesor"
                           icon="plus-circle"
                           extraClass="aling-right margin-right"
+                          hdlOnClickEvent={() => setShowModalAs(!showModalAs)}
                         />
                       </th>
                       <th></th>
