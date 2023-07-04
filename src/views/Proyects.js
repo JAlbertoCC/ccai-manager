@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
-
 import { HeaderComponent } from "./../components/ui/Header/HeaderComponent";
 import { ButtonIcon } from "./../components/ui/Buttons/ButtonIcon";
 import { CardComponent } from "./../components/ui/Cards/CardComponent";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams  } from "react-router-dom";
 import { ModalComponentGlobal } from "./../components/ui/Modal/ModalComponentGlobal";
 import { InputLabel } from "../components/ui/Inputs/InputLabel";
 import { TextArea } from "../components/ui/Inputs/TextArea";
@@ -16,17 +15,7 @@ import { useProjects } from "../hooks/useProjects";
 
 const Proyects = () => {
 //cambio 1
-const [projects, setProjects] = useState([
-
-  /*{
-    id_proyect: 1,
-    proyect_name: "Computadora",
-    objective: "Computadora gamer, con 1 tera de RAM, teclado con luz, etc",
-    benefit:"grtg",
-    name_adviser: "gus",
-    schedules: "cronograma"
-  }*/
-]);
+const [projects, setProjects] = useState([]);
 
 const { consultProjects } = useProjects();
 
@@ -41,11 +30,10 @@ const showData = async() =>{
         console.error(error); 
  }); 
 }
-
-
+//parametros para navegar a la vista proyect-detail / id_proyect junto al id que se seleccione 
   const navigate = useNavigate();
-  const goToLink = (uri) => {
-    navigate(uri);
+  const goToLink = (uri, projectId) => {
+    navigate(`${uri}/${projectId}`);
   };
   
   
@@ -195,11 +183,11 @@ const showData = async() =>{
                         <td>{item.objective}</td>
                         <td>{item.benefit}</td>
                         <td>{item.name_adviser}</td>
-                        <td>{item.schedules}</td>
+                        <td>Lista de actividades.</td>
                   <td>
                     <i
                       className="mdi mdi-eye icon-blue"
-                      onClick={() => goToLink("/proyect-detail")}
+                      onClick={() => goToLink("/proyect-detail", item.id_proyect)}
                     ></i>
                     <i className="mdi mdi-trash-can-outline icon-blue"></i>
                   </td>
