@@ -4,7 +4,7 @@ import { CardComponent } from "./../components/ui/Cards/CardComponent";
 import { AccordeonComponent } from "./../components/commond/AccordeonComponent";
 import { ButtonIcon } from "./../components/ui/Buttons/ButtonIcon";
 import { InputLabel } from "../components/ui/Inputs/InputLabel";
-
+import "../style/global-styles.css"
 const ProyectDetail = () => {
   const [showProyectInformation, setShowProyectInformation] = useState(false);
   const [showMembersInformation, setShowMembersInformation] = useState(false);
@@ -33,7 +33,7 @@ const ProyectDetail = () => {
 
   return (
     <div className="section">
-      <div className="columns" style={{ width: "100%" }}>
+      <div className="columnsPD">
         <div className="column is-12">
           <HeaderComponent title="Proyecto 3: Gestor del ccai" />
         </div>
