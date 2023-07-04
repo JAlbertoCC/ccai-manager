@@ -10,7 +10,7 @@ import { useStudents } from './../hooks/useStudents';
 import { useMaterials } from './../hooks/useMaterials';
 import { TextArea } from "../components/ui/Inputs/TextArea";
 import { useDocent } from "../hooks/useDocent";
-
+import "../style/global-styles.css"
 
 const Resources = () => {
 
@@ -167,7 +167,7 @@ const showDataMaterials = async() =>{
 //
   return (
     <div className="section">
-      <div className="columns" style={{ width: "100%" }}>
+      <div className="columnsOnSeZe">
         <div className="column is-12">
           <HeaderComponent title="Recursos" />
         </div>
@@ -350,7 +350,7 @@ const showDataMaterials = async() =>{
               <div>
                 <div
                   className="columns container proyect-detail"
-                  style={{ marginTop: "30px", width: "600px" }}
+                  
                 >
                   <div className="column">
                     <div className="column">
@@ -358,7 +358,7 @@ const showDataMaterials = async() =>{
                     </div>
                   </div>
                 </div>
-                <div className="columns" style={{ width: "600px" }}>
+                <div className="columns">
                   <div className="column">
                     <div className="column">
                       <InputLabel title="Apellido Paterno" />
@@ -370,7 +370,7 @@ const showDataMaterials = async() =>{
                     </div>
                   </div>
                 </div>
-                <div className="columns" style={{ width: "600px" }}>
+                <div className="columns">
                   <div className="column">
                     <div className="column">
                       <InputLabel title="Matricula" />
@@ -391,7 +391,7 @@ const showDataMaterials = async() =>{
                     </div>
                   </div>
                 </div>
-                <div className="columns" style={{ width: "600px" }}>
+                <div className="columns">
                   <div className="column">
                     <div className="column">
                       <DropDown
@@ -458,8 +458,8 @@ const showDataMaterials = async() =>{
                 >
                   <div>
                      <div
-                        className="columns container proyect-detail"
-                        style={{ marginTop: "10px", width: "600px" }}
+                        className="columns container proyect-detail-Two"
+                        
                         >
                           <div className="column">
                             <div className="column">
@@ -467,14 +467,14 @@ const showDataMaterials = async() =>{
                             </div>
                           </div>
                         </div>
-                        <div className="column" style={{width: "600px"}}>
+                        <div className="columnFoSeZe">
                           <div className="column">
                             <div className="column">
                               <TextArea title="Descripción"/>
                             </div>
                           </div>
                         </div>
-                        <div className="columns" style={{width: "300px"}}>
+                        <div className="columnsFoSeSe">
                           <div className="column">
                             <div className="column">
                               <InputLabel title="Cantidad"/>

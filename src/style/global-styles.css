@@ -245,3 +245,80 @@ table td:not([align]), table th:not([align]) {
   text-align: center;
 }
 
+/*Home.js*/
+
+.columns-home{ /*linea 18*/
+  height: 70vh;
+  width: 100%;
+  margin-top: 2%;
+}
+
+.columnTwTw.is-6{ /*linea 22*/
+margin: auto;
+text-align: center;
+}
+
+.columnTrTr.is-6{  /*linea 33*/
+  margin: auto;
+  width: 50%;
+}
+
+
+
+/*Proyects*/
+.columnsJustProject{
+  margin-top: 30px; /*linea 84*/
+  width: 600px;
+}
+
+.column.is-one-fifth{
+  margin-top: 10px; /*linea 107*/
+}
+
+.button{ 
+  background: transparent; /*linea 109 y 133*/
+  border: 1px solid rgb(43, 129, 146, 0.1); 
+  cursor: pointer;
+}
+
+.columnOneZeEi.is-one-fifth{
+  margin-right: 20px; /*linea 132*/
+}
+
+.ButtonIconDos{
+  width: 130px;
+  margin-top: 10px;
+}
+
+/*Resources*/
+
+.columnsOnSeZe{
+  width: 100%; /*linea 170*/
+}
+
+.columns.container.proyect-detail{
+  margin-top: 30px; /*linea 353*/
+  width: 600px;
+}
+
+.columns{
+  width: 600px; /*linea 361,373,394*/
+}
+
+.columns.columns.container.proyect-detail-Two{
+  margin-top: 10px; /*linea 461*/
+  width: 600px;
+}
+
+.columnFoSeZe{
+  width: 600px; /*linea 470*/
+}
+
+.columnsFoSeSe{
+  width: 300px;
+}
+
+/*ProjectDetail*/
+.columnsPD{
+  width: 100%; /*linea 36*/
+}

@@ -6,6 +6,7 @@ import { ButtonIcon } from "./../components/ui/Buttons/ButtonIcon";
 import { InputLabel } from "../components/ui/Inputs/InputLabel";
 import { ModalComponentGlobal } from "./../components/ui/Modal/ModalComponentGlobal";
 
+import "../style/global-styles.css"
 const ProyectDetail = () => {
   const [showModal, setShowModal] = useState(false);
   const [showModalMat, setShowModalMat] = useState(false);
@@ -37,7 +38,7 @@ const ProyectDetail = () => {
 
   return (
     <div className="section">
-      <div className="columns" style={{ width: "100%" }}>
+      <div className="columnsPD">
         <div className="column is-12">
           <HeaderComponent title="Proyecto 3: Gestor del ccai" />
           {showModal ? (
