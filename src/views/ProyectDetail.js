@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect  } from "react";
 import { HeaderComponent } from "./../components/ui/Header/HeaderComponent";
 import { CardComponent } from "./../components/ui/Cards/CardComponent";
 import { AccordeonComponent } from "./../components/commond/AccordeonComponent";
 import { ButtonIcon } from "./../components/ui/Buttons/ButtonIcon";
 import { InputLabel } from "../components/ui/Inputs/InputLabel";
 import { ModalComponentGlobal } from "./../components/ui/Modal/ModalComponentGlobal";
+import { useParams } from "react-router-dom";
+import { useProjectDetail } from "../hooks/useProjectDetail"
 
 import "../style/global-styles.css"
 const ProyectDetail = () => {
@@ -13,21 +15,8 @@ const ProyectDetail = () => {
   const [showModalAs, setShowModalAs] = useState(false);
   const [showProyectInformation, setShowProyectInformation] = useState(false);
   const [showMembersInformation, setShowMembersInformation] = useState(false);
-  const [showMaterialsInformation, setShowMaterialsInformation] =
-    useState(false);
+  const [showMaterialsInformation, setShowMaterialsInformation] = useState(false);
   const [showAdviserInformation, setShowAdviserInformation] = useState(false);
-
-  const [proyectDetail, setProyectDetail] = useState([
-    {
-      id: 1,
-      description: "DESCRIPCION DE COSA 1",
-      justification: "JUSTIFICACION DEL PROYECTO",
-      adjetivo: "OBJETIVO ",
-      generalAdjetivo: " OBJETIVO GENERAL",
-      specificObjectives: "OBJETIVOS ESPECIFICOS",
-      benefits: "Beneficios ",
-    },
-  ]);
 
   // hook muestra y oculta vista informacion de proyecto
   const [showView, setShowView] = useState(false);
@@ -35,6 +24,15 @@ const ProyectDetail = () => {
   const hdlOnClickEvent = () => {
     setShowView(!showView);
   };
+
+//parametros para mostarar informacion de proyect detail segun id 
+const [ projectDetail, setProjectDetail] = useState([]);
+const { consulProjectInfo } = useProjectDetail();;
+const params = useParams();
+console.log(params)
+
+
+
 
   return (
     <div className="section">
@@ -179,8 +177,10 @@ const ProyectDetail = () => {
 
               {showView ? (
                 <div>
-                  {proyectDetail.map((dataProyect) => (
-                      <div key={dataProyect.id}>
+                  {projectDetail ? projectDetail.map((item, index) =>{
+                        console.log(item);
+                        return(
+                      <div key={projectDetail.id}>
                         <div className="columns container proyect-detail">
                           <div className="column">
                             <p className="title-register">Descripcion.</p>
@@ -231,13 +231,15 @@ const ProyectDetail = () => {
                           </div>
                         </div>
                       </div>
-                    ))}
+                    )}):<></>}
                 </div>
               ) : (
                 <div>
                   <fieldset disabled>
-                    {proyectDetail.map((dataProyect) => (
-                      <div key={dataProyect.id}>
+                    {projectDetail ? projectDetail.map((item, index) =>{
+                        console.log(item);
+                        return(
+                      <div key={index}>
                         <div className="columns container proyect-detail">
                           <div className="column">
                             <p className="title-register">Descripcion.</p>
@@ -288,7 +290,7 @@ const ProyectDetail = () => {
                           </div>
                         </div>
                       </div>
-                    ))}
+                    )}):<></>}
                   </fieldset>
                 </div>
               )}

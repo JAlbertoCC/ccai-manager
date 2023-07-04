@@ -71,3 +71,15 @@ export async function consultProjects () {
   const data = response.ok ? await response.json():undefined
   return data
 }
+
+export async function consulProjectInfo(body) {
+  const request = buildGetRequest(`/list-proyectInfo/${body}`, 'GET')
+  const response = await fetch(request)
+
+  if (response.ok) {
+    const data = await response.json()
+    return data
+  } else {
+    throw new Error('Error al obtener la información del proyecto')
+  }
+}
