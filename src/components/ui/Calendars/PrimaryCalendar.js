@@ -1,14 +1,22 @@
 import React from 'react';
 //import bulmaCalendar from 'bulma-calendar';
 
-export const PrimaryCalendar = (props) => {
+export const PrimaryCalendar = () => {
+
     return (
-       <div class= "calendar">
+        <div class="column is-4">
+       <div class= "calendar" >
         <div class ="calendar-nav">
             <div class = "calendar-nav-left">
+               <button class="button is-link">
+               <i class="fa fa-chevron-left"></i>
+      </button>
             </div>
             <div>Julio 2023</div>
             <div class="calendar-nav-rigth">
+            <button class="button is-link">
+            <i class="fa fa-chevron-left"></i>
+           </button>
             </div>
         </div>
         <div class="calendar-container">
@@ -66,6 +74,7 @@ export const PrimaryCalendar = (props) => {
                 <div class="calendar-date is-disabled"><button class= "date-item">5</button></div>
             </div>
         </div>
+       </div>
        </div>
     )
 }
