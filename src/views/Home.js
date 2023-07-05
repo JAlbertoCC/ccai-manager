@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../style/global-styles.css"
+
 import { useNavigate } from "react-router-dom";
 import ButtonDecorative from "./../components/ui/Buttons/ButtonDecorative";
 import { ModalComponent } from "../components/ui/Modal/ModalComponent";
@@ -15,12 +15,12 @@ const Home = () => {
   return (
     <div className="section">
       <div
-        className="columns-home"
-        
+        className="columns"
+        style={{ height: "70vh", width: "100%", marginTop: "2%" }}
       >
         <div
-          className="columnTwTw is-6"
-          
+          className="column is-6"
+          style={{ margin: "auto", textAlign: "center" }}
         >
           <p className="cart-title">
             Centro de Cooperación Academica Industria
@@ -30,7 +30,7 @@ const Home = () => {
             Tecnológico de Estudios Superiores de Ecatepec
           </p>
         </div>
-        <div className="columnTrTr is-6">
+        <div className="column is-6" style={{ margin: "auto", width: "50%" }}>
           <div className="columns">
             <div className="column is-6">
               <ButtonDecorative
@@ -80,7 +80,7 @@ const Home = () => {
                 navOnclick={() => goToLink("/InformationView")}
               />
             </div>
-            <div className="column is-6">
+            <div className="column is-6" style={{ margin: "auto" }}>
               <ButtonDecorative
                 title="Usuarios registrados"
                 backgroundColor="#60dd96"
@@ -88,7 +88,7 @@ const Home = () => {
                 navOnclick={() => goToLink("/users")}
               />
             </div>
-            <div className="column is-6">
+            <div className="column is-6" style={{ margin: "auto" }}>
               <ButtonDecorative
                 title="Cerrar sesión"
                 backgroundColor="#c12529"

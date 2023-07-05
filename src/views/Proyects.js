@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { HeaderComponent } from "./../components/ui/Header/HeaderComponent";
 import { ButtonIcon } from "./../components/ui/Buttons/ButtonIcon";
-import { ButtonIconDos } from "./../components/ui/Buttons/ButtonIconDos";
 import { CardComponent } from "./../components/ui/Cards/CardComponent";
 import { useNavigate, useParams  } from "react-router-dom";
 import { ModalComponentGlobal } from "./../components/ui/Modal/ModalComponentGlobal";
@@ -13,7 +12,7 @@ import { mdiMinus } from "@mdi/js";
 import { mdiPlusBoxOutline } from "@mdi/js";
 import { useProjects } from "../hooks/useProjects";
 
-import "../style/global-styles.css"
+
 const Proyects = () => {
 //cambio 1
 const [projects, setProjects] = useState([]);
@@ -64,13 +63,13 @@ const showData = async() =>{
           hdlOnClickRed={handleModalOpen}
           
         >
-          <div class="columns-project">
+          <div class="columns-project" style={{ marginTop: "30px" }}>
             <div class="column">
               <InputLabel title="Nombre del proyecto" label="" type="text" />
             </div>
           </div>
 
-          <div class="columnsJustProject">
+          <div class="columns" style={{ marginTop: "30px", width: "600px" }}>
             <div class="column">
               <TextArea title="Justificación del proyecto" type="text" />
             </div>
@@ -93,7 +92,7 @@ const showData = async() =>{
             <div class="column is-6">
               <InputLabel label="" type="text" />
             </div>
-            <div class="column is-one-fifth">
+            <div class="column is-one-fifth" style={{ marginTop: "10px" }}>
               <button
                 style={{
                   background: "transparent",
@@ -118,7 +117,7 @@ const showData = async() =>{
             <div class="column is-6">
               <InputLabel type="text" />
             </div>
-            <div class="columnOneZeEi is-one-fifth">
+            <div class="column is-one-fifth" style={{ marginRight: "20px" }}>
               <button
                 style={{
                   background: "transparent",
@@ -143,8 +142,8 @@ const showData = async() =>{
           className="button button-new-project"
           extraClass="aling-right"
         />
-        <ButtonIconDos
-          
+        <ButtonIcon
+          style={{ width: "130px", marginTop: "10px" }}
           class="ButtonIcon"
           title="Agregar proyecto"
           icon="plus-circle"
@@ -155,7 +154,7 @@ const showData = async() =>{
           <span className="icon is-right">
             <Icon path={mdiPlusBoxOutline} size={1} />
           </span>
-        </ButtonIconDos>
+        </ButtonIcon>
       </div>
       <div className="column is-12">
         <CardComponent classExtra="opacity-card card-proyects">

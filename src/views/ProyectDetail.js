@@ -9,6 +9,7 @@ import { useParams } from "react-router-dom";
 import { useProjectDetail } from "../hooks/useProjectDetail"
 
 import "../style/global-styles.css"
+
 const ProyectDetail = () => {
   const [showModal, setShowModal] = useState(false);
   const [showModalMat, setShowModalMat] = useState(false);
@@ -36,7 +37,7 @@ console.log(params)
 
   return (
     <div className="section">
-      <div className="columnsPD">
+      <div className="columns" style={{ width: "100%" }}>
         <div className="column is-12">
           <HeaderComponent title="Proyecto 3: Gestor del ccai" />
           {showModal ? (
