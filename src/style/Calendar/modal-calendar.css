@@ -14,18 +14,19 @@
     border-top-left-radius: 2px;
     border-top-right-radius: 2px;
     display: flex;
+    display: -ms-flexbox;
+    display: -webkit-flex;
     -ms-flex-align: center;
     -webkit-box-align: center;
     align-items: center;
     -webkit-box-pack: justify;
     -ms-flex-pack: justify;
-    justify-content: space-between;
     font-size: 1.5rem;
     padding: 0.5rem;
 
 }
 
-.calendar-nav-left .calendar-nav-rigth{
+.calendar-nav-left, .calendar-nav-rigth{
     -ms-flex-preferred-size: auto;
     flex-basis: auto;
     -webkit-box-flex: 0;
@@ -36,7 +37,6 @@
 .button{
     text-decoration: none;
     color:white;
-    
       background: transparent;
       color: gainsboro;
 }
@@ -69,7 +69,7 @@
     flex-wrap: wrap;
     -webkit-justify-content: center;
     justify-content: center;
-    padding: .2rem;   
+    padding: .2rem 0;   
 }
 
 .calendar-body .calendar-date{
@@ -121,18 +121,11 @@
     color: #fff;
   }
 
-&.is-disabled.date-item, .calendar-event{
+&.is-disabled
+  .date-item, .calendar-event{
     cursor: default;
     opacity: .25;
     pointer-events: none;
   }
 
-  .date-item{
-  -webkit-align-self: flex-end;
-  align-self: flex-end;
-  -ms-flex-item-align: end;
-  height: 2.8rem;
-  margin-right: .5rem;
-  margin-top: .5rem;
-  }
 

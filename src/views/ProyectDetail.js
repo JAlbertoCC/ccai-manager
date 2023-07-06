@@ -48,6 +48,7 @@ const showData = async() =>{
 
   return (
     <div className="section">
+<<<<<<< HEAD
       <div className="columns" style={{ width: "100%" }}>
         <div className="column is-12">
           <HeaderComponent title="Proyecto 3: Gestor del ccai" />
@@ -71,6 +72,32 @@ const showData = async() =>{
               <InputLabel title="Matricula" label="" type="text" />
             </div>
           </div>
+=======
+      <div className="columns column38">
+        {/* componetes para mostar modales */}
+        <div className="column is-12">
+          <HeaderComponent title="Proyecto 3: Gestor del ccai" />
+          {showModal ? (
+            <ModalComponentGlobal
+              title="Agregar Integrante" //added title to green botton
+              titleRed="Cancelar"
+              titleGreen="Agregar integrante" //added title to red botton
+              class="opacity-card"
+              isActive="false"
+              hdlOnclick={() => setShowModal(!showModal)}
+            >
+              <div class="columns column5157">
+                <div class="column">
+                  <InputLabel title="ID" label="" type="text" />
+                </div>
+              </div>
+
+              <div class="columns column5157">
+                <div class="column">
+                  <InputLabel title="Matricula" label="" type="text" />
+                </div>
+              </div>
+>>>>>>> dev
 
           <div class="columns" style={{ marginTop: "30px" }}>
             <div class="column">
@@ -109,6 +136,7 @@ const showData = async() =>{
             </div>
           </div>
 
+<<<<<<< HEAD
           <div class="columns" style={{ marginTop: "30px" }}>
             <div class="column">
               <InputLabel title="Nombre" label="" type="text" />
@@ -167,6 +195,81 @@ const showData = async() =>{
       ) : (
         <></>
       )}
+=======
+          {showModalMat ? (
+            <ModalComponentGlobal
+              title="Agregar Material" //added title to green botton
+              titleRed="Cancelar"
+              titleGreen="Agregar Material" //added title to red botton
+              class="opacity-card"
+              isActive="false"
+              hdlOnclick={() => setShowModalMat(!showModalMat)}
+            >
+              <div class="columns column94">
+                <div class="column">
+                  <InputLabel title="ID" label="" type="text" />
+                </div>
+              </div>
+
+              <div class="columns column94">
+                <div class="column">
+                  <InputLabel title="Nombre" label="" type="text" />
+                </div>
+              </div>
+
+              <div class="columns column94">
+                <div class="column">
+                  <InputLabel title="Descripcion" label="" type="text" />
+                </div>
+              </div>
+
+              <div class="columns column94">
+                <div class="column">
+                  <InputLabel title="Cantidad" label="" type="text" />
+                </div>
+              </div>
+            </ModalComponentGlobal>
+          ) : (
+            <></>
+          )}
+
+          {showModalAs ? (
+            <ModalComponentGlobal
+              title="Agregar Asesor" //added title to green botton
+              titleRed="Cancelar"
+              titleGreen="Agregar Asesor" //added title to red botton
+              class="opacity-card"
+              isActive="false"
+              hdlOnclick={() => setShowModalAs(!showModalAs)}
+            >
+              <div class="columns column94">
+                <div class="column">
+                  <InputLabel title="ID" label="" type="text" />
+                </div>
+              </div>
+
+              <div class="columns column94">
+                <div class="column">
+                  <InputLabel title="Nombre" label="" type="text" />
+                </div>
+              </div>
+
+              <div class="columns column94">
+                <div class="column">
+                  <InputLabel title="Division" label="" type="text" />
+                </div>
+              </div>
+
+              <div class="columns column94">
+                <div class="column">
+                  <InputLabel title="Tipo de Asesor" label="" type="text" />
+                </div>
+              </div>
+            </ModalComponentGlobal>
+          ) : (
+            <></>
+          )}
+>>>>>>> dev
         </div>
 
         <div className="column is-12">

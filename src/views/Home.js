@@ -15,12 +15,12 @@ const Home = () => {
   return (
     <div className="section">
       <div
-        className="columns"
-        style={{ height: "70vh", width: "100%", marginTop: "2%" }}
+        className="columns column18"
+       
       >
         <div
-          className="column is-6"
-          style={{ margin: "auto", textAlign: "center" }}
+          className="column is-6 column22"
+          
         >
           <p className="cart-title">
             Centro de Cooperación Academica Industria
@@ -30,7 +30,7 @@ const Home = () => {
             Tecnológico de Estudios Superiores de Ecatepec
           </p>
         </div>
-        <div className="column is-6" style={{ margin: "auto", width: "50%" }}>
+        <div className="column is-6 column33">
           <div className="columns">
             <div className="column is-6">
               <ButtonDecorative
@@ -80,7 +80,7 @@ const Home = () => {
                 navOnclick={() => goToLink("/InformationView")}
               />
             </div>
-            <div className="column is-6" style={{ margin: "auto" }}>
+            <div className="column is-6 column8391">
               <ButtonDecorative
                 title="Usuarios registrados"
                 backgroundColor="#60dd96"
@@ -88,7 +88,7 @@ const Home = () => {
                 navOnclick={() => goToLink("/users")}
               />
             </div>
-            <div className="column is-6" style={{ margin: "auto" }}>
+            <div className="column is-6 column8391">
               <ButtonDecorative
                 title="Cerrar sesión"
                 backgroundColor="#c12529"
