@@ -11,9 +11,16 @@ import { useProjectDetail } from "../hooks/useProjectDetail";
 import "../style/global-styles.css";
 
 const ProyectDetail = () => {
+  //muestra u oculta los modales de agregar
   const [showModal, setShowModal] = useState(false);
   const [showModalMat, setShowModalMat] = useState(false);
   const [showModalAs, setShowModalAs] = useState(false);
+  //muestra u oculta los modales de editar
+  const [showModalEdit, setShowModalEdit] = useState(false);
+  const [showModalMatEdit, setShowModalMatEdit] = useState(false);
+  const [showModalAsEdit, setShowModalAsEdit] = useState(false);
+
+  //Funcion para mostrar u ocultar informacion en los acordeon
   const [showProyectInformation, setShowProyectInformation] = useState(false);
   const [showMembersInformation, setShowMembersInformation] = useState(false);
   const [showMaterialsInformation, setShowMaterialsInformation] =
@@ -158,6 +165,123 @@ const ProyectDetail = () => {
         </div>
         <>
         {/** Modales para editar datos de las blas integrantes, materiales y docentes  */}
+        {/** Modal para agregar estudiantes */}
+        {showModalEdit ? (
+            <ModalComponentGlobal
+              title="Editar Integrante" //added title to green botton
+              titleRed="Cancelar"
+              titleGreen="Editar integrante" //added title to red botton
+              class="opacity-card"
+              isActive="false"
+              hdlOnclick={() => setShowModalEdit(!showModalEdit)}
+            >
+              <div class="columns" style={{ marginTop: "30px" }}>
+                <div class="column">
+                  <InputLabel title="ID" label="" type="text" />
+                </div>
+              </div>
+
+              <div class="columns" style={{ marginTop: "30px" }}>
+                <div class="column">
+                  <InputLabel title="Matricula" label="" type="text" />
+                </div>
+              </div>
+
+              <div class="columns columnsProyectD ">
+                <div class="column">
+                  <InputLabel title="Nombre" label="" type="text" />
+                </div>
+              </div>
+
+              <div class="columns columnsProyectD">
+                <div class="column">
+                  <InputLabel title="Servicio a prestar" label="" type="text" />
+                </div>
+              </div>
+
+              <div class="columns columnsProyectD">
+                <div class="column">
+                  <InputLabel title="Carrera" label="" type="text" />
+                </div>
+              </div>
+            </ModalComponentGlobal>
+          ) : (
+            <></>
+          )}
+          {/*modal para agregar materiales */}
+          {showModalMatEdit ? (
+            <ModalComponentGlobal
+              title="Editar Material" //added title to green botton
+              titleRed="Cancelar"
+              titleGreen="EditarEditar Material" //added title to red botton
+              class="opacity-card"
+              isActive="false"
+              hdlOnclick={() => setShowModalMatEdit(!showModalMatEdit)}
+            >
+              <div class="columns" style={{ marginTop: "30px" }}>
+                <div class="column">
+                  <InputLabel title="ID" label="" type="text" />
+                </div>
+              </div>
+
+              <div class="columns" style={{ marginTop: "30px" }}>
+                <div class="column">
+                  <InputLabel title="Nombre" label="" type="text" />
+                </div>
+              </div>
+
+              <div class="columns" style={{ marginTop: "30px" }}>
+                <div class="column">
+                  <InputLabel title="Descripcion" label="" type="text" />
+                </div>
+              </div>
+
+              <div class="columns" style={{ marginTop: "30px" }}>
+                <div class="column">
+                  <InputLabel title="Cantidad" label="" type="text" />
+                </div>
+              </div>
+            </ModalComponentGlobal>
+          ) : (
+            <></>
+          )}
+          {/* modal para agregar asesores */}
+          {showModalAsEdit ? (
+            <ModalComponentGlobal
+              title="Editar Asesor" //added title to green botton
+              titleRed="Cancelar"
+              titleGreen="Editar Asesor" //added title to red botton
+              class="opacity-card"
+              isActive="false"
+              hdlOnclick={() => setShowModalAsEdit(!showModalAsEdit)}
+            >
+              <div class="columns" style={{ marginTop: "30px" }}>
+                <div class="column">
+                  <InputLabel title="ID" label="" type="text" />
+                </div>
+              </div>
+
+              <div class="columns" style={{ marginTop: "30px" }}>
+                <div class="column">
+                  <InputLabel title="Nombre" label="" type="text" />
+                </div>
+              </div>
+
+              <div class="columns" style={{ marginTop: "30px" }}>
+                <div class="column">
+                  <InputLabel title="Division" label="" type="text" />
+                </div>
+              </div>
+
+              <div class="columns" style={{ marginTop: "30px" }}>
+                <div class="column">
+                  <InputLabel title="Tipo de Asesor" label="" type="text" />
+                </div>
+              </div>
+            </ModalComponentGlobal>
+          ) : (
+            <></>
+          )}
         </>
 
         <div className="column is-12">
@@ -349,7 +473,8 @@ const ProyectDetail = () => {
                       <td title="Servicio a prestar">Servicio a prestar.</td>
                       <td title="Carrera">Carrera.</td>
                       <td>
-                        <i className="mdi mdi-pencil icon-blue"></i>
+                        <i className="mdi mdi-pencil icon-blue"
+                        onClick={() => setShowModalEdit(!showModalEdit)}></i>
                         <i className="mdi mdi-trash-can-outline icon-blue"></i>
                       </td>
                     </tr>
@@ -392,7 +517,8 @@ const ProyectDetail = () => {
                       <td title="Nombre">Nombre.</td>
                       <td title="Cantidad">Cantidad.</td>
                       <td>
-                        <i className="mdi mdi-pencil icon-blue"></i>
+                        <i className="mdi mdi-pencil icon-blue"
+                        onClick={() => setShowModalMatEdit(!showModalMatEdit)}></i>
                         <i className="mdi mdi-trash-can-outline icon-blue"></i>
                       </td>
                     </tr>
@@ -435,7 +561,8 @@ const ProyectDetail = () => {
                       <td title="Division">Division.</td>
                       <td title="Tipo de Asesorr">Tipo de Asesor.</td>
                       <td>
-                        <i className="mdi mdi-pencil icon-blue"></i>
+                        <i className="mdi mdi-pencil icon-blue"
+                          onClick={() => setShowModalAsEdit(!showModalAsEdit) }></i>
                         <i className="mdi mdi-trash-can-outline icon-blue"></i>
                       </td>
                     </tr>
