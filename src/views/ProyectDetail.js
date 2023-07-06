@@ -35,7 +35,7 @@ const ProyectDetail = () => {
 
   return (
     <div className="section">
-      <div className="columns" style={{ width: "100%" }}>
+      <div className="columns column38">
         {/* componetes para mostar modales */}
         <div className="column is-12">
           <HeaderComponent title="Proyecto 3: Gestor del ccai" />
@@ -48,13 +48,13 @@ const ProyectDetail = () => {
               isActive="false"
               hdlOnclick={() => setShowModal(!showModal)}
             >
-              <div class="columns" style={{ marginTop: "30px" }}>
+              <div class="columns column5157">
                 <div class="column">
                   <InputLabel title="ID" label="" type="text" />
                 </div>
               </div>
 
-              <div class="columns" style={{ marginTop: "30px" }}>
+              <div class="columns column5157">
                 <div class="column">
                   <InputLabel title="Matricula" label="" type="text" />
                 </div>
@@ -91,25 +91,25 @@ const ProyectDetail = () => {
               isActive="false"
               hdlOnclick={() => setShowModalMat(!showModalMat)}
             >
-              <div class="columns" style={{ marginTop: "30px" }}>
+              <div class="columns column94">
                 <div class="column">
                   <InputLabel title="ID" label="" type="text" />
                 </div>
               </div>
 
-              <div class="columns" style={{ marginTop: "30px" }}>
+              <div class="columns column94">
                 <div class="column">
                   <InputLabel title="Nombre" label="" type="text" />
                 </div>
               </div>
 
-              <div class="columns" style={{ marginTop: "30px" }}>
+              <div class="columns column94">
                 <div class="column">
                   <InputLabel title="Descripcion" label="" type="text" />
                 </div>
               </div>
 
-              <div class="columns" style={{ marginTop: "30px" }}>
+              <div class="columns column94">
                 <div class="column">
                   <InputLabel title="Cantidad" label="" type="text" />
                 </div>
@@ -128,25 +128,25 @@ const ProyectDetail = () => {
               isActive="false"
               hdlOnclick={() => setShowModalAs(!showModalAs)}
             >
-              <div class="columns" style={{ marginTop: "30px" }}>
+              <div class="columns column94">
                 <div class="column">
                   <InputLabel title="ID" label="" type="text" />
                 </div>
               </div>
 
-              <div class="columns" style={{ marginTop: "30px" }}>
+              <div class="columns column94">
                 <div class="column">
                   <InputLabel title="Nombre" label="" type="text" />
                 </div>
               </div>
 
-              <div class="columns" style={{ marginTop: "30px" }}>
+              <div class="columns column94">
                 <div class="column">
                   <InputLabel title="Division" label="" type="text" />
                 </div>
               </div>
 
-              <div class="columns" style={{ marginTop: "30px" }}>
+              <div class="columns column94">
                 <div class="column">
                   <InputLabel title="Tipo de Asesor" label="" type="text" />
                 </div>

@@ -247,3 +247,98 @@ table td:not([align]), table th:not([align]) {
   text-align: center;
 }
 
+/*home.js*/
+/*linea 19*/
+.column18{
+  height: 70vh;
+  width: 100%;
+  margin-top: 2%;
+}
+
+/*linea 22*/
+.column22{
+  margin: auto;
+  text-align: center;
+}
+
+/*linea 33*/
+.column33{
+  margin: auto;
+  width: 50%;
+}
+
+/*linea 83 y 91*/
+.column8391{
+  margin: auto;
+}
+
+/*ProjectDetail*/
+/*linea38*/
+.column38{
+  width: 100%;
+}
+
+/*columna 51 y 57*/
+.column5157{
+  margin-top: 30px;
+}
+
+/*linea 63,69 y 75 ya venia asi*/
+
+/*linea 94, 100, 106, 112, 131, 137, 143, 149*/
+/*y en Proyects.js tambien sirve en: linea 71*/
+.column94{
+  margin-top: 30px;
+}
+
+/*Proyects.js*/
+/*linea 77*/
+.column77{
+  margin-top: 30px;
+  width: 600px;
+}
+
+/*linea 100*/
+.column100{
+  margin-top: 10px;
+}
+
+/*linea 101 y 126*/
+.button101{
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+/*linea 125*/
+.column125{
+  margin-right: 20px;
+}
+
+/*linea 196*/
+.buttonI196{
+  width: 130px;
+  margin-top: 10px;
+}
+
+/*Resources.js*/
+/*linea 358*/
+.column359{
+  margin-top: 30px;
+  width: 600px;
+}
+
+/*linea 367, 379, 400, 477*/
+.column367{
+  width: 600px;
+}
+
+.column468{
+  margin-top: 10px;
+  width: 600px;
+}
+
+/*linea 484*/
+.column484{
+  width: 300px;
+}
