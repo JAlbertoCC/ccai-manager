@@ -25,8 +25,6 @@ const ProyectDetail = () => {
   };
 
 //parametros para mostarar informacion de proyect detail segun id 
-const [ projectDetail, setProjectDetail] = useState([]);
-const { consulProjectInfo } = useProjectDetail();
 const {params} = useParams();
 console.log(params) //body
 
