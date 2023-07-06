@@ -22,7 +22,6 @@ const ProyectDetail = () => {
 
   // hook muestra y oculta vista informacion de proyecto
   const [showView, setShowView] = useState(false);
-
   const hdlOnClickEvent = () => {
     setShowView(!showView);
   };
@@ -36,9 +35,10 @@ const ProyectDetail = () => {
   return (
     <div className="section">
       <div className="columns" style={{ width: "100%" }}>
-        {/* componetes para mostar modales */}
+        {/* componetes para mostar modales de agregar */}
         <div className="column is-12">
           <HeaderComponent title="Proyecto 3: Gestor del ccai" />
+          {/** Modal para agregar estudiantes */}
           {showModal ? (
             <ModalComponentGlobal
               title="Agregar Integrante" //added title to green botton
@@ -60,7 +60,7 @@ const ProyectDetail = () => {
                 </div>
               </div>
 
-              <div class="columns columnsProyectD " >
+              <div class="columns columnsProyectD ">
                 <div class="column">
                   <InputLabel title="Nombre" label="" type="text" />
                 </div>
@@ -72,7 +72,7 @@ const ProyectDetail = () => {
                 </div>
               </div>
 
-              <div class="columns columnsProyectD"  >
+              <div class="columns columnsProyectD">
                 <div class="column">
                   <InputLabel title="Carrera" label="" type="text" />
                 </div>
@@ -81,7 +81,7 @@ const ProyectDetail = () => {
           ) : (
             <></>
           )}
-
+          {/*modal para agregar materiales */}
           {showModalMat ? (
             <ModalComponentGlobal
               title="Agregar Material" //added title to green botton
@@ -118,7 +118,7 @@ const ProyectDetail = () => {
           ) : (
             <></>
           )}
-
+          {/* modal para agregar asesores */}
           {showModalAs ? (
             <ModalComponentGlobal
               title="Agregar Asesor" //added title to green botton
@@ -156,6 +156,9 @@ const ProyectDetail = () => {
             <></>
           )}
         </div>
+        <>
+        {/** Modales para editar datos de las blas integrantes, materiales y docentes  */}
+        </>
 
         <div className="column is-12">
           <CardComponent classExtra="opacity-card card-proyects">

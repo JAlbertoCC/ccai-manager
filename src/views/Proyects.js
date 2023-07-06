@@ -44,10 +44,8 @@ const Proyects = () => {
   //muestra y cerrar el modal para editar la vista
   const [showModaledit, setShowModaledit] = useState(false);
   const handleModalAddClose = () => {
-    setShowModaledit(!showModaledit)
-  }
-
-  
+    setShowModaledit(!showModaledit);
+  };
 
   const handleAddClick = () => {
     setShowModal(false);
@@ -80,11 +78,7 @@ const Proyects = () => {
             </div>
 
             <div class="column">
-              <TextArea
-                title="Beneficios del proyecto"
-                label=""
-                type="text"
-              />
+              <TextArea title="Beneficios del proyecto" label="" type="text" />
             </div>
           </div>
           <div class="column">
@@ -143,41 +137,48 @@ const Proyects = () => {
       {/*Modal para editar la vista de proyect  */}
       {showModaledit ? (
         <ModalComponentGlobal
-        title="Editar Informacion del proyecto"
-        isActive={showModaledit}
-        hdlOnclick={handleModalAddClose}
-        titleGreen="Guardar"
-        hdlOnClickGreen=""
-        titleRed="Cancelar"
-        hdlOnClickRed={handleModalAddClose}
+          title="Editar Informacion del proyecto"
+          isActive={showModaledit}
+          hdlOnclick={handleModalAddClose}
+          titleGreen="Guardar"
+          hdlOnClickGreen=""
+          titleRed="Cancelar"
+          hdlOnClickRed={handleModalAddClose}
         >
-          <div>
-            <div className="columns">
-              <div className="column">
-                <div className="column">
-                  <InputLabel 
-                    title="Id"/>
+          {/*Mapeo para insertar datos en el modal edit */}
+          {projects ? (
+            projects.map((item, index) => {
+              console.log(item);
+              return (
+                <div key={index}>
+                  <div className="columns">
+                    <div className="column">
+                      <div className="column">
+                        <InputLabel title="Id" onChange={item.id_proyect} />
+                      </div>
+                      <div className="column">
+                        <InputLabel title="Nombre del proyecto" />
+                      </div>
+                      <div className="column">
+                        <InputLabel title="Objetivo" />
+                      </div>
+                      <div className="column">
+                        <InputLabel title="Beneficios" />
+                      </div>
+                      <div className="column">
+                        <InputLabel title="Asesores" />
+                      </div>
+                      <div className="column">
+                        <InputLabel title="Cronograma" />
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <div className="column">
-                  <InputLabel 
-                    title="Nombre del proyecto"/>
-                </div>
-                <div className="column">
-                  <InputLabel 
-                    title="Objetivo"/>
-                </div>
-                <div className="column">
-                  <InputLabel 
-                    title="Beneficios"/>
-                </div>
-                <div className="column">
-                  <InputLabel 
-                    title="Asesores"/>
-                </div>
-              </div>
-            </div>
-          </div>
-
+              );
+            })
+          ) : (
+            <></>
+          )}
         </ModalComponentGlobal>
       ) : (
         <></>
@@ -241,8 +242,10 @@ const Proyects = () => {
                               goToLink("/proyect-detail", item.id_proyect)
                             }
                           ></i>
-                          <i className="mdi mdi-pencil icon-blue"
-                            onClick={() => setShowModaledit(!showModaledit)}></i>
+                          <i
+                            className="mdi mdi-pencil icon-blue"
+                            onClick={() => setShowModaledit(!showModaledit)}
+                          ></i>
                           <i className="mdi mdi-trash-can-outline icon-blue"></i>
                         </td>
                       </tr>
