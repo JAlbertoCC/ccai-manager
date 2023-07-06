@@ -355,8 +355,8 @@ const showDataMaterials = async() =>{
             >
               <div>
                 <div
-                  className="columns container proyect-detail"
-                  style={{ marginTop: "30px", width: "600px" }}
+                  className="columns container proyect-detail column359"
+                  //style={{ marginTop: "30px", width: "600px" }}
                 >
                   <div className="column">
                     <div className="column">
@@ -364,7 +364,7 @@ const showDataMaterials = async() =>{
                     </div>
                   </div>
                 </div>
-                <div className="columns" style={{ width: "600px" }}>
+                <div className="columns column367">
                   <div className="column">
                     <div className="column">
                       <InputLabel title="Apellido Paterno" />
@@ -376,7 +376,7 @@ const showDataMaterials = async() =>{
                     </div>
                   </div>
                 </div>
-                <div className="columns" style={{ width: "600px" }}>
+                <div className="columns column367">
                   <div className="column">
                     <div className="column">
                       <InputLabel title="Matricula" />
@@ -397,7 +397,7 @@ const showDataMaterials = async() =>{
                     </div>
                   </div>
                 </div>
-                <div className="columns" style={{ width: "600px" }}>
+                <div className="columns column367">
                   <div className="column">
                     <div className="column">
                       <DropDown
@@ -465,8 +465,8 @@ const showDataMaterials = async() =>{
                 >
                   <div>
                      <div
-                        className="columns container proyect-detail"
-                        style={{ marginTop: "10px", width: "600px" }}
+                        className="columns container proyect-detail column468"
+                        //style={{ marginTop: "10px", width: "600px" }}
                         >
                           <div className="column">
                             <div className="column">
@@ -474,14 +474,14 @@ const showDataMaterials = async() =>{
                             </div>
                           </div>
                         </div>
-                        <div className="column" style={{width: "600px"}}>
+                        <div className="column column468">
                           <div className="column">
                             <div className="column">
                               <TextArea title="Descripción"/>
                             </div>
                           </div>
                         </div>
-                        <div className="columns" style={{width: "300px"}}>
+                        <div className="columns column484">
                           <div className="column">
                             <div className="column">
                               <InputLabel title="Cantidad"/>

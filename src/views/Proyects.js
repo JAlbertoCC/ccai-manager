@@ -66,13 +66,13 @@ const Proyects = () => {
           hdlOnclick={handleModalOpen}
           hdlOnClickRed={handleModalOpen}
         >
-          <div class="columns-project" style={{ marginTop: "30px" }}>
+          <div class="columns-project column94">
             <div class="column">
               <InputLabel title="Nombre del proyecto" label="" type="text" />
             </div>
           </div>
 
-          <div class="columns" style={{ marginTop: "30px", width: "600px" }}>
+          <div class="columns column77">
             <div class="column">
               <TextArea title="Justificación del proyecto" type="text" />
             </div>
@@ -91,13 +91,13 @@ const Proyects = () => {
             <div class="column is-6">
               <InputLabel label="" type="text" />
             </div>
-            <div class="column is-one-fifth" style={{ marginTop: "10px" }}>
-              <button
-                style={{
+            <div class="column is-one-fifth column100">
+              <button class="button101"
+                /*style={{
                   background: "transparent",
                   border: "none",
                   cursor: "pointer",
-                }}
+                }}*/
               >
                 <span className="icon-plus">
                   <Icon
@@ -116,13 +116,13 @@ const Proyects = () => {
             <div class="column is-6">
               <InputLabel type="text" />
             </div>
-            <div class="column is-one-fifth" style={{ marginRight: "20px" }}>
-              <button
-                style={{
+            <div class="column is-one-fifth column125">
+              <button class="button101"
+                /*style={{
                   background: "transparent",
                   border: "none",
                   cursor: "pointer",
-                }}
+                }}*/
               >
                 <span className="icon-minus">
                   <Icon path={mdiMinus} size={1} color="red" />
@@ -193,8 +193,8 @@ const Proyects = () => {
           extraClass="aling-right"
         />
         <ButtonIcon
-          style={{ width: "130px", marginTop: "10px" }}
-          class="ButtonIcon"
+          //style={{ width: "130px", marginTop: "10px" }}
+          class="ButtonIcon buttonI196"
           title="Agregar proyecto"
           icon="plus-circle"
           className="button button-new-project"
