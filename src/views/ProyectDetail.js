@@ -26,11 +26,24 @@ const ProyectDetail = () => {
 
 //parametros para mostarar informacion de proyect detail segun id 
 const [ projectDetail, setProjectDetail] = useState([]);
-const { consulProjectInfo } = useProjectDetail();;
-const params = useParams();
-console.log(params)
+const { consulProjectInfo } = useProjectDetail();
+const {params} = useParams();
+console.log(params) //body
 
+const [details, setDetails] = useState([]);
+const { consultDetails} = useProjectDetail();
 
+useEffect ( () =>{
+  showData();
+}, [])
+
+const showData = async() =>{
+  consultDetails().then(result => {
+       setDetails(result)      
+  }).catch(error => {
+        console.error(error); 
+ }); 
+}
 
 
   return (
