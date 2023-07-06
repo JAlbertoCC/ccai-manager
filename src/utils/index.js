@@ -72,8 +72,8 @@ export async function consultProjects () {
   return data
 }
 
-export async function consulProjectInfo(body) {
-  const request = buildGetRequest(`/list-proyectInfo/${body}`, 'GET')
+export async function consulProjectInfo(params) {
+  const request = buildGetRequest(`/list-proyectInfo/${params}`, 'GET')
   const response = await fetch(request)
 
   if (response.ok) {
