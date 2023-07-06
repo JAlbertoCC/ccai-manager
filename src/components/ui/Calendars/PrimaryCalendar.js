@@ -1,4 +1,4 @@
-import { render } from '@testing-library/react';
+
 import React from 'react';
 
 export const PrimaryCalendar = (props) => {
@@ -28,11 +28,10 @@ export const PrimaryCalendar = (props) => {
                     ))}
                 </div>
             </div>
-            <div className='calendar-days'>
-                {render()}
+           
             </div>
            </div>
         </div>
-       </div>
+       
     )
 }
