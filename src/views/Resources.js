@@ -214,6 +214,7 @@ const showDataMaterials = async() =>{
                         <th title="Matricula">Matricula.</th>
                         <th title="Sexo">Sexo.</th>
                         <th title="Carrera">Carrera.</th>
+                        <th></th>
                       </tr>
                     </thead>
                     <tbody>
@@ -227,8 +228,10 @@ const showDataMaterials = async() =>{
                         <td>{item.matricula }</td>
                         <td>{item.gender }</td>
                         <td>{item.name_career }</td>
-
-
+                        <td>
+                        <i className="mdi mdi-pencil icon-blue"></i>
+                        <i className="mdi mdi-trash-can-outline icon-blue"></i>
+                      </td>
                       </tr>
 
                     )
@@ -314,6 +317,7 @@ const showDataMaterials = async() =>{
                         <th title="Matricula">Matricula.</th>
                         <th title="Sexo">Sexo.</th>
                         <th title="Carrera">Carrera.</th>
+                        <th></th>
                       </tr>
                     </thead>
                     <tbody>
@@ -327,9 +331,11 @@ const showDataMaterials = async() =>{
                             <td>{item.matricula}</td>
                             <td>{item.gender}</td>
                             <td>{item.name_career}</td>
-                          
+                            <td>
+                              <i className="mdi mdi-pencil icon-blue"></i>
+                              <i className="mdi mdi-trash-can-outline icon-blue"></i>
+                            </td>
                         </tr>
-                       
                     )
                 } ): <></>}
                     </tbody>
@@ -413,7 +419,6 @@ const showDataMaterials = async() =>{
         )}
         {selectedTab === 3 && (
           <>
-
             {/*diseño tabla Materiales  */}
             <div className="column is-12">
               <CardComponent classExtra="opacity-card card-proyects">
@@ -425,6 +430,7 @@ const showDataMaterials = async() =>{
                         <th title="Nombre">Nombre.</th>
                         <th title="Descripcion">Descripcion.</th>
                         <th title="Cantidad">Cantidad.</th>
+                        <th></th>
                       </tr>
                     </thead>
                     <tbody>
@@ -436,15 +442,16 @@ const showDataMaterials = async() =>{
                         <td>{item.resource_name}</td>
                         <td>{item.observations}</td>
                         <td>{item.amount}</td>
+                        <td>
+                          <i className="mdi mdi-pencil icon-blue"></i>
+                          <i className="mdi mdi-trash-can-outline icon-blue"></i>
+                        </td>
                       </tr>
                         )
                       }) :<></>}
                     </tbody>
                   </table>
                 </div>
-
-
-
               </CardComponent>
             </div>
              <ModalComponentGlobal
@@ -483,14 +490,9 @@ const showDataMaterials = async() =>{
                         </div>
                   </div>
                  </ModalComponentGlobal> : <></>
-
-
-
-
           </>
         )}
       </div>
-      
   );
 };
 
