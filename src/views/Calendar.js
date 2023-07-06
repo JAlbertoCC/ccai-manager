@@ -7,12 +7,16 @@ import { PrimaryCalendar } from "../components/ui/Calendars/PrimaryCalendar";
 
 
 const Calendar = () => {
+  
 
-    const [startDate, setStartDate] = useState(new Date());
     return (
         <div className='container register-content'>
           <HeaderComponent title='Calendario CCAI'/>
-          <PrimaryCalendar/>
+          <PrimaryCalendar />
+            
+
+           
+          
         </div>
     )
 }
