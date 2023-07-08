@@ -14,6 +14,7 @@
     "@testing-library/user-event": "^13.5.0",
     "bulma": "^0.9.4",
     "bulma-calendar": "^6.1.19",
+    "date-fns": "^2.30.0",
     "font-awesome": "^4.7.0",
     "full-icu": "^1.5.0",
     "lottie-react": "^2.4.0",
