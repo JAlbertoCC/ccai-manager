@@ -2,22 +2,6 @@ import React from 'react';
 import { startOfMonth, getDay } from 'date-fns';
 
 
-<<<<<<< HEAD
-    return (
-        <div class="column is-4">
-       <div class= "calendar" >
-        <div class ="calendar-nav">
-            <div class = "calendar-nav-left">
-               <button class="button is-link">
-               <i class="fa fa-chevron-left"></i>
-      </button>
-            </div>
-            <div>Julio 2023</div>
-            <div class="calendar-nav-rigth">
-            <button class="button is-link">
-            <i class="fa fa-chevron-left"></i>
-           </button>
-=======
 export const PrimaryCalendar = (props) => {
   const { previousMonth, nextMonth, months, currentDate, daysOfWeek, daysInMonth } = props;
 
@@ -40,7 +24,6 @@ export const PrimaryCalendar = (props) => {
             </div>
             <div className="calendar-title">
               <h2>{months[currentDate.getMonth()]} {currentDate.getFullYear()}</h2>
->>>>>>> origin/feature/vista-calendar
             </div>
           </div>
           <div className="calendar-body">
