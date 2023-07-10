@@ -1,12 +1,5 @@
 import React, { useState } from "react";
-<<<<<<< HEAD
-//import DatePicker from "react-datepicker";
-
-//import "react-datepicker/dist/react-datepicker.css";
-import { HeaderComponent } from './../components/ui/Header/HeaderComponent'
-=======
 import { HeaderComponent } from './../components/ui/Header/HeaderComponent';
->>>>>>> origin/feature/vista-calendar
 import { PrimaryCalendar } from "../components/ui/Calendars/PrimaryCalendar";
 
 const Calendar = () => {
