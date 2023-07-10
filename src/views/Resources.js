@@ -697,9 +697,9 @@ const Resources = () => {
                         console.log(item);
                         return (
                           <tr key={index}>
-                            <td>{item.id_resurce}</td>
-                            <td>{item.resource_name}</td>
-                            <td>{item.observations}</td>
+                            <td>{item.id_resource}</td>
+                            <td>{item.resoruce_name}</td>
+                            <td>{item.observation}</td>
                             <td>{item.amount}</td>
                             <td>
                               <i className="mdi mdi-pencil icon-blue"

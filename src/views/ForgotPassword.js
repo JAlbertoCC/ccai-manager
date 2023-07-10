@@ -1,11 +1,40 @@
-import React from "react";
+import React, { useState } from "react";
 import { ButtonComponent } from "../components/ui/Buttons/PrimaryButton";
 import { CardComponent } from "../components/ui/Cards/CardComponent";
 import { InputLabel } from "../components/ui/Inputs/InputLabel";
 import { HeaderComponent } from "./../components/ui/Header/HeaderComponent";
+import { useForgotPassword } from "../hooks/useForgotPassword";
+
 
 
 const ForgotPassword = () => {
+  const { resetToken } =useForgotPassword(); // llamamons al hook
+  const { register, handleSubmit, formState: { errors, isDirty, isValid } } = useForm();
+  const onSubmit = data => console.log(data);
+  const [typeInputMatr, setTypeInputMatr] = useState("");
+  const [typeInpytEmail , setTypeInputEail] = useState("");
+// funcion constante que almacena en un body los datos del usario
+  const formForgot = () =>{
+    const body = {
+      matricula: typeInputMatr,
+      email: typeInpytEmail,
+    };
+    if (isDirty && isValid) sendFormForgot(body);
+  };
+
+  const sendFormForgot = (body) => {
+
+    resetToken(body).then((item) => {
+      if (item.status === 400) {
+        //retornar error de usar
+      } else {
+        localStorage.
+      }
+
+    })
+  } 
+
+
 
   return (
     <div className="section">
