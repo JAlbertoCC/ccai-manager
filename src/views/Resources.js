@@ -146,7 +146,7 @@ const Resources = () => {
 
 
 
-  useEffect(() => {}, []);
+  useEffect(() => { }, []);
   //
   return (
     <div className="section">
@@ -228,7 +228,7 @@ const Resources = () => {
             <div>
               <div
                 className="columns container proyect-detail column359"
-                //style={{ marginTop: "30px", width: "600px" }}
+              //style={{ marginTop: "30px", width: "600px" }}
               >
                 <div className="column">
                   <div className="column">
@@ -305,7 +305,7 @@ const Resources = () => {
             <div>
               <div
                 className="columns container proyect-detail column468"
-                //style={{ marginTop: "10px", width: "600px" }}
+              //style={{ marginTop: "10px", width: "600px" }}
               >
                 <div className="column">
                   <div className="column">
@@ -409,7 +409,7 @@ const Resources = () => {
             <div>
               <div
                 className="columns container proyect-detail column359"
-                //style={{ marginTop: "30px", width: "600px" }}
+              //style={{ marginTop: "30px", width: "600px" }}
               >
                 <div className="column">
                   <div className="column">
@@ -486,7 +486,7 @@ const Resources = () => {
             <div>
               <div
                 className="columns container proyect-detail column468"
-                //style={{ marginTop: "10px", width: "600px" }}
+              //style={{ marginTop: "10px", width: "600px" }}
               >
                 <div className="column">
                   <div className="column">
@@ -531,22 +531,22 @@ const Resources = () => {
 
       {selectedTab === 1 && (
         <>
-        {/*diseño botones  de agregar y generar reporte Maestros */}
-        <div className="column is-12">
-          <div>
-            <ButtonIcon
-              title="Generar reportes"
-              icon="file-download-outline"
-              extraClass="aling-right"
-            />
-            <ButtonIcon
-              title="Agregar"
-              icon="plus-circle"
-              extraClass="aling-right margin-right"
-              hdlOnClickEvent={() => setShowModal(!showModal)}
-            />
+          {/*diseño botones  de agregar y generar reporte Maestros */}
+          <div className="column is-12">
+            <div>
+              <ButtonIcon
+                title="Generar reportes"
+                icon="file-download-outline"
+                extraClass="aling-right"
+              />
+              <ButtonIcon
+                title="Agregar"
+                icon="plus-circle"
+                extraClass="aling-right margin-right"
+                hdlOnClickEvent={() => setShowModal(!showModal)}
+              />
+            </div>
           </div>
-        </div>
           {/*diseño tabla maestros  */}
           <div className="column is-12">
             <CardComponent classExtra="opacity-card card-proyects">
@@ -578,7 +578,7 @@ const Resources = () => {
                             <td>{item.name_career}</td>
                             <td>
                               <i className="mdi mdi-pencil icon-blue"
-                              onClick={() => setShowModalEdit(!showModalEdit)} ></i>
+                                onClick={() => setShowModalEdit(!showModalEdit)} ></i>
                               <i className="mdi mdi-trash-can-outline icon-blue"></i>
                             </td>
                           </tr>
@@ -596,22 +596,22 @@ const Resources = () => {
       )}
       {selectedTab === 2 && (
         <>
-        {/*diseño botones  de agregar y generar reporte*/}
-        <div className="column is-12">
-          <div>
-            <ButtonIcon
-              title="Generar reportes"
-              icon="file-download-outline"
-              extraClass="aling-right"
-            />
-            <ButtonIcon
-              title="Agregar"
-              icon="plus-circle"
-              extraClass="aling-right margin-right"
-              hdlOnClickEvent={() => setShowModal2(!showModal2)}
-            />
+          {/*diseño botones  de agregar y generar reporte*/}
+          <div className="column is-12">
+            <div>
+              <ButtonIcon
+                title="Generar reportes"
+                icon="file-download-outline"
+                extraClass="aling-right"
+              />
+              <ButtonIcon
+                title="Agregar"
+                icon="plus-circle"
+                extraClass="aling-right margin-right"
+                hdlOnClickEvent={() => setShowModal2(!showModal2)}
+              />
+            </div>
           </div>
-        </div>
           {/*diseño tabla alumnos  */}
           <div className="column is-12">
             <CardComponent classExtra="opacity-card card-proyects">
@@ -643,7 +643,7 @@ const Resources = () => {
                             <td>{item.name_career}</td>
                             <td>
                               <i className="mdi mdi-pencil icon-blue"
-                              onClick={() => setShowModal2Edit(!showModal2Edit)} ></i>
+                                onClick={() => setShowModal2Edit(!showModal2Edit)} ></i>
                               <i className="mdi mdi-trash-can-outline icon-blue"></i>
                             </td>
                           </tr>
@@ -661,22 +661,22 @@ const Resources = () => {
       )}
       {selectedTab === 3 && (
         <>
-        {/*diseño botones  de agregar y generar reporte*/}
-        <div className="column is-12">
-          <div>
-            <ButtonIcon
-              title="Generar reportes"
-              icon="file-download-outline"
-              extraClass="aling-right"
-            />
-            <ButtonIcon
-              title="Agregar"
-              icon="plus-circle"
-              extraClass="aling-right margin-right"
-              hdlOnClickEvent={() => setShowModal3(!showModal3)}
-            />
+          {/*diseño botones  de agregar y generar reporte*/}
+          <div className="column is-12">
+            <div>
+              <ButtonIcon
+                title="Generar reportes"
+                icon="file-download-outline"
+                extraClass="aling-right"
+              />
+              <ButtonIcon
+                title="Agregar"
+                icon="plus-circle"
+                extraClass="aling-right margin-right"
+                hdlOnClickEvent={() => setShowModal3(!showModal3)}
+              />
+            </div>
           </div>
-        </div>
           {/*diseño tabla Materiales  */}
           <div className="column is-12">
             <CardComponent classExtra="opacity-card card-proyects">
@@ -703,7 +703,7 @@ const Resources = () => {
                             <td>{item.amount}</td>
                             <td>
                               <i className="mdi mdi-pencil icon-blue"
-                              onClick={() => setShowModal3Edit(!showModal3Edit)} ></i>
+                                onClick={() => setShowModal3Edit(!showModal3Edit)} ></i>
                               <i className="mdi mdi-trash-can-outline icon-blue"></i>
                             </td>
                           </tr>
