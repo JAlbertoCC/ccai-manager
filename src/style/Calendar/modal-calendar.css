@@ -1,12 +1,11 @@
-.calendar{
-    border: 0.1rem solid #dbdbdb;
-    border-radius: 2px;
-    display: block;
-    width: 28rem;
-    text-align: center;
+.columns .is-three-quarters{
+  margin-top: 1%;
+  margin-bottom: 5%;
+  margin-left: 1%;
 }
 
 .calendar-nav{
+<<<<<<< HEAD
     -webkit-aling-items: center;
     align-items: center;
     background: #808080;
@@ -107,25 +106,75 @@
   outline: none;
   padding: .3rem;
   position: relative;
+=======
+  background: lightslategray;
+  padding: 1px;
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+  margin-right: 10%;
+  border: 1px solid #030303;
+  justify-content: space-between;  
+  align-items: center;
+  display:flex;
+}
+
+.calendar-title{
+  border-left: 1px solid #030303;
+  border-right: 1px solid #030303 ;
+  margin-right: 10%;
+  display: flex;
+  justify-content: center;
+  font-size: 1.5rem;
+  color:#030303; 
+>>>>>>> origin/feature/vista-calendar
   text-align: center;
-  text-decoration: none;
-  transition: all .2s ease;
-  vertical-align: middle;
-  white-space: nowrap;
-  width: 2.8rem;
-  }
+}
 
-  &.is-active{
-    background: #252525 ;
-    border-color: #252525;
-    color: #fff;
-  }
+.calendar-body{
+  margin-right: 10%;
+}
 
+.calendar-weekdays{
+  border-left:1px solid #030303 ;
+  border-right: 1px solid #030303;
+  display:flex;
+  padding: 2%;
+}
+
+.calendar-weekday {
+  flex-basis: 14.28%;
+  text-align: center;
+  font-weight: bold;
+  border-top: 3px solid #030303;
+  border-bottom: 3px solid #030303;
+  padding: 1px;
+}
+
+.calendar-days{
+  border-left:1px solid #030303 ;
+  border-right: 1px solid #030303;
+  border-bottom: 1px solid #030303;
+  display:flex;
+  flex-wrap: wrap;
+}
+
+.calendar-day{
+  flex-basis: calc(100% / 7);
+  text-align: center;
+  font-weight: bold;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+
+<<<<<<< HEAD
 &.is-disabled
   .date-item, .calendar-event{
     cursor: default;
     opacity: .25;
     pointer-events: none;
   }
+=======
+>>>>>>> origin/feature/vista-calendar
 
 
