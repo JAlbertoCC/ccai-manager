@@ -1,54 +1,16 @@
-<<<<<<< HEAD
-import React, { useState } from "react";
-=======
 import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form"
->>>>>>> parent of be122f9 (Revert "[MERGE]VERIFICAR SI LA VISTYA FORGOT PASSWORD CONSUME EL API")
 import { ButtonComponent } from "../components/ui/Buttons/PrimaryButton";
 import { CardComponent } from "../components/ui/Cards/CardComponent";
 import { InputLabel } from "../components/ui/Inputs/InputLabel";
 import { HeaderComponent } from "./../components/ui/Header/HeaderComponent";
-<<<<<<< HEAD
-import { useForgotPassword } from "../hooks/useForgotPassword";
-=======
 import axios from 'axios';
 import { useForgotPassword } from "../hooks/useForgotPassword";
 import { forgotPasswordTwo } from "../utils/auth";
->>>>>>> parent of be122f9 (Revert "[MERGE]VERIFICAR SI LA VISTYA FORGOT PASSWORD CONSUME EL API")
 
 
 
 const ForgotPassword = () => {
-<<<<<<< HEAD
-  const { resetToken } =useForgotPassword(); // llamamons al hook
-  const { register, handleSubmit, formState: { errors, isDirty, isValid } } = useForm();
-  const onSubmit = data => console.log(data);
-  const [typeInputMatr, setTypeInputMatr] = useState("");
-  const [typeInpytEmail , setTypeInputEail] = useState("");
-// funcion constante que almacena en un body los datos del usario
-  const formForgot = () =>{
-    const body = {
-      matricula: typeInputMatr,
-      email: typeInpytEmail,
-    };
-    if (isDirty && isValid) sendFormForgot(body);
-  };
-
-  const sendFormForgot = (body) => {
-
-    resetToken(body).then((item) => {
-      if (item.status === 400) {
-        //retornar error de usar
-      } else {
-        localStorage.
-      }
-
-    })
-  } 
-
-
-
-=======
   const { usersForgotPassword } = useForgotPassword();
 const { register,handleSubmit, formState: { errors, isDirty, isValid } } = useForm();
 const [typeEmail, setTypeInputMail] = useState("");
@@ -93,7 +55,6 @@ const registerValidationForm = (body) => {
 }
 
 //aqui.
->>>>>>> parent of be122f9 (Revert "[MERGE]VERIFICAR SI LA VISTYA FORGOT PASSWORD CONSUME EL API")
   return (
     <div className="section">
       <div className="columns column38">
@@ -114,11 +75,7 @@ const registerValidationForm = (body) => {
               </div>
               <button className="modal-close is-large" aria-label="close"></button>
             </div>
-<<<<<<< HEAD
-            <form onSubmit="{handleSubmit(onSubmit)}">
-=======
             <form onSubmit={handleSubmit(onSubmit)}> 
->>>>>>> parent of be122f9 (Revert "[MERGE]VERIFICAR SI LA VISTYA FORGOT PASSWORD CONSUME EL API")
               <CardComponent classExtra="opacity-card">
                 <figure className="image is-96x96 center-img">
                   <img src={require("./../assets/logo.png")} alt="" />
@@ -131,20 +88,6 @@ const registerValidationForm = (body) => {
                     typeInput="text"
                     textplace=""
                     isError=""
-<<<<<<< HEAD
-                    name="email"
-                    hdlOnChange=""
-                    errors=""
-                    register=""
-                    validationSchema={{
-                      required: "Este campo es obligratorio",
-                      pattern: {
-                        value: /^[A-Z0-9]+@TESE\.edu\.mx/i || /^[0-9]+@TESE\.edu\.mx/i,
-                        message: "Formato incorrecto. "
-                      }
-                    }}
-                  />
-=======
                     name="matricula" //aqui estaba email, lo cambie a matricula
                     hdlOnChange={(e) => setTypeInputMatricula(e.target.value)} 
                     errors=""
@@ -163,20 +106,10 @@ const registerValidationForm = (body) => {
                   />
                   
                   
->>>>>>> parent of be122f9 (Revert "[MERGE]VERIFICAR SI LA VISTYA FORGOT PASSWORD CONSUME EL API")
                   <InputLabel
                     title="Ingrese Email"
                     iconName="mdi-account"
                     typeInput="text"
-<<<<<<< HEAD
-                    textplace="example@gmail.com"
-                    isError=""
-                    name="email"
-                    hdlOnChange=""
-                    errors=""
-                    register=""
-                    validationSchema={{
-=======
                     hdlOnChange={(e) => setTypeInputMail(e.target.value)}
                     textplace="example@gmail.com"
                     isError=""
@@ -184,7 +117,6 @@ const registerValidationForm = (body) => {
                     errors=""
                     register={register}
                     validationSchema={{ 
->>>>>>> parent of be122f9 (Revert "[MERGE]VERIFICAR SI LA VISTYA FORGOT PASSWORD CONSUME EL API")
                       required: "Este campo es obligratorio",
                       pattern: {
                         value: /^[A-Z0-9]+@TESE\.edu\.mx/i || /^[0-9]+@TESE\.edu\.mx/i,
@@ -193,17 +125,6 @@ const registerValidationForm = (body) => {
                     }}
                   />
                 </div>
-<<<<<<< HEAD
-
-                <div className="buttons-content">
-                  <ButtonComponent
-                    buttonText="Enviar"
-                    hdlOnClickEvent=""
-                  />
-                  <ButtonComponent
-                    buttonText="Cancelar"
-                    hdlOnClickEvent=""
-=======
                 
                 <div className="buttons-content">
                   <ButtonComponent
@@ -214,7 +135,6 @@ const registerValidationForm = (body) => {
                   <ButtonComponent
                     buttonText="Cancelar"
                     
->>>>>>> parent of be122f9 (Revert "[MERGE]VERIFICAR SI LA VISTYA FORGOT PASSWORD CONSUME EL API")
                   />
                 </div>
               </CardComponent>
@@ -234,9 +154,6 @@ const registerValidationForm = (body) => {
   );
 };
 
-<<<<<<< HEAD
-=======
 
 
->>>>>>> parent of be122f9 (Revert "[MERGE]VERIFICAR SI LA VISTYA FORGOT PASSWORD CONSUME EL API")
 export default ForgotPassword;

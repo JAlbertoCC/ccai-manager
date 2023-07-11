@@ -10,15 +10,6 @@ export async function login (body) {
   return data;
 }
 
-<<<<<<< HEAD
-export async function ForgotPassword (body) {
-  const request = buildRequest('/reset-password', 'GET', body);
-  const response = await fetch(request);
-
-  const data = await response.json();
-  return data;
-}
-=======
 
 export async function forgotPasswordTwo (body) {
   const request = buildRequest('/forgot-password', 'POST', body);
@@ -36,4 +27,3 @@ export async function forgotPasswordTwo (body) {
 //   const data = response.ok ? await response.json() : undefined
 //   return data
 // }
->>>>>>> parent of be122f9 (Revert "[MERGE]VERIFICAR SI LA VISTYA FORGOT PASSWORD CONSUME EL API")
