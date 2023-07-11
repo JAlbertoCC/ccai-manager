@@ -15,8 +15,6 @@ import Users from "../views/Users"
 import Article from "../views/Article"
 import Proceedings from "../views/Proceedings"
 import InformationView from "../views/InformationView"
-import ForgotPassword from "../views/ForgotPassword"
-import RestorePassword from "../views/RestorePassword"
 
 export const AppRouter = () => {
   return (
@@ -60,16 +58,7 @@ export const AppRouter = () => {
         />
         <Route
           path="/informationView"
-          element={<InformationView/>}
-        />
-        <Route
-          path="/forgot-password"
-          element={<ForgotPassword/>}
-        />
-        <Route
-          path="/restore-password"
-          element={<RestorePassword/>}
-        />
+          element={<InformationView/>}/>
         {/* 👇️ only match this when no other routes match */}
         <Route
           path="*"
@@ -98,10 +87,6 @@ export const AppRouter = () => {
         <Route
           path="/resources"
           element = {<Resources />}
-        />
-        <Route
-          path="/restore-password"
-          element={<RestorePassword/>}
         />
       </Routes>
     </BrowserRouter>
