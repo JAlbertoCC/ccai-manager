@@ -112,7 +112,7 @@ const Login = () => {
             {errors?.pass && <p className="help is-danger" role="alert">{errors.pass?.message}</p>}
           <div className="text-actions">
             <div>
-              <a href="/forgot-password">¿Haz olvidado tu contraseña?</a>
+              <a href="/">¿Haz olvidado tu contraseña?</a>
             </div>
             <div>
               <a href="/">Fechas de servicio y residencias</a>

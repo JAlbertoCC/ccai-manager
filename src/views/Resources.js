@@ -144,9 +144,38 @@ const Resources = () => {
 
   const [typeInputGender, setTypeInputGender] = useState();
 
+  const handleModalOpen = () => {
+    setShowModal(!showModal);
+  };
 
+  const handleAddClick = () => {
+    // Lógica para agregar alumno o docente
+    setShowModal(false);
+  };
+  // funcion para cambiar el titulo de los modales de agregar dependiendo de la TAB donde se encuentre el usuario
+  const getTitle = () => {
+    if (selectedTab === 1) {
+      return "Nuevo Docente";
+    } else if (selectedTab === 2) {
+      return "Nuevo Alumno";
+    } else if (selectedTab === 3) {
+      return "Nuevo Material";
+    }
+    return "";
+  };
 
-  useEffect(() => { }, []);
+  const getButtonText = () => {
+    if (selectedTab === 1) {
+      return "Agregar Docente";
+    } else if (selectedTab === 2) {
+      return "Agregar Alumno";
+    } else if (selectedTab === 3) {
+      return "Agregar Material";
+    }
+    return "";
+  };
+
+  useEffect(() => {}, []);
   //
   return (
     <div className="section">
@@ -155,13 +184,13 @@ const Resources = () => {
         {/* Componente del Modal  para agregar docentes */}
         {showModal ? (
           <ModalComponentGlobal
-            title="Agregar Nuevo Docente"
-            isActive={showModal}
-            hdlOnclick={() => setShowModal(!showModal)}
-            titleGreen="Agregar"
+            title=""
+            isActive=""
+            hdlOnclick=""
+            titleGreen=""
             hdlOnClickGreen=""
             titleRed="Cancelar"
-            hdlOnClickRed={() => setShowModal(!showModal)}
+            hdlOnClickRed=""
           >
             <div className="columns-margen">
               <div className="columns ">
@@ -217,18 +246,18 @@ const Resources = () => {
         {showModal2 ? (
           /* Componente del Modal para agregar alumnos  */
           <ModalComponentGlobal
-            title="Agregar Nuevos Alumnos"
-            isActive={showModal2}
-            hdlOnclick={() => setShowModal2(!showModal2)}
-            titleGreen="Agregar"
+            title=""
+            isActive=""
+            hdlOnclick=""
+            titleGreen=""
             hdlOnClickGreen=""
             titleRed="Cancelar"
-            hdlOnClickRed={() => setShowModal2(!showModal2)}
+            hdlOnClickRed=""
           >
             <div>
               <div
                 className="columns container proyect-detail column359"
-              //style={{ marginTop: "30px", width: "600px" }}
+                //style={{ marginTop: "30px", width: "600px" }}
               >
                 <div className="column">
                   <div className="column">
@@ -294,18 +323,18 @@ const Resources = () => {
         {showModal3 ? (
           //Diseño modal para agregar materiales
           <ModalComponentGlobal
-            title="Agregar Nuevo Material"
-            isActive={showModal3}
-            hdlOnclick={() => setShowModal3(!showModal3)}
-            titleGreen="Agregar"
+            title=""
+            isActive=""
+            hdlOnclick=""
+            titleGreen=""
             hdlOnClickGreen=""
             titleRed="Cancelar"
-            hdlOnClickRed={() => setShowModal3(!showModal3)}
+            hdlOnClickRed=""
           >
             <div>
               <div
                 className="columns container proyect-detail column468"
-              //style={{ marginTop: "10px", width: "600px" }}
+                //style={{ marginTop: "10px", width: "600px" }}
               >
                 <div className="column">
                   <div className="column">
@@ -334,15 +363,14 @@ const Resources = () => {
         )}
         {/* Diseño de modales para editar las tablas DOCENTE ALUMNO y MATERIALES */}
         {showModalEdit ? (
-          /* Diseño de modal para editar Docentes */
           <ModalComponentGlobal
-            title="Editar Docente"
-            isActive={showModalEdit}
-            hdlOnclick={() => setShowModalEdit(!showModalEdit)}
+            title=""
+            isActive=""
+            hdlOnclick=""
             titleGreen=""
             hdlOnClickGreen=""
             titleRed="Cancelar"
-            hdlOnClickRed={() => setShowModalEdit(!showModalEdit)}
+            hdlOnClickRed=""
           >
             <div className="columns-margen">
               <div className="columns ">
@@ -398,18 +426,18 @@ const Resources = () => {
         {showModal2Edit ? (
           /* Componente del Modal para agregar alumnos  */
           <ModalComponentGlobal
-            title="Editar Alumno"
-            isActive={showModal2Edit}
-            hdlOnclick={() => setShowModal2Edit(!showModal2Edit)}
+            title=""
+            isActive=""
+            hdlOnclick=""
             titleGreen=""
             hdlOnClickGreen=""
             titleRed="Cancelar"
-            hdlOnClickRed={() => setShowModal2Edit(!showModal2Edit)}
+            hdlOnClickRed=""
           >
             <div>
               <div
                 className="columns container proyect-detail column359"
-              //style={{ marginTop: "30px", width: "600px" }}
+                //style={{ marginTop: "30px", width: "600px" }}
               >
                 <div className="column">
                   <div className="column">
@@ -475,18 +503,18 @@ const Resources = () => {
         {showModal3Edit ? (
           //Diseño modal para agregar materiales
           <ModalComponentGlobal
-            title="Editar Material"
-            isActive={showModal3Edit}
-            hdlOnclick={() => setShowModal3Edit(!showModal3Edit)}
-            titleGreen=""
-            hdlOnClickGreen=""
+            title={getTitle()}
+            isActive={showModal}
+            hdlOnclick={handleModalOpen}
+            titleGreen={getButtonText()}
+            hdlOnClickGreen={handleAddClick}
             titleRed="Cancelar"
-            hdlOnClickRed={() => setShowModal3Edit(!showModal3Edit)}
+            hdlOnClickRed={handleModalOpen}
           >
             <div>
               <div
                 className="columns container proyect-detail column468"
-              //style={{ marginTop: "10px", width: "600px" }}
+                //style={{ marginTop: "10px", width: "600px" }}
               >
                 <div className="column">
                   <div className="column">
@@ -527,26 +555,27 @@ const Resources = () => {
             selectedTab={selectedTab}
           />
         </div>
+
+        {/*diseño botones  de agregar y generar reporte*/}
+        <div className="column is-12">
+          <div>
+            <ButtonIcon
+              title="Generar reportes"
+              icon="file-download-outline"
+              extraClass="aling-right"
+            />
+            <ButtonIcon
+              title="Agregar"
+              icon="plus-circle"
+              extraClass="aling-right margin-right"
+              hdlOnClickEvent={() => setShowModal(!showModal)}
+            />
+          </div>
+        </div>
       </div>
 
       {selectedTab === 1 && (
         <>
-          {/*diseño botones  de agregar y generar reporte Maestros */}
-          <div className="column is-12">
-            <div>
-              <ButtonIcon
-                title="Generar reportes"
-                icon="file-download-outline"
-                extraClass="aling-right"
-              />
-              <ButtonIcon
-                title="Agregar"
-                icon="plus-circle"
-                extraClass="aling-right margin-right"
-                hdlOnClickEvent={() => setShowModal(!showModal)}
-              />
-            </div>
-          </div>
           {/*diseño tabla maestros  */}
           <div className="column is-12">
             <CardComponent classExtra="opacity-card card-proyects">
@@ -577,8 +606,7 @@ const Resources = () => {
                             <td>{item.gender}</td>
                             <td>{item.name_career}</td>
                             <td>
-                              <i className="mdi mdi-pencil icon-blue"
-                                onClick={() => setShowModalEdit(!showModalEdit)} ></i>
+                              <i className="mdi mdi-pencil icon-blue"></i>
                               <i className="mdi mdi-trash-can-outline icon-blue"></i>
                             </td>
                           </tr>
@@ -596,22 +624,6 @@ const Resources = () => {
       )}
       {selectedTab === 2 && (
         <>
-          {/*diseño botones  de agregar y generar reporte*/}
-          <div className="column is-12">
-            <div>
-              <ButtonIcon
-                title="Generar reportes"
-                icon="file-download-outline"
-                extraClass="aling-right"
-              />
-              <ButtonIcon
-                title="Agregar"
-                icon="plus-circle"
-                extraClass="aling-right margin-right"
-                hdlOnClickEvent={() => setShowModal2(!showModal2)}
-              />
-            </div>
-          </div>
           {/*diseño tabla alumnos  */}
           <div className="column is-12">
             <CardComponent classExtra="opacity-card card-proyects">
@@ -642,8 +654,7 @@ const Resources = () => {
                             <td>{item.gender}</td>
                             <td>{item.name_career}</td>
                             <td>
-                              <i className="mdi mdi-pencil icon-blue"
-                                onClick={() => setShowModal2Edit(!showModal2Edit)} ></i>
+                              <i className="mdi mdi-pencil icon-blue"></i>
                               <i className="mdi mdi-trash-can-outline icon-blue"></i>
                             </td>
                           </tr>
@@ -661,22 +672,6 @@ const Resources = () => {
       )}
       {selectedTab === 3 && (
         <>
-          {/*diseño botones  de agregar y generar reporte*/}
-          <div className="column is-12">
-            <div>
-              <ButtonIcon
-                title="Generar reportes"
-                icon="file-download-outline"
-                extraClass="aling-right"
-              />
-              <ButtonIcon
-                title="Agregar"
-                icon="plus-circle"
-                extraClass="aling-right margin-right"
-                hdlOnClickEvent={() => setShowModal3(!showModal3)}
-              />
-            </div>
-          </div>
           {/*diseño tabla Materiales  */}
           <div className="column is-12">
             <CardComponent classExtra="opacity-card card-proyects">
@@ -702,8 +697,7 @@ const Resources = () => {
                             <td>{item.observation}</td>
                             <td>{item.amount}</td>
                             <td>
-                              <i className="mdi mdi-pencil icon-blue"
-                                onClick={() => setShowModal3Edit(!showModal3Edit)} ></i>
+                              <i className="mdi mdi-pencil icon-blue"></i>
                               <i className="mdi mdi-trash-can-outline icon-blue"></i>
                             </td>
                           </tr>
