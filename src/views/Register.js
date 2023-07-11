@@ -114,10 +114,9 @@ const Register = () => {
       mail: typeInputMail,
       password: typeInputPassword,
     };
-    console.log(body);
+    
     if (isDirty && isValid) registerNewUser(body);
   }
-  
 
   const registerNewUser = (body) => {
     checkingInternalRegister(body)

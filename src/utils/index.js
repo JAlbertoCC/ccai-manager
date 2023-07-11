@@ -8,7 +8,6 @@ export async function checkingInternalUser (matricula) {
   return data
 }
 
-
 export async function consultingStudents () {
   const request = buildGetRequest('/consulting-students','GET')
   const response = await fetch(request)
@@ -32,16 +31,6 @@ export async function checkingInternalRegister (body) {
   const data = await response.json()
   return data
 }
-
-/*export async function checkingPassword (body) {
-  const request = buildRequest('/register-users', 'POST', body)
-  const response = await fetch(request)
-
-  const data = await response.json()
-  return data
-}*/
-
-
 
 export async function consultService(){
   const request= buildGetRequest('/list-sex','GET')
