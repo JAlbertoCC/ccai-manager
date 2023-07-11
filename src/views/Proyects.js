@@ -38,18 +38,10 @@ const Proyects = () => {
   };
   //muestra y cierra el modal para agregar
   const [showModal, setShowModal] = useState(false);
-  const handleModalOpen = () => {
-    setShowModal(!showModal);
-  };
-  //muestra y cerrar el modal para editar la vista
-  const [showModaledit, setShowModaledit] = useState(false);
-  const handleModalAddClose = () => {
-    setShowModaledit(!showModaledit);
-  };
 
-  const handleAddClick = () => {
-    setShowModal(false);
-  };
+  //muestra y cierrar el modal para editar la vista
+  const [showModaledit, setShowModaledit] = useState(false);
+
 
   useEffect(() => {}, []);
 
@@ -59,12 +51,13 @@ const Proyects = () => {
       {/* componente de modal para agregar */}
       {showModal ? (
         <ModalComponentGlobal
-          titleGreen="Agregar Proyecto" //added title to green botton
-          titleRed="Cancelar" //added title to red botton
-          class="opacity-card"
-          isActive="false"
-          hdlOnclick={handleModalOpen}
-          hdlOnClickRed={handleModalOpen}
+          title="Agregar Proyecto"
+          isActive={showModal}
+          hdlOnclick={() => setShowModal(!showModal)}
+          titleGreen="Agregar"
+          hdlOnClickGreen=""
+          titleRed="Cancelar"
+          hdlOnClickRed={() => setShowModal(!showModal)}
         >
           <div class="columns-project column94">
             <div class="column">
@@ -139,11 +132,11 @@ const Proyects = () => {
         <ModalComponentGlobal
           title="Editar Informacion del proyecto"
           isActive={showModaledit}
-          hdlOnclick={handleModalAddClose}
-          titleGreen="Guardar"
+          hdlOnclick={() => setShowModaledit(!showModaledit)}
+          titleGreen="Agregar"
           hdlOnClickGreen=""
           titleRed="Cancelar"
-          hdlOnClickRed={handleModalAddClose}
+          hdlOnClickRed={() => setShowModaledit(!showModaledit)}
         >
           {/*Mapeo para insertar datos en el modal edit */}
           {projects ? (
