@@ -7,7 +7,7 @@ const Article = () => {
     const [startDate, setStartDate] = useState(new Date());
     return (
         <div className='container register-content'>
-          <HeaderComponent title='Artículos CCAI'/>
+          <HeaderComponent title='Araticulos CCAI'/>
         </div>
     )
 }
