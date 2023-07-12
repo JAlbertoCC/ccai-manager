@@ -24,12 +24,9 @@
 
 @import url('./Select/select.css');
 
-<<<<<<< HEAD
-=======
 @import url('./Calendar/modal-calendar.css');
 
-@import url('./Calendar/modal-calendar.css');
->>>>>>> origin/feature/vista-calendar
+/* @import url('./Calendar/modal-calendar.css'); */
 
 @font-face {
   font-family: 'Poppins';
