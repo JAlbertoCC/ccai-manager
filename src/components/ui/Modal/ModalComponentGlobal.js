@@ -34,7 +34,7 @@ export const ModalComponentGlobal = (props) => {
 
             <div>{children}</div>
 
-            <div class="button-style-modal">
+            <div className="button-style-modal">
               <GreenButton
                 aria-label="close"
                 onClick={hdlOnClickGreen}

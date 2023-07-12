@@ -222,10 +222,10 @@ const Proyects = () => {
                     console.log(item);
                     return (
                       <tr key={index}>
-                        <td>{item.id_proyect}</td>
-                        <td>{item.proyect_name}</td>
-                        <td>{item.objective}</td>
-                        <td>{item.benefit}</td>
+                        <td>{item.id_project}</td>
+                        <td>{item.project_name}</td>
+                        <td>{item.objectives}</td>
+                        <td>{item.benefits}</td>
                         <td>{item.name_adviser}</td>
                         <td>Lista de actividades.</td>
                         <td>
