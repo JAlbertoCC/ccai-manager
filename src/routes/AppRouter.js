@@ -17,6 +17,7 @@ import Proceedings from "../views/Proceedings"
 import InformationView from "../views/InformationView"
 import ForgotPassword from "../views/ForgotPassword"
 import RestorePassword from "../views/RestorePassword"
+import ApplicationStudent from "../views/ApplicationStudent"
 
 export const AppRouter = () => {
   return (
@@ -69,6 +70,10 @@ export const AppRouter = () => {
         <Route
           path="/restore-password"
           element={<RestorePassword/>}
+        />
+        <Route
+          path="/application-student"
+          element={<ApplicationStudent/>}
         />
         {/* 👇️ only match this when no other routes match */}
         <Route

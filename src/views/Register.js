@@ -36,6 +36,8 @@ const Register = () => {
   const [modalMessage, setModalMessage] = useState("");
   const [career, setCareer] = useState([]);
   const { consultCareer } = useCareer();
+
+  // REVISAR SI LAS LISTAS SON NECESARIAS O SOLO CONSUMIR LAS VISTA /api/list-sex, /api/list-carrer, /api/list-service
   const [genderList] = useState([
     {
       id: "M",
