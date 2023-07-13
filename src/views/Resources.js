@@ -145,7 +145,6 @@ const Resources = () => {
   const [typeInputGender, setTypeInputGender] = useState();
 
 
-
   useEffect(() => { }, []);
   //
   return (
@@ -298,7 +297,7 @@ const Resources = () => {
             isActive={showModal3}
             hdlOnclick={() => setShowModal3(!showModal3)}
             titleGreen="Agregar"
-            hdlOnClickGreen=""
+            hdlOnClickGreen= ""
             titleRed="Cancelar"
             hdlOnClickRed={() => setShowModal3(!showModal3)}
           >
@@ -569,13 +568,13 @@ const Resources = () => {
                       docent.map((item, index) => {
                         return (
                           <tr key={index}>
-                            <td>{item.id} </td>
-                            <td>{item.name}</td>
+                            <td>{item.id_adviser} </td>
+                            <td>{item.name_adviser}</td>
                             <td>{item.first_name}</td>
                             <td>{item.second_name}</td>
                             <td>{item.matricula}</td>
                             <td>{item.gender}</td>
-                            <td>{item.name_career}</td>
+                            <td>{item.division}</td>
                             <td>
                               <i className="mdi mdi-pencil icon-blue"
                                 onClick={() => setShowModalEdit(!showModalEdit)} ></i>
