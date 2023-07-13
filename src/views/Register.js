@@ -103,15 +103,15 @@ const Register = () => {
 
     const body = {
       name: typeInputName,
-      lastnamef: typeInputLastNameF,
-      lastnamem: typeInputLastNameM,
-      adress: typeInputAdress,
-      phone: typeInputPhone,
+      first_name: typeInputLastNameF,
+      second_name: typeInputLastNameM,
+      address: typeInputAdress,
+      cell_phoneNumber: typeInputPhone,
       gender: typeInputGender,
       matricula: typeInputIdentification,
-      career: typeInputCareer,
-      service: typeInputService,
-      mail: typeInputMail,
+      carrer: typeInputCareer,
+      service_provide: typeInputService,
+      institutional_emailEs: typeInputMail,
       password: typeInputPassword,
     };
     console.log(body);
