@@ -25,27 +25,22 @@ const changeFormPassword = () => {
 
   const body = {
     matricula: typeMatricula,
-    email: typeEmail
+    institutional_email: typeEmail
   };
-  console.log(body);
+
   if (isDirty && isValid) registerValidationForm(body);
-}
+};
 
 
 const registerValidationForm = (body) => {
-  console.log(body);
+  setShowError(false);
   usersForgotPassword(body)
     .then((item) => {
-      console.log(item);
-      if (item.status === 400) {
+      if (item.status === 400 || item.status === 404) {
         setShowError(true);
         setErrorMessage(item.message);
-      } else if (item.status === 404){
-        setShowError(true);
-            setErrorMessage(item.message);
       } else {
-        localStorage.resetToken = item.resetToken;
-        console.log(item)
+        localStorage.accessToken = item.accessToken;
       }
     })
     .catch((error) => {
@@ -53,6 +48,7 @@ const registerValidationForm = (body) => {
       console.log("error", error.message);
     });
 }
+
 
 //aqui.
   return (
@@ -113,7 +109,7 @@ const registerValidationForm = (body) => {
                     hdlOnChange={(e) => setTypeInputMail(e.target.value)}
                     textplace="example@gmail.com"
                     isError=""
-                    name="email"//modifique aqui, estaba vacio
+                    name="institutional_email"//modifique aqui, estaba vacio
                     errors=""
                     register={register}
                     validationSchema={{ 
