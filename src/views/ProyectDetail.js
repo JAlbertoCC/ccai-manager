@@ -7,6 +7,7 @@ import { InputLabel } from "../components/ui/Inputs/InputLabel";
 import { ModalComponentGlobal } from "./../components/ui/Modal/ModalComponentGlobal";
 import { useParams } from "react-router-dom";
 import { useProjectDetail } from "../hooks/useProjectDetail";
+import { useUsers } from "./../hooks/useUsers";
 
 import "../style/global-styles.css";
 
@@ -19,19 +20,46 @@ const ProyectDetail = () => {
   const [showMaterialsInformation, setShowMaterialsInformation] =
     useState(false);
   const [showAdviserInformation, setShowAdviserInformation] = useState(false);
-
-  // hook muestra y oculta vista informacion de proyecto
-  const [showView, setShowView] = useState(false);
+  const [users, setUsers] = useState([]); //hook para mostrar lista de usuarios
+  const { consultingStudents } = useUsers(); // llama al hook
+  const [showView, setShowView] = useState(false);// hook muestra y oculta vista informacion de proyecto
+  
 
   const hdlOnClickEvent = () => {
     setShowView(!showView);
   };
-
   //parametros para mostarar informacion de proyect detail segun id
   const [projectDetail, setProjectDetail] = useState([]);
   const { consulProjectInfo } = useProjectDetail();
   const params = useParams();
   console.log(params);
+
+  //funcion para llamar los datos de usuarios (alumnos) para el modal de agregar integrante 
+  useEffect(() => {
+    showData();
+  }, []);
+
+  const showData = async () => {
+    consultingStudents()
+      .then((result) => {
+        setUsers(result);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+  //funcion para mandar en un body con matricula del usuario (alumno) y id del proyecto 
+  const addMember = (matricula, projectId) => {
+    const body = {
+      matricula,
+      projectId
+    };
+    console.log(body);
+  };
+
+  const addNewMember = (body) => {
+    
+  }
 
   return (
     <div className="section">
@@ -49,35 +77,41 @@ const ProyectDetail = () => {
               titleRed="Cancelar"
               hdlOnClickRed={() => setShowModal(!showModal)}
             >
-              <div class="columns column5157">
-                <div class="column">
-                  <InputLabel title="ID" label="" type="text" />
+              {/*diseño tabla  */}
+              <div className="column is-12">
+                <CardComponent classExtra="opacity-card card-proyects">
+                  <div>
+                    <table className="table table-proyect is-fullwidth is-striped">
+                      <thead>
+                        <tr>
+                          <th title="Nombre">Nombre.</th>
+                          <th title="Matricula">Matricula.</th>
+                          <th title="Carrera">Carrera.</th>
+                          <th></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {users ? (
+                          users.map((item, index) => {
+                            return (
+                              <tr key={index}>
+                                <td>{item.name}</td>
+                                <td>{item.matricula}</td>
+                                <td>{item.name_career}</td>
+                                <td>
+                                  <i className="mdi mdi-account-group icon-blue"></i>
+                                </td>
+                              </tr>
+                            );
+                          })
+                        ) : (
+                          <></>
+                        )}
+                      </tbody>
+                    </table>
+                  </div>
+                </CardComponent>
                 </div>
-              </div>
-
-              <div class="columns column5157">
-                <div class="column">
-                  <InputLabel title="Matricula" label="" type="text" />
-                </div>
-              </div>
-
-              <div class="columns columnsProyectD " >
-                <div class="column">
-                  <InputLabel title="Nombre" label="" type="text" />
-                </div>
-              </div>
-
-              <div class="columns columnsProyectD">
-                <div class="column">
-                  <InputLabel title="Servicio a prestar" label="" type="text" />
-                </div>
-              </div>
-
-              <div class="columns columnsProyectD"  >
-                <div class="column">
-                  <InputLabel title="Carrera" label="" type="text" />
-                </div>
-              </div>
             </ModalComponentGlobal>
           ) : (
             <></>

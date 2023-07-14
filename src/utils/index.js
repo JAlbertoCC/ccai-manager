@@ -94,3 +94,18 @@ export async function consulProjectInfo(params) {
     throw new Error('Error al obtener la información del proyecto')
   }
 }
+
+
+// ______________________________________Procedimientos para agregar datos
+// agrega los integrantes de los proyectos
+export async function addMembersProject(body) {
+  const request = buildGetRequest(`/add-member-proyect`, 'POST', body)
+  const response = await fetch(request)
+
+  if (response.ok) {
+    const data = await response.json()
+    return data
+  } else {
+    throw new Error('Error al obtener la información del usuario')
+  }
+}
