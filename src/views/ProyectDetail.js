@@ -58,7 +58,7 @@ const ProyectDetail = () => {
   };
 
   const addNewMember = (body) => {
-    
+       
   }
 
   return (
