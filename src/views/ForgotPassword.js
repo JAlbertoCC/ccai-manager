@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { ButtonComponent } from "../components/ui/Buttons/PrimaryButton";
 import { CardComponent } from "../components/ui/Cards/CardComponent";
 import { InputLabel } from "../components/ui/Inputs/InputLabel";
@@ -6,6 +6,47 @@ import { HeaderComponent } from "./../components/ui/Header/HeaderComponent";
 import { useNavigate } from "react-router-dom";
 
 const ForgotPassword = () => {
+
+
+  const [typeInputMat, setTypeInputMat] = useState("");
+  const [typeInputEmail, setTypeInputPassword] = useState("password");
+  const { register, handleSubmit, formState: { errors, isDirty, isValid } } = useForm();
+  const [showError, setShowError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+
+  const goToLink = (uri) => {
+    navigate(uri);
+  };
+
+  const enterPass = () => {
+
+      const body = {
+        matricula: typeInputMat,
+        email: typeInputEmail,
+      };
+
+      if (isDirty && isValid) enterNewUser(body);
+    }
+
+    const enterNewUser = (body) => {
+      setShowError(false);
+  
+      userLogin(body) ///se hace con la carpeta forgot password
+       .then((item) => { 
+          if (item.status === 400) {
+            setShowError(true);
+            setErrorMessage(item.message);
+          } else {
+            localStorage.accessToken = item.accessToken;
+            console.log(item.accessToken);
+            goToLink('home');
+          }
+        })
+        .catch((error) => {
+          setShowError(true);
+          setErrorMessage(error.message);
+        });
+  }
 
   const navigate = useNavigate();
   const goToLinkRestore = (uri, projectId) => {
@@ -46,9 +87,9 @@ const ForgotPassword = () => {
                     textplace=""
                     isError=""
                     name="email"
-                    hdlOnChange=""
                     errors=""
                     register=""
+                    hdlOnChange={(e) => setTypeInputMat(e.target.value)}
                     validationSchema={{
                       required: "Este campo es obligratorio",
                       pattern: {
@@ -64,7 +105,7 @@ const ForgotPassword = () => {
                     textplace="example@gmail.com"
                     isError=""
                     name="email"
-                    hdlOnChange=""
+                    hdlOnChange={(e) => setTypeInputEmail(e.target.value)}
                     errors=""
                     register=""
                     validationSchema={{
