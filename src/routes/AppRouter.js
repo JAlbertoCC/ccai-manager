@@ -67,7 +67,7 @@ export const AppRouter = () => {
           element={<ForgotPassword/>}
         />
         <Route
-          path="/restore-password"
+          path="/restore-password/:Id"
           element={<RestorePassword/>}
         />
         {/* 👇️ only match this when no other routes match */}

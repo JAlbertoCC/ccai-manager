@@ -1,10 +1,32 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { InputLabel } from "../components/ui/Inputs/InputLabel";
 import { ButtonComponent } from "../components/ui/Buttons/PrimaryButton";
 import { CardComponent } from "../components/ui/Cards/CardComponent";
 import { HeaderComponent } from "./../components/ui/Header/HeaderComponent";
+import { useParams } from "react-router-dom";
+import { useRestorePassword } from "../hooks/useRestorePassword";
 
 const RestorePassword = () => {
+
+    const [detailPass, setDetailPass] = useState([]);
+    const { restorePass } = useRestorePassword();
+    const params = useParams();
+    console.log(params);
+
+    
+  useEffect(() => {
+    showData();
+  }, []);
+
+  const showData = async () => {
+    restorePass()
+      .then((result) => {
+        setDetailPass(result);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
 
     return (
         <div className="section">

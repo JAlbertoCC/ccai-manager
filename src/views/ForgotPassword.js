@@ -3,9 +3,14 @@ import { ButtonComponent } from "../components/ui/Buttons/PrimaryButton";
 import { CardComponent } from "../components/ui/Cards/CardComponent";
 import { InputLabel } from "../components/ui/Inputs/InputLabel";
 import { HeaderComponent } from "./../components/ui/Header/HeaderComponent";
-
+import { useNavigate } from "react-router-dom";
 
 const ForgotPassword = () => {
+
+  const navigate = useNavigate();
+  const goToLinkRestore = (uri, projectId) => {
+    navigate(`${uri}/${projectId}`);
+  };
 
   return (
     <div className="section">
@@ -75,7 +80,8 @@ const ForgotPassword = () => {
                 <div className="buttons-content">
                   <ButtonComponent
                     buttonText="Enviar"
-                    hdlOnClickEvent=""
+                    hdlOnClickEvent={() =>
+                      goToLinkRestore("/restore-password")}
                   />
                   <ButtonComponent
                     buttonText="Cancelar"
