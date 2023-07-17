@@ -33,12 +33,22 @@ const ProyectDetail = () => {
   const { consulProjectInfo } = useProjectDetail();
   const params = useParams();
   console.log(params);
+// funciones para mandar el ID del rpoyecto en las consultas
+  const infoProjectDetail = (projectId) => {
+    const body = {
+      projectId
+    };
+    details(body);
+  };
+  const details = (body) => {
+    
+  }
+
 
   //funcion para llamar los datos de usuarios (alumnos) para el modal de agregar integrante 
   useEffect(() => {
     showData();
   }, []);
-
   const showData = async () => {
     consultingStudents()
       .then((result) => {
@@ -48,18 +58,7 @@ const ProyectDetail = () => {
         console.error(error);
       });
   };
-  //funcion para mandar en un body con matricula del usuario (alumno) y id del proyecto 
-  const addMember = (matricula, projectId) => {
-    const body = {
-      matricula,
-      projectId
-    };
-    console.log(body);
-  };
 
-  const addNewMember = (body) => {
-       
-  }
 
   return (
     <div className="section">
