@@ -22,6 +22,8 @@ const Resources = () => {
 
   useEffect(() => {
     showData();
+    showDataMaterials();
+    showDocent();
   }, []);
   const showData = async () => {
     consultingStudentsData()
@@ -32,10 +34,6 @@ const Resources = () => {
         console.error(error);
       });
   };
-
-  useEffect(() => {
-    showDataMaterials();
-  }, []);
   const showDataMaterials = async () => {
     consultMaterials()
       .then((result) => {
@@ -45,10 +43,6 @@ const Resources = () => {
         console.error(error);
       });
   };
-
-  useEffect(() => {
-    showDocent();
-  }, []);
   const showDocent = async () => {
     consultTeacher()
       .then((result) => {

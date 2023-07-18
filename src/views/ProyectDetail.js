@@ -22,34 +22,37 @@ const ProyectDetail = () => {
   const [showAdviserInformation, setShowAdviserInformation] = useState(false);
   const [users, setUsers] = useState([]); //hook para mostrar lista de usuarios
   const { consultingStudents } = useUsers(); // llama al hook
-  const [showView, setShowView] = useState(false);// hook muestra y oculta vista informacion de proyecto
-  
+  const [showView, setShowView] = useState(false); // hook muestra y oculta vista informacion de proyecto
 
   const hdlOnClickEvent = () => {
     setShowView(!showView);
   };
   //parametros para mostarar informacion de proyect detail segun id
-  const [projectDetail, setProjectDetail] = useState([]);
-  const { consulProjectInfo } = useProjectDetail();
   const params = useParams();
-  console.log(params);
-// funciones para mandar el ID del rpoyecto en las consultas
-  const infoProjectDetail = (projectId) => {
-    const body = {
-      projectId
-    };
-    details(body);
-  };
-  const details = (body) => {
-    
-  }
 
+  const [projectDetail, setProjectDetail] = useState([]);
+  const { listProjectInfo } = useProjectDetail();
 
-  //funcion para llamar los datos de usuarios (alumnos) para el modal de agregar integrante 
+  // funciones para mandar el ID del rpoyecto en las consultas
   useEffect(() => {
-    showData();
+    //showData();
+    details();
   }, []);
-  const showData = async () => {
+  //funcion para llamar los datos de los proyect detail
+  const body = {
+    projectId: params,
+  };
+  const details = async () => {
+    await listProjectInfo(body)
+      .then((result) => {
+        setProjectDetail(result);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+  //funcion para llamar los datos de usuarios (alumnos) para el modal de agregar integrante
+  /*const showData = async () => {
     consultingStudents()
       .then((result) => {
         setUsers(result);
@@ -57,8 +60,7 @@ const ProyectDetail = () => {
       .catch((error) => {
         console.error(error);
       });
-  };
-
+  };*/
 
   return (
     <div className="section">
@@ -110,7 +112,7 @@ const ProyectDetail = () => {
                     </table>
                   </div>
                 </CardComponent>
-                </div>
+              </div>
             </ModalComponentGlobal>
           ) : (
             <></>
@@ -215,18 +217,17 @@ const ProyectDetail = () => {
                 <div>
                   {projectDetail ? (
                     projectDetail.map((item, index) => {
-                      console.log(item);
                       return (
-                        <div key={projectDetail.id}>
+                        <div key={index}>
                           <div className="columns container proyect-detail">
                             <div className="column">
-                              <p className="title-register">Descripcion.</p>
+                              <p className="title-register">Descripcion</p>
                               <div className="column">
                                 <InputLabel />
                               </div>
                             </div>
                             <div className="column">
-                              <p className="title-register">Justificacion.</p>
+                              <p className="title-register">Justificacion</p>
                               <div className="column">
                                 <InputLabel />
                               </div>
@@ -288,13 +289,13 @@ const ProyectDetail = () => {
                               <div className="column">
                                 <p className="title-register">Descripcion.</p>
                                 <div className="column">
-                                  <label> Descripcion </label>
+                                  <label> {item.description} </label>
                                 </div>
                               </div>
                               <div className="column">
                                 <p className="title-register">Justificacion.</p>
                                 <div className="column">
-                                  <label> Justificacion </label>
+                                  <label> {item.justification} </label>
                                 </div>
                               </div>
                             </div>
@@ -307,7 +308,7 @@ const ProyectDetail = () => {
                               <div className="column">
                                 <p className="title-register">Objetivo.</p>
                                 <div className="column">
-                                  <label> Objetivos </label>
+                                  <label> {item.objectives} </label>
                                 </div>
                               </div>
                               <div className="column">
@@ -315,7 +316,7 @@ const ProyectDetail = () => {
                                   Objetivo general.
                                 </p>
                                 <div className="column">
-                                  <label> Objetivo general </label>
+                                  <label> {item.general_objective}</label>
                                 </div>
                               </div>
                               <div className="column">
@@ -323,7 +324,7 @@ const ProyectDetail = () => {
                                   Objetivo especifico.
                                 </p>
                                 <div className="column">
-                                  <label> Objetivo especifico </label>
+                                  <label> {item.specific_objective} </label>
                                 </div>
                               </div>
                             </div>
@@ -331,7 +332,7 @@ const ProyectDetail = () => {
                               <div className="column">
                                 <p className="title-register">Beneficion.</p>
                                 <div className="column">
-                                  <label> Beneficio </label>
+                                  <label> {item.benefits} </label>
                                 </div>
                               </div>
                             </div>

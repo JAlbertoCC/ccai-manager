@@ -7,9 +7,25 @@ export const useProjectDetail = () => {
     const data = await api.listProjectInfo(params);
     return data;
   };
-  
-
+// funcion para llamar la informacion de los integrantes del proyecto (alumnos)
+const listStudentsInProject = async (body) => {
+  const data = await api.listStudentsInProject(body);
+  return data;
+};
+// funcion para llamar la infromacion de los recursos que solicito el proyecto
+  const listResourceBorrowedInProject = async (body) => {
+    const data = await api.listResourceBorrowedInProject(body);
+    return data;
+  };
+// funcion para llamar la infromacion de los asesores asignados al proyecto
+  const adviserInProject = async (body) => {
+    const data = await api.adviserInProject(body);
+    return data;
+  };
   return {
     listProjectInfo,
+    listStudentsInProject,
+    listResourceBorrowedInProject,
+    adviserInProject,
   };
 };

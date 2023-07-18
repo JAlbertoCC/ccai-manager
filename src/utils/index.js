@@ -59,9 +59,44 @@ export async function listProjectInfo(body) {
     return data
   } else {
     throw new Error('Error al obtener la información del proyecto')
-  }
-}
+  };
+};
 // consulta para mostrar los integrantes de proyect detail
+export async function listStudentsInProject(body) {
+  const request = buildGetRequest(`Students-InProject/${body}`, 'GET')
+  const response = await fetch(request)
+
+  if (response.ok) {
+    const data = await response.json()
+    return data
+  } else {
+    throw new Error('Error al obtener la información del proyecto')
+  };
+};
+// consulta para mostrar los recusos prestados para el prpoyecto
+export async function listResourceBorrowedInProject(body) {
+  const request = buildGetRequest(`list-ResourceBorrowedInProject/${body}`, 'GET')
+  const response = await fetch(request)
+
+  if (response.ok) {
+    const data = await response.json()
+    return data
+  } else {
+    throw new Error('Error al obtener la información del proyecto')
+  };
+};
+// consulta para mostrar los asesores asignados al proyecto
+export async function adviserInProject(body) {
+  const request = buildGetRequest(`Adviser-InProject/${body}`, 'GET')
+  const response = await fetch(request)
+
+  if (response.ok) {
+    const data = await response.json()
+    return data
+  } else {
+    throw new Error('Error al obtener la información del proyecto')
+  };
+};
 
 //_______________________________________________ Procedimientos por crear en el back y en la DB 
 
