@@ -2,14 +2,14 @@ import { useState } from "react";
 import * as api from "../utils/index";
 
 export const useProjectDetail = () => {
-
-  const consulProjectInfo = async (params) => {
-    const data = await api.consulProjectInfo(params);
+// funcion para llamar la informacion de proyect
+  const listProjectInfo = async (params) => {
+    const data = await api.listProjectInfo(params);
     return data;
   };
   
 
   return {
-    consulProjectInfo,
+    listProjectInfo,
   };
 };

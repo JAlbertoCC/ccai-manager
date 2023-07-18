@@ -48,9 +48,10 @@ export async function consultProjects () {
   const data = response.ok ? await response.json():undefined
   return data
 }
-// consulrtas para mostrar informacion de la view Proyects
-export async function   consulProjectInfo(body) {
-  const request = buildGetRequest(`/list-proyectInfo/${body}`, 'GET')
+// view Project Detail
+// consulta para mostrar informacion de la view Proyect- detail
+export async function listProjectInfo(body) {
+  const request = buildGetRequest(`consultingInfo-Project/${body}`, 'GET')
   const response = await fetch(request)
 
   if (response.ok) {
@@ -60,7 +61,9 @@ export async function   consulProjectInfo(body) {
     throw new Error('Error al obtener la información del proyecto')
   }
 }
-//_______________________________________________
+// consulta para mostrar los integrantes de proyect detail
+
+//_______________________________________________ Procedimientos por crear en el back y en la DB 
 
 export async function checkingInternalUser (matricula) {
   const request = buildRequest('/users-checking', 'POST', { matricula })
