@@ -1,21 +1,17 @@
 import React, { useState, useEffect } from "react";
-
 import { HeaderComponent } from "./../components/ui/Header/HeaderComponent";
 import { CardComponent } from "./../components/ui/Cards/CardComponent";
 import { TabsComponent } from "./../components/commond/Tabs";
-
-import { useUsers } from "./../hooks/useUsers";
 import { GreenButton } from "../components/ui/Buttons/GreenButton";
 import { RedButton } from "../components/ui/Buttons/RedButton";
-import { useAppStudent } from "../hooks/useAppStudent";
-import { useStudentRech } from "../hooks/useStudentRech";
+import { useApplicationStudent } from "../hooks/useApplicationStudent";
 import { YellowButton } from "../components/ui/Buttons/YellowButton";
 
 const ApplicationStudent = () => {
   const [users, setUsers] = useState([]);
-  const { consultingStudentRequest } = useAppStudent();
+  const { consultingStudentRequest } = useApplicationStudent();
   const [userRech, setUserRech] = useState([]);
-  const { consultingStudentRech } = useStudentRech();
+  const { consultingStudentRech } = useApplicationStudent();
 
   useEffect(() => {
     showData();
