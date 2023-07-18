@@ -40,6 +40,25 @@ export async function consultCareer () {
   const data = response.ok ? await response.json() : undefined
   return data
 }
+
+// lista de alumnos solicitados
+export async function consultingStudentRequest (){
+  const request = buildGetRequest('/consulting-studentsRequest','GET')
+  const response = await fetch(request)
+
+  const data = response.ok ? await response.json():undefined
+  return data
+}
+
+//lista de alumnos rechazados
+export async function consultingStudentRech (){
+  const request = buildGetRequest('/consulting-studentsRech','GET')
+  const response = await fetch(request)
+
+  const data = response.ok ? await response.json():undefined
+  return data
+}
+
 //view Proyects, devuelve la lista de los proyectos registrados
 export async function consultProjects () {
   const request = buildGetRequest('/list-proyects','GET')
@@ -111,3 +130,4 @@ export async function addMembersProject(body) {
     throw new Error('Error al obtener la información del usuario')
   }
 }
+

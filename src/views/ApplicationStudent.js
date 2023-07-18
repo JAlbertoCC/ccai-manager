@@ -7,17 +7,23 @@ import { TabsComponent } from "./../components/commond/Tabs";
 import { useUsers } from "./../hooks/useUsers";
 import { GreenButton } from "../components/ui/Buttons/GreenButton";
 import { RedButton } from "../components/ui/Buttons/RedButton";
+import { useAppStudent } from "../hooks/useAppStudent";
+import { useStudentRech } from "../hooks/useStudentRech";
+import { YellowButton } from "../components/ui/Buttons/YellowButton";
 
 const ApplicationStudent = () => {
   const [users, setUsers] = useState([]);
-  const { consultingStudents } = useUsers();
+  const { consultingStudentRequest } = useAppStudent();
+  const [userRech, setUserRech] = useState([]);
+  const { consultingStudentRech } = useStudentRech();
 
   useEffect(() => {
     showData();
+    showRech();
   }, []);
 
   const showData = async () => {
-    consultingStudents()
+    consultingStudentRequest()
       .then((result) => {
         setUsers(result);
       })
@@ -25,6 +31,17 @@ const ApplicationStudent = () => {
         console.error(error);
       });
   };
+
+  const showRech = async () => {
+    consultingStudentRech()
+    .then((result) => {
+      setUserRech(result);
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+  };
+  
   const [tabs, setTabs] = useState([
     {
       id: 1,
@@ -84,7 +101,7 @@ const ApplicationStudent = () => {
                           <GreenButton buttonText="Aceptar" />
                         </td>
                         <td>
-                          <RedButton buttonText="Rechazar" />
+                          <YellowButton buttonText="Rechazar" />
                         </td>
                       </tr>
                     );
@@ -115,8 +132,8 @@ const ApplicationStudent = () => {
                 </tr>
               </thead>
               <tbody>
-                {users ? (
-                  users.map((item, index) => {
+                {userRech ? (
+                  userRech.map((item, index) => {
                     return (
                       <tr key={index}>
                         <td>{item.matricula} </td>
