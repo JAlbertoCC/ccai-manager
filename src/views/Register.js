@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form"
 
+//Importación de componentes y hooks personalizados
 import { CardComponent } from './../components/ui/Cards/CardComponent'
 import { InputLabel } from './../components/ui/Inputs/InputLabel'
 import { DropDown } from './../components/ui/DropDown/DropDown'
@@ -13,10 +14,16 @@ import { ErrorMessage } from "./../components/ui/Warnings/ErrorMessage";
 import { ModalComponentRegister } from "../components/ui/Modal/ModalComponentRegister";
 
 const Register = () => {
+  //Configurar el form usando react hook form
   const { register, handleSubmit, formState: { errors, isDirty, isValid } } = useForm();
   const onSubmit = data => console.log(data);
 
+  //Hooks
   const { checkingInternalRegister } = useRegister();
+  const { consultCareer } = useCareer();
+  const { consultService } = useService();
+
+  //Estados para el manejo de datos y visualizacion
   const [isLoader, setIsLoader] = useState(false);
   const [messageType, setMessageType] = useState("is-danger");
   const [typeInputName, setTypeInputName] = useState("");
@@ -35,7 +42,6 @@ const Register = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const [modalMessage, setModalMessage] = useState("");
   const [career, setCareer] = useState([]);
-  const { consultCareer } = useCareer();
   const [genderList] = useState([
     {
       id: "M",
@@ -58,14 +64,16 @@ const Register = () => {
     },
   ]);
 
-  const { consultService } = useService();
+ 
 
   useEffect(() => {
+    //Consultamos datos necesarios al cargar el componente
     showData();
     showService();
   }, []);
 
   const showService = async () => {
+    //Consultamos servicio
     consultService()
       .then((result) => {
         const newArray =
@@ -85,6 +93,7 @@ const Register = () => {
 
 
   const showData = async () => {
+    //Consultamos carrera
     consultCareer().then(result => {
       const newArray = result.map((item, index) => {
         return {
@@ -100,7 +109,7 @@ const Register = () => {
   }
 
   const registerUser = () => {
-
+  //Creamos objeto de datos que se enviará al realizar el registro
     const body = {
       name: typeInputName,
       first_name: typeInputLastNameF,
@@ -120,6 +129,7 @@ const Register = () => {
   
 
   const registerNewUser = (body) => {
+    //Registramos nuevo usuario
     checkingInternalRegister(body)
       .then((item) => {
         console.log(item)
@@ -138,7 +148,7 @@ const Register = () => {
     <>
     <div className='container register-content'>
       <HeaderComponent title="Registro" />
-      
+      {/*Modal que se mostrara al realizar el registro de forma exitosa*/}
       {showModal ?
         <ModalComponentGlobal
         classExtra = "modal-register" 
@@ -148,7 +158,7 @@ const Register = () => {
           
         </ModalComponentGlobal> : <></>
       }
-{/*ANALIZAR FUNCION DE MODAL COMPONENT REGISTER CON WENDY */}
+{/*ANALIZAR FUNCION DE MODAL COMPONENT REGISTER CON WENDY, bueno, esto es un modal de registro xD*/}
       <ModalComponentRegister
         isActive={showModal}
         textModal={modalMessage}

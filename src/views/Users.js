@@ -7,13 +7,14 @@ import { ModalComponent } from "./../components/ui/Modal/ModalComponent";
 import { useUsers } from "./../hooks/useUsers";
 
 const Users = () => {
+  //Estado para almacenar las listas de usuarios
   const [users, setUsers] = useState([]);
   const { consultingStudents } = useUsers();
-
+  //cargamos los datos de los usuarios
   useEffect(() => {
     showData();
   }, []);
-
+  //funcion para obtener los datos de los usuarios
   const showData = async () => {
     consultingStudents()
       .then((result) => {
@@ -23,12 +24,12 @@ const Users = () => {
         console.error(error);
       });
   };
-
+  //estado para controlar la visibilidad del modal
   const [showModal, setShowModal] = useState(false);
   return (
     <div className="section">
       <HeaderComponent title="Usuarios Registrados" />
-
+    {/*Mostramos el modal solo si es verdadero*/}
       {showModal ? (
         <ModalComponent
           classExtra="modal-users"
@@ -39,7 +40,9 @@ const Users = () => {
       ) : (
         <></>
       )}
+      {/*Card component*/}
       <CardComponent classExtra="opacity-card card-users">
+        {/*Tabla de los usuarios*/}
         <table className="table table-users is-fullwidth is-striped">
           <thead>
             <tr>
@@ -54,6 +57,7 @@ const Users = () => {
             </tr>
           </thead>
           <tbody>
+            {/*Mostramos la tabla de users si existe*/}
             {users ? (
               users.map((item, index) => {
                 return (
