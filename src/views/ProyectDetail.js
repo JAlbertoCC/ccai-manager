@@ -29,6 +29,7 @@ const ProyectDetail = () => {
   };
   //parametros para mostarar informacion de proyect detail segun id
   const params = useParams();
+  const { projectId } = match.params;
 
   const [projectDetail, setProjectDetail] = useState([]);
   const { listProjectInfo } = useProjectDetail();
@@ -43,7 +44,8 @@ const ProyectDetail = () => {
     projectId: params,
   };
   const details = async () => {
-    await listProjectInfo(body)
+    const { projectId } = match.params;
+    await listProjectInfo(projectId)
       .then((result) => {
         setProjectDetail(result);
       })

@@ -3,18 +3,19 @@ import * as api from '../utils/index'
 
 export const useApplicationStudent = () => {
     // view retorna la incormacion de la solicitud de los nuevos registros
-    const consultingStudentRequest = async () =>{
-        const data = await api.consultingStudentRequest()
+    const consultingstudentsRequest = async () =>{
+        const data = await api.consultingstudentsRequest()
         return data;
     }
     // view retorna la informacion de los usuarios rechazados
-    const consultingStudentRech = async () =>{
-        const data = await api.consultingStudentRech()
+    const consultingstudentsRech = async () =>{
+        const data = await api.consultingstudentsRech()
         return data;
     }
+    
     return{
-        consultingStudentRequest,
-        consultingStudentRech
+        consultingstudentsRequest,
+        consultingstudentsRech,
     }
     
 }

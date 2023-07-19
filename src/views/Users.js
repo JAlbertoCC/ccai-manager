@@ -8,14 +8,14 @@ import { useUsers } from "./../hooks/useUsers";
 
 const Users = () => {
   const [users, setUsers] = useState([]);
-  const { consultingStudents } = useUsers();
+  const { consultingstudentsAccepts } = useUsers();
 
   useEffect(() => {
     showData();
   }, []);
 
   const showData = async () => {
-    consultingStudents()
+    consultingstudentsAccepts()
       .then((result) => {
         setUsers(result);
       })

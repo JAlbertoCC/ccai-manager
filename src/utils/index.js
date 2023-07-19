@@ -40,26 +40,33 @@ export async function consultCareer () {
   const data = response.ok ? await response.json() : undefined
   return data
 }
-
-// lista de alumnos solicitados
-export async function consultingStudentRequest (){
+//view Application-Student
+// lista de solicitud de alumnos para ingresar al tese
+export async function consultingstudentsRequest (){
   const request = buildGetRequest('/consulting-studentsRequest','GET')
   const response = await fetch(request)
 
   const data = response.ok ? await response.json():undefined
   return data
 }
-
 //lista de alumnos rechazados
-export async function consultingStudentRech (){
+export async function consultingstudentsRech (){
   const request = buildGetRequest('/consulting-studentsRech','GET')
   const response = await fetch(request)
 
   const data = response.ok ? await response.json():undefined
   return data
 }
+// lista de alumnos que fueron aceptados
+export async function consultingstudentsAccepts(){
+  const request = buildGetRequest('/consulting-studentsAccepts','GET')
+  const response = await fetch(request)
 
-//view Proyects, devuelve la lista de los proyectos registrados
+  const data = response.ok ? await response.json():undefined
+  return data
+}
+//view Proyects, 
+//devuelve la lista de los proyectos registrados
 export async function consultProjects () {
   const request = buildGetRequest('/list-proyects','GET')
   const response = await fetch(request)
@@ -69,8 +76,8 @@ export async function consultProjects () {
 }
 // view Project Detail
 // consulta para mostrar informacion de la view Proyect- detail
-export async function listProjectInfo(body) {
-  const request = buildGetRequest(`consultingInfo-Project/${body}`, 'GET')
+export async function listProjectInfo(projectId) {
+  const request = buildGetRequest(`consultingInfo-Project/${projectId}`, 'GET')
   const response = await fetch(request)
 
   if (response.ok) {

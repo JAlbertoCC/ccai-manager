@@ -9,9 +9,9 @@ import { YellowButton } from "../components/ui/Buttons/YellowButton";
 
 const ApplicationStudent = () => {
   const [users, setUsers] = useState([]);
-  const { consultingStudentRequest } = useApplicationStudent();
+  const { consultingstudentsRequest } = useApplicationStudent();
   const [userRech, setUserRech] = useState([]);
-  const { consultingStudentRech } = useApplicationStudent();
+  const { consultingstudentsRech } = useApplicationStudent();
 
   useEffect(() => {
     showData();
@@ -19,7 +19,7 @@ const ApplicationStudent = () => {
   }, []);
 
   const showData = async () => {
-    consultingStudentRequest()
+    consultingstudentsRequest()
       .then((result) => {
         setUsers(result);
       })
@@ -29,7 +29,7 @@ const ApplicationStudent = () => {
   };
 
   const showRech = async () => {
-    consultingStudentRech()
+    consultingstudentsRech()
     .then((result) => {
       setUserRech(result);
     })
