@@ -10,7 +10,6 @@
 }
 
 
-
 .button-green {
   background-color:#33a933 !important;
   border: 1px solid #33a933 !important;
@@ -28,6 +27,19 @@
   background-color:#dd2121 !important;
   border: 1px solid #dd2121 !important;
   color:#ffffff;
+  font-weight: 900;
+  font-size: 0.8rem;
+  outline:none;
+  min-width: 40px;
+  margin: 15px;
+  padding: 10px;
+  width: 170px; 
+}
+
+.button-yellow {
+  background-color: #ffff00ec !important;
+  border: 1px solid #ffff00ec !important;
+  color: #ffffff;
   font-weight: 900;
   font-size: 0.8rem;
   outline:none;
