@@ -5,13 +5,13 @@ import { AccordeonComponent } from "./../components/commond/AccordeonComponent";
 import { ButtonIcon } from "./../components/ui/Buttons/ButtonIcon";
 import { InputLabel } from "../components/ui/Inputs/InputLabel";
 import { ModalComponentGlobal } from "./../components/ui/Modal/ModalComponentGlobal";
-import { useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { useProjectDetail } from "../hooks/useProjectDetail";
 import { useUsers } from "./../hooks/useUsers";
 
 import "../style/global-styles.css";
 
-const ProyectDetail = () => {
+const ProyectDetail = ({ match }) => {
   const [showModal, setShowModal] = useState(false);
   const [showModalMat, setShowModalMat] = useState(false);
   const [showModalAs, setShowModalAs] = useState(false);
@@ -28,24 +28,21 @@ const ProyectDetail = () => {
     setShowView(!showView);
   };
   //parametros para mostarar informacion de proyect detail segun id
-  const params = useParams();
-  const { projectId } = match.params;
+  const { id_project } = useParams();
+  const navigate = useNavigate();
 
   const [projectDetail, setProjectDetail] = useState([]);
   const { listProjectInfo } = useProjectDetail();
 
-  // funciones para mandar el ID del rpoyecto en las consultas
+  //funciones para mandar el ID del rpoyecto en las consultas
   useEffect(() => {
     //showData();
     details();
-  }, []);
+  }, [id_project]);
   //funcion para llamar los datos de los proyect detail
-  const body = {
-    projectId: params,
-  };
+
   const details = async () => {
-    const { projectId } = match.params;
-    await listProjectInfo(projectId)
+    await listProjectInfo(id_project)
       .then((result) => {
         setProjectDetail(result);
       })

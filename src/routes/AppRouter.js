@@ -44,7 +44,7 @@ export const AppRouter = () => {
           element={<Proyects />}
         />
         <Route
-          path="/proyect-detail/:projectId"
+          path="/proyect-detail/:id_project"
           element={<ProyectDetail />}
         />
         <Route

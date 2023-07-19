@@ -31,8 +31,8 @@ const Proyects = () => {
 
   //parametros para navegar a la vista proyect-detail / id_proyect junto al id que se seleccione
   const navigate = useNavigate();
-  const goToLink = (uri, projectId) => {
-    navigate(`${uri}/${projectId}`);
+  const goToLink = (uri) => {
+    navigate(uri);
   };
   //muestra y cierra el modal para agregar
   const [showModal, setShowModal] = useState(false);
@@ -230,7 +230,7 @@ const Proyects = () => {
                           <i
                             className="mdi mdi-eye icon-blue"
                             onClick={() =>
-                              goToLink("/proyect-detail", item.id_project)
+                              goToLink(`/proyect-detail/${item.id_project}`)
                             }
                           ></i>
                           <i

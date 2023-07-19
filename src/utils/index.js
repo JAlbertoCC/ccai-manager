@@ -62,7 +62,7 @@ export async function consultingstudentsAccepts(){
   const request = buildGetRequest('/consulting-studentsAccepts','GET')
   const response = await fetch(request)
 
-  const data = response.ok ? await response.json():undefined
+  const data = await response.json()
   return data
 }
 //view Proyects, 
@@ -76,8 +76,8 @@ export async function consultProjects () {
 }
 // view Project Detail
 // consulta para mostrar informacion de la view Proyect- detail
-export async function listProjectInfo(projectId) {
-  const request = buildGetRequest(`consultingInfo-Project/${projectId}`, 'GET')
+export async function listProjectInfo(id_project) {
+  const request = buildGetRequest(`/consultingInfo-Project/${id_project}`, 'GET')
   const response = await fetch(request)
 
   if (response.ok) {
@@ -89,7 +89,7 @@ export async function listProjectInfo(projectId) {
 };
 // consulta para mostrar los integrantes de proyect detail
 export async function listStudentsInProject(body) {
-  const request = buildGetRequest(`Students-InProject/${body}`, 'GET')
+  const request = buildGetRequest(`/Students-InProject/${body}`, 'GET')
   const response = await fetch(request)
 
   if (response.ok) {
@@ -101,7 +101,7 @@ export async function listStudentsInProject(body) {
 };
 // consulta para mostrar los recusos prestados para el prpoyecto
 export async function listResourceBorrowedInProject(body) {
-  const request = buildGetRequest(`list-ResourceBorrowedInProject/${body}`, 'GET')
+  const request = buildGetRequest(`/list-ResourceBorrowedInProject/${body}`, 'GET')
   const response = await fetch(request)
 
   if (response.ok) {
@@ -113,7 +113,7 @@ export async function listResourceBorrowedInProject(body) {
 };
 // consulta para mostrar los asesores asignados al proyecto
 export async function adviserInProject(body) {
-  const request = buildGetRequest(`Adviser-InProject/${body}`, 'GET')
+  const request = buildGetRequest(`/Adviser-InProject/${body}`, 'GET')
   const response = await fetch(request)
 
   if (response.ok) {
@@ -173,4 +173,3 @@ export async function addMembersProject(body) {
   }
 }
 
-pruebas si hace el push
