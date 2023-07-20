@@ -88,8 +88,8 @@ export async function listProjectInfo(id_project) {
   };
 };
 // consulta para mostrar los integrantes de proyect detail
-export async function listStudentsInProject(body) {
-  const request = buildGetRequest(`/Students-InProject/${body}`, 'GET')
+export async function listStudentsInProject(id_project) {
+  const request = buildGetRequest(`/Students-InProject/${id_project}`, 'GET')
   const response = await fetch(request)
 
   if (response.ok) {
@@ -100,8 +100,8 @@ export async function listStudentsInProject(body) {
   };
 };
 // consulta para mostrar los recusos prestados para el prpoyecto
-export async function listResourceBorrowedInProject(body) {
-  const request = buildGetRequest(`/list-ResourceBorrowedInProject/${body}`, 'GET')
+export async function listResourceBorrowedInProject(id_project) {
+  const request = buildGetRequest(`/list-ResourceBorrowedInProject/${id_project}`, 'GET')
   const response = await fetch(request)
 
   if (response.ok) {
@@ -112,8 +112,8 @@ export async function listResourceBorrowedInProject(body) {
   };
 };
 // consulta para mostrar los asesores asignados al proyecto
-export async function adviserInProject(body) {
-  const request = buildGetRequest(`/Adviser-InProject/${body}`, 'GET')
+export async function adviserInProject(id_project) {
+  const request = buildGetRequest(`/Adviser-InProject/${id_project}`, 'GET')
   const response = await fetch(request)
 
   if (response.ok) {

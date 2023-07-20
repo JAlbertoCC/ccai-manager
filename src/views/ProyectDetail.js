@@ -11,37 +11,50 @@ import { useUsers } from "./../hooks/useUsers";
 
 import "../style/global-styles.css";
 
-const ProyectDetail = ({ match }) => {
+const ProyectDetail = () => {
+  // hooks para mostrar u ocultar modales para agregar 
   const [showModal, setShowModal] = useState(false);
   const [showModalMat, setShowModalMat] = useState(false);
   const [showModalAs, setShowModalAs] = useState(false);
+  // hooks para mostrar u ocultar la informacion del acordeon
   const [showProyectInformation, setShowProyectInformation] = useState(false);
   const [showMembersInformation, setShowMembersInformation] = useState(false);
   const [showMaterialsInformation, setShowMaterialsInformation] =
     useState(false);
   const [showAdviserInformation, setShowAdviserInformation] = useState(false);
-  const [users, setUsers] = useState([]); //hook para mostrar lista de usuarios
-  const { consultingStudents } = useUsers(); // llama al hook
-  const [showView, setShowView] = useState(false); // hook muestra y oculta vista informacion de proyecto
 
+  const [users, setUsers] = useState([]); //hook para mostrar lista de usuarios
+  const { consultingstudentsAccepts } = useUsers(); // llama al hook
+// hook confuncion que habilita o desabilita el boton de editar o guardar informacion del proyecto
+  const [showView, setShowView] = useState(false); 
   const hdlOnClickEvent = () => {
     setShowView(!showView);
   };
   //parametros para mostarar informacion de proyect detail segun id
   const { id_project } = useParams();
   const navigate = useNavigate();
-
+// hooks con la funcion la [traer datos, devolver datos en tabla]
   const [projectDetail, setProjectDetail] = useState([]);
-  const { listProjectInfo } = useProjectDetail();
+  const [studentDetail, setStudentDetail] = useState([]);
+  const [resourcesDetail, setResourcesDetail] = useState([]);
+  const [adviserDetail, setAdviserDetail] = useState([]);
+  const {
+    listProjectInfo,
+    listStudentsInProject,
+    listResourceBorrowedInProject,
+    adviserInProject,
+  } = useProjectDetail(); // llama la funcion flecha del hook para traer las consultas asincronas
 
-  //funciones para mandar el ID del rpoyecto en las consultas
+  //hook useEffect para mandar el ID del proyecto en las consultas
   useEffect(() => {
-    //showData();
-    details();
+    showData();
+    detailProject();
+    detailStudent();
+    detailResources();
+    detailAdviser();
   }, [id_project]);
   //funcion para llamar los datos de los proyect detail
-
-  const details = async () => {
+  const detailProject = async () => {
     await listProjectInfo(id_project)
       .then((result) => {
         setProjectDetail(result);
@@ -50,23 +63,53 @@ const ProyectDetail = ({ match }) => {
         console.error(error);
       });
   };
-  //funcion para llamar los datos de usuarios (alumnos) para el modal de agregar integrante
-  /*const showData = async () => {
-    consultingStudents()
+  // funcion para llamar los integrantes del proyecto (Alumnos)
+  const detailStudent = async () => {
+    await listStudentsInProject(id_project)
+      .then((result) => {
+        setStudentDetail(result);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+  // funcion para llamar los recursos prestados al proyecto
+  const detailResources = async () => {
+    await listResourceBorrowedInProject(id_project)
+      .then((result) => {
+        setResourcesDetail(result);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+  // funcion flecha que muestra los docentes asignados al proyecto
+  const detailAdviser = async () => {
+    await adviserInProject(id_project)
+      .then((result) => {
+        setAdviserDetail(result);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+  //funcion para llamar los datos de usuarios (alumnos) aceptados para el modal de agregar integrante
+  const showData = async () => {
+    consultingstudentsAccepts()
       .then((result) => {
         setUsers(result);
       })
       .catch((error) => {
         console.error(error);
       });
-  };*/
+  };
 
   return (
     <div className="section">
       <div className="columns column38">
-        {/* componetes para mostar modales */}
         <div className="column is-12">
           <HeaderComponent title="Proyecto 3: Gestor del ccai" />
+          {/** Diseño del modal para visialisar estudiantes y agregar */}
           {showModal ? (
             <ModalComponentGlobal
               title="Agregar Integrante" //added title to green botton
@@ -116,7 +159,7 @@ const ProyectDetail = ({ match }) => {
           ) : (
             <></>
           )}
-
+          {/** Diseño del modal para agregar materiales */}
           {showModalMat ? (
             <ModalComponentGlobal
               title="Agregar Material" //added title to green botton
@@ -154,7 +197,7 @@ const ProyectDetail = ({ match }) => {
           ) : (
             <></>
           )}
-
+          {/** Modal para agregar un asesor al proyecto y a alumnos */}
           {showModalAs ? (
             <ModalComponentGlobal
               title="Agregar Asesor" //added title to green botton
@@ -355,6 +398,12 @@ const ProyectDetail = ({ match }) => {
               iconTitle="mdi-account-group"
             >
               <div>
+                <ButtonIcon
+                          title="Agregar integrante"
+                          icon="plus-circle"
+                          extraClass="aling-right margin-right"
+                          hdlOnClickEvent={() => setShowModal(!showModal)}
+                        />
                 <table className="table table-proyect is-fullwidth is-striped">
                   <thead>
                     <tr>
@@ -364,28 +413,33 @@ const ProyectDetail = ({ match }) => {
                       <th title="Servicio a prestar">Servicio a prestar.</th>
                       <th title="Carrera">Carrera.</th>
                       <th title="Button Add">
-                        <ButtonIcon
-                          title="Agregar integrante"
-                          icon="plus-circle"
-                          extraClass="aling-right margin-right"
-                          hdlOnClickEvent={() => setShowModal(!showModal)}
-                        />
+                        
                       </th>
                       <th></th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td title="ID">ID.</td>
-                      <td title="Matricula">Matricula.</td>
-                      <td title="Nombre">Nombre.</td>
-                      <td title="Servicio a prestar">Servicio a prestar.</td>
-                      <td title="Carrera">Carrera.</td>
-                      <td>
-                        <i className="mdi mdi-pencil icon-blue"></i>
-                        <i className="mdi mdi-trash-can-outline icon-blue"></i>
-                      </td>
-                    </tr>
+                    {studentDetail ? (
+                      studentDetail.map((item, index) => {
+                        console.log(item);
+                        return (
+                          <tr key={index}>
+                            <td title="ID">{item.id_student}</td>
+                            <td title="Matricula">{item.matricula}</td>
+                            <td title="Nombre">{item.name}</td>
+                            <td title="Servicio a prestar">
+                              {item.service_name}
+                            </td>
+                            <td title="Carrera">{item.name_career}</td>
+                            <td>
+                              <i className="mdi mdi-trash-can-outline icon-blue"></i>
+                            </td>
+                          </tr>
+                        );
+                      })
+                    ) : (
+                      <></>
+                    )}
                   </tbody>
                 </table>
               </div>
@@ -400,6 +454,12 @@ const ProyectDetail = ({ match }) => {
               iconTitle="mdi-palette-swatch"
             >
               <div>
+                <ButtonIcon
+                  title="Solicitar"
+                  icon="plus-circle"
+                  extraClass="aling-right margin-right"
+                  hdlOnClickEvent={() => setShowModalMat(!showModalMat)}
+                />
                 <table className="table table-proyect is-fullwidth is-striped">
                   <thead>
                     <tr>
@@ -407,28 +467,24 @@ const ProyectDetail = ({ match }) => {
                       <th title="Nombre">Nombre.</th>
                       <th title="Descripcion">Descripcion.</th>
                       <th title="Cantidad">Cantidad.</th>
-                      <th title="Button Add">
-                        <ButtonIcon
-                          title="Agregar material"
-                          icon="plus-circle"
-                          extraClass="aling-right margin-right"
-                          hdlOnClickEvent={() => setShowModalMat(!showModalMat)}
-                        />
-                      </th>
-                      <th></th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td title="ID">ID.</td>
-                      <td title="Nombre">Nombre.</td>
-                      <td title="Nombre">Nombre.</td>
-                      <td title="Cantidad">Cantidad.</td>
-                      <td>
-                        <i className="mdi mdi-pencil icon-blue"></i>
-                        <i className="mdi mdi-trash-can-outline icon-blue"></i>
-                      </td>
-                    </tr>
+                    {resourcesDetail ? (
+                      resourcesDetail.map((item, index) => {
+                        console.log(item);
+                        return (
+                          <tr key={index}>
+                            <td title="ID">{item.id_resource_borrowed}</td>
+                            <td title="Nombre">{item.resoruce_name}</td>
+                            <td title="Nombre">{item.description}</td>
+                            <td title="Cantidad">{item.amount}</td>
+                          </tr>
+                        );
+                      })
+                    ) : (
+                      <></>
+                    )}
                   </tbody>
                 </table>
               </div>
@@ -462,16 +518,25 @@ const ProyectDetail = ({ match }) => {
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td title="ID">ID.</td>
-                      <td title="Nombre">Nombre.</td>
-                      <td title="Division">Division.</td>
-                      <td title="Tipo de Asesorr">Tipo de Asesor.</td>
-                      <td>
-                        <i className="mdi mdi-pencil icon-blue"></i>
-                        <i className="mdi mdi-trash-can-outline icon-blue"></i>
-                      </td>
-                    </tr>
+                    {adviserDetail ? (
+                      adviserDetail.map((item, index) => {
+                        console.log(item);
+                        return (
+                          <tr key={index}>
+                            <td title="ID">{item.id_adviser}</td>
+                            <td title="Nombre">{item.name_adviser}</td>
+                            <td title="Division">{item.division}</td>
+                            <td title="Tipo de Asesorr">{item.type_adviser}</td>
+                            <td>
+                              <i className="mdi mdi-pencil icon-blue"></i>
+                              <i className="mdi mdi-trash-can-outline icon-blue"></i>
+                            </td>
+                          </tr>
+                        );
+                      })
+                    ) : (
+                      <></>
+                    )}
                   </tbody>
                 </table>
               </div>

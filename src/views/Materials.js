@@ -11,45 +11,11 @@ import { useMaterials } from "../hooks/useMaterials";
 
 
 const Materials = () => {
-  const [materials, setMaterials] = useState([
-    
-    /*{
-      id: 1,
-      name: "Computadora",
-      description: "Computadora gamer, con 1 tera de RAM, teclado con luz, etc",
-      count: 12,
-    },
-    {
-      id: 2,
-      name: "Arduino",
-      description: "arduiono 1",
-      count: 10,
-    },
-    {
-      id: 3,
-      name: "Impresora 3D",
-      description: "Impresora 3d",
-      count: 22,
-    },
-    {
-      id: 4,
-      name: "Teclado",
-      description: "teclado logitech",
-      count: 12,
-    },
-    {
-      id: 5,
-      name: "Ejemplo 12",
-      description: "Ejemplo 12",
-      count: 12,
-    },*/
-
-  ]);
+  const [materials, setMaterials] = useState([ ]);
   
   const { consultMaterials } = useMaterials();
 
   useEffect(() => {
-    
     showMaterial();
   }, []);
 
