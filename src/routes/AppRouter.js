@@ -18,6 +18,7 @@ import InformationView from "../views/InformationView"
 import ForgotPassword from "../views/ForgotPassword"
 import RestorePassword from "../views/RestorePassword"
 import ApplicationStudent from "../views/ApplicationStudent"
+import ReportGeneration from "../views/ReportGeneration"
 
 export const AppRouter = () => {
   return (
@@ -108,6 +109,10 @@ export const AppRouter = () => {
           path="/restore-password"
           element={<RestorePassword/>}
         />
+        <Route
+          path="/report-generation" 
+          element={<ReportGeneration />}
+          />
       </Routes>
     </BrowserRouter>
   )
