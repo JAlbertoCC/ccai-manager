@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 
-import { CardComponent } from "./../components/ui/Cards/CardComponent";
-import { InputLabel } from "./../components/ui/Inputs/InputLabel";
-import { DropDown } from "./../components/ui/DropDown/DropDown";
-import { HeaderComponent } from "./../components/ui/Header/HeaderComponent";
-import { useRegister } from "../hooks/useRegister";
+//Importación de componentes y hooks personalizados
+import { CardComponent } from './../components/ui/Cards/CardComponent'
+import { InputLabel } from './../components/ui/Inputs/InputLabel'
+import { DropDown } from './../components/ui/DropDown/DropDown'
+import { HeaderComponent } from './../components/ui/Header/HeaderComponent'
+import { useRegister } from '../hooks/useRegister';
 import { useCareer } from "./../hooks/useCareer";
 import { useService } from "./../hooks/useService";
 import { ModalComponentGlobal } from "./../components/ui/Modal/ModalComponentGlobal";
@@ -13,14 +14,16 @@ import { ErrorMessage } from "./../components/ui/Warnings/ErrorMessage";
 import { ModalComponentRegister } from "../components/ui/Modal/ModalComponentRegister";
 
 const Register = () => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors, isDirty, isValid },
-  } = useForm();
-  const onSubmit = (data) => console.log(data);
+  //Configurar el form usando react hook form
+  const { register, handleSubmit, formState: { errors, isDirty, isValid } } = useForm();
+  const onSubmit = data => console.log(data);
 
+  //Hooks
   const { checkingInternalRegister } = useRegister();
+  const { consultCareer } = useCareer();
+  const { consultService } = useService();
+
+  //Estados para el manejo de datos y visualizacion
   const [isLoader, setIsLoader] = useState(false);
   const [messageType, setMessageType] = useState("is-danger");
   const [typeInputName, setTypeInputName] = useState("");
@@ -41,7 +44,6 @@ const Register = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const [modalMessage, setModalMessage] = useState("");
   const [career, setCareer] = useState([]);
-  const { consultCareer } = useCareer();
 
   // hook para retornar en un body los datos de registro reduciendo el numero de hooks Domicilio
   const [domicilio, setDomicilio] = useState({
@@ -84,14 +86,16 @@ const Register = () => {
     },
   ]);
 
-  const { consultService } = useService();
+ 
 
   useEffect(() => {
+    //Consultamos datos necesarios al cargar el componente
     showData();
     showService();
   }, []);
 
   const showService = async () => {
+    //Consultamos servicio
     consultService()
       .then((result) => {
         const newArray = result.map((item, index) => {
@@ -126,6 +130,7 @@ const Register = () => {
   };
 
   const registerUser = () => {
+  //Creamos objeto de datos que se enviará al realizar el registro
     const body = {
       // datos personales
       name: typeInputName,
@@ -155,6 +160,7 @@ const Register = () => {
   };
 
   const registerNewUser = (body) => {
+    //Registramos nuevo usuario
     checkingInternalRegister(body)
       .then((item) => {
         console.log(item);
@@ -170,8 +176,27 @@ const Register = () => {
 
   return (
     <>
-      <div className="container register-content">
-        <HeaderComponent title="Registro" />
+    <div className='container register-content'>
+      <HeaderComponent title="Registro" />
+      {/*Modal que se mostrara al realizar el registro de forma exitosa*/}
+      {showModal ?
+        <ModalComponentGlobal
+        classExtra = "modal-register" 
+        title = "¡REGISTRO EXITOSO!" 
+        isActive = "false" 
+        hdlOnclick= { ()=>setShowModal (!showModal)} >
+          
+        </ModalComponentGlobal> : <></>
+      }
+{/*ANALIZAR FUNCION DE MODAL COMPONENT REGISTER CON WENDY, bueno, esto es un modal de registro xD*/}
+      <ModalComponentRegister
+        isActive={showModal}
+        textModal={modalMessage}
+        hdlOnclick={() => {
+          setShowModal(!showModal);
+          setModalMessage('');
+        }}
+      />
 
         {showModal ? (
           <ModalComponentGlobal

@@ -5,6 +5,7 @@ import { CardComponent } from './../components/ui/Cards/CardComponent'
 const SuccesfullRegister = () => {
     return (
         <div>
+            {/*Componente card con su respectivo body*/}
             <CardComponent classExtra='opacity-card card-register-succesfull'>
                 <div>
                     <p className="title-sucessfull">¡REGISTRO EXITOSO!</p>

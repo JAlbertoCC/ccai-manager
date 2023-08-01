@@ -8,11 +8,13 @@ import { ButtonComponent } from "./../components/ui/Buttons/PrimaryButton";
 import { useForm } from "react-hook-form";
 
 const VisitView = () => {
+  //configuracion del formulario
   const {
     register,
     handleSubmit,
     formState: { errors, isDirty, isValid },
   } = useForm();
+  //Funcion que se ejecuta al enviar el formulario
   const onSubmit = (evento) => {
     console.log(evento);
   };
@@ -25,31 +27,31 @@ const VisitView = () => {
   const [setTypeInputMail] = useState("");
 
   useEffect(() => {}, []);
-
+  //funcion para obtener la fecha actual
   const getDate = (isHour = false) => {
     return isHour
       ? DateTime.now().toLocaleString(DateTime.TIME_24_SIMPLE)
       : DateTime.now().toLocaleString(DateTime.DATE_MED);
   };
-  //function
+  //funcion para validar inputs ingresados
   const validarInputs = (input1, input2, input3, input4) => {
     const inputs = [input1, input2, input3, input4];
 
     for (let i = 0; i < inputs.length; i++) {
       if (inputs[i].trim() === "") {
-        return false; //no pass, exists spaces
+        return false; //no pasan, existen espacios vacios
       }
     }
 
-    return true; //pass a render window
+    return true; //pasa y muestra ventana de registro
   };
-
+  //funcion para renderizar vista
   const render = () => {
     //true si no hay vacios
-
+    //si fue modificado el form y es valido
     if (isDirty && isValid) {
       setShowRegisterView(!showRegisterView);
-
+    //recargar la pagina despues de un tiempo de 5 segundos
       setTimeout(() => {
         window.location.reload();
       }, 5000);
@@ -57,7 +59,7 @@ const VisitView = () => {
       console.log("llene todos los campos");
     }
   };
-
+  //cambio de pestaña
   const handleTabClick = (tab) => {
     setSelectedTab(tab);
   };
@@ -81,7 +83,7 @@ const VisitView = () => {
             {/* contenedor de fecha */}
             <div className="container-dates">
               <p className="text-date">{getDate()}</p>
-              {/* contenedor de hoas */}
+              {/* contenedor de horas */}
               <div className="container-hours">
                 <div className="text-hour">{getDate(true)}</div>
               </div>

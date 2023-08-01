@@ -8,10 +8,12 @@ const RestorePassword = () => {
 
     return (
         <div className="section">
+            {/*Encabezado*/}
             <div className="columns column38">
                 <div className="column is-12">
                     <HeaderComponent title="volver" />
                     <div className="section login-content">
+                        {/*Imagen*/}
                         <div className="modal">
                             <div className="modal-background"></div>
                             <div className="modal-content">
@@ -24,12 +26,14 @@ const RestorePassword = () => {
                             </div>
                             <button className="modal-close is-large" aria-label="close"></button>
                         </div>
+                        {/*Empieza el formulario*/}
                         <form onSubmit="{handleSubmit(onSubmit)}">
                             <CardComponent classExtra="opacity-card">
+                                {/*Logo*/}
                                 <figure className="image is-96x96 center-img">
                                     <img src={require("./../assets/logo.png")} alt="" />
                                 </figure>
-
+                                {/*Campos donde va la contraseña*/}
                                 <div className="center-img inputs-content">
                                     <InputLabel
                                         title="Password"
@@ -54,7 +58,7 @@ const RestorePassword = () => {
                                         validationSchema=""
                                     />
                                 </div>
-
+                                {/*Boton de confirmacion de envio de formulario*/}
                                 <div className="buttons-content">
                                     <ButtonComponent
                                         buttonText="Confirmar"
