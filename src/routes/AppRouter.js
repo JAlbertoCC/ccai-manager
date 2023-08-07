@@ -17,6 +17,7 @@ import Proceedings from "../views/Proceedings"
 import InformationView from "../views/InformationView"
 import ForgotPassword from "../views/ForgotPassword"
 import RestorePassword from "../views/RestorePassword"
+import Questionnaire from "../views/Questionnaire"
 
 export const AppRouter = () => {
   return (
@@ -102,6 +103,10 @@ export const AppRouter = () => {
         <Route
           path="/restore-password"
           element={<RestorePassword/>}
+        />
+        <Route 
+        path="/Questionnaire"       //Se agrego esta ruta para la nueva vista 
+        element={<Questionnaire />} 
         />
       </Routes>
     </BrowserRouter>
