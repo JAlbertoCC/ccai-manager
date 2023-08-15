@@ -18,3 +18,18 @@
 .button-tese:focus {
     color: #000000 !important;
 }
+
+.header-component-question{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.header-component-question a{
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    font-size: 1.8rem;
+    color: #000000;
+}

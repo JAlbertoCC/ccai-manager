@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { HeaderComponent } from "./../components/ui/Header/HeaderComponent";
-import { ModalComponentGlobal } from "./../components/ui/Modal/ModalComponentGlobal";
+import { HeaderComponentQuestion } from "./../components/ui/Header/HeaderComponentQuestion";
+import {ModalComponentQuestion} from "./../components/ui/Modal/ModalComponentQuestion";
 
 const Questionnaire = () => {
   const themes = [
     {
-      theme: "Programacion",
+      theme: "Sección I: Programación",
       questions: [
         {
           question: "Seleccione los lenguajes de programación en los que usted ya ha programado:",
@@ -63,7 +63,7 @@ const Questionnaire = () => {
       ],
     },
     {
-      theme: "Base de Datos",
+      theme: "Sección II: Base de Datos",
       questions: [
         {
           question: "SQL permite la creación, gestión y administración de bases de datos, así como la eleción y manejo de las estructuras necesarias para el almacenamiento y búsqueda de información, ¿es verdadero o falso?",
@@ -100,7 +100,7 @@ const Questionnaire = () => {
       ],
     },
     {
-      theme: "Sistemas Operativos",
+      theme: "Sección III: Sistemas Operativos",
       questions: [
         {
           question: "Si tengo un Windows Home puedo tener acceso a Azure o a clientes Hyper-V",
@@ -134,7 +134,7 @@ const Questionnaire = () => {
       ],
     },
     {
-      theme: "Redes de Computadora",
+      theme: "Sección IV: Redes de Computadora",
       questions: [
         {
           question: "¿Qué diferencia hay entre un Dominio y un grupo de trabajo?",
@@ -223,23 +223,25 @@ const Questionnaire = () => {
         <div style={progressBarStyle}></div>
       )}
 
-      <div className="section">
-        {!isStarted && <HeaderComponent title="Evaluación para ser aceptado(a) en el CCAI" />}
+    <div className="center-title">
+      {!isStarted && <HeaderComponentQuestion title="Evaluación para ser aceptado(a) en el CCAI" />}
 
-        {isStarted && !isCompleted && <HeaderComponent title={themes[currentThemeIndex].theme} />}
+      {isStarted && !isCompleted && <HeaderComponentQuestion title={themes[currentThemeIndex].theme} />}
 
-        <div className="instructions">
-          {!isStarted && (
-            <>
-              <p>Por favor, lea las siguientes instrucciones antes de comenzar:</p>
-              <p>1. Este cuestionario aborda temas que han sido parte de su formación.</p>
-              <p>2. Responda honesta y éticamente cada una de las preguntas de acuerdo a sus habilidades y conocimientos previamente adquiridos.</p>
-              
-              <div style={{ margin: "10px 0" }}>
-                <button onClick={handleStart} className="modal-btn">Continuar</button>
-                <button onClick={handleCancel} className="modal-btn">Cancelar</button>
-              </div>
-            </>
+      <div className="instructions">
+      {!isStarted && (
+          <div className="center-text">
+          <p>Por favor, lea las siguientes instrucciones antes de comenzar: En este cuestionario se tomarán
+            temas que han sido parte de su formación academica, por lo que deberá contestar honesta y 
+            éticamente cada una de las preguntas de acuerdo a sus habilidades y conocimientos previamente
+            adquiridos.
+          </p>
+          
+          <div className="button-container">
+            <button onClick={handleStart} className="modal-btn btn-green">Continuar</button>
+            <button onClick={handleCancel} className="modal-btn btn-red">Cancelar</button>
+          </div>
+        </div>
           )}
           {isStarted && !isCompleted && <p>Pregunta {currentQuestionIndex + 1}: {themes[currentThemeIndex].questions[currentQuestionIndex].question}</p>}
         </div>
@@ -247,7 +249,7 @@ const Questionnaire = () => {
         {isStarted && !isCompleted && (
           <div className="card">
             <div className="card-body">
-              <div>
+              <div className="options-container">
                 {themes[currentThemeIndex].questions[currentQuestionIndex].options.map((option, index) => (
                   <div key={index}>
                     <input
@@ -261,26 +263,28 @@ const Questionnaire = () => {
                   </div>
                 ))}
               </div>
+              <div className="center-buttons">
               <div className="buttons">
-                {currentQuestionIndex < themes[currentThemeIndex].questions.length - 1 && <button onClick={handleNext} className="modal-btn">Siguiente</button>}
-                {currentQuestionIndex === themes[currentThemeIndex].questions.length - 1 && currentThemeIndex < themes.length - 1 && <button onClick={handleNext} className="modal-btn">Siguiente Tema</button>}
-                {currentQuestionIndex === themes[currentThemeIndex].questions.length - 1 && currentThemeIndex === themes.length - 1 && <button onClick={() => setIsCompleted(true)} className="modal-btn">Terminar</button>}
-                <button onClick={handleCancel} className="modal-btn">Cancelar</button>
+                {currentQuestionIndex < themes[currentThemeIndex].questions.length - 1 && <button onClick={handleNext} className="modal-btn btn-yellow">Siguiente</button>}
+                {currentQuestionIndex === themes[currentThemeIndex].questions.length - 1 && currentThemeIndex < themes.length - 1 && <button onClick={handleNext} className="modal-btn btn-yellow">Siguiente Tema</button>}
+                {currentQuestionIndex === themes[currentThemeIndex].questions.length - 1 && currentThemeIndex === themes.length - 1 && <button onClick={() => setIsCompleted(true)} className="modal-btn btn-green">Enviar</button>}
+                <button onClick={handleCancel} className="modal-btn btn-red">Cancelar</button>
+              </div>
               </div>
             </div>
           </div>
         )}
 
         {isCompleted && (
-          <ModalComponentGlobal
-            title="¡Gracias por completar el cuestionario!"
+          <ModalComponentQuestion
+            title="¡REGISTRO EXITOSO!"
             isActive={true}
             hdlOnclick={() => setIsCompleted(false)}
-            titleGreen="Terminar"
+            titleGreen="Cerrar"
             hdlOnClickGreen={() => setIsCompleted(false)}
           >
-            <p>¡Has completado el cuestionario! te contactaremos a la brevedad.</p>
-          </ModalComponentGlobal>
+            <p>Los docentes se comunicarán con usted para informarle si usted fue aceptado en el CCAI.</p>
+          </ModalComponentQuestion>
         )}
       </div>
     </>
