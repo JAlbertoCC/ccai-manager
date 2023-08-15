@@ -19,6 +19,7 @@ import ForgotPassword from "../views/ForgotPassword"
 import RestorePassword from "../views/RestorePassword"
 import ApplicationStudent from "../views/ApplicationStudent"
 import Questionnaire from "../views/Questionnaire"
+import ReportGeneration from "../views/ReportGeneration"
 
 export const AppRouter = () => {
   return (
@@ -113,6 +114,10 @@ export const AppRouter = () => {
         path="/Questionnaire"       //Se agrego esta ruta para la nueva vista 
         element={<Questionnaire />} 
         />
+        <Route
+          path="/report-generation" 
+          element={<ReportGeneration />}
+          />
       </Routes>
     </BrowserRouter>
   )
