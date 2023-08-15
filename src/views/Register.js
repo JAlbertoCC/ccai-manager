@@ -2,21 +2,50 @@ import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 
 //Importación de componentes y hooks personalizados
-import { CardComponent } from './../components/ui/Cards/CardComponent'
-import { InputLabel } from './../components/ui/Inputs/InputLabel'
-import { DropDown } from './../components/ui/DropDown/DropDown'
-import { HeaderComponent } from './../components/ui/Header/HeaderComponent'
-import { useRegister } from '../hooks/useRegister';
+import { CardComponent } from "./../components/ui/Cards/CardComponent";
+import { InputLabel } from "./../components/ui/Inputs/InputLabel";
+import { DropDown } from "./../components/ui/DropDown/DropDown";
+import { HeaderComponent } from "./../components/ui/Header/HeaderComponent";
+import { useRegister } from "../hooks/useRegister";
 import { useCareer } from "./../hooks/useCareer";
 import { useService } from "./../hooks/useService";
 import { ModalComponentGlobal } from "./../components/ui/Modal/ModalComponentGlobal";
 import { ErrorMessage } from "./../components/ui/Warnings/ErrorMessage";
 import { ModalComponentRegister } from "../components/ui/Modal/ModalComponentRegister";
 
+const dataUser = {
+  // datos personales
+  name: "",
+  first_name: "",
+  second_name: "",
+  cell_phoneNumber: "",
+  gender: "",
+  // Domicilio
+  road: "",
+  noAbroad: "",
+  noInside: "",
+  colony: "",
+  locality: "",
+  municipality: "",
+  government: "",
+  postalC: "",
+  observations: "",
+  // datos institucionales
+  matricula: "",
+  carrer: "",
+  service_provide: "",
+  institutional_emailEs: "",
+  password: "",
+};
+
 const Register = () => {
   //Configurar el form usando react hook form
-  const { register, handleSubmit, formState: { errors, isDirty, isValid } } = useForm();
-  const onSubmit = data => console.log(data);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isDirty, isValid },
+  } = useForm();
+  const onSubmit = (data) => console.log(data);
 
   //Hooks
   const { checkingInternalRegister } = useRegister();
@@ -39,6 +68,7 @@ const Register = () => {
   const [typeInputService, setTypeInputService] = useState("Servicio Social");
   const [typeInputMail, setTypeInputMail] = useState("");
   const [typeInputPassword, setTypeInputPassword] = useState("");
+
   const [showModal, setShowModal] = useState(false);
   const [showError, setShowError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
@@ -46,22 +76,14 @@ const Register = () => {
   const [career, setCareer] = useState([]);
 
   // hook para retornar en un body los datos de registro reduciendo el numero de hooks Domicilio
-  const [domicilio, setDomicilio] = useState({
-    calle: String,
-    noExte: Number,
-    noInte: Number,
-    colonia: String,
-    localidad: String,
-    municipio: String,
-    estado: String,
-    cP: Number,
-    observaciones: String,
-  });
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    setDomicilio((prevDomicilio) => ({ ...prevDomicilio, [name]: value }));
+  const [formData, setFormData] = useState(dataUser);
+  const handleFormChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
   };
-
 
   // REVISAR SI LAS LISTAS SON NECESARIAS O SOLO CONSUMIR LAS VISTA /api/list-sex, /api/list-carrer, /api/list-service
   const [genderList] = useState([
@@ -85,8 +107,6 @@ const Register = () => {
       name: "Residencias Profesionales",
     },
   ]);
-
- 
 
   useEffect(() => {
     //Consultamos datos necesarios al cargar el componente
@@ -130,7 +150,7 @@ const Register = () => {
   };
 
   const registerUser = () => {
-  //Creamos objeto de datos que se enviará al realizar el registro
+    //Creamos objeto de datos que se enviará al realizar el registro
     const body = {
       // datos personales
       name: typeInputName,
@@ -139,15 +159,15 @@ const Register = () => {
       cell_phoneNumber: typeInputPhone,
       gender: typeInputGender,
       // Domicilio
-      road: domicilio.calle,
-      noAbroad: domicilio.noExte,
-      noInside: domicilio.noInte,
-      colony: domicilio.colonia,
-      locality: domicilio.localidad,
-      municipality: domicilio.municipio,
-      government: domicilio.estado,
-      postalC: domicilio.cP,
-      observations: domicilio.observaciones,
+      road: formData.road,
+      noAbroad: formData.noAbroad,
+      noInside: formData.noInside,
+      colony: formData.colony,
+      locality: formData.locality,
+      municipality: formData.municipality,
+      government: formData.government,
+      postalC: formData.postalC,
+      observations: formData.observations,
       // datos institucionales
       matricula: typeInputIdentification,
       carrer: typeInputCareer,
@@ -176,27 +196,28 @@ const Register = () => {
 
   return (
     <>
-    <div className='container register-content'>
-      <HeaderComponent title="Registro" />
-      {/*Modal que se mostrara al realizar el registro de forma exitosa*/}
-      {showModal ?
-        <ModalComponentGlobal
-        classExtra = "modal-register" 
-        title = "¡REGISTRO EXITOSO!" 
-        isActive = "false" 
-        hdlOnclick= { ()=>setShowModal (!showModal)} >
-          
-        </ModalComponentGlobal> : <></>
-      }
-{/*ANALIZAR FUNCION DE MODAL COMPONENT REGISTER CON WENDY, bueno, esto es un modal de registro xD*/}
-      <ModalComponentRegister
-        isActive={showModal}
-        textModal={modalMessage}
-        hdlOnclick={() => {
-          setShowModal(!showModal);
-          setModalMessage('');
-        }}
-      />
+      <div className="container register-content">
+        <HeaderComponent title="Registro" />
+        {/*Modal que se mostrara al realizar el registro de forma exitosa*/}
+        {showModal ? (
+          <ModalComponentGlobal
+            classExtra="modal-register"
+            title="¡REGISTRO EXITOSO!"
+            isActive="false"
+            hdlOnclick={() => setShowModal(!showModal)}
+          ></ModalComponentGlobal>
+        ) : (
+          <></>
+        )}
+        {/*ANALIZAR FUNCION DE MODAL COMPONENT REGISTER CON WENDY, bueno, esto es un modal de registro xD*/}
+        <ModalComponentRegister
+          isActive={showModal}
+          textModal={modalMessage}
+          hdlOnclick={() => {
+            setShowModal(!showModal);
+            setModalMessage("");
+          }}
+        />
 
         {showModal ? (
           <ModalComponentGlobal
@@ -334,8 +355,9 @@ const Register = () => {
                 <InputLabel
                   title="Calle"
                   isError="{errors.name}"
-                  hdlOnChange={(e) => handleChange.calle( e.target.value)}
-                  name="calle"
+                  hdlOnChange={ (e) => handleFormChange(e.target.value)}
+                  name="road"
+                  value={formData.road}
                   errors={errors}
                   register={register}
                   validationSchema={{
@@ -344,23 +366,23 @@ const Register = () => {
                 />
               </div>
               <div className="column is-4">
-                <InputLabel 
+                <InputLabel
                   title="No. Exterior"
                   isError="{errors.name}"
-                  hdlOnChange={(e) => handleChange ({ noExte: e.target.value })}
+                  hdlOnChange=""
                   name="NoExterior"
                   errors={errors}
                   register={register}
                   validationSchema={{
                     required: "Este campo es obligratorio",
                   }}
-                 />
+                />
               </div>
               <div className="column is-4">
-                <InputLabel 
-                  title="No. Interior" 
+                <InputLabel
+                  title="No. Interior"
                   isError="{errors.name}"
-                  hdlOnChange={(e) => handleChange ({ noInte: e.target.value })}
+                  hdlOnChange=""
                   name="NoInterior"
                   errors={errors}
                   register={register}

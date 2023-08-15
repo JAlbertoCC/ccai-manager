@@ -3,6 +3,7 @@ import React from "react";
 export const InputLabel = (props) => {
   const {
     name,
+    value,
     validationSchema,
     errors,
     register,
