@@ -399,12 +399,12 @@ table td:not([align]), table th:not([align]) {
 }
 
 .options-container{
-  background-color: #EBECF0;
+  background-color: rgb(43, 129, 146, 0.1);
+ 
+  
 }
 
-.card-body{
-  background-color: #EBECF0;
-}
+
 
 .button-strongGreen{
   background-color: #2b8192;
@@ -419,3 +419,9 @@ table td:not([align]), table th:not([align]) {
 .modal-newMargen-title{
   text-align: center;
 }
+
+
+
+
+
+

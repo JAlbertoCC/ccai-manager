@@ -163,9 +163,9 @@ const Questionnaire = () => {
     },
   ];
 
+
   const [isStarted, setIsStarted] = useState(false);
   const [currentThemeIndex, setCurrentThemeIndex] = useState(0);
-  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedOptions, setSelectedOptions] = useState({});
   const [isCompleted, setIsCompleted] = useState(false);
 
@@ -176,117 +176,120 @@ const Questionnaire = () => {
   const handleCancel = () => {
     setIsStarted(false);
     setCurrentThemeIndex(0);
-    setCurrentQuestionIndex(0);
     setSelectedOptions({});
     setIsCompleted(false);
   };
 
-  const handleNext = () => {
-    if (currentQuestionIndex < themes[currentThemeIndex].questions.length - 1) {
-      setCurrentQuestionIndex((prevIndex) => prevIndex + 1);
-    } else if (currentThemeIndex < themes.length - 1) {
-      setCurrentThemeIndex((prevIndex) => prevIndex + 1);
-      setCurrentQuestionIndex(0);
-    } else {
-      setIsCompleted(true);
+  const handleNextTheme = () => {
+    const nextThemeIndex = currentThemeIndex + 1;
+    if (nextThemeIndex < themes.length) {
+      setCurrentThemeIndex(nextThemeIndex);
     }
   };
 
-  const handleOptionSelect = (option) => {
+  const handleOptionSelect = (questionIndex, option) => {
     setSelectedOptions((prevSelectedOptions) => {
-      const currentOptions = prevSelectedOptions[currentQuestionIndex] || [];
-      const updatedOptions = currentOptions.includes(option)
-        ? currentOptions.filter((item) => item !== option)
-        : [...currentOptions, option];
+      const updatedOptions = selectedOptions[questionIndex]
+        ? selectedOptions[questionIndex].includes(option)
+          ? selectedOptions[questionIndex].filter((item) => item !== option)
+          : [...selectedOptions[questionIndex], option]
+        : [option];
 
       return {
         ...prevSelectedOptions,
-        [currentQuestionIndex]: updatedOptions,
+        [questionIndex]: updatedOptions,
       };
     });
   };
 
-  const progressBarStyle = {
-    position: "fixed",
-    top: 0,
-    left: 0,
-    width: `${((currentThemeIndex * themes[currentThemeIndex].questions.length + currentQuestionIndex) * 100) / (themes.length * themes[currentThemeIndex].questions.length)}%`,
-    background: "#007BFF",
-    height: "5px",
-    zIndex: 9999,
-    transition: "width 0.3s ease",
-  };
-
   return (
     <>
-      {isStarted && !isCompleted && (
-        <div style={progressBarStyle}></div>
-      )}
-
-    <div className="center-title">
-      {!isStarted && <HeaderComponentQuestion title="Evaluación para ser aceptado(a) en el CCAI" />}
-
-      {isStarted && !isCompleted && <HeaderComponentQuestion title={themes[currentThemeIndex].theme} />}
-
-      <div className="instructions">
-      {!isStarted && (
+    {!isStarted && (
+      <div className="center-title">
+        <HeaderComponentQuestion title="Evaluación para ser aceptado(a) en el CCAI" />
+        <div className="instructions">
           <div className="center-text">
-          <p>Por favor, lea las siguientes instrucciones antes de comenzar: En este cuestionario se tomarán
-            temas que han sido parte de su formación academica, por lo que deberá contestar honesta y 
-            éticamente cada una de las preguntas de acuerdo a sus habilidades y conocimientos previamente
-            adquiridos.
-          </p>
-          
-          <div className="button-container">
-            <button onClick={handleStart} className="modal-btn btn-green">Continuar</button>
-            <button onClick={handleCancel} className="modal-btn btn-red">Cancelar</button>
-          </div>
-        </div>
-          )}
-          {isStarted && !isCompleted && <p>Pregunta {currentQuestionIndex + 1}: {themes[currentThemeIndex].questions[currentQuestionIndex].question}</p>}
-        </div>
-
-        {isStarted && !isCompleted && (
-          <div className="card">
-            <div className="card-body">
-              <div className="options-container">
-                {themes[currentThemeIndex].questions[currentQuestionIndex].options.map((option, index) => (
-                  <div key={index}>
-                    <input
-                      type="checkbox"
-                      name="questionOption"
-                      value={option}
-                      checked={selectedOptions[currentQuestionIndex]?.includes(option)}
-                      onChange={() => handleOptionSelect(option)}
-                    />
-                    <label>{option}</label>
-                  </div>
-                ))}
-              </div>
-              <div className="center-buttons">
-              <div className="buttons">
-                {currentQuestionIndex < themes[currentThemeIndex].questions.length - 1 && <button onClick={handleNext} className="modal-btn btn-yellow">Siguiente</button>}
-                {currentQuestionIndex === themes[currentThemeIndex].questions.length - 1 && currentThemeIndex < themes.length - 1 && <button onClick={handleNext} className="modal-btn btn-yellow">Siguiente Tema</button>}
-                {currentQuestionIndex === themes[currentThemeIndex].questions.length - 1 && currentThemeIndex === themes.length - 1 && <button onClick={() => setIsCompleted(true)} className="modal-btn btn-green">Enviar</button>}
-                <button onClick={handleCancel} className="modal-btn btn-red">Cancelar</button>
-              </div>
+              <p>Por favor, lea las siguientes instrucciones antes de comenzar: En este cuestionario se tomarán
+                temas que han sido parte de su formación academica, por lo que deberá contestar honesta y 
+                éticamente cada una de las preguntas de acuerdo a sus habilidades y conocimientos previamente
+                adquiridos.
+              </p>
+              <p> En cada sección se preguntarán temas referentes a dichos temas.</p>
+              <div className="button-container">
+                <button onClick={handleStart} className="modal-btn btn-green">
+                  Continuar
+                </button>
+                <button onClick={handleCancel} className="modal-btn btn-red">
+                  Cancelar
+                </button>
               </div>
             </div>
           </div>
-        )}
+        </div>
+      )}
 
-        {isCompleted && (
-          <ModalComponentQuestion
-            title="¡REGISTRO EXITOSO!"
-            isActive={true}
-            hdlOnclick={() => setIsCompleted(false)}
-            titleGreen="Cerrar"
-            hdlOnClickGreen={() => setIsCompleted(false)}
-          >
-            <p>Los docentes se comunicarán con usted para informarle si usted fue aceptado en el CCAI.</p>
-          </ModalComponentQuestion>
-        )}
-      </div>
+{isStarted && !isCompleted && (
+        <div className="center-title">
+          <HeaderComponentQuestion title={themes[currentThemeIndex].theme} />
+          <div className="card">
+            <div className="card-body">
+              {themes[currentThemeIndex].questions.map((question, questionIndex) => (
+                <div key={questionIndex}>
+                  <p>Pregunta {questionIndex + 1}: {question.question}</p>
+                  <div className="options-container">
+                    {question.options.map((option, optionIndex) => (
+                      <div key={optionIndex}>
+                        <input
+                          type="checkbox"
+                          name={`questionOption${questionIndex}`}
+                          value={option}
+                          checked={
+                            selectedOptions[questionIndex]?.includes(option) || false
+                          }
+                          onChange={() =>
+                            handleOptionSelect(questionIndex, option)
+                          }
+                        />
+                        <label><strong>{option}</strong></label>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))}
+              <div className="center-buttons">
+                {currentThemeIndex < themes.length - 1 && (
+                  <button onClick={handleNextTheme} className="modal-btn btn-yellow">
+                    Siguiente Tema
+                  </button>
+                )}
+                {currentThemeIndex === themes.length - 1 && (
+                  <button onClick={() => setIsCompleted(true)} className="modal-btn btn-green">
+                    Enviar
+                  </button>
+                )}
+                <button onClick={handleCancel} className="modal-btn btn-red">
+                  Cancelar
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {isCompleted && (
+        <ModalComponentQuestion
+          title="¡REGISTRO EXITOSO!"
+          isActive={true}
+          hdlOnclick={() => setIsCompleted(false)}
+          titleGreen="Cerrar"
+          hdlOnClickGreen={() => setIsCompleted(false)}
+        >
+          <p>
+            Los docentes se comunicarán con usted para informarle si usted fue
+            aceptado en el CCAI.
+          </p>
+        </ModalComponentQuestion>
+      )}
     </>
   );
 };

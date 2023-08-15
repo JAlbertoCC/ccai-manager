@@ -1,14 +1,12 @@
-import React from 'react';
-import { useNavigate  } from 'react-router-dom'
-
 export const HeaderComponentQuestion = (props) => {
-  const navigate = useNavigate()
+  const headerStyle = {
+    fontSize: '1.5rem', // Puedes ajustar el tamaño de fuente aquí
+    fontWeight: 'bold', // Aplica negritas al título
+  };
 
   return (
-      <div className="header-component-question">     
-        <a onClick={() => navigate(-1)}>
-          <i className="mdi mdi-chevron-left"></i> {props.title}   
-        </a> 
-      </div>    
-  )
-}
+    <div className="header-component-question">
+      <span style={headerStyle}>{props.title}</span>
+    </div>
+  );
+};
