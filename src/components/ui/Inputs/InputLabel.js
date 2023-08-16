@@ -37,10 +37,11 @@ export const InputLabel = (props) => {
             }}
             className={`input input-radious ${
               isError ? "input is-danger" : ""
-            } ${classExtra}`}
+            } ${classExtra}`}  
             type={typeInput}
             placeholder={textplace}
             name={name}
+            value={value}
             {...(register && register(name, validationSchema))}
           />
           {title ? (
