@@ -7,6 +7,7 @@ const Questionnaire = () => {
     {
       theme: "Sección I: Programación",
       questions: [
+        
         {
           question: "Seleccione los lenguajes de programación en los que usted ya ha programado:",
           options: [
@@ -180,6 +181,17 @@ const Questionnaire = () => {
     setIsCompleted(false);
   };
 
+  const handleBack = () => {
+    if (currentThemeIndex > 0) {
+      setCurrentThemeIndex(currentThemeIndex - 1);
+    } else {
+      setIsStarted(false);
+      setCurrentThemeIndex(0);
+      setSelectedOptions({});
+      setIsCompleted(false);
+    }
+  };
+
   const handleNextTheme = () => {
     const nextThemeIndex = currentThemeIndex + 1;
     if (nextThemeIndex < themes.length) {
@@ -203,7 +215,7 @@ const Questionnaire = () => {
   };
 
   return (
-    <>
+    <div className="questionnaire-container">
     {!isStarted && (
       <div className="center-title">
         <HeaderComponentQuestion title="Evaluación para ser aceptado(a) en el CCAI" />
@@ -226,11 +238,15 @@ const Questionnaire = () => {
             </div>
           </div>
         </div>
+       
       )}
+      
 
 {isStarted && !isCompleted && (
-        <div className="center-title">
+        <div className="questionnaire-card">
+          <div className="card-title">
           <HeaderComponentQuestion title={themes[currentThemeIndex].theme} />
+          </div>
           <div className="card">
             <div className="card-body">
               {themes[currentThemeIndex].questions.map((question, questionIndex) => (
@@ -257,6 +273,11 @@ const Questionnaire = () => {
                 </div>
               ))}
               <div className="center-buttons">
+              {currentThemeIndex > 0 && (
+              <button onClick={handleBack} className="modal-btn btn-blue">
+                Atrás
+              </button>
+            )}
                 {currentThemeIndex < themes.length - 1 && (
                   <button onClick={handleNextTheme} className="modal-btn btn-yellow">
                     Siguiente Tema
@@ -290,7 +311,7 @@ const Questionnaire = () => {
           </p>
         </ModalComponentQuestion>
       )}
-    </>
+    </div>
   );
 };
 
