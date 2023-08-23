@@ -5,7 +5,8 @@ import {ModalComponentQuestion} from "./../components/ui/Modal/ModalComponentQue
 const Questionnaire = () => {
   const themes = [
     {
-      //definicion de las secciones con preguntas y respuestas
+      //definicion de las secciones con preguntas y respuestas de todos los temas 
+      
       theme: "Sección I: Programación",
       questions: [
         
