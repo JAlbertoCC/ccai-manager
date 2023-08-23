@@ -223,7 +223,9 @@ const Questionnaire = () => {
     <div className="questionnaire-container">
       {/* Sección de inicio */}
     {!isStarted && (
-      <div className="center-title">
+      <div className="center-card">
+        <div className="card">
+            <div className="card-body">
         <HeaderComponentQuestion title="Evaluación para ser aceptado(a) en el CCAI" />
         <div className="instructions">
           <div className="center-text">
@@ -244,7 +246,8 @@ const Questionnaire = () => {
             </div>
           </div>
         </div>
-       
+       </div>
+       </div>
       )}
       
 {/* Sección de preguntas */}
