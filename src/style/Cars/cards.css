@@ -81,6 +81,15 @@
   padding: 15px;
 }
 
+.card-cronograma {
+  margin-top: 8%;
+  margin-bottom: 0%;
+  margin-left: 0%;
+  margin-right: 25%;
+  width: 100%;
+  padding: 18px;
+}
+
 @media (min-width: 1500px) {
   .cart-title {
     border-radius: 65px;

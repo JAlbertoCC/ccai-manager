@@ -17,11 +17,11 @@ import Proceedings from "../views/Proceedings"
 import InformationView from "../views/InformationView"
 import ForgotPassword from "../views/ForgotPassword"
 import RestorePassword from "../views/RestorePassword"
-<<<<<<< HEAD
+
 import ApplicationStudent from "../views/ApplicationStudent"
-=======
+
 import Questionnaire from "../views/Questionnaire"
->>>>>>> origin/feature/new-view-Exam
+
 
 export const AppRouter = () => {
   return (

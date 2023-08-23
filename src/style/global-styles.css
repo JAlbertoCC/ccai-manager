@@ -26,6 +26,8 @@
 
 @import url('./Calendar/modal-calendar.css');
 
+@import url('./Calendar/cronograma.css');
+
 
 @font-face {
   font-family: 'Poppins';
@@ -341,4 +343,9 @@ table td:not([align]), table th:not([align]) {
 /*linea 484*/
 .column484{
   width: 300px;
+}
+
+/*calendar.js*/
+.column67{
+  margin-top: -2%;
 }
