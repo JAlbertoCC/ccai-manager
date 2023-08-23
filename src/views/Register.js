@@ -57,7 +57,7 @@ const Register = () => {
       name: "Residencias Profesionales",
     },
   ]);
-
+// hola
   useEffect(() => {
     //Consultamos datos necesarios al cargar el componente
     showData();
