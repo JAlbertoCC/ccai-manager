@@ -22,8 +22,8 @@ export const ModalComponentQuestion = (props) => {
         <div className="modal-background"></div>
         <div className={`modal-card ${classExtra}`}>
           <section className="modal-body">
-            <div className="modal-newMargen-title">
-              <p className="modal-title modal-title-red-centered">{title}</p>
+            <div className="modal-newMargen-title2">
+              <p className="modal-title modal-title-red-centered2">{title}</p>
               <button
                 className="delete btnModalClose"
                 aria-label="close"

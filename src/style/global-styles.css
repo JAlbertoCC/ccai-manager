@@ -343,85 +343,105 @@ table td:not([align]), table th:not([align]) {
   width: 300px;
 }
 
-.button-container {
+/*questionnaire*/
+
+.button-container2 {
   display: flex;
   justify-content: center;
-  margin-top: 300px;
+  margin-top: 60px;
 }
 
-.modal-btn {
+.modal-btn2 {
   padding: 10px 20px;
   border: none;
   cursor: pointer;
   font-weight: bold;
   border-radius: 5px;
-  margin: 100px;
+  margin: 50px;
 }
 
-.btn-green {
+.btn-green2 {
   background-color: green;
   color: white;
 }
 
-.btn-red {
+.btn-red2 {
   background-color: red;
   color: white;
 }
 
-.center-text {
+.center-text2 {
   text-align: left;
   text-align: justify;
 }
 
-.center-text p{
+.center-text2 p{
   font-weight: bold;
 }
 
-.center-title {
+.center-card2 {
   margin-top: 20px;
   text-align: center;
 }
 
-.center-buttons{
+
+
+.center-buttons2 {
   display: flex;
   justify-content: center;
-  margin-top: 20px; 
+  margin-top: 10px; 
 }
 
-.btn-yellow {
+.btn-yellow2 {
   background-color: yellow;
   color: black;
 }
 
-.btn-red {
+.btn-red2 {
   background-color: red;
   color: white;
 }
 
-.options-container{
-  background-color: rgb(43, 129, 146, 0.1);
- 
-  
-}
-
-
-
-.button-strongGreen{
+.btn-blue2 {
   background-color: #2b8192;
   color: white;
 }
 
-.modal-title-red-centered {
+
+.button-strongGreen2 {
+  background-color: #2b8192;
+  color: white;
+}
+
+.modal-title-red-centered2 {
   text-align: center;
   color: red;
 }
 
-.modal-newMargen-title{
+.modal-newMargen-title2 {
   text-align: center;
 }
 
+.questionnaire-container2 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 30px;
+}
 
+.card2 {
+  max-width: 500px; /* Puedes ajustar este valor según tu preferencia */
+  margin: 30px auto 0;
+  background-color: rgb(43, 129, 146, 0.1); /* Color de fondo del card */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
 
-
-
+.card-title2 {
+  text-align: center; /* Alinea el título al centro */
+  font-size: 1.5rem; /* Tamaño de fuente del título */
+  font-weight: bold; /* Negrita para el título */
+  padding: 20px 0; /* Espaciado superior e inferior para el título del card */
+}
 
