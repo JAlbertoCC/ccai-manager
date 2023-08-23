@@ -11,7 +11,7 @@ export const StrongGreenButton = (props) => {
   return (
     <div className="buttons">
       <button
-        className={`button is-rounded button-strongGreen ${classExtra}`}
+        className={`button is-rounded button-strongGreen2 ${classExtra}`}
         onClick={() => hdlOnClickGreen()}
         disabled={disabled}
       >

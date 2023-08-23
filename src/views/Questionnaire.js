@@ -220,26 +220,26 @@ const Questionnaire = () => {
   };
 
   return (
-    <div className="questionnaire-container">
+    <div className="questionnaire-container2">
       {/* Sección de inicio */}
     {!isStarted && (
-      <div className="center-card">
-        <div className="card">
-            <div className="card-body">
+      <div className="center-card2">
+        <div className="card2">
+            <div className="card-body2">
         <HeaderComponentQuestion title="Evaluación para ser aceptado(a) en el CCAI" />
         <div className="instructions">
-          <div className="center-text">
+          <div className="center-text2">
               <p>Por favor, lea las siguientes instrucciones antes de comenzar: En este cuestionario se tomarán
                 temas que han sido parte de su formación academica, por lo que deberá contestar honesta y 
                 éticamente cada una de las preguntas de acuerdo a sus habilidades y conocimientos previamente
                 adquiridos.
               </p>
               <p> En cada sección se preguntarán temas referentes a dichos temas.</p>
-              <div className="button-container">
-                <button onClick={handleStart} className="modal-btn btn-green">
+              <div className="button-container2">
+                <button onClick={handleStart} className="modal-btn2 btn-green2">
                   Continuar
                 </button>
-                <button onClick={handleCancel} className="modal-btn btn-red">
+                <button onClick={handleCancel} className="modal-btn2 btn-red2">
                   Cancelar
                 </button>
               </div>
@@ -253,11 +253,11 @@ const Questionnaire = () => {
 {/* Sección de preguntas */}
 {isStarted && !isCompleted && (
         <div className="questionnaire-card">
-          <div className="card-title">
+          <div className="card-title2">
           <HeaderComponentQuestion title={themes[currentThemeIndex].theme} />
           </div>
-          <div className="card">
-            <div className="card-body">
+          <div className="card2">
+            <div className="card-body2">
               {themes[currentThemeIndex].questions.map((question, questionIndex) => (
                 <div key={questionIndex}>
                   <p>Pregunta {questionIndex + 1}: {question.question}</p>
@@ -283,23 +283,23 @@ const Questionnaire = () => {
               ))}
 
               {/* Botones de navegación */}
-              <div className="center-buttons">
+              <div className="center-buttons2">
               {currentThemeIndex > 0 && (
-              <button onClick={handleBack} className="modal-btn btn-blue">
+              <button onClick={handleBack} className="modal-btn2 btn-blue2">
                 Atrás
               </button>
             )}
                 {currentThemeIndex < themes.length - 1 && (
-                  <button onClick={handleNextTheme} className="modal-btn btn-yellow">
+                  <button onClick={handleNextTheme} className="modal-btn2 btn-yellow2">
                     Siguiente Tema
                   </button>
                 )}
                 {currentThemeIndex === themes.length - 1 && (
-                  <button onClick={() => setIsCompleted(true)} className="modal-btn btn-green">
+                  <button onClick={() => setIsCompleted(true)} className="modal-btn2 btn-green2">
                     Enviar
                   </button>
                 )}
-                <button onClick={handleCancel} className="modal-btn btn-red">
+                <button onClick={handleCancel} className="modal-btn2 btn-red2">
                   Cancelar
                 </button>
               </div>

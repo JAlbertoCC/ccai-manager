@@ -345,13 +345,13 @@ table td:not([align]), table th:not([align]) {
 
 /*questionnaire*/
 
-.button-container {
+.button-container2 {
   display: flex;
   justify-content: center;
   margin-top: 60px;
 }
 
-.modal-btn {
+.modal-btn2 {
   padding: 10px 20px;
   border: none;
   cursor: pointer;
@@ -360,76 +360,76 @@ table td:not([align]), table th:not([align]) {
   margin: 50px;
 }
 
-.btn-green {
+.btn-green2 {
   background-color: green;
   color: white;
 }
 
-.btn-red {
+.btn-red2 {
   background-color: red;
   color: white;
 }
 
-.center-text {
+.center-text2 {
   text-align: left;
   text-align: justify;
 }
 
-.center-text p{
+.center-text2 p{
   font-weight: bold;
 }
 
-.center-card {
+.center-card2 {
   margin-top: 20px;
   text-align: center;
 }
 
 
 
-.center-buttons{
+.center-buttons2 {
   display: flex;
   justify-content: center;
   margin-top: 10px; 
 }
 
-.btn-yellow {
+.btn-yellow2 {
   background-color: yellow;
   color: black;
 }
 
-.btn-red {
+.btn-red2 {
   background-color: red;
   color: white;
 }
 
-.btn-blue {
+.btn-blue2 {
   background-color: #2b8192;
   color: white;
 }
 
 
-.button-strongGreen{
+.button-strongGreen2 {
   background-color: #2b8192;
   color: white;
 }
 
-.modal-title-red-centered {
+.modal-title-red-centered2 {
   text-align: center;
   color: red;
 }
 
-.modal-newMargen-title{
+.modal-newMargen-title2 {
   text-align: center;
 }
 
-.questionnaire-container {
+.questionnaire-container2 {
   display: flex;
   flex-direction: column;
   align-items: center;
   padding-top: 30px;
 }
 
-.card {
+.card2 {
   max-width: 500px; /* Puedes ajustar este valor según tu preferencia */
   margin: 30px auto 0;
   background-color: rgb(43, 129, 146, 0.1); /* Color de fondo del card */
@@ -438,7 +438,7 @@ table td:not([align]), table th:not([align]) {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.card-title {
+.card-title2 {
   text-align: center; /* Alinea el título al centro */
   font-size: 1.5rem; /* Tamaño de fuente del título */
   font-weight: bold; /* Negrita para el título */
