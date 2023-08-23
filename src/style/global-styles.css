@@ -442,9 +442,6 @@ table td:not([align]), table th:not([align]) {
   text-align: center; /* Alinea el título al centro */
   font-size: 1.5rem; /* Tamaño de fuente del título */
   font-weight: bold; /* Negrita para el título */
-  padding: 20px 0; /* Espaciado superior e inferior para el título */
+  padding: 20px 0; /* Espaciado superior e inferior para el título del card */
 }
-
-
-
 
