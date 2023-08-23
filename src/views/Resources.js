@@ -22,6 +22,8 @@ const Resources = () => {
 
   useEffect(() => {
     showData();
+    showDataMaterials();
+    showDocent();
   }, []);
   const showData = async () => {
     consultingStudentsData()
@@ -32,10 +34,6 @@ const Resources = () => {
         console.error(error);
       });
   };
-
-  useEffect(() => {
-    showDataMaterials();
-  }, []);
   const showDataMaterials = async () => {
     consultMaterials()
       .then((result) => {
@@ -45,10 +43,6 @@ const Resources = () => {
         console.error(error);
       });
   };
-
-  useEffect(() => {
-    showDocent();
-  }, []);
   const showDocent = async () => {
     consultTeacher()
       .then((result) => {
@@ -144,8 +138,7 @@ const Resources = () => {
 
   const [typeInputGender, setTypeInputGender] = useState();
 
-
-  useEffect(() => { }, []);
+  useEffect(() => {}, []);
   //
   return (
     <div className="section">
@@ -227,7 +220,7 @@ const Resources = () => {
             <div>
               <div
                 className="columns container proyect-detail column359"
-              //style={{ marginTop: "30px", width: "600px" }}
+                //style={{ marginTop: "30px", width: "600px" }}
               >
                 <div className="column">
                   <div className="column">
@@ -297,14 +290,14 @@ const Resources = () => {
             isActive={showModal3}
             hdlOnclick={() => setShowModal3(!showModal3)}
             titleGreen="Agregar"
-            hdlOnClickGreen= ""
+            hdlOnClickGreen=""
             titleRed="Cancelar"
             hdlOnClickRed={() => setShowModal3(!showModal3)}
           >
             <div>
               <div
                 className="columns container proyect-detail column468"
-              //style={{ marginTop: "10px", width: "600px" }}
+                //style={{ marginTop: "10px", width: "600px" }}
               >
                 <div className="column">
                   <div className="column">
@@ -408,7 +401,7 @@ const Resources = () => {
             <div>
               <div
                 className="columns container proyect-detail column359"
-              //style={{ marginTop: "30px", width: "600px" }}
+                //style={{ marginTop: "30px", width: "600px" }}
               >
                 <div className="column">
                   <div className="column">
@@ -485,7 +478,7 @@ const Resources = () => {
             <div>
               <div
                 className="columns container proyect-detail column468"
-              //style={{ marginTop: "10px", width: "600px" }}
+                //style={{ marginTop: "10px", width: "600px" }}
               >
                 <div className="column">
                   <div className="column">
@@ -576,8 +569,10 @@ const Resources = () => {
                             <td>{item.gender}</td>
                             <td>{item.division}</td>
                             <td>
-                              <i className="mdi mdi-pencil icon-blue"
-                                onClick={() => setShowModalEdit(!showModalEdit)} ></i>
+                              <i
+                                className="mdi mdi-pencil icon-blue"
+                                onClick={() => setShowModalEdit(!showModalEdit)}
+                              ></i>
                               <i className="mdi mdi-trash-can-outline icon-blue"></i>
                             </td>
                           </tr>
@@ -641,8 +636,12 @@ const Resources = () => {
                             <td>{item.gender}</td>
                             <td>{item.name_career}</td>
                             <td>
-                              <i className="mdi mdi-pencil icon-blue"
-                                onClick={() => setShowModal2Edit(!showModal2Edit)} ></i>
+                              <i
+                                className="mdi mdi-pencil icon-blue"
+                                onClick={() =>
+                                  setShowModal2Edit(!showModal2Edit)
+                                }
+                              ></i>
                               <i className="mdi mdi-trash-can-outline icon-blue"></i>
                             </td>
                           </tr>
@@ -701,8 +700,12 @@ const Resources = () => {
                             <td>{item.observation}</td>
                             <td>{item.amount}</td>
                             <td>
-                              <i className="mdi mdi-pencil icon-blue"
-                                onClick={() => setShowModal3Edit(!showModal3Edit)} ></i>
+                              <i
+                                className="mdi mdi-pencil icon-blue"
+                                onClick={() =>
+                                  setShowModal3Edit(!showModal3Edit)
+                                }
+                              ></i>
                               <i className="mdi mdi-trash-can-outline icon-blue"></i>
                             </td>
                           </tr>

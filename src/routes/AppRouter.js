@@ -17,7 +17,9 @@ import Proceedings from "../views/Proceedings"
 import InformationView from "../views/InformationView"
 import ForgotPassword from "../views/ForgotPassword"
 import RestorePassword from "../views/RestorePassword"
+import ApplicationStudent from "../views/ApplicationStudent"
 import Questionnaire from "../views/Questionnaire"
+import ReportGeneration from "../views/ReportGeneration"
 
 export const AppRouter = () => {
   return (
@@ -44,7 +46,7 @@ export const AppRouter = () => {
           element={<Proyects />}
         />
         <Route
-          path="/proyect-detail/:projectId"
+          path="/proyect-detail/:id_project"
           element={<ProyectDetail />}
         />
         <Route
@@ -70,6 +72,10 @@ export const AppRouter = () => {
         <Route
           path="/restore-password"
           element={<RestorePassword/>}
+        />
+        <Route
+          path="/application-student"
+          element={<ApplicationStudent/>}
         />
         {/* 👇️ only match this when no other routes match */}
         <Route
@@ -108,6 +114,10 @@ export const AppRouter = () => {
         path="/Questionnaire"       //Se agrego esta ruta para la nueva vista 
         element={<Questionnaire />} 
         />
+        <Route
+          path="/report-generation" 
+          element={<ReportGeneration />}
+          />
       </Routes>
     </BrowserRouter>
   )

@@ -13,15 +13,12 @@ import { mdiPlusBoxOutline } from "@mdi/js";
 import { useProjects } from "../hooks/useProjects";
 
 const Proyects = () => {
-  //cambio 1
+  // funcion y hooks para mostrar la informacion del proyecto 
   const [projects, setProjects] = useState([]);
-
   const { consultProjects } = useProjects();
-
   useEffect(() => {
     showData();
   }, []);
-
   const showData = async () => {
     consultProjects()
       .then((result) => {
@@ -31,10 +28,11 @@ const Proyects = () => {
         console.error(error);
       });
   };
+
   //parametros para navegar a la vista proyect-detail / id_proyect junto al id que se seleccione
   const navigate = useNavigate();
-  const goToLink = (uri, projectId) => {
-    navigate(`${uri}/${projectId}`);
+  const goToLink = (uri) => {
+    navigate(uri);
   };
   //muestra y cierra el modal para agregar
   const [showModal, setShowModal] = useState(false);
@@ -227,12 +225,12 @@ const Proyects = () => {
                         <td>{item.objectives}</td>
                         <td>{item.benefits}</td>
                         <td>{item.name_adviser}</td>
-                        <td>Lista de actividades.</td>
+                        <td>{item.name_activity}.</td>
                         <td>
                           <i
                             className="mdi mdi-eye icon-blue"
                             onClick={() =>
-                              goToLink("/proyect-detail", item.id_proyect)
+                              goToLink(`/proyect-detail/${item.id_project}`)
                             }
                           ></i>
                           <i

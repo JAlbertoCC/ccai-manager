@@ -3,9 +3,10 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Auth0Provider } from '@auth0/auth0-react';
-
+//creacion de nodo con reactDOM
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
+  //mostrar advertencias adicionales
   <React.StrictMode>
     <Auth0Provider
       domain={process.env.AUTH_DOMAIN}

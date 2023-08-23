@@ -90,12 +90,21 @@ const Home = () => {
             </div>
             <div className="column is-6 column8391">
               <ButtonDecorative
+                title="Solicitud Alumnos"
+                backgroundColor="#60dd96"
+                imgResource="Menu/user.png"
+                navOnclick={() => goToLink("/application-student")}
+              />
+            </div>
+            <div className="column is-6 column8391">
+              <ButtonDecorative
                 title="Cerrar sesión"
                 backgroundColor="#c12529"
                 imgResource="Menu/close.svg"
                 navOnclick={() => goToLink("/")}
               />
             </div>
+            
           </div>
         </div>
       </div>
