@@ -2,11 +2,11 @@ import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 
 //Importación de componentes y hooks personalizados
-import { CardComponent } from './../components/ui/Cards/CardComponent'
-import { InputLabel } from './../components/ui/Inputs/InputLabel'
-import { DropDown } from './../components/ui/DropDown/DropDown'
-import { HeaderComponent } from './../components/ui/Header/HeaderComponent'
-import { useRegister } from '../hooks/useRegister';
+import { CardComponent } from "./../components/ui/Cards/CardComponent";
+import { InputLabel } from "./../components/ui/Inputs/InputLabel";
+import { DropDown } from "./../components/ui/DropDown/DropDown";
+import { HeaderComponent } from "./../components/ui/Header/HeaderComponent";
+import { useRegister } from "../hooks/useRegister";
 import { useCareer } from "./../hooks/useCareer";
 import { useService } from "./../hooks/useService";
 import { ModalComponentGlobal } from "./../components/ui/Modal/ModalComponentGlobal";
@@ -15,53 +15,25 @@ import { ModalComponentRegister } from "../components/ui/Modal/ModalComponentReg
 
 const Register = () => {
   //Configurar el form usando react hook form
-  const { register, handleSubmit, formState: { errors, isDirty, isValid } } = useForm();
-  const onSubmit = data => console.log(data);
-
-  //Hooks
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isDirty, isValid },
+  } = useForm();
+  const onSubmit = (data) => console.log(data);
   const { checkingInternalRegister } = useRegister();
   const { consultCareer } = useCareer();
   const { consultService } = useService();
 
   //Estados para el manejo de datos y visualizacion
-  const [isLoader, setIsLoader] = useState(false);
   const [messageType, setMessageType] = useState("is-danger");
-  const [typeInputName, setTypeInputName] = useState("");
-  const [typeInputLastNameF, setTypeInputLastNameF] = useState("");
-  const [typeInputLastNameM, setTypeInputLastNameM] = useState("");
-  const [typeInputAdress, setTypeInputAdress] = useState("");
-  const [typeInputPhone, setTypeInputPhone] = useState("");
-  const [typeInputGender, setTypeInputGender] = useState("M");
-  const [typeInputIdentification, setTypeInputIdentification] = useState("");
-  const [typeInputCareer, setTypeInputCareer] = useState(
-    "INGENIERÍA INFORMATICA"
-  );
-  const [typeInputService, setTypeInputService] = useState("Servicio Social");
-  const [typeInputMail, setTypeInputMail] = useState("");
-  const [typeInputPassword, setTypeInputPassword] = useState("");
+ 
+
   const [showModal, setShowModal] = useState(false);
   const [showError, setShowError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [modalMessage, setModalMessage] = useState("");
   const [career, setCareer] = useState([]);
-
-  // hook para retornar en un body los datos de registro reduciendo el numero de hooks Domicilio
-  const [domicilio, setDomicilio] = useState({
-    calle: String,
-    noExte: Number,
-    noInte: Number,
-    colonia: String,
-    localidad: String,
-    municipio: String,
-    estado: String,
-    cP: Number,
-    observaciones: String,
-  });
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    setDomicilio((prevDomicilio) => ({ ...prevDomicilio, [name]: value }));
-  };
-
 
   // REVISAR SI LAS LISTAS SON NECESARIAS O SOLO CONSUMIR LAS VISTA /api/list-sex, /api/list-carrer, /api/list-service
   const [genderList] = useState([
@@ -85,9 +57,7 @@ const Register = () => {
       name: "Residencias Profesionales",
     },
   ]);
-
- 
-
+// hola
   useEffect(() => {
     //Consultamos datos necesarios al cargar el componente
     showData();
@@ -129,31 +99,63 @@ const Register = () => {
       });
   };
 
+  const [formData, setFormData] = useState({
+    // datos personales
+    name: "",
+    first_name: "",
+    second_name: "",
+    cell_phoneNumber: "",
+    gender: "M",
+    // Domicilio
+    road: "",
+    noAbroad: "",
+    noInside: "",
+    colony: "",
+    locality: "",
+    municipality: "",
+    government: "",
+    postalC: "",
+    observations: "",
+    // datos institucionales
+    matricula: "",
+    carrer: "INGENIERIA EN INFORMATICA",
+    service_provide: "Servicio Social",
+    institutional_emailEs: "",
+    password: "",
+  });
+
+  const handleFormChange = (name, value) => {
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
   const registerUser = () => {
-  //Creamos objeto de datos que se enviará al realizar el registro
+    //Creamos objeto de datos que se enviará al realizar el registro
     const body = {
       // datos personales
-      name: typeInputName,
-      first_name: typeInputLastNameF,
-      second_name: typeInputLastNameM,
-      cell_phoneNumber: typeInputPhone,
-      gender: typeInputGender,
+      name: formData.name,
+      first_name: formData.first_name,
+      second_name: formData.second_name,
+      cell_phoneNumber: formData.cell_phoneNumber,
+      gender: formData.gender,
       // Domicilio
-      road: domicilio.calle,
-      noAbroad: domicilio.noExte,
-      noInside: domicilio.noInte,
-      colony: domicilio.colonia,
-      locality: domicilio.localidad,
-      municipality: domicilio.municipio,
-      government: domicilio.estado,
-      postalC: domicilio.cP,
-      observations: domicilio.observaciones,
+      road: formData.road,
+      noAbroad: formData.noAbroad,
+      noInside: formData.noInside,
+      colony: formData.colony,
+      locality: formData.locality,
+      municipality: formData.municipality,
+      government: formData.government,
+      postalC: formData.postalC,
+      observations: formData.observations,
       // datos institucionales
-      matricula: typeInputIdentification,
-      carrer: typeInputCareer,
-      service_provide: typeInputService,
-      institutional_emailEs: typeInputMail,
-      password: typeInputPassword,
+      matricula: formData.matricula,
+      carrer: formData.carrer,
+      service_provide: formData.service_provide,
+      institutional_emailEs: formData.institutional_emailEs,
+      password: formData.password,
     };
     console.log(body);
     if (isDirty && isValid) registerNewUser(body);
@@ -176,27 +178,28 @@ const Register = () => {
 
   return (
     <>
-    <div className='container register-content'>
-      <HeaderComponent title="Registro" />
-      {/*Modal que se mostrara al realizar el registro de forma exitosa*/}
-      {showModal ?
-        <ModalComponentGlobal
-        classExtra = "modal-register" 
-        title = "¡REGISTRO EXITOSO!" 
-        isActive = "false" 
-        hdlOnclick= { ()=>setShowModal (!showModal)} >
-          
-        </ModalComponentGlobal> : <></>
-      }
-{/*ANALIZAR FUNCION DE MODAL COMPONENT REGISTER CON WENDY, bueno, esto es un modal de registro xD*/}
-      <ModalComponentRegister
-        isActive={showModal}
-        textModal={modalMessage}
-        hdlOnclick={() => {
-          setShowModal(!showModal);
-          setModalMessage('');
-        }}
-      />
+      <div className="container register-content">
+        <HeaderComponent title="Registro" />
+        {/*Modal que se mostrara al realizar el registro de forma exitosa*/}
+        {showModal ? (
+          <ModalComponentGlobal
+            classExtra="modal-register"
+            title="¡REGISTRO EXITOSO!"
+            isActive="false"
+            hdlOnclick={() => setShowModal(!showModal)}
+          ></ModalComponentGlobal>
+        ) : (
+          <></>
+        )}
+        {/*ANALIZAR FUNCION DE MODAL COMPONENT REGISTER CON WENDY, bueno, esto es un modal de registro xD*/}
+        <ModalComponentRegister
+          isActive={showModal}
+          textModal={modalMessage}
+          hdlOnclick={() => {
+            setShowModal(!showModal);
+            setModalMessage("");
+          }}
+        />
 
         {showModal ? (
           <ModalComponentGlobal
@@ -228,7 +231,7 @@ const Register = () => {
                 <InputLabel
                   title="Nombre"
                   isError={errors.name}
-                  hdlOnChange={(e) => setTypeInputName(e.target.value)}
+                  hdlOnChange={(e) => handleFormChange("name",e.target.value)}
                   name="name"
                   errors={errors}
                   register={register}
@@ -246,8 +249,8 @@ const Register = () => {
                 <InputLabel
                   title="Apellido paterno"
                   isError={errors.lastNameF}
-                  hdlOnChange={(e) => setTypeInputLastNameF(e.target.value)}
-                  name="lastNameF"
+                  hdlOnChange={(e) => handleFormChange("first_name",e.target.value)}
+                  name="first_name"
                   errors={errors}
                   register={register}
                   validationSchema={{
@@ -264,8 +267,8 @@ const Register = () => {
                 <InputLabel
                   title="Apellido materno"
                   isError={errors.lastNameM}
-                  hdlOnChange={(e) => setTypeInputLastNameM(e.target.value)}
-                  name="lastNameM"
+                  hdlOnChange={(e) => handleFormChange("second_name",e.target.value)}
+                  name="second_name"
                   errors={errors}
                   register={register}
                   validationSchema={{
@@ -282,8 +285,8 @@ const Register = () => {
                 <InputLabel
                   title="Telefono"
                   isError={errors.phone}
-                  hdlOnChange={(e) => setTypeInputPhone(e.target.value)}
-                  name="phone"
+                  hdlOnChange={(e) => handleFormChange("cell_phoneNumber",e.target.value)}
+                  name="cell_phoneNumber"
                   errors={errors}
                   register={register}
                   validationSchema={{
@@ -311,7 +314,7 @@ const Register = () => {
                   items={genderList}
                   title="Sexo"
                   isError={errors.gender}
-                  hdlOnChange={(e) => setTypeInputGender(e.target.value)}
+                  hdlOnChange={(e) => handleFormChange("gender",e.target.value)}
                   name="gender"
                   errors={errors}
                   valueSelect="id"
@@ -333,35 +336,24 @@ const Register = () => {
               <div className="column is-4">
                 <InputLabel
                   title="Calle"
-                  isError="{errors.name}"
-                  hdlOnChange={(e) => handleChange.calle( e.target.value)}
-                  name="calle"
+                  isError={errors.road}
+                  hdlOnChange={(e) => handleFormChange("road", e.target.value)}
+                  name="road"
                   errors={errors}
                   register={register}
                   validationSchema={{
-                    required: "Este campo es obligratorio",
+                    required: "Este campo es obligatorio",
                   }}
                 />
               </div>
               <div className="column is-4">
-                <InputLabel 
+                <InputLabel
                   title="No. Exterior"
                   isError="{errors.name}"
-                  hdlOnChange={(e) => handleChange ({ noExte: e.target.value })}
-                  name="NoExterior"
-                  errors={errors}
-                  register={register}
-                  validationSchema={{
-                    required: "Este campo es obligratorio",
-                  }}
-                 />
-              </div>
-              <div className="column is-4">
-                <InputLabel 
-                  title="No. Interior" 
-                  isError="{errors.name}"
-                  hdlOnChange={(e) => handleChange ({ noInte: e.target.value })}
-                  name="NoInterior"
+                  hdlOnChange={(e) =>
+                    handleFormChange("noAbroad", e.target.value)
+                  }
+                  name="noAbroad"
                   errors={errors}
                   register={register}
                   validationSchema={{
@@ -370,22 +362,109 @@ const Register = () => {
                 />
               </div>
               <div className="column is-4">
-                <InputLabel title="Colonia" />
+                <InputLabel
+                  title="No. Interior"
+                  isError="{errors.name}"
+                  hdlOnChange={(e) =>
+                    handleFormChange("noInside", e.target.value)
+                  }
+                  name="noInside"
+                  errors={errors}
+                  register={register}
+                  validationSchema={{
+                    required: "Este campo es obligratorio",
+                  }}
+                />
               </div>
               <div className="column is-4">
-                <InputLabel title="Localidad" />
+                <InputLabel
+                  title="Colonia"
+                  isError="{errors.name}"
+                  hdlOnChange={(e) =>
+                    handleFormChange("colony", e.target.value)
+                  }
+                  name="colony"
+                  errors={errors}
+                  register={register}
+                  validationSchema={{
+                    required: "Este campo es obligratorio",
+                  }}
+                />
               </div>
               <div className="column is-4">
-                <InputLabel title="Municipio" />
+                <InputLabel
+                  title="Localidad"
+                  isError="{errors.name}"
+                  hdlOnChange={(e) =>
+                    handleFormChange("locality", e.target.value)
+                  }
+                  name="locality"
+                  errors={errors}
+                  register={register}
+                  validationSchema={{
+                    required: "Este campo es obligratorio",
+                  }}
+                />
               </div>
               <div className="column is-4">
-                <InputLabel title="Estado" />
+                <InputLabel
+                  title="Municipio"
+                  isError="{errors.name}"
+                  hdlOnChange={(e) =>
+                    handleFormChange("municipality", e.target.value)
+                  }
+                  name="municipality"
+                  errors={errors}
+                  register={register}
+                  validationSchema={{
+                    required: "Este campo es obligratorio",
+                  }}
+                />
               </div>
               <div className="column is-4">
-                <InputLabel title="Codigo Postal" />
+                <InputLabel
+                  title="Estado"
+                  isError="{errors.name}"
+                  hdlOnChange={(e) =>
+                    handleFormChange("government", e.target.value)
+                  }
+                  name="government"
+                  errors={errors}
+                  register={register}
+                  validationSchema={{
+                    required: "Este campo es obligratorio",
+                  }}
+                />
               </div>
               <div className="column is-4">
-                <InputLabel title="Observaciones" />
+                <InputLabel
+                  title="Codigo Postal"
+                  isError="{errors.name}"
+                  hdlOnChange={(e) =>
+                    handleFormChange("postalC", e.target.value)
+                  }
+                  name="postalC"
+                  errors={errors}
+                  register={register}
+                  validationSchema={{
+                    required: "Este campo es obligratorio",
+                  }}
+                />
+              </div>
+              <div className="column is-4">
+                <InputLabel
+                  title="Observaciones"
+                  isError="{errors.name}"
+                  hdlOnChange={(e) =>
+                    handleFormChange("observations", e.target.value)
+                  }
+                  name="observations"
+                  errors={errors}
+                  register={register}
+                  validationSchema={{
+                    required: "Este campo es obligratorio",
+                  }}
+                />
               </div>
 
               <div className="column is-11">
@@ -397,9 +476,9 @@ const Register = () => {
                   title="Matricula"
                   isError={errors.card}
                   hdlOnChange={(e) =>
-                    setTypeInputIdentification(e.target.value)
+                    handleFormChange("matricula",e.target.value)
                   }
-                  name="card"
+                  name="matricula"
                   errors={errors}
                   register={register}
                   validationSchema={{
@@ -429,7 +508,7 @@ const Register = () => {
                   name="career"
                   errors={errors}
                   register={register}
-                  hdlOnChange={(e) => setTypeInputCareer(e.target.value)}
+                  hdlOnChange={(e) => handleFormChange("carrer",e.target.value)}
                   validationSchema={{
                     required: "Este campo es obligratorio",
                   }}
@@ -446,10 +525,10 @@ const Register = () => {
                   items={serviceList}
                   title="Servicio a prestar"
                   isError={errors.service}
-                  name="service"
+                  name="service_provide"
                   errors={errors}
                   register={register}
-                  hdlOnChange={(e) => setTypeInputService(e.target.value)}
+                  hdlOnChange={(e) => handleFormChange("service_provide",e.target.value)}
                   validationSchema={{
                     required: "Este campo es obligratorio",
                   }}
@@ -465,8 +544,8 @@ const Register = () => {
                 <InputLabel
                   title="Correo Institucional"
                   isError={errors.email}
-                  hdlOnChange={(e) => setTypeInputMail(e.target.value)}
-                  name="email"
+                  hdlOnChange={(e) => handleFormChange("institutional_emailEs", e.target.value)}
+                  name="institutional_emailEs"
                   errors={errors}
                   register={register}
                   validationSchema={{
@@ -489,8 +568,8 @@ const Register = () => {
                   typeInput="password"
                   title="Contraseña"
                   isError={errors.pass}
-                  name="pass"
-                  hdlOnChange={(e) => setTypeInputPassword(e.target.value)}
+                  name="password"
+                  hdlOnChange={(e) => handleFormChange("password", e.target.value)}
                   errors={errors}
                   register={register}
                   validationSchema={{
@@ -506,6 +585,7 @@ const Register = () => {
               <div className="column is-4">
                 <p className="control has-icon-right">
                   <button
+                    type="button"
                     className="button button-register"
                     onClick={() => registerUser()}
                   >

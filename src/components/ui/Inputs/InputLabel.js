@@ -3,6 +3,7 @@ import React from "react";
 export const InputLabel = (props) => {
   const {
     name,
+    value,
     validationSchema,
     errors,
     register,
@@ -36,10 +37,11 @@ export const InputLabel = (props) => {
             }}
             className={`input input-radious ${
               isError ? "input is-danger" : ""
-            } ${classExtra}`}
+            } ${classExtra}`}  
             type={typeInput}
             placeholder={textplace}
             name={name}
+            value={value}
             {...(register && register(name, validationSchema))}
           />
           {title ? (

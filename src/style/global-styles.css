@@ -345,4 +345,105 @@ table td:not([align]), table th:not([align]) {
   width: 300px;
 }
 
+/*questionnaire*/
+
+.button-container2 {
+  display: flex;
+  justify-content: center;
+  margin-top: 60px;
+}
+
+.modal-btn2 {
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  border-radius: 5px;
+  margin: 50px;
+}
+
+.btn-green2 {
+  background-color: green;
+  color: white;
+}
+
+.btn-red2 {
+  background-color: red;
+  color: white;
+}
+
+.center-text2 {
+  text-align: left;
+  text-align: justify;
+}
+
+.center-text2 p{
+  font-weight: bold;
+}
+
+.center-card2 {
+  margin-top: 20px;
+  text-align: center;
+}
+
+
+
+.center-buttons2 {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px; 
+}
+
+.btn-yellow2 {
+  background-color: yellow;
+  color: black;
+}
+
+.btn-red2 {
+  background-color: red;
+  color: white;
+}
+
+.btn-blue2 {
+  background-color: #2b8192;
+  color: white;
+}
+
+
+.button-strongGreen2 {
+  background-color: #2b8192;
+  color: white;
+}
+
+.modal-title-red-centered2 {
+  text-align: center;
+  color: red;
+}
+
+.modal-newMargen-title2 {
+  text-align: center;
+}
+
+.questionnaire-container2 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 30px;
+}
+
+.card2 {
+  max-width: 500px; /* Puedes ajustar este valor según tu preferencia */
+  margin: 30px auto 0;
+  background-color: rgb(43, 129, 146, 0.1); /* Color de fondo del card */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.card-title2 {
+  text-align: center; /* Alinea el título al centro */
+  font-size: 1.5rem; /* Tamaño de fuente del título */
+  font-weight: bold; /* Negrita para el título */
+  padding: 20px 0; /* Espaciado superior e inferior para el título del card */
+}
 
