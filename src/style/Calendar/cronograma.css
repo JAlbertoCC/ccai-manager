@@ -98,6 +98,18 @@
   display: inline-block; /* Permite que el rectángulo ocupe espacio en línea */
 }
 
+.card-cronograma {
+  margin-top: 8%;
+  margin-bottom: 0%;
+  margin-left: 0%;
+  margin-right: 25%;
+  width: 100%;
+  padding: 18px;
+}
+
+.column67{
+  margin-top: -2%;
+}
 
 
 
