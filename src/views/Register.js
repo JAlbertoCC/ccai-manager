@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
+import { useNavigate, useParams } from "react-router-dom";
 
 //Importación de componentes y hooks personalizados
 import { CardComponent } from "./../components/ui/Cards/CardComponent";
@@ -14,6 +15,11 @@ import { ErrorMessage } from "./../components/ui/Warnings/ErrorMessage";
 import { ModalComponentRegister } from "../components/ui/Modal/ModalComponentRegister";
 
 const Register = () => {
+//se creo esta instancia
+  const navigate = useNavigate();
+  const goToLink = (uri) => {
+    navigate(uri);
+  };
   //Configurar el form usando react hook form
   const {
     register,
@@ -158,7 +164,8 @@ const Register = () => {
       password: formData.password,
     };
     console.log(body);
-    if (isDirty && isValid) registerNewUser(body);
+    if (isValid){ registerNewUser(body); //if (isDirty && isValid) registerNewUser(body);
+  }
   };
 
   const registerNewUser = (body) => {
@@ -168,6 +175,8 @@ const Register = () => {
         console.log(item);
         setShowModal(true);
         setModalMessage(item.message || "");
+
+        
       })
       .catch((error) => {
         setShowModal(true);
@@ -236,7 +245,7 @@ const Register = () => {
                   errors={errors}
                   register={register}
                   validationSchema={{
-                    required: "Este campo es obligratorio",
+                    required: "Este campo es obligatorio",
                   }}
                 />
                 {errors?.name && (
@@ -349,7 +358,7 @@ const Register = () => {
               <div className="column is-4">
                 <InputLabel
                   title="No. Exterior"
-                  isError="{errors.name}"
+                  isError={errors.noAbroad}
                   hdlOnChange={(e) =>
                     handleFormChange("noAbroad", e.target.value)
                   }
@@ -364,7 +373,7 @@ const Register = () => {
               <div className="column is-4">
                 <InputLabel
                   title="No. Interior"
-                  isError="{errors.name}"
+                  isError={errors.noInside}
                   hdlOnChange={(e) =>
                     handleFormChange("noInside", e.target.value)
                   }
@@ -379,7 +388,7 @@ const Register = () => {
               <div className="column is-4">
                 <InputLabel
                   title="Colonia"
-                  isError="{errors.name}"
+                  isError={errors.colony}
                   hdlOnChange={(e) =>
                     handleFormChange("colony", e.target.value)
                   }
@@ -394,7 +403,7 @@ const Register = () => {
               <div className="column is-4">
                 <InputLabel
                   title="Localidad"
-                  isError="{errors.name}"
+                  isError={errors.locality}
                   hdlOnChange={(e) =>
                     handleFormChange("locality", e.target.value)
                   }
@@ -409,7 +418,7 @@ const Register = () => {
               <div className="column is-4">
                 <InputLabel
                   title="Municipio"
-                  isError="{errors.name}"
+                  isError={errors.municipality}
                   hdlOnChange={(e) =>
                     handleFormChange("municipality", e.target.value)
                   }
@@ -424,7 +433,7 @@ const Register = () => {
               <div className="column is-4">
                 <InputLabel
                   title="Estado"
-                  isError="{errors.name}"
+                  isError={errors.government}
                   hdlOnChange={(e) =>
                     handleFormChange("government", e.target.value)
                   }
@@ -439,7 +448,7 @@ const Register = () => {
               <div className="column is-4">
                 <InputLabel
                   title="Codigo Postal"
-                  isError="{errors.name}"
+                  isError={errors.postalC}
                   hdlOnChange={(e) =>
                     handleFormChange("postalC", e.target.value)
                   }
@@ -454,7 +463,7 @@ const Register = () => {
               <div className="column is-4">
                 <InputLabel
                   title="Observaciones"
-                  isError="{errors.name}"
+                  isError={errors.observations}
                   hdlOnChange={(e) =>
                     handleFormChange("observations", e.target.value)
                   }
@@ -584,10 +593,18 @@ const Register = () => {
               </div>
               <div className="column is-4">
                 <p className="control has-icon-right">
-                  <button
+                  <button 
                     type="button"
                     className="button button-register"
-                    onClick={() => registerUser()}
+                    //onClick={() => registerUser()}
+                    onClick={() =>{
+                      if (isValid){
+                      registerUser();
+                      goToLink(`/Questionnaire/${formData.matricula}`);
+                    }else{
+                      alert("Por favor completa todos los campos obligatorios correctamente antes de registrar.");
+                    }
+                  }}
                   >
                     <span className="icon is-right">
                       <i className="mdi mdi-plus-circle-outline"></i>
