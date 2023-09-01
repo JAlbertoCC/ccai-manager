@@ -8,6 +8,7 @@ const Article = () => {
     return (
         <div className='container register-content'>
           <HeaderComponent title='Articulos CCAI'/>
+          jhfhdhdh
         </div>
     )
 }
