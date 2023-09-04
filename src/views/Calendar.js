@@ -1,8 +1,29 @@
 import React, { useState } from "react";
 import { HeaderComponent } from './../components/ui/Header/HeaderComponent';
 import { PrimaryCalendar } from "../components/ui/Calendars/PrimaryCalendar";
+import { CardComponent } from "../components/ui/Cards/CardComponent";
+import { ButtonIcon } from "./../components/ui/Buttons/ButtonIcon";
 
 const Calendar = () => {
+  const actividades = [ {
+    actividadSemana: "Actividades/semana",
+    observaciones: "Observaciones",
+    Mes: "Agosto",
+    responsables: "Responsable"
+  },
+  {
+    actividadSemana: "Actividades/semana ",
+    observaciones: "Observaciones",
+    Mes: "Agosto",
+    responsables: "Responsable"
+  },
+  {
+    actividadSemana: "Actividades/semana ",
+    observaciones: "Observaciones",
+    Mes: "Agosto",
+    responsables: "Responsable"
+  },
+];
   const [currentDate, setCurrentDate] = useState(new Date());
   const months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
     'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
@@ -55,6 +76,39 @@ const Calendar = () => {
         daysOfWeek={daysOfWeek}
         daysInMonth={getDaysInMonth(currentDate.getFullYear(), currentDate.getMonth())}
       />
+<div className="modal-margen-title">
+  <p className="title-cronograma">CRONOGRAMA</p>
+</div>
+<div>
+    <ButtonIcon
+        title="Editar"
+        icon="file-edit-outline"
+        extraClass="aling-right margin-right"
+      
+    />
+  </div>
+<CardComponent classExtra="opacity-card card-cronograma">
+  <div className="columns container-personal">
+    <p className="title-is-cronograma">Cronograma de actividades de proyecto:</p>
+    <p className="input-cronograma">Nombre del proyecto</p>
+  </div>
+  <div className="column67 container-cronograma">
+    <div className="titulos-container">
+      <div className="title-column">Actividades/semana</div>
+      <div className="title-column">Observaciones</div>
+      <div className="title-column">Mes</div>
+      <div className="title-column">Responsable</div>
+    </div>
+    {actividades.map((actividad, index) => (
+      <div key={index} className="fila-actividad">
+        <div className="actividad-column">{actividad.actividadSemana}</div>
+        <div className="actividad-column">{actividad.observaciones}</div>
+        <div className="actividad-column"><div className="rectangulo"></div></div>
+        <div className="actividad-column">{actividad.responsables}</div>
+      </div>
+    ))}
+  </div>
+</CardComponent>
     </div>
   );
 };

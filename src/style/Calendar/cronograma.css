@@ -1,0 +1,117 @@
+/*CRONOGRAMA*/
+.title-cronograma {
+    text-align: left;
+    color: #000000;
+    font-weight: 700;
+    font-size: 2rem;
+  }
+  
+  .title-is-cronograma{
+    text-align: left;
+    color:#000000;
+    font-weight: 700;
+    font-size: 1.3rem;
+    position: relative;
+  }
+  
+  .title-is-cronograma::after {
+    content: "";
+    position: absolute;
+    bottom: -10px; /* Ajusta la posición del borde debajo del texto */
+    left: 0;
+    width: 250%;
+    height: 3px;
+    background-color: #000; /* Color del borde */
+  }
+  
+  .titulos-container {
+    display: flex;
+    align-items: flex-end; /* Alinea los títulos en la parte inferior */
+    gap: 198px; /* Ajusta el espacio entre títulos */
+    justify-content: flex-end; /* Alinea los títulos a la derecha */
+  }
+
+  .titulos-container::after {
+    content: "";
+    position: absolute;
+    bottom: 160px; /* Ajusta la posición del borde debajo del texto */
+    left: 3.4%;
+    width: 93.8%;
+    height: 3px;
+    background-color: #000; /* Color del borde */
+  }
+
+  .input-cronograma {
+    outline: none;
+    background-color: rgba(149, 227, 243, 0.1);
+    width: 50%;
+    font-weight: 700;
+    font-size: 1.3rem;
+    color: #000;
+    margin-left: 10px;
+  }
+  
+ .container-cronograma{
+    width: 97% !important;
+    padding-left:2% ;
+    padding-bottom: 3%;
+  }
+
+.title-column {
+  text-align: center;
+  color: #000000;
+  font-weight: 700;
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+.fila-actividad {
+  display: flex;
+  align-items: center;
+  gap: 170px;
+  margin-top: 10px;
+  position: relative; 
+}
+
+.fila-actividad::after {
+  content: "";
+  position: absolute;
+  bottom: -3px; /* Ajusta la posición del borde debajo del texto */
+  left: 0%;
+  width: 101.7%;
+  height: 3px;
+  background-color: #000; /* Color del borde */
+}
+
+
+.actividad-column {
+  text-align: center;
+  color: #000000;
+  font-weight: 400;
+  font-size: 1.1rem;
+}
+
+.rectangulo {
+  width: 120px; /* Ajusta el ancho del rectángulo */
+  height: 20px; /* Ajusta la altura del rectángulo */
+  background-color: #256; /* Color del rectángulo */
+  display: inline-block; /* Permite que el rectángulo ocupe espacio en línea */
+}
+
+.card-cronograma {
+  margin-top: 8%;
+  margin-bottom: 0%;
+  margin-left: 0%;
+  margin-right: 25%;
+  width: 100%;
+  padding: 18px;
+}
+
+.column67{
+  margin-top: -2%;
+}
+
+
+
+  
+
