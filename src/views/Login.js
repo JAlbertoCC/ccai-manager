@@ -47,6 +47,7 @@ const Login = () => {
             setErrorMessage(item.message);
           } else {
             localStorage.accessToken = item.accessToken;
+            console.log(item.accessToken);
             goToLink('home');
           }
         })

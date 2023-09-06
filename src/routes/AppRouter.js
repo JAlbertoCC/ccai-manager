@@ -70,7 +70,7 @@ export const AppRouter = () => {
           element={<ForgotPassword/>}
         />
         <Route
-          path="/restore-password"
+          path="/restore-password/:Id"
           element={<RestorePassword/>}
         />
         <Route
