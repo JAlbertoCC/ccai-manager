@@ -101,7 +101,6 @@ const Register = () => {
   };
 
   const [formData, setFormData] = useState({
-    
     // datos personales
     name: "",
     first_name: "",
@@ -355,7 +354,7 @@ const Register = () => {
               <div className="column is-4">
                 <InputLabel
                   title="No. Exterior"
-                  isError="{errors.name}"
+                  isError={errors.name}
                   hdlOnChange={(e) =>
                     handleFormChange("noAbroad", e.target.value)
                   }
@@ -370,7 +369,7 @@ const Register = () => {
               <div className="column is-4">
                 <InputLabel
                   title="No. Interior"
-                  isError="{errors.name}"
+                  isError={errors.name}
                   hdlOnChange={(e) =>
                     handleFormChange("noInside", e.target.value)
                   }
@@ -385,7 +384,7 @@ const Register = () => {
               <div className="column is-4">
                 <InputLabel
                   title="Colonia"
-                  isError="{errors.name}"
+                  isError={errors.name}
                   hdlOnChange={(e) =>
                     handleFormChange("colony", e.target.value)
                   }
@@ -400,7 +399,7 @@ const Register = () => {
               <div className="column is-4">
                 <InputLabel
                   title="Localidad"
-                  isError="{errors.name}"
+                  isError={errors.name}
                   hdlOnChange={(e) =>
                     handleFormChange("locality", e.target.value)
                   }
@@ -415,7 +414,7 @@ const Register = () => {
               <div className="column is-4">
                 <InputLabel
                   title="Municipio"
-                  isError="{errors.name}"
+                  isError={errors.name}
                   hdlOnChange={(e) =>
                     handleFormChange("municipality", e.target.value)
                   }
@@ -430,7 +429,7 @@ const Register = () => {
               <div className="column is-4">
                 <InputLabel
                   title="Estado"
-                  isError="{errors.name}"
+                  isError={errors.name}
                   hdlOnChange={(e) =>
                     handleFormChange("government", e.target.value)
                   }
@@ -445,7 +444,7 @@ const Register = () => {
               <div className="column is-4">
                 <InputLabel
                   title="Codigo Postal"
-                  isError="{errors.name}"
+                  isError={errors.name}
                   hdlOnChange={(e) =>
                     handleFormChange("postalC", e.target.value)
                   }

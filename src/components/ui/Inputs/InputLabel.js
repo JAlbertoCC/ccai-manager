@@ -24,7 +24,7 @@ export const InputLabel = (props) => {
         <label className="float-label">
           <input
             autoFocus={autoFocus}
-            //onChange={() => console.log("hola")}
+            onChange={() => console.log(hdlOnChange)}
             onKeyDown={(event) => {
               if (isEnter && event.key === "Enter") {
                 if (hdlOnkeyDown) hdlOnkeyDown(event);
