@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { useNavigate, useParams } from "react-router-dom";
 
 //Importación de componentes y hooks personalizados
 import { CardComponent } from "./../components/ui/Cards/CardComponent";
@@ -15,11 +14,6 @@ import { ErrorMessage } from "./../components/ui/Warnings/ErrorMessage";
 import { ModalComponentRegister } from "../components/ui/Modal/ModalComponentRegister";
 
 const Register = () => {
-//se creo esta instancia
-  const navigate = useNavigate();
-  const goToLink = (uri) => {
-    navigate(uri);
-  };
   //Configurar el form usando react hook form
   const {
     register,
@@ -64,6 +58,7 @@ const Register = () => {
     },
   ]);
 // hola
+
   useEffect(() => {
     //Consultamos datos necesarios al cargar el componente
     showData();
@@ -106,6 +101,7 @@ const Register = () => {
   };
 
   const [formData, setFormData] = useState({
+    
     // datos personales
     name: "",
     first_name: "",
@@ -127,9 +123,12 @@ const Register = () => {
     carrer: "INGENIERIA EN INFORMATICA",
     service_provide: "Servicio Social",
     institutional_emailEs: "",
-    password: "",
-  });
-
+    password: ""
+  })
+  useEffect (() => {
+    console.log(formData)
+  }, [])
+  
   const handleFormChange = (name, value) => {
     setFormData((prevData) => ({
       ...prevData,
@@ -161,11 +160,10 @@ const Register = () => {
       carrer: formData.carrer,
       service_provide: formData.service_provide,
       institutional_emailEs: formData.institutional_emailEs,
-      password: formData.password,
+      password: formData.password
     };
     console.log(body);
-    if (isValid){ registerNewUser(body); //if (isDirty && isValid) registerNewUser(body);
-  }
+    if (isDirty && isValid) registerNewUser(body);
   };
 
   const registerNewUser = (body) => {
@@ -175,8 +173,6 @@ const Register = () => {
         console.log(item);
         setShowModal(true);
         setModalMessage(item.message || "");
-
-        
       })
       .catch((error) => {
         setShowModal(true);
@@ -237,7 +233,7 @@ const Register = () => {
                 <p className="title-register">DATOS PERSONALES</p>
               </div>
               <div className="column is-4">
-                <InputLabel
+                <InputLabel 
                   title="Nombre"
                   isError={errors.name}
                   hdlOnChange={(e) => handleFormChange("name",e.target.value)}
@@ -263,7 +259,7 @@ const Register = () => {
                   errors={errors}
                   register={register}
                   validationSchema={{
-                    required: "Este campo es obligratorio",
+                    required: "Este campo es obligatorio",
                   }}
                 />
                 {errors?.lastNameF && (
@@ -281,7 +277,7 @@ const Register = () => {
                   errors={errors}
                   register={register}
                   validationSchema={{
-                    required: "Este campo es obligratorio",
+                    required: "Este campo es obligatorio",
                   }}
                 />
                 {errors?.lastNameM && (
@@ -299,10 +295,11 @@ const Register = () => {
                   errors={errors}
                   register={register}
                   validationSchema={{
-                    required: "Este campo es obligratorio",
+                    required: "Este campo es obligatorio",
                     pattern: {
                       value:
-                        /^[\(]?[\+]?(\d{2}|\d{3})[\)]?[\s]?((\d{6}|\d{8})|(\d{3}[\*\.\-\s]){2}\d{3}|(\d{2}[\*\.\-\s]){3}\d{2}|(\d{4}[\*\.\-\s]){1}\d{4})|\d{8}|\d{10}|\d{12}$/i,
+                      /^[0-9]+[0-9]+[0-9]+[0-9]+[0-9]+[0-9]+[0-9]+[0-9]+[0-9]+[0-9]/i,
+                      //^[\(]?[\+]?(\d{2}|\d{3})[\)]?[\s]?((\d{6}|\d{8})|(\d{3}[\\.\-\s]){2}\d{3}|(\d{2}[\\.\-\s]){3}\d{2}|(\d{4}[\\.\-\s]){1}\d{4})|\d{8}|\d{10}|\d{12}$/i,*/
                       message: "Formato incorrecto. ",
                     },
                     maxLength: {
@@ -329,7 +326,7 @@ const Register = () => {
                   valueSelect="id"
                   register={register}
                   validationSchema={{
-                    required: "Este campo es obligratorio",
+                    required: "Este campo es obligatorio",
                   }}
                 />
                 {errors?.gender && (
@@ -358,7 +355,7 @@ const Register = () => {
               <div className="column is-4">
                 <InputLabel
                   title="No. Exterior"
-                  isError={errors.noAbroad}
+                  isError="{errors.name}"
                   hdlOnChange={(e) =>
                     handleFormChange("noAbroad", e.target.value)
                   }
@@ -366,14 +363,14 @@ const Register = () => {
                   errors={errors}
                   register={register}
                   validationSchema={{
-                    required: "Este campo es obligratorio",
+                    required: "Este campo es obligatorio",
                   }}
                 />
               </div>
               <div className="column is-4">
                 <InputLabel
                   title="No. Interior"
-                  isError={errors.noInside}
+                  isError="{errors.name}"
                   hdlOnChange={(e) =>
                     handleFormChange("noInside", e.target.value)
                   }
@@ -381,14 +378,14 @@ const Register = () => {
                   errors={errors}
                   register={register}
                   validationSchema={{
-                    required: "Este campo es obligratorio",
+                    required: "Este campo es obligatorio",
                   }}
                 />
               </div>
               <div className="column is-4">
                 <InputLabel
                   title="Colonia"
-                  isError={errors.colony}
+                  isError="{errors.name}"
                   hdlOnChange={(e) =>
                     handleFormChange("colony", e.target.value)
                   }
@@ -396,14 +393,14 @@ const Register = () => {
                   errors={errors}
                   register={register}
                   validationSchema={{
-                    required: "Este campo es obligratorio",
+                    required: "Este campo es obligatorio",
                   }}
                 />
               </div>
               <div className="column is-4">
                 <InputLabel
                   title="Localidad"
-                  isError={errors.locality}
+                  isError="{errors.name}"
                   hdlOnChange={(e) =>
                     handleFormChange("locality", e.target.value)
                   }
@@ -411,14 +408,14 @@ const Register = () => {
                   errors={errors}
                   register={register}
                   validationSchema={{
-                    required: "Este campo es obligratorio",
+                    required: "Este campo es obligatorio",
                   }}
                 />
               </div>
               <div className="column is-4">
                 <InputLabel
                   title="Municipio"
-                  isError={errors.municipality}
+                  isError="{errors.name}"
                   hdlOnChange={(e) =>
                     handleFormChange("municipality", e.target.value)
                   }
@@ -426,14 +423,14 @@ const Register = () => {
                   errors={errors}
                   register={register}
                   validationSchema={{
-                    required: "Este campo es obligratorio",
+                    required: "Este campo es obligatorio",
                   }}
                 />
               </div>
               <div className="column is-4">
                 <InputLabel
                   title="Estado"
-                  isError={errors.government}
+                  isError="{errors.name}"
                   hdlOnChange={(e) =>
                     handleFormChange("government", e.target.value)
                   }
@@ -441,14 +438,14 @@ const Register = () => {
                   errors={errors}
                   register={register}
                   validationSchema={{
-                    required: "Este campo es obligratorio",
+                    required: "Este campo es obligatorio",
                   }}
                 />
               </div>
               <div className="column is-4">
                 <InputLabel
                   title="Codigo Postal"
-                  isError={errors.postalC}
+                  isError="{errors.name}"
                   hdlOnChange={(e) =>
                     handleFormChange("postalC", e.target.value)
                   }
@@ -456,14 +453,14 @@ const Register = () => {
                   errors={errors}
                   register={register}
                   validationSchema={{
-                    required: "Este campo es obligratorio",
+                    required: "Este campo es obligatorio",
                   }}
                 />
               </div>
               <div className="column is-4">
                 <InputLabel
                   title="Observaciones"
-                  isError={errors.observations}
+                  isError={errors.name}
                   hdlOnChange={(e) =>
                     handleFormChange("observations", e.target.value)
                   }
@@ -471,7 +468,7 @@ const Register = () => {
                   errors={errors}
                   register={register}
                   validationSchema={{
-                    required: "Este campo es obligratorio",
+                    required: "Este campo es obligatorio",
                   }}
                 />
               </div>
@@ -491,10 +488,11 @@ const Register = () => {
                   errors={errors}
                   register={register}
                   validationSchema={{
-                    required: "Este campo es obligratorio",
+                    required: "Este campo es obligatorio",
                     pattern: {
                       value:
-                        /^[\(]?[\+]?(\d{2}|\d{3})[\)]?[\s]?((\d{6}|\d{8})|(\d{3}[\*\.\-\s]){2}\d{3}|(\d{2}[\*\.\-\s]){3}\d{2}|(\d{4}[\*\.\-\s]){1}\d{4})|\d{8}|\d{10}|\d{12}$/i,
+                      /^[A-Z0-9]+[A-Z0-9]+[A-Z0-9]+[A-Z0-9]+[A-Z0-9]+[A-Z0-9]+[A-Z0-9]+[A-Z0-9]+[A-Z0-9]+[A-Z0-9]/i || /^[0-9]+[0-9]+[0-9]+[0-9]+[0-9]+[0-9]+[0-9]+[0-9]+[0-9]+[0-9]/i,
+                      /*  /^[\(]?[\+]?(\d{2}|\d{3})[\)]?[\s]?((\d{6}|\d{8})|(\d{3}[\\.\-\s]){2}\d{3}|(\d{2}[\\.\-\s]){3}\d{2}|(\d{4}[\*\.\-\s]){1}\d{4})|\d{8}|\d{10}|\d{12}$/i, */
                       message: "Formato incorrecto. ",
                     },
                     maxLength: {
@@ -519,7 +517,7 @@ const Register = () => {
                   register={register}
                   hdlOnChange={(e) => handleFormChange("carrer",e.target.value)}
                   validationSchema={{
-                    required: "Este campo es obligratorio",
+                    required: "Este campo es obligatorio",
                   }}
                 />
                 {errors?.career && (
@@ -539,7 +537,7 @@ const Register = () => {
                   register={register}
                   hdlOnChange={(e) => handleFormChange("service_provide",e.target.value)}
                   validationSchema={{
-                    required: "Este campo es obligratorio",
+                    required: "Este campo es obligatorio",
                   }}
                 />
                 {errors?.service && (
@@ -558,10 +556,10 @@ const Register = () => {
                   errors={errors}
                   register={register}
                   validationSchema={{
-                    required: "Este campo es obligratorio",
+                    required: "Este campo es obligatorio",
                     pattern: {
                       value:
-                        /^[A-Z0-9]+@TESE\.edu\.mx/i || /^[0-9]+@TESE\.edu\.mx/i,
+                      /^[A-Z0-9]+@TESE\.EDU\.MX/i || /^[0-9]+@TESE\.EDU\.MX/i,
                       message: "Formato incorrecto. ",
                     },
                   }}
@@ -582,7 +580,7 @@ const Register = () => {
                   errors={errors}
                   register={register}
                   validationSchema={{
-                    required: "Este campo es obligratorio",
+                    required: "Este campo es obligatorio",
                   }}
                 />
                 {errors?.pass && (
@@ -593,18 +591,10 @@ const Register = () => {
               </div>
               <div className="column is-4">
                 <p className="control has-icon-right">
-                  <button 
+                  <button
                     type="button"
                     className="button button-register"
-                    //onClick={() => registerUser()}
-                    onClick={() =>{
-                      if (isValid){
-                      registerUser();
-                      goToLink(`/Questionnaire/${formData.matricula}`);
-                    }else{
-                      alert("Por favor completa todos los campos obligatorios correctamente antes de registrar.");
-                    }
-                  }}
+                    onClick={() => registerUser()}
                   >
                     <span className="icon is-right">
                       <i className="mdi mdi-plus-circle-outline"></i>
@@ -627,5 +617,6 @@ const Register = () => {
     </>
   );
 };
+
 
 export default Register;

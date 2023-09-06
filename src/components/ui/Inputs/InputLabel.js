@@ -5,20 +5,17 @@ export const InputLabel = (props) => {
     name,
     value,
     validationSchema,
-    errors,
     register,
     autoFocus,
-    disabled,
     title,
     iconName,
     typeInput,
-    hdlOnClick,
     classExtra,
     hdlOnkeyDown = () => {},
     hdlOnChange = () => {},
     textplace = "",
     isError = false,
-    isEnter = false,
+    isEnter = false
   } = props;
 
   return (
@@ -27,7 +24,7 @@ export const InputLabel = (props) => {
         <label className="float-label">
           <input
             autoFocus={autoFocus}
-            onChange={() => console.log("hola")}
+            //onChange={() => console.log("hola")}
             onKeyDown={(event) => {
               if (isEnter && event.key === "Enter") {
                 if (hdlOnkeyDown) hdlOnkeyDown(event);
@@ -36,7 +33,7 @@ export const InputLabel = (props) => {
               }
             }}
             className={`input input-radious ${
-              isError ? "input is-danger" : ""
+              isError ? "input is-danger" : " "
             } ${classExtra}`}  
             type={typeInput}
             placeholder={textplace}
