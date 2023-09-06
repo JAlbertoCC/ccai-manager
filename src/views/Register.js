@@ -58,6 +58,7 @@ const Register = () => {
     },
   ]);
 // hola
+
   useEffect(() => {
     //Consultamos datos necesarios al cargar el componente
     showData();
@@ -100,6 +101,7 @@ const Register = () => {
   };
 
   const [formData, setFormData] = useState({
+    
     // datos personales
     name: "",
     first_name: "",
@@ -122,8 +124,11 @@ const Register = () => {
     service_provide: "Servicio Social",
     institutional_emailEs: "",
     password: ""
-  });
-
+  })
+  useEffect (() => {
+    console.log(formData)
+  }, [])
+  
   const handleFormChange = (name, value) => {
     setFormData((prevData) => ({
       ...prevData,
@@ -455,7 +460,7 @@ const Register = () => {
               <div className="column is-4">
                 <InputLabel
                   title="Observaciones"
-                  isError="{errors.name}"
+                  isError={errors.name}
                   hdlOnChange={(e) =>
                     handleFormChange("observations", e.target.value)
                   }
@@ -612,5 +617,6 @@ const Register = () => {
     </>
   );
 };
+
 
 export default Register;
