@@ -35,6 +35,7 @@ const Login = () => {
       };
 
       if (isDirty && isValid) enterNewUser(body);
+      console.log("Prueba: ", body)
     }
 
     const enterNewUser = (body) => {

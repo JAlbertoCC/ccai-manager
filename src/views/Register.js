@@ -124,10 +124,8 @@ const Register = () => {
     institutional_emailEs: "",
     password: ""
   })
-  useEffect (() => {
-    console.log(formData)
-  }, [])
   
+
   const handleFormChange = (name, value) => {
     setFormData((prevData) => ({
       ...prevData,
@@ -161,8 +159,8 @@ const Register = () => {
       institutional_emailEs: formData.institutional_emailEs,
       password: formData.password
     };
-    console.log(body);
     if (isDirty && isValid) registerNewUser(body);
+    console.log(body);
   };
 
   const registerNewUser = (body) => {
@@ -190,7 +188,7 @@ const Register = () => {
             classExtra="modal-register"
             title="¡REGISTRO EXITOSO!"
             isActive="false"
-            hdlOnclick={() => setShowModal(!showModal)}
+            onClick={() => setShowModal(!showModal)}
           ></ModalComponentGlobal>
         ) : (
           <></>
@@ -199,7 +197,7 @@ const Register = () => {
         <ModalComponentRegister
           isActive={showModal}
           textModal={modalMessage}
-          hdlOnclick={() => {
+          onClick={() => {
             setShowModal(!showModal);
             setModalMessage("");
           }}
@@ -210,7 +208,7 @@ const Register = () => {
             classExtra="modal-register"
             title="¡REGISTRO EXITOSO!"
             isActive="false"
-            hdlOnclick={() => setShowModal(!showModal)}
+            onClick={() => setShowModal(!showModal)}
           ></ModalComponentGlobal>
         ) : (
           <></>
@@ -219,13 +217,13 @@ const Register = () => {
         <ModalComponentRegister
           isActive={showModal}
           textModal={modalMessage}
-          hdlOnclick={() => {
+          onClick={() => {
             setShowModal(!showModal);
             setModalMessage("");
           }}
         />
 
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={handleSubmit}>
           <CardComponent classExtra="opacity-card">
             <div className="columns container-personal">
               <div className="column is-11">
