@@ -27,6 +27,7 @@ export const InputLabel = (props) => {
             onChange={() => console.log(hdlOnChange)}
             onKeyDown={(event) => {
               if (isEnter && event.key === "Enter") {
+                this.setState({ inputValue: event.target.value });
                 if (hdlOnkeyDown) hdlOnkeyDown(event);
               } else if (!isEnter) {
                 hdlOnChange(event);
@@ -44,9 +45,9 @@ export const InputLabel = (props) => {
           {title ? (
             <span className="float-span">{title}</span>
           ) : (
-            <span onClick={() => console.log("Hola")} className="icon is-right">
+            <span onClick className="icon is-right"> 
               <i className={`mdi ${iconName} icon-blue cursor`} />
-            </span>
+            </span> //Este span muestra el ¿Haz olvidado la contraseña y fechas de servicio y residencias
           )}
         </label>
       </p>

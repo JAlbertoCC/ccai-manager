@@ -89,7 +89,7 @@ const Login = () => {
             errors={errors}
               register={register}
               validationSchema={{ 
-                required: "Este campo es obligratorio",
+                required: "Este campo es obligatorio",
                 pattern: {
                   value: /^[A-Z0-9]+@TESE\.edu\.mx/i || /^[0-9]+@TESE\.edu\.mx/i,
                   message: "Formato incorrecto. "
@@ -108,7 +108,7 @@ const Login = () => {
             errors={errors}
               register={register}
               validationSchema={{ 
-                required: "Este campo es obligratorio"
+                required: "Este campo es obligatorio"
               }}
             />
             {errors?.pass && <p className="help is-danger" role="alert">{errors.pass?.message}</p>}

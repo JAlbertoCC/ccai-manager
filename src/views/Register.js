@@ -590,6 +590,7 @@ const Register = () => {
                 <p className="control has-icon-right">
                   <button
                     type="button"
+                    name="register"
                     className="button button-register"
                     onClick={() => registerUser()}
                   >
