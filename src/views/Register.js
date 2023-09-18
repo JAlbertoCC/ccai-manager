@@ -124,7 +124,6 @@ const Register = () => {
     institutional_emailEs: "",
     password: ""
   })
-  
 
   const handleFormChange = (name, value) => {
     setFormData((prevData) => ({
@@ -223,7 +222,7 @@ const Register = () => {
           }}
         />
 
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <CardComponent classExtra="opacity-card">
             <div className="columns container-personal">
               <div className="column is-11">
@@ -250,7 +249,7 @@ const Register = () => {
               <div className="column is-4">
                 <InputLabel
                   title="Apellido paterno"
-                  isError={errors.lastNameF}
+                  isError={errors.first_name}
                   hdlOnChange={(e) => handleFormChange("first_name",e.target.value)}
                   name="first_name"
                   errors={errors}
@@ -259,16 +258,16 @@ const Register = () => {
                     required: "Este campo es obligatorio",
                   }}
                 />
-                {errors?.lastNameF && (
+                {errors?.first_name && (
                   <p class="help is-danger" role="alert">
-                    {errors.lastNameF?.message}
+                    {errors.first_name?.message}
                   </p>
                 )}
               </div>
               <div className="column is-4">
                 <InputLabel
                   title="Apellido materno"
-                  isError={errors.lastNameM}
+                  isError={errors.second_name}
                   hdlOnChange={(e) => handleFormChange("second_name",e.target.value)}
                   name="second_name"
                   errors={errors}
@@ -277,16 +276,16 @@ const Register = () => {
                     required: "Este campo es obligatorio",
                   }}
                 />
-                {errors?.lastNameM && (
+                {errors?.second_name && (
                   <p class="help is-danger" role="alert">
-                    {errors.lastNameM?.message}
+                    {errors.second_name?.message}
                   </p>
                 )}
               </div>
               <div className="column is-4">
                 <InputLabel
                   title="Telefono"
-                  isError={errors.phone}
+                  isError={errors.cell_phoneNumber}
                   hdlOnChange={(e) => handleFormChange("cell_phoneNumber",e.target.value)}
                   name="cell_phoneNumber"
                   errors={errors}
@@ -305,9 +304,9 @@ const Register = () => {
                     },
                   }}
                 />
-                {errors?.phone && (
+                {errors?.cell_phoneNumber && (
                   <p class="help is-danger" role="alert">
-                    {errors.phone?.message}
+                    {errors.cell_phoneNumber?.message}
                   </p>
                 )}
               </div>
@@ -352,7 +351,7 @@ const Register = () => {
               <div className="column is-4">
                 <InputLabel
                   title="No. Exterior"
-                  isError={errors.name}
+                  isError={errors.noAbroad}
                   hdlOnChange={(e) =>
                     handleFormChange("noAbroad", e.target.value)
                   }
@@ -367,7 +366,7 @@ const Register = () => {
               <div className="column is-4">
                 <InputLabel
                   title="No. Interior"
-                  isError={errors.name}
+                  isError={errors.noInside}
                   hdlOnChange={(e) =>
                     handleFormChange("noInside", e.target.value)
                   }
@@ -382,7 +381,7 @@ const Register = () => {
               <div className="column is-4">
                 <InputLabel
                   title="Colonia"
-                  isError={errors.name}
+                  isError={errors.colony}
                   hdlOnChange={(e) =>
                     handleFormChange("colony", e.target.value)
                   }
@@ -397,7 +396,7 @@ const Register = () => {
               <div className="column is-4">
                 <InputLabel
                   title="Localidad"
-                  isError={errors.name}
+                  isError={errors.locality}
                   hdlOnChange={(e) =>
                     handleFormChange("locality", e.target.value)
                   }
@@ -412,7 +411,7 @@ const Register = () => {
               <div className="column is-4">
                 <InputLabel
                   title="Municipio"
-                  isError={errors.name}
+                  isError={errors.municipality}
                   hdlOnChange={(e) =>
                     handleFormChange("municipality", e.target.value)
                   }
@@ -427,7 +426,7 @@ const Register = () => {
               <div className="column is-4">
                 <InputLabel
                   title="Estado"
-                  isError={errors.name}
+                  isError={errors.government}
                   hdlOnChange={(e) =>
                     handleFormChange("government", e.target.value)
                   }
@@ -442,7 +441,7 @@ const Register = () => {
               <div className="column is-4">
                 <InputLabel
                   title="Codigo Postal"
-                  isError={errors.name}
+                  isError={errors.postalC}
                   hdlOnChange={(e) =>
                     handleFormChange("postalC", e.target.value)
                   }
@@ -457,7 +456,7 @@ const Register = () => {
               <div className="column is-4">
                 <InputLabel
                   title="Observaciones"
-                  isError={errors.name}
+                  isError={errors.observations}
                   hdlOnChange={(e) =>
                     handleFormChange("observations", e.target.value)
                   }
@@ -477,7 +476,7 @@ const Register = () => {
               <div className="column is-4">
                 <InputLabel
                   title="Matricula"
-                  isError={errors.card}
+                  isError={errors.matricula}
                   hdlOnChange={(e) =>
                     handleFormChange("matricula",e.target.value)
                   }
@@ -498,9 +497,9 @@ const Register = () => {
                     },
                   }}
                 />
-                {errors?.card && (
+                {errors?.matricula && (
                   <p class="help is-danger" role="alert">
-                    {errors.card?.message}
+                    {errors.matricula?.message}
                   </p>
                 )}
               </div>
@@ -528,7 +527,7 @@ const Register = () => {
                 <DropDown
                   items={serviceList}
                   title="Servicio a prestar"
-                  isError={errors.service}
+                  isError={errors.service_provide}
                   name="service_provide"
                   errors={errors}
                   register={register}
@@ -537,9 +536,9 @@ const Register = () => {
                     required: "Este campo es obligatorio",
                   }}
                 />
-                {errors?.service && (
+                {errors?.service_provide && (
                   <p class="help is-danger" role="alert">
-                    {errors.service?.message}
+                    {errors.service_provide?.message}
                   </p>
                 )}
               </div>
@@ -547,7 +546,7 @@ const Register = () => {
               <div className="column is-4">
                 <InputLabel
                   title="Correo Institucional"
-                  isError={errors.email}
+                  isError={errors.institutional_emailEs}
                   hdlOnChange={(e) => handleFormChange("institutional_emailEs", e.target.value)}
                   name="institutional_emailEs"
                   errors={errors}
@@ -561,9 +560,9 @@ const Register = () => {
                     },
                   }}
                 />
-                {errors?.email && (
+                {errors?.institutional_emailEs && (
                   <p class="help is-danger" role="alert">
-                    {errors.email?.message}
+                    {errors.institutional_emailEs?.message}
                   </p>
                 )}
               </div>
@@ -571,7 +570,7 @@ const Register = () => {
                 <InputLabel
                   typeInput="password"
                   title="Contraseña"
-                  isError={errors.pass}
+                  isError={errors.password}
                   name="password"
                   hdlOnChange={(e) => handleFormChange("password", e.target.value)}
                   errors={errors}
@@ -580,16 +579,16 @@ const Register = () => {
                     required: "Este campo es obligatorio",
                   }}
                 />
-                {errors?.pass && (
+                {errors?.password && (
                   <p class="help is-danger" role="alert">
-                    {errors.pass?.message}
+                    {errors.password?.message}
                   </p>
                 )}
               </div>
               <div className="column is-4">
                 <p className="control has-icon-right">
                   <button
-                    type="button"
+                    type="submit" //Checarlo con las funciones onClick y onSubmit esto ayudara con el bug 
                     name="register"
                     className="button button-register"
                     onClick={() => registerUser()}

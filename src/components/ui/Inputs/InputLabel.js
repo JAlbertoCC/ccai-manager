@@ -27,7 +27,7 @@ export const InputLabel = (props) => {
             onChange={() => console.log(hdlOnChange)}
             onKeyDown={(event) => {
               if (isEnter && event.key === "Enter") {
-                this.setState({ inputValue: event.target.value });
+                this.setState({ InputLabel: event.target.value }); //inputValue
                 if (hdlOnkeyDown) hdlOnkeyDown(event);
               } else if (!isEnter) {
                 hdlOnChange(event);
@@ -54,3 +54,4 @@ export const InputLabel = (props) => {
     </div>
   );
 };
+

@@ -136,7 +136,7 @@ const Resources = () => {
   const [showModal2Edit, setShowModal2Edit] = useState(false);
   const [showModal3Edit, setShowModal3Edit] = useState(false);
 
-  const [typeInputGender, setTypeInputGender] = useState();
+  const [TypeInputGender, setTypeInputGender] = useState();
 
   useEffect(() => {}, []);
   //
@@ -308,6 +308,13 @@ const Resources = () => {
               <div className="column column468">
                 <div className="column">
                   <div className="column">
+                    <TextArea title="Observaciones" />
+                  </div>
+                </div>
+              </div>
+              <div className="column column468">
+                <div className="column">
+                  <div className="column">
                     <TextArea title="Descripción" />
                   </div>
                 </div>
@@ -470,7 +477,7 @@ const Resources = () => {
             title="Editar Material"
             isActive={showModal3Edit}
             hdlOnclick={() => setShowModal3Edit(!showModal3Edit)}
-            titleGreen=""
+            titleGreen="Agregar"
             hdlOnClickGreen=""
             titleRed="Cancelar"
             hdlOnClickRed={() => setShowModal3Edit(!showModal3Edit)}
@@ -684,8 +691,9 @@ const Resources = () => {
                     <tr>
                       <th title="ID">ID.</th>
                       <th title="Nombre">Nombre.</th>
-                      <th title="Descripcion">Descripcion.</th>
+                      <th title="Descripción">Descripción.</th>
                       <th title="Cantidad">Cantidad.</th>
+                      <th title="Observaciones">Observaciones.</th>
                       <th></th>
                     </tr>
                   </thead>
@@ -697,8 +705,9 @@ const Resources = () => {
                           <tr key={index}>
                             <td>{item.id_resource}</td>
                             <td>{item.resoruce_name}</td>
-                            <td>{item.observation}</td>
+                            <td>{item.description}</td> 
                             <td>{item.amount}</td>
+                            <td>{item.observation}</td>
                             <td>
                               <i
                                 className="mdi mdi-pencil icon-blue"
