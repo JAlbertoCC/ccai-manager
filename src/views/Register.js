@@ -123,7 +123,7 @@ const Register = () => {
     service_provide: "Servicio Social",
     institutional_emailEs: "",
     password: ""
-  })
+  });
 
   const handleFormChange = (name, value) => {
     setFormData((prevData) => ({
@@ -222,7 +222,7 @@ const Register = () => {
           }}
         />
 
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={handleSubmit}>
           <CardComponent classExtra="opacity-card">
             <div className="columns container-personal">
               <div className="column is-11">

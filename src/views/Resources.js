@@ -10,6 +10,7 @@ import { useStudents } from "./../hooks/useStudents";
 import { useMaterials } from "./../hooks/useMaterials";
 import { TextArea } from "../components/ui/Inputs/TextArea";
 import { useDocent } from "../hooks/useDocent";
+import { useForm } from "react-hook-form";
 
 const Resources = () => {
   //HOOK para llamar los datos de la appi ya agruparlos
@@ -124,7 +125,6 @@ const Resources = () => {
     },
   ]);
 
-  
   // hooks
   // selecciona la vista de las tablas que se desea ver
   const [selectedTab, setSelectedTab] = useState(1);
@@ -140,8 +140,57 @@ const Resources = () => {
 
   const [TypeInputGender, setTypeInputGender] = useState();
 
-  useEffect(() => {}, []);
-  //
+  // Configuración para el form (hooks) (uso de props)
+
+  const {
+    register,
+    handleSubit,
+    formState: { errors, isDirty, isValid },
+  } = useForm();
+
+  //hook para registro de materiales
+  const [formDataMaterials, setFormDataMaterials] = useState({
+    resoruce_name: "",
+    observation: "",
+    amount: "",
+    status: "A",
+    description: "",
+  });
+
+  // Regresa y actualiza los valores de la variable y la infromación
+  const handleFormChange = (name, value) => {
+    setFormDataMaterials((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const insertResources = () => {
+    //Se crea el objeto con los datos que se enviaran al realizar el registro del material
+    const body = {
+      resoruce_name: formDataMaterials.resoruce_name,
+      observation: formDataMaterials.observation,
+      amount: formDataMaterials.amount,
+      status: formDataMaterials.status,
+      description: formDataMaterials.description,
+    };
+    // Regresa las alertas o valida los registros o errores
+    if (isDirty && isValid) insertNewResources(body);
+    console.log(body);
+  };
+
+  //Se registra el nuevo material
+  const insertNewResources = (body) => {
+    insertResources(body)
+      .then((item) => {
+        console.log(item);
+      })
+      .catch((error) => {
+        console.log("error", error.message);
+      });
+  };
+
+  //Inicio del formulario
   return (
     <div className="section">
       {/* Diseño de modales para agregar datos a las tablas DOCENTE ALUMNO Y MATERIAL */}
@@ -292,43 +341,56 @@ const Resources = () => {
             isActive={showModal3}
             hdlOnclick={() => setShowModal3(!showModal3)}
             titleGreen="Agregar"
-            hdlOnClickGreen=""
+            hdlOnClickGreen={()=>insertResources()}
+              //
             titleRed="Cancelar"
             hdlOnClickRed={() => setShowModal3(!showModal3)}
           >
-            <div>
-              <div
-                className="columns container proyect-detail column468"
-                //style={{ marginTop: "10px", width: "600px" }}
-              >
-                <div className="column">
+            <form onSubmit={handleSubit}>
+              <div>
+                <div
+                  className="columns container proyect-detail column468"
+                  //style={{ marginTop: "10px", width: "600px" }}
+                >
                   <div className="column">
-                    <InputLabel title="Nombre del material" />
+                    <div className="column">
+                      <InputLabel title="Nombre del material" 
+                      name="resoruce_name"
+                      hdlOnChange={(e) => handleFormChange("resoruce_name", e.target.value)}
+                      register={register}
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div className="column column468">
+                  <div className="column">
+                    <div className="column">
+                      <TextArea title="Observaciones" 
+                      name="observations"
+                      hdlOnChange={(e) => handleFormChange("observations", e.target.value)}
+                      register={register}
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div className="column column468">
+                  <div className="column">
+                    <div className="column">
+                      <TextArea title="Descripción" 
+                      
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div className="columns column484">
+                  <div className="column">
+                    <div className="column">
+                      <InputLabel title="Cantidad" />
+                    </div>
                   </div>
                 </div>
               </div>
-              <div className="column column468">
-                <div className="column">
-                  <div className="column">
-                    <TextArea title="Observaciones" />
-                  </div>
-                </div>
-              </div>
-              <div className="column column468">
-                <div className="column">
-                  <div className="column">
-                    <TextArea title="Descripción" />
-                  </div>
-                </div>
-              </div>
-              <div className="columns column484">
-                <div className="column">
-                  <div className="column">
-                    <InputLabel title="Cantidad" />
-                  </div>
-                </div>
-              </div>
-            </div>
+            </form>
           </ModalComponentGlobal>
         ) : (
           <></>
@@ -714,7 +776,7 @@ const Resources = () => {
                           <tr key={index}>
                             <td>{item.id_resource}</td>
                             <td>{item.resoruce_name}</td>
-                            <td>{item.description}</td> 
+                            <td>{item.description}</td>
                             <td>{item.observation}</td>
                             <td>{item.amount}</td>
                             <td>
