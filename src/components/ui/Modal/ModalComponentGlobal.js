@@ -4,7 +4,6 @@ import { GreenButton } from "../Buttons/GreenButton";
 
 export const ModalComponentGlobal = (props) => {
   const {
-    textModal,
     classExtra,
     children,
     title,
@@ -37,7 +36,7 @@ export const ModalComponentGlobal = (props) => {
             <div className="button-style-modal">
               <GreenButton
                 aria-label="close"
-                hdlOnClickGreen={hdlOnClickGreen}
+                hdlOnClickGreen={ () => hdlOnClickGreen()}
                 buttonText={titleGreen}
               />
               <RedButton

@@ -588,7 +588,7 @@ const Register = () => {
               <div className="column is-4">
                 <p className="control has-icon-right">
                   <button
-                    type="submit" //Checarlo con las funciones onClick y onSubmit esto ayudara con el bug 
+                    type="button" //Checarlo con las funciones onClick y onSubmit esto ayudara con el bug 
                     name="register"
                     className="button button-register"
                     onClick={() => registerUser()}

@@ -20,6 +20,7 @@ const Resources = () => {
   const { consultMaterials } = useMaterials();
   const [docent, setDocent] = useState([]);
   const { consultTeacher } = useDocent();
+  const { insertResources } = useMaterials();
 
   useEffect(() => {
     showData();
@@ -144,7 +145,7 @@ const Resources = () => {
 
   const {
     register,
-    handleSubit,
+    handleSubmit,
     formState: { errors, isDirty, isValid },
   } = useForm();
 
@@ -165,8 +166,8 @@ const Resources = () => {
     }));
   };
 
-  const insertResources = () => {
-    //Se crea el objeto con los datos que se enviaran al realizar el registro del material
+  //Se crea el objeto con los datos que se enviaran al realizar el registro del material
+  const insertResource = () => {
     const body = {
       resoruce_name: formDataMaterials.resoruce_name,
       observation: formDataMaterials.observation,
@@ -335,18 +336,18 @@ const Resources = () => {
         )}
 
         {showModal3 ? (
-          //Diseño modal para agregar materiales
+          //Diseño modal para agregar materiales. Se crea otro formulario para insertar el material
           <ModalComponentGlobal
             title="Agregar Nuevo Material"
             isActive={showModal3}
             hdlOnclick={() => setShowModal3(!showModal3)}
             titleGreen="Agregar"
-            hdlOnClickGreen={()=>insertResources()}
-              //
+            hdlOnClickGreen={() => insertResource()}
+            //
             titleRed="Cancelar"
             hdlOnClickRed={() => setShowModal3(!showModal3)}
           >
-            <form onSubmit={handleSubit}>
+            <form onSubmit={handleSubmit}>
               <div>
                 <div
                   className="columns container proyect-detail column468"
@@ -354,10 +355,13 @@ const Resources = () => {
                 >
                   <div className="column">
                     <div className="column">
-                      <InputLabel title="Nombre del material" 
-                      name="resoruce_name"
-                      hdlOnChange={(e) => handleFormChange("resoruce_name", e.target.value)}
-                      register={register}
+                      <InputLabel
+                        title="Nombre del material"
+                        name="resoruce_name"
+                        hdlOnChange={(e) =>
+                          handleFormChange("resoruce_name", e.target.value)
+                        }
+                        register={register}
                       />
                     </div>
                   </div>
@@ -365,10 +369,13 @@ const Resources = () => {
                 <div className="column column468">
                   <div className="column">
                     <div className="column">
-                      <TextArea title="Observaciones" 
-                      name="observations"
-                      hdlOnChange={(e) => handleFormChange("observations", e.target.value)}
-                      register={register}
+                      <TextArea
+                        title="Observaciones"
+                        name="observation"
+                        hdlOnChange={(e) =>
+                          handleFormChange("observation", e.target.value)
+                        }
+                        register={register}
                       />
                     </div>
                   </div>
@@ -376,19 +383,29 @@ const Resources = () => {
                 <div className="column column468">
                   <div className="column">
                     <div className="column">
-                      <TextArea title="Descripción" 
-                      
+                      <TextArea
+                        title="Descripción"
+                        name="description"
+                        hdlOnChange={(e) =>
+                          handleFormChange("description", e.target.value)
+                        }
+                        register={register}
                       />
                     </div>
                   </div>
                 </div>
-                <div className="columns column484">
-                  <div className="column">
+                <div className="column">
                     <div className="column">
-                      <InputLabel title="Cantidad" />
+                      <InputLabel
+                        title="Cantidad"
+                        name="amount"
+                        hdlOnChange={(e) =>
+                          handleFormChange("amount", e.target.value)
+                        }
+                        register={register}
+                      />
                     </div>
                   </div>
-                </div>
               </div>
             </form>
           </ModalComponentGlobal>
@@ -771,7 +788,7 @@ const Resources = () => {
                   <tbody>
                     {materials ? (
                       materials.map((item, index) => {
-                        console.log(item);
+                        //console.log(item);
                         return (
                           <tr key={index}>
                             <td>{item.id_resource}</td>
