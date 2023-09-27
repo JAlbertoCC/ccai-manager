@@ -142,6 +142,15 @@ export async function insertResources (body) {
   return data
 }
 
+//Procedimiento DELETE para eliminación de materiales 
+export async function deleteMaterials (body) {
+  const request = buildRequest('/delete-materials', 'DELETE', body)
+  const response = await fetch(request)
+
+  const data = await response.json()
+  return data
+}
+
 //_______________________________________________ Procedimientos por crear en el back y en la DB 
 
 export async function checkingInternalUser (matricula) {

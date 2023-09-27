@@ -21,6 +21,7 @@ const Resources = () => {
   const [docent, setDocent] = useState([]);
   const { consultTeacher } = useDocent();
   const { insertResources } = useMaterials();
+  const { deleteMaterials } = useMaterials();
 
   useEffect(() => {
     showData();
@@ -183,6 +184,28 @@ const Resources = () => {
   //Se registra el nuevo material
   const insertNewResources = (body) => {
     insertResources(body)
+      .then((item) => {
+        console.log(item);
+      })
+      .catch((error) => {
+        console.log("error", error.message);
+      });
+  };
+
+
+  //Se crea el objeto con el ID que se enviará
+  const deleteMaterial = (id_resource) => {
+    const body = {
+      id_resource: id_resource,
+    };
+    // Regresa las alertas o valida registros
+    if (isDirty && isValid) deleteNewMaterial(body);
+    console.log(body);
+  };
+
+  //Se elimina el material
+  const deleteNewMaterial = (body) => {
+    deleteMaterials(body)
       .then((item) => {
         console.log(item);
       })
@@ -395,17 +418,17 @@ const Resources = () => {
                   </div>
                 </div>
                 <div className="column">
-                    <div className="column">
-                      <InputLabel
-                        title="Cantidad"
-                        name="amount"
-                        hdlOnChange={(e) =>
-                          handleFormChange("amount", e.target.value)
-                        }
-                        register={register}
-                      />
-                    </div>
+                  <div className="column">
+                    <InputLabel
+                      title="Cantidad"
+                      name="amount"
+                      hdlOnChange={(e) =>
+                        handleFormChange("amount", e.target.value)
+                      }
+                      register={register}
+                    />
                   </div>
+                </div>
               </div>
             </form>
           </ModalComponentGlobal>
@@ -553,7 +576,7 @@ const Resources = () => {
         )}
 
         {showModal3Edit ? (
-          //Diseño modal para agregar materiales
+          //Diseño modal para Editar materiales
           <ModalComponentGlobal
             title="Editar Material"
             isActive={showModal3Edit}
@@ -803,7 +826,10 @@ const Resources = () => {
                                   setShowModal3Edit(!showModal3Edit)
                                 }
                               ></i>
-                              <i className="mdi mdi-trash-can-outline icon-blue"></i>
+                              <i
+                                className="mdi mdi-trash-can-outline icon-blue"
+                                onClick={() => deleteMaterial(item.id_resource)}
+                              ></i>
                             </td>
                           </tr>
                         );
