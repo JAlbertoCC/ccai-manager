@@ -10,6 +10,9 @@ import { useStudents } from "./../hooks/useStudents";
 import { useMaterials } from "./../hooks/useMaterials";
 import { TextArea } from "../components/ui/Inputs/TextArea";
 import { useDocent } from "../hooks/useDocent";
+import {  useDocent } from "../hooks/useDocent";
+import { isValid } from "date-fns";
+import { checkingInternalRegister } from "../utils";
 
 const Resources = () => {
   //HOOK para llamar los datos de la appi ya agruparlos
@@ -19,7 +22,53 @@ const Resources = () => {
   const { consultMaterials } = useMaterials();
   const [docent, setDocent] = useState([]);
   const { consultTeacher } = useDocent();
+  const { addTeacher } = useDocent();
+// -------------------------------------------------
+const [addDataTeacher, setAddDataTeacher] = useState({
+  name_adviser: "",
+  division: "",
+  matricula: "",
+  first_name: "",
+  second_name: "M",
+  gender: "",
+  status: ""
+});
 
+const handleFormChangeTeacher = (name, value) => {
+  setAddDataTeacher((prevData) => ({
+    ...prevData,
+    [name]: value,
+  }));
+};
+
+const addTeacherR = ()=> {
+  const body = {
+    name_adviser: addDataTeacher.name_adviser,
+  division: addDataTeacher.division,
+  matricula: addDataTeacher.matricula,
+  first_name: addDataTeacher.first_name,
+  second_name: addDataTeacher.second_name,
+  gender: addDataTeacher.gender,
+  status: addDataTeacher.status
+  };
+  console.log(body);
+  if(isValid){ registerNewTeacher = (body);
+  }
+};
+
+const registerNewTeacher=(body) => {
+  checkingInternalRegister(body)
+   .then((item) => {
+     console.log(item);
+     setShowModal(true);
+     setModalMessage(item.message||"");
+     console.log("error", error.message);
+   });
+};
+
+
+
+})
   useEffect(() => {
     showData();
     showDataMaterials();

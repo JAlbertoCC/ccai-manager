@@ -124,6 +124,23 @@ export async function adviserInProject(id_project) {
   };
 };
 
+export async function checkingInternalRegister (body) {
+  const request = buildRequest('/register-users', 'POST', body)
+  const response = await fetch(request)
+
+  const data = await response.json()
+  return data
+}
+
+//metodo para agregar docentes
+
+export async function addTeacher (body) {
+  const request = buildRequest('/add-teacher', 'POST', body)
+  const response = await fetch(request)
+
+  const data = await response.json()
+  return data
+}
 //_______________________________________________ Procedimientos por crear en el back y en la DB 
 
 export async function checkingInternalUser (matricula) {
@@ -141,13 +158,7 @@ export async function consultingStudents () {
   return data
 }
 
-export async function checkingInternalRegister (body) {
-  const request = buildRequest('/register-users', 'POST', body)
-  const response = await fetch(request)
 
-  const data = await response.json()
-  return data
-}
 
 /*export async function checkingPassword (body) {
   const request = buildRequest('/register-users', 'POST', body)

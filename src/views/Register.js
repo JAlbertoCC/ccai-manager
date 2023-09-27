@@ -31,6 +31,8 @@ const Register = () => {
   const { consultCareer } = useCareer();
   const { consultService } = useService();
 
+  
+
   //Estados para el manejo de datos y visualizacion
   const [messageType, setMessageType] = useState("is-danger");
  

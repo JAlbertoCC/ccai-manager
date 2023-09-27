@@ -15,6 +15,11 @@ export const useDocent = () => {
      const consultTeacher = async () => {
         const data = await api.consultTeacher()
         return data;
+    }
+    // -- ----
+    const addTeacher = async(body) =>{
+       const data = await api.addTeacher(body)
+       return data;
 
     }
 
@@ -22,7 +27,8 @@ export const useDocent = () => {
     return{
         pagination,
         consultTeacher,
-        checkingInternalUser
+        checkingInternalUser,
+        addTeacher
     }
 }
 
