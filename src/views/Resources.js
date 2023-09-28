@@ -22,6 +22,7 @@ const Resources = () => {
   const { consultTeacher } = useDocent();
   const { insertResources } = useMaterials();
   const { deleteMaterials } = useMaterials();
+  const { editaMateriales } = useMaterials();
 
   useEffect(() => {
     showData();
@@ -159,7 +160,7 @@ const Resources = () => {
     description: "",
   });
 
-  // Regresa y actualiza los valores de la variable y la infromación
+  // Regresa y actualiza los valores de la variable y la información
   const handleFormChange = (name, value) => {
     setFormDataMaterials((prevData) => ({
       ...prevData,
@@ -192,7 +193,6 @@ const Resources = () => {
       });
   };
 
-
   //Se crea el objeto con el ID que se enviará
   const deleteMaterial = (id_resource) => {
     const body = {
@@ -206,6 +206,46 @@ const Resources = () => {
   //Se elimina el material
   const deleteNewMaterial = (body) => {
     deleteMaterials(body)
+      .then((item) => {
+        console.log(item);
+      })
+      .catch((error) => {
+        console.log("error", error.message);
+      });
+  };
+
+  //Configuración para el form de editar
+  const [formEditMaterial, setFormEditMaterial] = useState({
+    resoruce_name: "",
+    observation: "",
+    amount: "",
+    description: "",
+  });
+
+  // Regresa y actualiza los valores de la variable y la información
+  const handleUpdate = (name, value) => {
+    setFormEditMaterial((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  //Se crea el objeto con los datos a modificar
+  const editMaterial = (id_resource) => {
+    const body = {
+      id_resource: formEditMaterial.id_resource,
+      resoruce_name: formEditMaterial.resoruce_name,
+      observation: formEditMaterial.observation,
+      amount: formEditMaterial.amount,
+      description: formEditMaterial.description,
+    };
+    if (isDirty && isValid) editNewMaterial(body);
+    console.log(body);
+  };
+
+  //Se edita el material deseado
+  const editNewMaterial = (body) => {
+    editaMateriales(body)
       .then((item) => {
         console.log(item);
       })
@@ -582,7 +622,7 @@ const Resources = () => {
             isActive={showModal3Edit}
             hdlOnclick={() => setShowModal3Edit(!showModal3Edit)}
             titleGreen="Editar"
-            hdlOnClickGreen=""
+            hdlOnClickGreen={() => editMaterial()}
             titleRed="Cancelar"
             hdlOnClickRed={() => setShowModal3Edit(!showModal3Edit)}
           >
@@ -593,28 +633,68 @@ const Resources = () => {
               >
                 <div className="column">
                   <div className="column">
-                    <InputLabel title="Nombre del material" />
+                    <InputLabel
+                      title="ID"
+                      name="id_resource"
+                      hdlOnChange={(e) =>
+                        handleUpdate("id_resource", e.target.value)
+                      }
+                      register={register}
+                    />
+                  </div>
+                </div>
+                <div className="column">
+                  <div className="column">
+                    <InputLabel
+                      title="Nombre del material"
+                      name="reosurce_name"
+                      hdlOnChange={(e) =>
+                        handleUpdate("resoruce_name", e.target.value)
+                      }
+                      register={register}
+                    />
                   </div>
                 </div>
               </div>
               <div className="column column468">
                 <div className="column">
                   <div className="column">
-                    <TextArea title="Descripción" />
+                    <TextArea
+                      title="Descripción"
+                      name="description"
+                      hdlOnChange={(e) =>
+                        handleUpdate("description", e.target.value)
+                      }
+                      register={register}
+                    />
                   </div>
                 </div>
               </div>
               <div className="column column468">
                 <div className="column">
                   <div className="column">
-                    <TextArea title="Observaciones" />
+                    <TextArea
+                      title="Observaciones"
+                      name="observation"
+                      hdlOnChange={(e) =>
+                        handleUpdate("observation", e.target.value)
+                      }
+                      register={register}
+                    />
                   </div>
                 </div>
               </div>
               <div className="columns column484">
                 <div className="column">
                   <div className="column">
-                    <InputLabel title="Cantidad" />
+                    <InputLabel
+                      title="Cantidad"
+                      name="amount"
+                      hdlOnChange={(e) =>
+                        handleUpdate("amount", e.target.value)
+                      }
+                      register={register}
+                    />
                   </div>
                 </div>
               </div>

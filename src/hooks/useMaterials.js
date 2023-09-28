@@ -17,9 +17,15 @@ export const useMaterials = () => {
     return data;
   };
 
+  const editaMateriales = async (body) => {
+    const data = await api.editarMateriales(body);
+    return data;
+  }
+
   return {
     consultMaterials,
     insertResources,
     deleteMaterials,
+    editaMateriales,
   };
 };
