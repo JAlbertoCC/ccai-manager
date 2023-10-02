@@ -133,6 +133,16 @@ export async function checkingInternalRegister (body) {
   return data
 }
 
+//procedimiento GET para consulta de datos con ID 
+export async function consultarMaterials (body){
+  const request = buildRequest('consult-materials', 'GET', body)
+  const response = await fetch(request)
+
+  const data = await response.json()
+  return data;
+}
+
+
 //Procedimiento post registro materiales 
 export async function insertResources (body) {
   const request = buildRequest('/add-resources', 'POST', body)
@@ -153,7 +163,7 @@ export async function deleteMaterials (body) {
 
 //Procedimiento PUT para edición de materiales 
 export async function editarMateriales (body) {
-  const request = buildRequest('/edit-materials', 'PUT', body)
+  const request = buildRequest('/edit-materials/', 'PUT', body)
   const response = await fetch(request)
 
   const data = await response.json()

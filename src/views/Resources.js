@@ -23,12 +23,17 @@ const Resources = () => {
   const { insertResources } = useMaterials();
   const { deleteMaterials } = useMaterials();
   const { editaMateriales } = useMaterials();
+  const [ dataConsultarMaterials, setDataConsultarMaterials ] = useState(0);
+  const { id_resource } = useState(0);
+  
 
   useEffect(() => {
     showData();
     showDataMaterials();
     showDocent();
+    consultarMaterials();
   }, []);
+
   const showData = async () => {
     consultingStudentsData()
       .then((result) => {
@@ -51,6 +56,17 @@ const Resources = () => {
     consultTeacher()
       .then((result) => {
         setDocent(result);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
+  //Función para mostrar la información con el ID 
+  const consultarMaterials = async () => {
+    await consultarMaterials(id_resource)
+      .then((result) => {
+        setDataConsultarMaterials(result);
       })
       .catch((error) => {
         console.error(error);
@@ -143,8 +159,11 @@ const Resources = () => {
 
   const [TypeInputGender, setTypeInputGender] = useState();
 
-  // Configuración para el form (hooks) (uso de props)
+  
 
+  
+
+  // Configuración para el form (hooks) (uso de props)
   const {
     register,
     handleSubmit,
@@ -231,9 +250,9 @@ const Resources = () => {
   };
 
   //Se crea el objeto con los datos a modificar
-  const editMaterial = (id_resource) => {
+  const editMaterial = () => {
     const body = {
-      id_resource: formEditMaterial.id_resource,
+      //id_resource: formEditMaterial.id_resource,
       resoruce_name: formEditMaterial.resoruce_name,
       observation: formEditMaterial.observation,
       amount: formEditMaterial.amount,
@@ -253,6 +272,8 @@ const Resources = () => {
         console.log("error", error.message);
       });
   };
+
+  console.log("prueba de lapiz", setShowModal3Edit)
 
   //Inicio del formulario
   return (
@@ -634,20 +655,9 @@ const Resources = () => {
                 <div className="column">
                   <div className="column">
                     <InputLabel
-                      title="ID"
-                      name="id_resource"
-                      hdlOnChange={(e) =>
-                        handleUpdate("id_resource", e.target.value)
-                      }
-                      register={register}
-                    />
-                  </div>
-                </div>
-                <div className="column">
-                  <div className="column">
-                    <InputLabel
                       title="Nombre del material"
                       name="reosurce_name"
+                      value={setFormDataMaterials.resoruce_name}
                       hdlOnChange={(e) =>
                         handleUpdate("resoruce_name", e.target.value)
                       }
@@ -900,11 +910,13 @@ const Resources = () => {
                             <td>{item.observation}</td>
                             <td>{item.amount}</td>
                             <td>
+          
                               <i
                                 className="mdi mdi-pencil icon-blue"
                                 onClick={() =>
-                                  setShowModal3Edit(!showModal3Edit)
+                                  setShowModal3Edit (consultarMaterials(item.id_resource))
                                 }
+                                
                               ></i>
                               <i
                                 className="mdi mdi-trash-can-outline icon-blue"
