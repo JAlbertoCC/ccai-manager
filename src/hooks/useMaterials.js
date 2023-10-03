@@ -20,7 +20,7 @@ export const useMaterials = () => {
   const editaMateriales = async (body) => {
     const data = await api.editarMateriales(body);
     return data;
-  }
+  };
 
   const consultarMaterials = async (id_resource) => {
     const data = await api.consultarMaterials(id_resource);

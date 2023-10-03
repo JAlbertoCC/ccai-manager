@@ -134,8 +134,8 @@ export async function checkingInternalRegister (body) {
 }
 
 //procedimiento GET para consulta de datos con ID 
-export async function consultarMaterials (body){
-  const request = buildRequest('consult-materials', 'GET', body)
+export async function consultarMaterials (id_resource){
+  const request = buildGetRequest('/consult-materials', 'GET', id_resource)
   const response = await fetch(request)
 
   const data = await response.json()
