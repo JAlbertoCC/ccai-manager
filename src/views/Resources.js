@@ -24,16 +24,16 @@ const Resources = () => {
   const { deleteMaterials } = useMaterials();
   const { editaMateriales, consultarMaterials } = useMaterials();
   const [dataEdit, setDataEdit] = useState({
-    id_resource: "",
-  });
-  const [materialEdit, setMarialEdit] = useState([]);
+    id_resource: 0,
+  }); //x
+  const [materialEdit, setMarialEdit] = useState([]); //x
 
   useEffect(() => {
     showData();
     showDataMaterials();
     showDocent();
     dataEditMaterial();
-  }, [setDataEdit.id_resource]);
+  }, [dataEdit]);
 
   const showData = async () => {
     consultingStudentsData()
@@ -65,7 +65,7 @@ const Resources = () => {
 
   //Función para mostrar la información con el ID
   const dataEditMaterial = async () => {
-    consultarMaterials(setDataEdit.id_resource)
+    await consultarMaterials(dataEdit)
       .then((result) => {
         setMarialEdit(result);
       })
@@ -269,6 +269,12 @@ const Resources = () => {
         console.log("error", error.message);
       });
   };
+
+  function handleEdit(id_resource) {
+    setShowModal3Edit(!showModal3Edit);
+    setDataEdit(id_resource);
+  }
+  console.log("pincel id", handleEdit);
 
   //Inicio del formulario
   return (
@@ -642,70 +648,77 @@ const Resources = () => {
             titleRed="Cancelar"
             hdlOnClickRed={() => setShowModal3Edit(!showModal3Edit)}
           >
-            <form onSubmit={handleSubmit}>
-              <div>
-                <div
-                  className="columns container proyect-detail column468"
-                  //style={{ marginTop: "10px", width: "600px" }}
-                >
-                  <div className="column">
-                    <div className="column">
-                      <InputLabel
-                        title="Nombre del material"
-                        name="resoruce_name"
-                        value={dataEdit.resoruce_name}
-                        hdlOnChange={(e) =>
-                          handleUpdate("resoruce_name", e.target.value)
-                        }
-                        register={register}
-                      />
+            {materialEdit ? (
+              materialEdit.map((item, index) => {
+                <form onSubmit={handleSubmit} key={index}>
+                  
+                  <div>
+                    <div
+                      className="columns container proyect-detail column468"
+                      //style={{ marginTop: "10px", width: "600px" }}
+                    >
+                      <div className="column">
+                        <div className="column">
+                          <InputLabel
+                            title="Nombre del material"
+                            name="resoruce_name"
+                            value={item.resoruce_name}
+                            hdlOnChange={(e) =>
+                              handleUpdate("resoruce_name", e.target.value)
+                            }
+                            register={register}
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div className="column column468">
+                      <div className="column">
+                        <div className="column">
+                          <TextArea
+                            title="Descripción"
+                            name="description"
+                            hdlOnChange={(e) =>
+                              handleUpdate("description", e.target.value)
+                            }
+                            register={register}
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div className="column column468">
+                      <div className="column">
+                        <div className="column">
+                          <TextArea
+                            title="Observaciones"
+                            name="observation"
+                            hdlOnChange={(e) =>
+                              handleUpdate("observation", e.target.value)
+                            }
+                            register={register}
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div className="columns column484">
+                      <div className="column">
+                        <div className="column">
+                          <InputLabel
+                            title="Cantidad"
+                            name="amount"
+                            hdlOnChange={(e) =>
+                              handleUpdate("amount", e.target.value)
+                            }
+                            register={register}
+                          />
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div className="column column468">
-                  <div className="column">
-                    <div className="column">
-                      <TextArea
-                        title="Descripción"
-                        name="description"
-                        hdlOnChange={(e) =>
-                          handleUpdate("description", e.target.value)
-                        }
-                        register={register}
-                      />
-                    </div>
-                  </div>
-                </div>
-                <div className="column column468">
-                  <div className="column">
-                    <div className="column">
-                      <TextArea
-                        title="Observaciones"
-                        name="observation"
-                        hdlOnChange={(e) =>
-                          handleUpdate("observation", e.target.value)
-                        }
-                        register={register}
-                      />
-                    </div>
-                  </div>
-                </div>
-                <div className="columns column484">
-                  <div className="column">
-                    <div className="column">
-                      <InputLabel
-                        title="Cantidad"
-                        name="amount"
-                        hdlOnChange={(e) =>
-                          handleUpdate("amount", e.target.value)
-                        }
-                        register={register}
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </form>
+                </form>;
+              })
+            ) : (
+              <></>
+            )}
           </ModalComponentGlobal>
         ) : (
           <></>
@@ -909,10 +922,7 @@ const Resources = () => {
                             <td>
                               <i
                                 className="mdi mdi-pencil icon-blue"
-                                onClick={() =>
-                                  setShowModal3Edit(!showModal3Edit) &&
-                                  setDataEdit(item.id_resource)
-                                }
+                                onClick={() => handleEdit(item.id_resource)}
                               ></i>
                               <i
                                 className="mdi mdi-trash-can-outline icon-blue"
