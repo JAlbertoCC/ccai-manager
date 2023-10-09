@@ -19,7 +19,7 @@ const Resources = () => {
   const [materials, setMaterials] = useState([]);
   const { consultMaterials } = useMaterials();
   const [docent, setDocent] = useState([]);
-  const { consultTeacher } = useDocent();
+  const { consultTeacher, insertarTeacher, modificarTeacher, eliminarProfesor } = useDocent();
   const { insertResources } = useMaterials();
   const { deleteMaterials } = useMaterials();
   const { editaMateriales, consultarMaterials } = useMaterials();
@@ -176,6 +176,16 @@ const Resources = () => {
     description: "",
   });
 
+  //hook para registrar profesores 
+  const [formDataAdviser, setFormDataAdvisers] = useState({
+    name_adviser: "",
+    first_name: "",
+    second_name: "",
+    matricula: "",
+    genderList: "",
+    id_carrer_fk: "",
+  });
+
   // Regresa y actualiza los valores de la variable y la información
   const handleFormChange = (name, value) => {
     setFormDataMaterials((prevData) => ({
@@ -198,6 +208,22 @@ const Resources = () => {
     console.log(body);
   };
 
+  //Objeto con los datos que se enviaran en el registro de un nuevo profesor 
+
+  const insertAdviser = () => {
+    const body = {
+      name_adviser: formDataAdviser.name_adviser,
+    first_name: formDataAdviser.first_name,
+    second_name: formDataAdviser.second_name,
+    matricula: formDataAdviser.matricula,
+    genderList: formDataAdviser.genderList,
+    id_carrer_fk: formDataAdviser.id_carrer_fk,
+    };
+    // Regresa las alertas o valida los registros o errores
+    if(isDirty && isValid) insertNewAdviser(body);
+    console.log(body);
+  };
+
   //Se registra el nuevo material
   const insertNewResources = (body) => {
     insertResources(body)
@@ -206,6 +232,17 @@ const Resources = () => {
       })
       .catch((error) => {
         console.log("error", error.message);
+      });
+  };
+
+  //Se registra el nuevo Profesor 
+  const insertNewAdviser = (body) => {
+    insertarTeacher(body)
+      .then(() => 
+        {console.log('Profesor Registrado')
+      })
+  .catch((error) => {
+        console.log("Error al registrar el Profesor ", error.message)
       });
   };
 
@@ -288,27 +325,45 @@ const Resources = () => {
             isActive={showModal}
             hdlOnclick={() => setShowModal(!showModal)}
             titleGreen="Agregar"
-            hdlOnClickGreen=""
+            hdlOnClickGreen={insertAdviser() && (!showModal)} //Ver si funciona 
             titleRed="Cancelar"
             hdlOnClickRed={() => setShowModal(!showModal)}
           >
+          <form onSubmit={handleSubmit}> 
             <div className="columns-margen">
               <div className="columns ">
                 <div className="column">
-                  <InputLabel title="Nombre" label="" type="text" />
+                  <InputLabel 
+                  title="Nombre" label="" type="text" 
+                  name="name_adviser"
+                  hdlOnChange={(e) => handleFormChange("name_adviser", e.target.value)}
+                  register={register}
+                  />
                 </div>
               </div>
               <div className="columns">
                 <div className="column">
-                  <InputLabel title="Apellido Paterno" />
+                  <InputLabel title="Apellido Paterno" 
+                  name="first_name"
+                  hdlOnChange={(e) => handleFormChange("first_name", e.target.value)}
+                  register={register}
+                  />
                 </div>
                 <div className="column">
-                  <InputLabel title="Apellido Materno" />
+                  <InputLabel title="Apellido Materno" 
+                  name="second_name"
+                  hdlOnChange={(e) => handleFormChange("second_name", e.target.value)}
+                  register={register}
+                  />
                 </div>
               </div>
               <div className="columns">
                 <div className="column">
-                  <InputLabel title="Matricula" />
+                  <InputLabel title="Matricula" 
+                  name="matricula"
+                  hdlOnChange={(e) => handleFormChange("matricula", e.target.value)}
+                  register={register}
+                  />
                 </div>
                 <div className="column">
                   <DropDown
@@ -318,7 +373,7 @@ const Resources = () => {
                     name="gender"
                     valueSelect="id"
                     validationSchema={{
-                      required: "Este campo es obligratorio",
+                      required: "Este campo es obligatorio",
                     }}
                   />
                 </div>
@@ -332,12 +387,13 @@ const Resources = () => {
                     name="gender"
                     valueSelect="id"
                     validationSchema={{
-                      required: "Este campo es obligratorio",
+                      required: "Este campo es obligatorio",
                     }}
                   />
                 </div>
               </div>
             </div>
+          </form>
           </ModalComponentGlobal>
         ) : (
           <></>

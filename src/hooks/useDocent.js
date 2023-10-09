@@ -18,11 +18,32 @@ export const useDocent = () => {
 
     }
 
+    //Metodo para insertar profesores 
+    const insertarTeacher = async (body) => {
+        const data = await api.insertarTeacher(body);
+        return data;
+    }; 
+
+    //Metodo para modificar profesores 
+    const modificarTeacher = async (body) => {
+        const data = await api.modificarTeacher(body);
+        return data; 
+    };
+
+    //Metodo para eliminar profesor 
+    const eliminarProfesor = async (body) => {
+        const data = await api.eliminarProfesor(body);
+        return data;
+    };
+
 
     return{
         pagination,
         consultTeacher,
-        checkingInternalUser
-    }
+        checkingInternalUser,
+        insertarTeacher,
+        modificarTeacher,
+        eliminarProfesor,
+    };
 }
 
