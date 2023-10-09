@@ -162,13 +162,41 @@ export async function deleteMaterials (body) {
 }
 
 //Procedimiento PUT para edición de materiales 
-export async function editarMateriales (body) {
+export async function editaMateriales (body) {
   const request = buildRequest('/edit-materials/', 'PUT', body)
   const response = await fetch(request)
 
   const data = await response.json()
   return data
 }
+
+// Procedimiento POST para registro de Profesores 
+export async function insertarTeacher (body) {
+  const request = buildRequest('/add-advisers', 'POST', body)
+  const response = await fetch(request)
+
+  const data = await response.json()
+  return data
+}
+
+//Procedimiento PUT para modificar un profesor 
+export async function modificarTeacher (body) {
+  const request = buildRequest('/edit-advisers/', 'PUT', body)
+  const response = await fetch(request)
+
+  const data = await response.json()
+  return data
+}
+
+//Procedimiento DELETE para eliminación de profesores 
+export async function eliminarProfesor (body) {
+  const request = buildRequest('api/delete-advisers', 'DELETE', body)
+  const response = await fetch(request)
+
+  const data = await response.json()
+  return data
+}
+
 
 //_______________________________________________ Procedimientos por crear en el back y en la DB 
 

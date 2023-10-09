@@ -19,7 +19,12 @@ const Resources = () => {
   const [materials, setMaterials] = useState([]);
   const { consultMaterials } = useMaterials();
   const [docent, setDocent] = useState([]);
-  const { consultTeacher, insertarTeacher, modificarTeacher, eliminarProfesor } = useDocent();
+  const {
+    consultTeacher,
+    insertarTeacher,
+    modificarTeacher,
+    eliminarProfesor,
+  } = useDocent();
   const { insertResources } = useMaterials();
   const { deleteMaterials } = useMaterials();
   const { editaMateriales, consultarMaterials } = useMaterials();
@@ -160,6 +165,8 @@ const Resources = () => {
 
   const [TypeInputGender, setTypeInputGender] = useState();
 
+  const [TypeInputCarrer, setTypeInputCarrer] = useState();
+
   // Configuración para el form (hooks) (uso de props)
   const {
     register,
@@ -176,7 +183,7 @@ const Resources = () => {
     description: "",
   });
 
-  //hook para registrar profesores 
+  //hook para registrar profesores
   const [formDataAdviser, setFormDataAdvisers] = useState({
     name_adviser: "",
     first_name: "",
@@ -189,6 +196,14 @@ const Resources = () => {
   // Regresa y actualiza los valores de la variable y la información
   const handleFormChange = (name, value) => {
     setFormDataMaterials((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  // Regresa y actualiza los valores de la variable y la información
+  const handleFormChangeAdviser = (name, value) => {
+    setFormDataAdvisers((prevData) => ({
       ...prevData,
       [name]: value,
     }));
@@ -208,19 +223,19 @@ const Resources = () => {
     console.log(body);
   };
 
-  //Objeto con los datos que se enviaran en el registro de un nuevo profesor 
+  //Objeto con los datos que se enviaran en el registro de un nuevo profesor
 
   const insertAdviser = () => {
     const body = {
       name_adviser: formDataAdviser.name_adviser,
-    first_name: formDataAdviser.first_name,
-    second_name: formDataAdviser.second_name,
-    matricula: formDataAdviser.matricula,
-    genderList: formDataAdviser.genderList,
-    id_carrer_fk: formDataAdviser.id_carrer_fk,
+      first_name: formDataAdviser.first_name,
+      second_name: formDataAdviser.second_name,
+      matricula: formDataAdviser.matricula,
+      gender: formDataAdviser.gender,
+      division: formDataAdviser.division,
     };
     // Regresa las alertas o valida los registros o errores
-    if(isDirty && isValid) insertNewAdviser(body);
+    if (isDirty && isValid) insertNewAdviser(body);
     console.log(body);
   };
 
@@ -235,14 +250,14 @@ const Resources = () => {
       });
   };
 
-  //Se registra el nuevo Profesor 
+  //Se registra el nuevo Profesor
   const insertNewAdviser = (body) => {
     insertarTeacher(body)
-      .then(() => 
-        {console.log('Profesor Registrado')
+      .then(() => {
+        console.log("Profesor Registrado");
       })
-  .catch((error) => {
-        console.log("Error al registrar el Profesor ", error.message)
+      .catch((error) => {
+        console.log("Error al registrar el Profesor ", error.message);
       });
   };
 
@@ -325,75 +340,92 @@ const Resources = () => {
             isActive={showModal}
             hdlOnclick={() => setShowModal(!showModal)}
             titleGreen="Agregar"
-            hdlOnClickGreen={insertAdviser() && (!showModal)} //Ver si funciona 
+            hdlOnClickGreen={() => insertAdviser()} //Ver si funciona
             titleRed="Cancelar"
             hdlOnClickRed={() => setShowModal(!showModal)}
           >
-          <form onSubmit={handleSubmit}> 
-            <div className="columns-margen">
-              <div className="columns ">
-                <div className="column">
-                  <InputLabel 
-                  title="Nombre" label="" type="text" 
-                  name="name_adviser"
-                  hdlOnChange={(e) => handleFormChange("name_adviser", e.target.value)}
-                  register={register}
-                  />
+            <form onSubmit={handleSubmit}>
+              <div className="columns-margen">
+                <div className="columns ">
+                  <div className="column">
+                    <InputLabel
+                      title="Nombre"
+                      label=""
+                      type="text"
+                      name="name_adviser"
+                      hdlOnChange={(e) =>
+                        handleFormChangeAdviser("name_adviser", e.target.value)
+                      }
+                      register={register}
+                    />
+                  </div>
+                </div>
+                <div className="columns">
+                  <div className="column">
+                    <InputLabel
+                      title="Apellido Paterno"
+                      name="first_name"
+                      hdlOnChange={(e) =>
+                        handleFormChangeAdviser("first_name", e.target.value)
+                      }
+                      register={register}
+                    />
+                  </div>
+                  <div className="column">
+                    <InputLabel
+                      title="Apellido Materno"
+                      name="second_name"
+                      hdlOnChange={(e) =>
+                        handleFormChangeAdviser("second_name", e.target.value)
+                      }
+                      register={register}
+                    />
+                  </div>
+                </div>
+                <div className="columns">
+                  <div className="column">
+                    <InputLabel
+                      title="Matricula"
+                      name="matricula"
+                      hdlOnChange={(e) =>
+                        handleFormChangeAdviser("matricula", e.target.value)
+                      }
+                      register={register}
+                    />
+                  </div>
+                  <div className="column">
+                    <DropDown
+                      items={genderList}
+                      title="Sexo"
+                      hdlOnChange={(e) =>
+                        handleFormChangeAdviser("gender", e.target.value)
+                      }
+                      name="gender"
+                      valueSelect="id"
+                      validationSchema={{
+                        required: "Este campo es obligatorio",
+                      }}
+                    />
+                  </div>
+                </div>
+                <div className="columns">
+                  <div className="column">
+                    <DropDown
+                      items={listCarrer}
+                      title="Carrera"
+                      hdlOnChange={(e) =>
+                        handleFormChangeAdviser("division", e.target.value)
+                      }
+                      name="division"
+                      valueSelect="id"
+                      validationSchema={{
+                        required: "Este campo es obligatorio",
+                      }}
+                    />
+                  </div>
                 </div>
               </div>
-              <div className="columns">
-                <div className="column">
-                  <InputLabel title="Apellido Paterno" 
-                  name="first_name"
-                  hdlOnChange={(e) => handleFormChange("first_name", e.target.value)}
-                  register={register}
-                  />
-                </div>
-                <div className="column">
-                  <InputLabel title="Apellido Materno" 
-                  name="second_name"
-                  hdlOnChange={(e) => handleFormChange("second_name", e.target.value)}
-                  register={register}
-                  />
-                </div>
-              </div>
-              <div className="columns">
-                <div className="column">
-                  <InputLabel title="Matricula" 
-                  name="matricula"
-                  hdlOnChange={(e) => handleFormChange("matricula", e.target.value)}
-                  register={register}
-                  />
-                </div>
-                <div className="column">
-                  <DropDown
-                    items={genderList}
-                    title="Sexo"
-                    hdlOnChange={(e) => setTypeInputGender(e.target.value)}
-                    name="gender"
-                    valueSelect="id"
-                    validationSchema={{
-                      required: "Este campo es obligatorio",
-                    }}
-                  />
-                </div>
-              </div>
-              <div className="columns">
-                <div className="column">
-                  <DropDown
-                    items={listCarrer}
-                    title="Carrera"
-                    hdlOnChange={(e) => setTypeInputGender(e.target.value)}
-                    name="gender"
-                    valueSelect="id"
-                    validationSchema={{
-                      required: "Este campo es obligatorio",
-                    }}
-                  />
-                </div>
-              </div>
-            </div>
-          </form>
+            </form>
           </ModalComponentGlobal>
         ) : (
           <></>
@@ -707,7 +739,6 @@ const Resources = () => {
             {materialEdit ? (
               materialEdit.map((item, index) => {
                 <form onSubmit={handleSubmit} key={index}>
-                  
                   <div>
                     <div
                       className="columns container proyect-detail column468"
